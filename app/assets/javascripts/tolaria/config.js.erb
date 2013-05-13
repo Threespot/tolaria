@@ -1,0 +1,13 @@
+requirejs.config({
+
+  <% if Rails.env.development? %>
+    urlArgs: "bust=" + (new Date()).getTime(),
+  <% else %>
+    urlArgs: "bust=<%= Rails.configuration.assets.version %>",
+  <% end %>
+
+  paths: {
+    "jquery": "lib/jquery",
+  },
+
+});

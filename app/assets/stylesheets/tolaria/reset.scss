@@ -1,0 +1,97 @@
+a, abbr, acronym, address, applet, article, aside,
+b, big, blockquote, body,
+canvas, caption, cite, code,
+dd, del, details, dfn, div, dl, dt,
+em, fieldset, figcaption, figure, font, footer, form,
+h1, h2, h3, h4, h5, h6, header, hgroup, html,
+i, iframe, img, input, ins,
+kbd, label, legend, li,
+main, menu, nav, object, ol, p, pre, q,
+s, samp, section, small, span, strike, strong, sub, summary, sup,
+table, tbody, td, tfoot, th, thead, tr, tt,
+ul, var {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  outline: 0;
+  font-weight: inherit;
+  font-style: inherit;
+  font-size: 100%;
+  font-family: inherit;
+  vertical-align: baseline;
+  text-decoration: none;
+}
+
+button, input, option,
+select, textarea {
+  @include appearance(none);
+  @include box-sizing(content-box);
+  border-radius: 0;
+  margin: 0;
+  padding: 0;
+  background: none;
+  border: 1px solid #cc0000; // force developers to override this
+  outline: none;
+  vertical-align: middle;
+}
+
+body {
+  @include prefixer(text-size-adjust, 100%, webkit moz ms);
+  line-height: 1;
+  color: #F00; // force developers to override this
+  background: #FF6FCF; // force developers to override this
+}
+
+ol, ul {
+  list-style: none;
+}
+
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+caption, td, th {
+  text-align: left;
+  font-weight: normal;
+}
+
+blockquote, q {
+  quotes: none;
+  &:after, &:before {
+    content: "";
+    content: none;
+  }
+}
+
+article, aside, canvas, details,
+figcaption, figure, footer,
+header, hgroup, main, menu, nav,
+section, summary {
+  display: block;
+}
+
+address, caption, cite,
+code, dfn, th, var {
+  font-style: normal;
+  font-weight: normal;
+}
+
+:focus {
+  outline: 0; // remember to define focus styles!
+}
+
+ins {
+  text-decoration: none; // remember to highlight inserts somehow!
+}
+
+del {
+  text-decoration: line-through;
+}
+
+a:link, a:visited,
+a:active, a:hover {
+  img {
+    display: block;
+  }
+}
