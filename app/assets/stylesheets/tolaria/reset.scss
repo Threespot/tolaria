@@ -35,11 +35,8 @@ select, textarea {
   vertical-align: middle;
 }
 
-body {
+html, body {
   @include prefixer(text-size-adjust, 100%, webkit moz ms);
-  line-height: 1;
-  color: #F00; // force developers to override this
-  background: #FF6FCF; // force developers to override this
 }
 
 ol, ul {

@@ -1,2 +1,62 @@
+////////////////////////////////////////////////////////////////////////
+// GENERIC CLASSES
+////////////////////////////////////////////////////////////////////////
 
+// Spaning
 
+em { font-style: italic; }
+strong { font-weight: bold; }
+
+// Font alignment and style
+
+.sc  { font-variant: small-caps; }
+.tal { text-align: left; }
+.tac { text-align: center; }
+.tar { text-align: right; }
+
+// Show or hide elements
+
+.hidden, .hide { display: none; }
+.show { display: block; }
+
+// Clearfix container
+
+.clear {
+  *zoom: 1;
+  clear: both;
+  &:before, &:after {
+    content: "";
+    display: table;
+  }
+  &:after {
+    clear: both;
+  }
+}
+
+// Disable user text selection for this element
+
+.noselect {
+  @include user-select(none);
+  -webkit-touch-callout: none;
+  cursor: default;
+}
+
+body {
+  line-height: 1.25;
+  color: $cBlack;
+  background: $cNeutral;
+}
+
+@include all-links {
+  @include transition(
+    color 0.1s linear,
+    background-color 0.1s linear
+  )
+}
+
+#appwell {
+  margin: 0 auto;
+  width: 100%;
+  max-width: 940px;
+  background: #f3f2f4;
+}

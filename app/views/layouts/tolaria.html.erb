@@ -9,6 +9,11 @@
     <%= javascript_include_tag "tolaria/lib/require", data:{main:"/assets/tolaria/tolaria"} %>
   </head>
   <body>
-    <%= yield %>
+    <%= render "tolaria/shared/header" %>
+    <div id="appwell">
+      <%= render "tolaria/shared/menu" %>
+      <%= yield %>
+    </div>
+    <%= render "tolaria/shared/footer" %>
   </body>
 </html>
