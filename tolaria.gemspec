@@ -9,8 +9,8 @@ Gem::Specification.new do |s|
   s.platform      = Gem::Platform::RUBY
   s.authors       = ["Corey Csuhta"]
   s.homepage      = "https://github.com/csuhta/tolaria"
-  s.description   = "Tolaria is a fantastic CMS interface for Rails."
-  s.summary       = "Tolaria is a fantastic CMS interface for Rails."
+  s.description   = "Tolaria is a seriously opinionated Rails CMS framework for making your clients happy."
+  s.summary       = "Tolaria is an opinionated Rails CMS interface."
 
   s.required_ruby_version     = ">= 2.0.0"
   s.required_rubygems_version = ">= 2.0.0"
