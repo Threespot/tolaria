@@ -1,0 +1,9 @@
+<%= semantic_form_for([:admin, @resource]) do |f| %>
+
+  <%= f.inputs %>
+
+  <%= f.actions do %>
+    <%= f.action :submit, as: :input %>
+  <% end %>
+
+<% end %>

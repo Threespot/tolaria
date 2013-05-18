@@ -21,5 +21,6 @@ Gem::Specification.new do |s|
   s.add_dependency "devise"
   s.add_dependency "rails", "~> 3.2.0"
   s.add_dependency "railties", "~> 3.1"
+  s.add_dependency "formtastic"
 
 end

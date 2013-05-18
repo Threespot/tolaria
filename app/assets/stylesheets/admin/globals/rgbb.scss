@@ -1,0 +1,18 @@
+$old-ie: false !default;
+
+@function rgbb($red, $blue, $green, $opacity) {
+  @if ($old-ie) {
+    @return rgb($red, $green, $blue);
+  }
+  @else {
+    @return rgba($red, $blue, $green, $opacity);
+  }
+}
+
+@function black($opacity) {
+  @return rgbb(0,0,0,$opacity);
+}
+
+@function white($opacity) {
+  @return rgbb(255,255,255,$opacity);
+}

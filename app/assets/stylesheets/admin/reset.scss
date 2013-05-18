@@ -10,28 +10,28 @@ main, menu, nav, object, ol, p, pre, q,
 s, samp, section, small, span, strike, strong, sub, summary, sup,
 table, tbody, td, tfoot, th, thead, tr, tt,
 ul, var {
-  margin: 0;
-  padding: 0;
   border: 0;
-  outline: 0;
-  font-weight: inherit;
-  font-style: inherit;
-  font-size: 100%;
   font-family: inherit;
-  vertical-align: baseline;
+  font-size: 100%;
+  font-style: normal;
+  font-weight: normal;
+  margin: 0;
+  outline: 0;
+  padding: 0;
   text-decoration: none;
+  vertical-align: baseline;
 }
 
 button, input, option,
 select, textarea {
   @include appearance(none);
   @include box-sizing(content-box);
-  border-radius: 0;
-  margin: 0;
-  padding: 0;
   background: none;
+  border-radius: 0;
   border: 1px solid #cc0000; // force developers to override this
+  margin: 0;
   outline: none;
+  padding: 0;
   vertical-align: middle;
 }
 

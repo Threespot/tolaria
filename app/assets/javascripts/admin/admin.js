@@ -1,7 +1,7 @@
-//= require tolaria/config
+//= require admin/config
 //= require_self
 
-define("tolaria", ["custom"], function() {
+define("admin", ["custom"], function() {
 
   "use strict";
 

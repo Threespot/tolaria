@@ -1,0 +1,78 @@
+$cMenuDark: #1e1e1e;
+$cMenuLight: #282828;
+
+$menuIconSize: 16px;
+$menuIconMargin: 9px;
+$menuLeftPadding: 10px;
+
+#menu {
+  height: 500px;
+  width: 20%;
+  color: #bbb;
+  font-size: 12px;
+  text-shadow: 0px 1px 0px #000;
+}
+
+.menu-row {
+
+  @include pressable {
+    display: block;
+    line-height: 1.5;
+    border-top: 1px solid lighten($cMenuLight, 4);
+    border-bottom: 1px solid black(1);
+    padding: 6px 0 5px $menuLeftPadding;
+    color: #ccc;
+    z-index: 5;
+  }
+
+  @include pressable-active {
+    background: #282828;
+    color: #fff;
+    padding-left: $menuLeftPadding + 5px;
+  }
+
+  img {
+    float: left;
+    border-radius: 1px;
+    margin: 1px $menuIconMargin 0 0;
+    box-shadow: 0px 1px 0px #000;
+  }
+
+  i.icon {
+    display: block;
+    float: left;
+    text-align: center;
+    font-size: 14px;
+    width: $menuIconSize;
+    height: $menuIconSize;
+    margin: -1px 9px 0 0;
+  }
+
+  &.iconless {
+    padding-left: $menuIconSize + $menuIconMargin + $menuLeftPadding;
+  }
+
+  &.iconless:hover,
+  &.iconless:active {
+    padding-left: $menuIconSize + $menuIconMargin + $menuLeftPadding + 5px;
+  }
+
+}
+
+.menu-row + .menu-row {
+
+}
+
+.menu-header {
+  background: $cMenuLight;
+  border-bottom: 1px solid #000;
+  border-top: 1px solid lighten($cMenuLight, 4);
+  box-shadow: 0px 1px 2px black(0.5);
+  color: #999;
+  display: block;
+  font-size: 12px;
+  font-weight: bold;
+  line-height: 1.25;
+  padding: 6px 0 6px $menuLeftPadding;
+  text-transform: uppercase;
+}

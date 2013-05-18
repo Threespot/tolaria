@@ -69,8 +69,8 @@ module Tolaria
 
     def tolaria_template(name)
       return {
-        template: "tolaria/resource/#{name}",
-        layout: "tolaria"
+        template: "admin/resource/#{name}",
+        layout: "admin"
       }
     end
 

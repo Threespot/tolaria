@@ -1,0 +1,33 @@
+<div id="menu">
+
+  <div id="menu-title" class="menu-header">
+    <%= Tolaria.config.interface_title %>
+  </div>
+
+  <%= link_to "#", class:"menu-row" do %>
+    <%= image_tag "https://secure.gravatar.com/avatar/de5a73022773d405027eb2fa03b9805f?s=32", size:"16x16" %>
+    Corey Csuhta
+  <% end %>
+
+  <%= link_to "#", class:"menu-row iconless" do %>
+    Sign Out
+  <% end %>
+
+  <% 3.times do %>
+
+    <div id="menu-title" class="menu-header">
+      Section Title
+    </div>
+
+    <% [3,3,4,5,6].sample.times do %>
+
+      <%= link_to "#", id:"userpick", class:"menu-row" do %>
+        <%= awesome_icon(Tolaria::FontAwesomeMap.keys.sample) %>
+        <%= %w(Test\ Value Posts Showtimes Miscellany Team\ Members).sample %>
+      <% end %>
+
+    <% end %>
+
+  <% end %>
+
+</div>
