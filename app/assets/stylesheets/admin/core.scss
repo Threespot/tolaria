@@ -42,28 +42,57 @@ strong { font-weight: bold; }
 }
 
 body {
-  background: #1e1e1e;
+  background: #2c2c2c;
   color: $cBlack;
   font-family: $helvetica;
   font-size: 16px;
   line-height: 1.25;
-  min-width: 940px;
 }
 
-@include all-links {
+input,
+select,
+textarea,
+a:link,
+a:visited,
+a:hover,
+a:active {
   @include transition(
-    color 0.1s linear,
     background-color 0.1s linear,
+    border-color 0.1s linear,
+    box-shadow 0.1s linear,
+    color 0.1s linear,
+    margin 0.1s linear,
     padding 0.1s linear
   )
 }
 
+@include all-links {
+
+}
+
+#container {
+  background: #1e1e1e;
+  width: 100%;
+  min-width: 940px;
+  max-width: 1100px;
+  margin: 0 auto;
+  border: 1px solid #000;
+  border-top: 0;
+  border-radius: 0 0 2px 2px;
+}
+
 #appwell {
   margin: 0 auto;
-  width: 82%;
-  padding: 20px 0 0 25px;
+  width: 80%;
+  padding: 25px 25px;
   float: right;
   background: #f5f5f5;
   box-shadow: -1px 0px 3px black(0.5);
   border-left: 1px solid #000;
+  border-radius: 0 0 2px 2px;
+  text-shadow: 0px 1px 0px white(0.9);
+}
+
+#content-main {
+  min-height: 450px;
 }

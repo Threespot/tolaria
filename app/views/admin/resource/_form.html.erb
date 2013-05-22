@@ -1,9 +1,83 @@
 <%= semantic_form_for([:admin, @resource]) do |f| %>
 
-  <%= f.inputs %>
+  <div id="header">
+    <span id="breadcrumbs">Posts /</span>
+    <h1>Create a Post</h1>
+    <div class="form-actions">
+      <button type="submit">
+        Create <%= @resource.class %>
+      </button>
+      <%= link_to "#", class:"button inverse" do %>
+        Cancel
+      <% end %>
+    </div>
+  </div>
 
-  <%= f.actions do %>
-    <%= f.action :submit, as: :input %>
-  <% end %>
+  <div id="content-main" class="clear">
+
+    <div id="inputs-wide">
+      <%= f.inputs "Composing", class:"inputs left" do %>
+
+        <%= f.input :addendum, {
+          as: :select,
+        } %>
+
+        <%= f.input :title, {
+          hint: "This is my inline hint"
+        } %>
+
+        <%= f.input :body, {
+          hint: "This is my inline hint",
+          as: :markdown
+        } %>
+
+      <% end %>
+    </div>
+
+    <div id="inputs-narrow">
+
+      <%= f.inputs "Publishing" do |variable| %>
+
+          <%= f.input :status, {
+            label: "Publishing Status",
+            as: :select,
+            include_blank: false,
+            hint: %{
+              Draft items are never shown on the blog.
+              Published items are shown on the blog after their published date has passed.
+            }
+          } %>
+
+          <%= f.input :published_at, {
+            as: :string,
+            label: "Publish Date",
+            input_html: {
+              maxlength: 10,
+              class: 'datepicker',
+            },
+            hint: %{
+              Site visitors see this date in the byline of the blog post.
+              This post does not show on the blog until after this date as passed.
+              Set a future date to schedule this post to appear at that time.
+            }
+          } %>
+
+      <% end %>
+
+    </div>
+
+  </div>
+
+
+  <div id="footer" class="clear">
+    <div class="form-actions">
+      <button type="submit">
+        Create <%= @resource.class %>
+      </button>
+      <%= link_to "#", class:"button inverse" do %>
+        Cancel
+      <% end %>
+    </div>
+  </div>
 
 <% end %>

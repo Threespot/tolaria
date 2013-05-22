@@ -1,15 +1,19 @@
 a, abbr, acronym, address, applet, article, aside,
-b, big, blockquote, body,
+b, big, blockquote, body, button,
 canvas, caption, cite, code,
 dd, del, details, dfn, div, dl, dt,
 em, fieldset, figcaption, figure, font, footer, form,
 h1, h2, h3, h4, h5, h6, header, hgroup, html,
 i, iframe, img, input, ins,
 kbd, label, legend, li,
-main, menu, nav, object, ol, p, pre, q,
-s, samp, section, small, span, strike, strong, sub, summary, sup,
-table, tbody, td, tfoot, th, thead, tr, tt,
+main, menu, nav, object, ol, option, p, pre, q,
+s, samp, section, select, small, span, strike, strong, sub, summary, sup,
+table, tbody, td, textarea, tfoot, th, thead, tr, tt,
 ul, var {
+  @include appearance(none);
+  @include box-sizing(content-box);
+  background: 0;
+  border-radius: 0;
   border: 0;
   font-family: inherit;
   font-size: 100%;
@@ -20,19 +24,6 @@ ul, var {
   padding: 0;
   text-decoration: none;
   vertical-align: baseline;
-}
-
-button, input, option,
-select, textarea {
-  @include appearance(none);
-  @include box-sizing(content-box);
-  background: none;
-  border-radius: 0;
-  border: 1px solid #cc0000; // force developers to override this
-  margin: 0;
-  outline: none;
-  padding: 0;
-  vertical-align: middle;
 }
 
 html, body {

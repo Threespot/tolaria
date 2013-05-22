@@ -1,4 +1,4 @@
-define("custom", ["jquery"], function($) {
+define(["jquery"], function($) {
 
   "use strict";
 

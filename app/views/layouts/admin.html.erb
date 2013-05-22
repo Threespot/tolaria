@@ -9,7 +9,8 @@
     <%= javascript_include_tag "admin/lib/require", data:{main:"/assets/admin/admin"} %>
   </head>
   <body class="tolaria">
-    <div id="container">
+
+    <div id="container" class="clear">
       <div id="deco-strip" style="background-position-x:<%= header_background_xpos %>px"></div>
       <div id="appwell">
         <%= yield %>

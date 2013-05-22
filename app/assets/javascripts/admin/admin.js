@@ -1,7 +1,7 @@
 //= require admin/config
 //= require_self
 
-define("admin", ["custom"], function() {
+define(["custom"], function() {
 
   "use strict";
 

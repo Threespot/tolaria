@@ -6,11 +6,13 @@ $menuIconMargin: 9px;
 $menuLeftPadding: 10px;
 
 #menu {
-  height: 500px;
+  background: $cMenuDark;
+  min-height: 450px;
   width: 20%;
   color: #bbb;
   font-size: 12px;
   text-shadow: 0px 1px 0px #000;
+  border-radius: 0 0 0 2px;
 }
 
 .menu-row {
@@ -24,6 +26,10 @@ $menuLeftPadding: 10px;
     color: #ccc;
     z-index: 5;
   }
+
+  // .menu-header + & {
+  //   border-top-color: $cMenuDark;
+  // }
 
   @include pressable-active {
     background: #282828;
@@ -45,7 +51,7 @@ $menuLeftPadding: 10px;
     font-size: 14px;
     width: $menuIconSize;
     height: $menuIconSize;
-    margin: -1px 9px 0 0;
+    margin: -2px 9px 0 0;
   }
 
   &.iconless {

@@ -1,11 +1,11 @@
 $old-ie: false !default;
 
-@function rgbb($red, $blue, $green, $opacity) {
+@function rgbb($red, $green, $blue, $opacity) {
   @if ($old-ie) {
     @return rgb($red, $green, $blue);
   }
   @else {
-    @return rgba($red, $blue, $green, $opacity);
+    @return rgba($red, $green, $blue, $opacity);
   }
 }
 
