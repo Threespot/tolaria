@@ -1,0 +1,101 @@
+.header-stripe {
+  border-bottom: 1px solid black(1);
+  height: 3px;
+  background: image-url("admin/rule-banner.jpg") repeat;
+  background-size: 100% 100%;
+  background-position: -250px 0px;
+}
+
+.header-stripe-inner {
+  width: 100%;
+  height: 3px;
+  background: image-url("admin/columbia.png") center center repeat;
+}
+
+.header {
+  @extend %clearfix;
+  background: $cDarkPlum;
+  min-height: 32px;
+  border-bottom: 2px solid black;
+  padding: 0 15px 0 25px;
+  text-shadow: $plumShadow;
+  font-size: 14px;
+}
+
+.header-left {
+  float: left;
+}
+
+.header-right {
+  float: right;
+}
+
+.header-app-title {
+  color: $cWhite;
+  font-size: 14px;
+  display: block;
+  padding: 8px 0 8px 0;
+}
+
+.header-supplemental {
+  display: block;
+  float: left;
+  li {
+    float: left;
+    padding: 0 15px 0 0px;
+  }
+  a {
+    color: white(0.75);
+    font-size: 12px;
+    text-transform: uppercase;
+    font-weight: bold;
+    display: block;
+    padding: 10px 0 10px 0;
+    line-height: 1;
+    &:hover, &:active {
+      color: white(0.8);
+    }
+  }
+}
+
+.header-user-controls {
+
+  display: block;
+  float: right;
+
+  li {
+    float: left;
+    padding: 0 0px 0 15px;
+  }
+
+  a {
+    color: $cWhite;
+    position: relative;
+    display: block;
+    padding: 8px 0 8px 0;
+    &:hover, &:active {
+      color: white(0.8);
+      img {
+        border-color: white(0.8);
+      }
+    }
+  }
+
+  .icon {
+    margin-right: 3px;
+    font-size: 14px;
+  }
+
+  img {
+    float: left;
+    margin-top: -1px;
+    border-radius: 2px;
+    border: 1px solid $cWhite;
+    margin-right: 6px;
+    box-shadow: $plumShadow;
+  }
+
+}
+
+
+

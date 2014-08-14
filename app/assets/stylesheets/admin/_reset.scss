@@ -1,0 +1,97 @@
+////////////////////////////////////////////////////////////////////////
+// CSS RESET
+// Replace this with something else if you hates it
+////////////////////////////////////////////////////////////////////////
+
+*, *:before, *:after {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  background-repeat: no-repeat;
+}
+
+a, abbr, acronym, address, applet, article, aside,
+b, big, blockquote, body,
+canvas, caption, cite, code,
+dd, del, details, dfn, div, dl, dt,
+em, fieldset, figcaption, figure, font, footer, form,
+h1, h2, h3, h4, h5, h6, header, html,
+i, iframe, img, input, ins,
+kbd, label, legend, li,
+main, menu, nav, object, ol, p, pre, q,
+s, samp, section, small, span, strike, strong, sub, summary, sup,
+table, tbody, td, tfoot, th, thead, tr, tt,
+ul, var {
+  background-repeat: no-repeat;
+  border: 0;
+  font-family: inherit;
+  font-size: 100%;
+  font-style: normal;
+  font-weight: normal;
+  margin: 0;
+  padding: 0;
+  text-decoration: none;
+  vertical-align: baseline;
+}
+
+button, input, option,
+select, textarea {
+  appearance: none;
+  background-repeat: no-repeat;
+  background: none;
+  border-radius: 0;
+  border: 0;
+  margin: 0;
+  outline: none;
+  padding: 0;
+  vertical-align: middle;
+}
+
+::-webkit-inner-spin-button,
+::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+}
+
+ol, ul {
+  list-style: none;
+}
+
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+caption, td, th {
+  text-align: left;
+  font-weight: normal;
+}
+
+blockquote, q {
+  quotes: none;
+  &:after, &:before {
+    content: "";
+    content: none;
+  }
+}
+
+article, aside, canvas, details,
+figcaption, figure, footer,
+header, hgroup, main, menu, nav,
+section, summary {
+  display: block;
+}
+
+address, caption, cite,
+code, dfn, th, var {
+  font-style: normal;
+  font-weight: normal;
+  text-align: left;
+}
+
+ins {
+  text-decoration: none; // remember to highlight inserts somehow!
+}
+
+del {
+  text-decoration: line-through;
+}

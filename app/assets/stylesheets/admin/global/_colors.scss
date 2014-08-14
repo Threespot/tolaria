@@ -1,0 +1,14 @@
+$cEggshell: #f4f4f4;
+$cDarkPlum: #343242;
+$cThreespotPink: #d21172;
+$cWhite: #fefefe;
+
+$plumShadow: 0px 1px 0px black(0.5);;
+
+@function black($alpha) {
+  @return rgba(0,0,0,$alpha);
+}
+
+@function white($alpha) {
+  @return rgba(255,255,255,$alpha);
+}

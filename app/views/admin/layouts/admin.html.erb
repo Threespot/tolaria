@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html>
+  <%= render "admin/shared/head" %>
+  <body class="admin">
+    <%= render "admin/shared/skiplinks" %>
+    <%= render "admin/shared/header" %>
+    <%= render "admin/shared/navigation" %>
+    <div id="main" class="main" role="main">
+      <div class="main-header"></div>
+      <%= yield %>
+    </div>
+    <%= render "admin/shared/footer" %>
+  </body>
+</html>

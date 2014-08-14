@@ -1,10 +1,84 @@
-test/rails_app/log/*
-test/rails_app/tmp/*
-*~
-coverage/*
+# Ignore local dev only files
+
+*.dump
+*.gem
+*.log
+*.rbc
 *.sqlite3
+*.sqlite3-journal
 .bundle
-rdoc/*
+.config
+.env
+.env.test
+.yardoc
+config/database.yml
+coverage
+export
+InstalledFiles
+lib/bundler/man
+node_modules
 pkg
-log
-test/tmp/*
+public/system/**/*
+rdoc
+rerun.txt
+spec/reports
+spec/tmp/**/*
+tags
+test/tmp
+test/version_tmp
+vendor/**/*
+vim/.netrwhist
+zeus.json
+_yardoc
+
+# Ignore compilation junk
+
+**.orig
+*.rbc
+*.sassc
+*.sw[nop]
+.rspec
+.sass-cache
+capybara-*.html
+pickle-email-*.html
+rerun.txt
+
+# Ignore filesystem trash
+
+*.DS_Store
+*Thumbs.db
+.DS_Store?
+ehthumbs.db
+Thumbs.db
+
+# Ignore tmp/, but keep it empty in the repo
+# Rails does not automatically create this folder for you
+
+tmp/*
+!tmp/cache/
+tmp/cache/*
+!tmp/cache/.gitkeep
+
+# Ignore log/, but keep it empty in the repo
+# Rails does not automatically create this folder for you
+
+log/*
+!log/.gitkeep
+
+# Specifically DO NOT ignore these other things
+
+!.gitignore
+!.slugignore
+!.ruby-version
+
+# DO NOT ignore the binstubs folder for image crushing
+
+!bin/.libs/libjpeg.so
+!bin/.libs/libjpeg.so.8
+!bin/.libs/libjpeg.so.8.4.0
+!bin/cdjpeg.o
+!bin/jpegtran
+!bin/jpegtran.o
+!bin/pngcrush
+!bin/rdswitch.o
+!bin/transupp.o

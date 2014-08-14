@@ -1,0 +1,73 @@
+.navigation {
+  width: 190px;
+  margin: 15px 15px 15px 15px;
+  padding: 0 0 30px 0;
+  float: left;
+}
+
+.navigation-group {
+
+  box-shadow: 0px 0px 4px black(0.1);
+
+  & + & {
+    margin-top: 15px;
+  }
+
+  h3 {
+    @extend %clearfix;
+    background: #343342;
+    border-radius: 2px 2px 0 0;
+    border: 1px solid black(0.5);
+    color: $cEggshell;
+    display: block;
+    font-size: 13px;
+    font-weight: bold;
+    line-height: 26px;
+    padding: 0 0 0 12px;
+    text-shadow: 0px 1px 0px black(0.5);
+  }
+
+  li {
+
+    @extend %clearfix;
+    display: block;
+    line-height: 29px;
+
+    .icon {
+      color: $cDarkPlum;
+      display: inline-block;
+      font-size: 14px;
+      text-align: center;
+      width: 20px;
+    }
+
+    a {
+      color: #555;
+      background: $cWhite;
+      display: block;
+      font-size: 14px;
+      padding: 0 12px 0 8px;
+      border-left: 1px solid black(0.15);
+      border-right: 1px solid black(0.15);
+      border-bottom: 1px solid black(0.15);
+      border-top: 1px solid transparent;
+      text-shadow: 1px 1px 0px white(1);
+      border-radius: 0 0 2px 2px;
+
+      &:hover, &:active {
+        background: #f9f9f9;
+      }
+
+      &.current {
+        color: $cThreespotPink;
+        border-left: 2px solid $cThreespotPink;
+        .icon {
+          color: $cThreespotPink;
+        }
+      }
+
+    }
+
+  }
+
+}

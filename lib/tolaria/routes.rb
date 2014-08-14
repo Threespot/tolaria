@@ -1,6 +1,6 @@
 module Tolaria
 
-  def self.routes(router)
+  def self.draw_routes(router)
 
     self.reload_app_folder!
 

@@ -1,0 +1,31 @@
+$monospace: Menlo, Consolas, "Liberation Mono", Courier, monospace;
+
+%monospace,
+.monospace {
+  font-family: $monospace;
+  font-weight: normal;
+  -webkit-font-smoothing: subpixel-antialiased;
+}
+
+@include font-face(
+  FontAwesome,
+  "admin/fontawesome",
+  $weight: normal,
+  $style: normal,
+  $asset-pipeline: true
+);
+
+$font-awesome: FontAwesome;
+
+%font-awesome,
+.font-awesome {
+  font-family: $font-awesome;
+  font-style: normal;
+  font-weight: normal;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.icon {
+  @extend %font-awesome;
+}

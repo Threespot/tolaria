@@ -1,7 +1,5 @@
 @import "bourbon";
-@import "globals/**/*";
+@import "global/*";
 @import "reset";
-@import "fonts";
-@import "core";
-@import "components/**/*";
-@import "custom";
+@import "root";
+@import "components/*";

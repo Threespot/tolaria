@@ -4,11 +4,8 @@ module Tolaria
     if Rails.version > "3.1"
       initializer "Tolaria precompile hook", group: :all do |app|
         app.config.assets.precompile += %w[
-          tolaria.css
-          tolaria.js
-          custom.js
-          lib/*.js
-          modules/*.js
+          admin/admin.css
+          admin/admin.js
         ]
       end
     end

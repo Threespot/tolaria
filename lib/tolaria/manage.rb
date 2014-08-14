@@ -12,18 +12,12 @@ module Tolaria
   end
 
   def self.manage(klass, &block)
-
     discard_managed_class(klass)
-
     managed_klass = Tolaria::ManagedClass.create(klass)
-
     managed_controller = Class.new(Tolaria::ResourceController)
-
     ::Admin.const_set(managed_klass.controller_name, managed_controller)
-
     managed_classes.push(managed_klass)
     managed_controllers.push(managed_controller)
-
   end
 
   def self.discard_managed_class(klass)
@@ -41,7 +35,7 @@ module Tolaria
   end
 
   def self.reload_app_folder!
-    Dir["#{Rails.root}/app/admin/*.rb"].each do |file|
+    Dir["#{Rails.root}/app/models/*.rb", "#{Rails.root}/app/admin/*.rb"].each do |file|
       load file
     end
   end

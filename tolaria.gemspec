@@ -1,26 +1,25 @@
-$:.push File.expand_path("../lib", __FILE__)
-require 'tolaria/version'
+$LOAD_PATH.push File.expand_path("../lib", __FILE__)
+require "tolaria/version"
 
 Gem::Specification.new do |s|
 
   s.name          = "tolaria"
-  s.license       = "MIT"
   s.version       = Tolaria::VERSION::STRING
   s.platform      = Gem::Platform::RUBY
   s.authors       = ["Corey Csuhta"]
+  s.licenses      = ["MIT"]
   s.homepage      = "https://github.com/csuhta/tolaria"
   s.description   = "Tolaria is a seriously opinionated Rails CMS framework for making your clients happy."
   s.summary       = "Tolaria is an opinionated Rails CMS interface."
 
-  s.required_ruby_version     = ">= 2.0.0"
-  s.required_rubygems_version = ">= 2.0.0"
+  s.files = Dir["lib/**/*.rb"]
+  s.require_paths = ["lib"]
 
-  s.files = `git ls-files`.split("\n")
-  s.require_paths = %w[lib]
+  s.required_ruby_version = ">= 2.0.0"
 
   s.add_dependency "devise"
-  s.add_dependency "rails", "~> 3.2.0"
-  s.add_dependency "railties", "~> 3.1"
-  s.add_dependency "formtastic"
+  s.add_dependency "bourbon"
+  s.add_dependency "rails", "~> 4.0"
+  s.add_dependency "sass-rails"
 
 end
