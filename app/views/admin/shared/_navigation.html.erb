@@ -3,8 +3,10 @@
   <div class="navigation-group">
     <h3><span>Syndication</span></h3>
     <ul>
-      <li><%= tolaria_navigation_link "Blog Posts", :leaf, "#" %></li>
-      <li><%= tolaria_navigation_link "Resources", :file_text, admin_blog_posts_path %></li>
+      <% Tolaria.managed_classes.each do |klass| %>
+        <li><%= tolaria_navigation_link klass, klass.icon_name, tolaria_path_for(klass) %></li>
+      <% end %>
+      <li><%= tolaria_navigation_link "Resources", :file_text, "#" %></li>
       <li><%= tolaria_navigation_link "External Links", :external_link, "#" %></li>
       <li><%= tolaria_navigation_link "Images", :image, "#" %></li>
     </ul>

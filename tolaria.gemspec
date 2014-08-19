@@ -18,7 +18,6 @@ Gem::Specification.new do |s|
   s.required_ruby_version = ">= 2.0.0"
 
   s.add_dependency "devise"
-  s.add_dependency "bourbon"
   s.add_dependency "rails", "~> 4.0"
   s.add_dependency "sass-rails"
 

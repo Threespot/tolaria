@@ -5,33 +5,37 @@
 
 <div class="header">
 
-  <div class="header-left">
+  <div class="header-inner">
 
-    <%= link_to "#", class:"header-app-title" do %>
-      <%= Tolaria.config.company_name %>
-    <% end %>
+    <div class="left">
 
-  </div>
+      <%= link_to "#", class:"header-app-title" do %>
+        <%= Tolaria.config.company_name %>
+      <% end %>
 
-  <div class="header-right">
+    </div>
 
-    <ul class="header-user-controls">
-      <li>
-        <%= link_to "#" do %>
-          Corey Csuhta <%= image_tag "admin/corey.jpg", alt:"", size:"18x18" %>
-        <% end %>
-      </li>
-      <li>
-        <%= link_to "#" do %>
-          <i class="icon">&#xf090;</i> Sign Out
-        <% end %>
-      </li>
-    </ul>
+    <div class="right">
 
-    <ul class="header-supplemental">
-      <li><%= link_to "Help Link", "#", class:"header-supplemental-link" %></li>
-      <li><%= link_to "Another Link", "#", class:"header-supplemental-link" %></li>
-    </ul>
+      <ul class="header-user-controls">
+        <li>
+          <%= link_to "#" do %>
+            Corey Csuhta <%= image_tag "admin/corey.jpg", alt:"", size:"18x18" %>
+          <% end %>
+        </li>
+        <li>
+          <%= link_to "#" do %>
+            <%= fontawesome_icon :sign_out %> Sign Out
+          <% end %>
+        </li>
+      </ul>
+
+      <ul class="header-supplemental">
+        <li><%= link_to "Help Link", "#", class:"header-supplemental-link" %></li>
+        <li><%= link_to "Another Link", "#", class:"header-supplemental-link" %></li>
+      </ul>
+
+    </div>
 
   </div>
 

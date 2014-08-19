@@ -3,13 +3,11 @@ require "securerandom"
 
 require "devise"
 require "sass"
-require "bourbon"
 
 require "tolaria/version"
 require "tolaria/engine"
 require "tolaria/config"
 require "tolaria/default_config"
-require "tolaria/font_awesome"
 
 require "tolaria/admin"
 require "tolaria/manage"

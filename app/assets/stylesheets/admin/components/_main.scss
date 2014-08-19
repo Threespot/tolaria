@@ -1,0 +1,21 @@
+#main {
+  float: left;
+  background: $cWhite;
+  border: 1px solid $cGrey;
+  width: 76%;
+  height: 1000px;
+  margin-left: 1%;
+  border-radius: 2px;
+  box-shadow: 0px 0px 4px black(0.1);
+  @include min-width(900px) {
+    width: 79.5%;
+  }
+}
+
+.main-header {
+  @extend %clearfix;
+  width: 100%;
+  padding: 7px;
+  background: #f4f4f6;
+  border-bottom: 3px double $cGrey;
+}

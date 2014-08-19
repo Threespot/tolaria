@@ -5,6 +5,7 @@ module Tolaria
     attr_accessor :controller_name
     attr_accessor :string_representation
     attr_accessor :symbol_representation
+    attr_accessor :icon_name
 
     def self.create(klass, options = {})
 
@@ -14,6 +15,8 @@ module Tolaria
       managed_class.string_representation = options.fetch(:name, klass.to_s.titleize)
       managed_class.symbol_representation = options.fetch(:symbol, klass.to_s.tableize.to_sym)
       managed_class.controller_name = "#{klass.to_s.pluralize}Controller"
+
+      managed_class.icon_name = options.fetch(:icon, :file_o).to_sym
 
       managed_class
 

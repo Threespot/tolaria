@@ -1,0 +1,91 @@
+$buttonNeurtalTop: #fcfcfc;
+$buttonNeutralBottom: #f1f3f6;
+
+$buttonPrimaryTop: #2d98bf;
+$buttonPrimaryBottom: #2e8bc1;
+
+$buttonDangerTop: #da3946;
+$buttonDangerBottom: #c32238;
+
+$buttonShadow: 0px 1px 2px black(0.05);
+
+.button {
+
+  @extend %helvetica;
+  font-size: 14px;
+  font-weight: bold;
+  position: relative;
+  border-radius: 2px;
+  line-height: 2.1;
+  padding: 0 12px 1px 12px;
+  vertical-align: middle;
+  white-space: nowrap;
+  cursor: pointer;
+  display: inline-block;
+  text-shadow: 0 1px 0 white(0.5);
+  box-shadow: $buttonShadow;
+
+  background: $buttonNeurtalTop;
+  background-image: linear-gradient($buttonNeurtalTop, $buttonNeutralBottom);
+  border: 1px solid darken($buttonNeutralBottom, 15);
+
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  -ms-appearance: none;
+  appearance: none;
+
+  .icon {
+    display: inline-block;
+    font-size: 14px;
+    text-align: left;
+    width: 14px;
+  }
+
+  &:hover {
+    background: $buttonNeurtalTop;
+    background-image: linear-gradient(
+      darken($buttonNeurtalTop, 5),
+      darken($buttonNeutralBottom, 5)
+    );
+  }
+
+  &:active {
+    box-shadow: 0px 2px 2px black(0.1) inset, $buttonShadow;
+  }
+
+  &.-primary,
+  &.-danger {
+    color: $cWhite;
+    text-shadow: 0px 1px 1px black(0.4);
+    &:active {
+      box-shadow: 0px 2px 4px black(0.2) inset, $buttonShadow;
+    }
+  }
+
+  &.-primary {
+    background: $buttonPrimaryTop;
+    background-image: linear-gradient($buttonPrimaryTop, $buttonPrimaryBottom);
+    border: 1px solid darken($buttonPrimaryBottom, 15);
+    &:hover {
+      background: $buttonPrimaryTop;
+      background-image: linear-gradient(
+        lighten($buttonPrimaryTop, 3),
+        lighten($buttonPrimaryBottom, 3)
+      );
+    }
+  }
+
+  &.-danger {
+    background: $buttonDangerTop;
+    background-image: linear-gradient($buttonDangerTop, $buttonDangerBottom);
+    border: 1px solid darken($buttonDangerBottom, 15);
+    &:hover {
+      background: $buttonDangerTop;
+      background-image: linear-gradient(
+        lighten($buttonDangerTop, 3),
+        lighten($buttonDangerBottom, 3)
+      );
+    }
+  }
+
+}

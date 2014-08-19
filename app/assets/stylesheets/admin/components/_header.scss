@@ -15,19 +15,19 @@
 .header {
   @extend %clearfix;
   background: $cDarkPlum;
-  min-height: 32px;
   border-bottom: 2px solid black;
-  padding: 0 15px 0 25px;
-  text-shadow: $plumShadow;
   font-size: 14px;
+  min-height: 32px;
+  text-shadow: $plumShadow;
 }
 
-.header-left {
-  float: left;
-}
-
-.header-right {
-  float: right;
+.header-inner {
+  @extend %clearfix;
+  width: 100%;
+  margin: 0 auto;
+  max-width: 1200px;
+  min-width: 760px;
+  padding: 0 2%;
 }
 
 .header-app-title {

@@ -11,9 +11,9 @@ module Tolaria
     @managed_controllers
   end
 
-  def self.manage(klass, &block)
+  def self.manage(klass, options = {}, &block)
     discard_managed_class(klass)
-    managed_klass = Tolaria::ManagedClass.create(klass)
+    managed_klass = Tolaria::ManagedClass.create(klass, options)
     managed_controller = Class.new(Tolaria::ResourceController)
     ::Admin.const_set(managed_klass.controller_name, managed_controller)
     managed_classes.push(managed_klass)

@@ -1,25 +1,17 @@
 html {
   height: 100%;
   margin-bottom: 1px;
-  // background: image-url("admin/wallpaper.jpg") no-repeat center center fixed;
-  // background-size: cover;
 }
 
 body {
-  font-family: "Helvetica Neue", Helvetica;
+  font-family: $helvetica;
   background: $cEggshell;
 }
 
-#main {
-  float: left;
-  background: #eee;
-  width: auto;
-  height: 1000px;
-}
-
-.main-header {
+.application-container {
   width: 100%;
-  height: 42px;
-  background: #f4f4f6;
-  border-bottom: 3px double #e5e5e8;
+  margin: 0 auto;
+  max-width: 1200px;
+  min-width: 760px;
+  padding: 1%;
 }

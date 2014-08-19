@@ -7,25 +7,39 @@ $monospace: Menlo, Consolas, "Liberation Mono", Courier, monospace;
   -webkit-font-smoothing: subpixel-antialiased;
 }
 
-@include font-face(
-  FontAwesome,
-  "admin/fontawesome",
-  $weight: normal,
-  $style: normal,
-  $asset-pipeline: true
-);
+$helvetica: "Helvetica Neue", Helvetica, "Segoe UI", Arial, freesans, sans-serif;
+
+%helvetica,
+.helvetica {
+  font-family: $helvetica;
+}
+
+@font-face {
+  font-family: "FontAwesome";
+  src: font-url("admin/fontawesome.eot");
+  src: font-url("admin/fontawesome.eot?#iefix") format("embedded-opentype"),
+       font-url("admin/fontawesome.woff") format("woff"),
+       font-url("admin/fontawesome.ttf") format("truetype"),
+       font-url("admin/fontawesome.svg#fontawesome") format("svg");
+  font-weight: normal;
+  font-style: normal;
+}
 
 $font-awesome: FontAwesome;
 
 %font-awesome,
 .font-awesome {
-  font-family: $font-awesome;
-  font-style: normal;
-  font-weight: normal;
+  font: normal normal 14px FontAwesome;
+  text-decoration: none;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
 }
 
 .icon {
   @extend %font-awesome;
 }
+
