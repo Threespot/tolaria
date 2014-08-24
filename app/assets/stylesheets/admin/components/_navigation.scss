@@ -3,65 +3,65 @@
   padding: 0 0 0 0;
   float: left;
   @include min-width(900px) {
-    width: 19.5%;
+    width: 15%;
   }
 }
 
 .navigation-group {
 
-  box-shadow: 0px 0px 4px black(0.1);
-
   & + & {
-    margin-top: 15px;
+    margin-top: 10px;
   }
 
   h3 {
     @extend %clearfix;
-    background: #343342;
-    border-radius: 2px 2px 0 0;
-    border: 1px solid black(0.5);
-    color: $cEggshell;
+    @extend %helvetica;
     display: block;
-    font-size: 13px;
-    font-weight: bold;
+    font-size: 11px;
     line-height: 26px;
-    padding: 0 0 0 12px;
-    text-shadow: 0px 1px 0px black(0.5);
+    padding: 0 0 0 3px;
+    text-transform: uppercase;
+    color: #999;
   }
 
   li {
 
     @extend %clearfix;
     display: block;
-    line-height: 29px;
+    line-height: 28px;
 
     .icon {
       color: $cDarkPlum;
       display: inline-block;
+      font-size: 14px;
       text-align: center;
-      width: 20px;
+      width: 22px;
+      text-shadow: none;
     }
 
     a {
       color: #555;
-      background: $cWhite;
+      // background: $cWhite;
       display: block;
       font-size: 14px;
-      padding: 0 12px 0 8px;
-      border-left: 1px solid black(0.15);
-      border-right: 1px solid black(0.15);
-      border-bottom: 1px solid black(0.15);
-      border-top: 1px solid transparent;
-      text-shadow: 1px 1px 0px white(1);
-      border-radius: 0 0 2px 2px;
+      padding: 0 8px 0 0;
+      // border-left: 1px solid black(0.15);
+      // border-right: 1px solid black(0.15);
+      // border-bottom: 1px solid black(0.15);
+      // border-top: 1px solid transparent;
+      text-shadow: 1px 1px 0px white(0.5);
+      // border-radius: 0 0 2px 2px;
 
-      &:hover, &:active {
-        background: #f9f9f9;
+      &:hover, &:active,
+      &.current {
+        background: white(0.5);
       }
 
       &.current {
         color: $cThreespotPink;
-        border-left: 2px solid $cThreespotPink;
+        text-shadow: none;
+        // background: $cWhite;
+        // border-left: 2px solid $cThreespotPink;
         .icon {
           color: $cThreespotPink;
         }

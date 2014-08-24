@@ -2,13 +2,13 @@
   float: left;
   background: $cWhite;
   border: 1px solid $cGrey;
-  width: 76%;
+  width: 78%;
   height: 1000px;
-  margin-left: 1%;
+  margin-left: 0%;
   border-radius: 2px;
   box-shadow: 0px 0px 4px black(0.1);
   @include min-width(900px) {
-    width: 79.5%;
+    width: 85%;
   }
 }
 

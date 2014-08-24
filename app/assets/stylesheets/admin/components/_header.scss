@@ -27,14 +27,15 @@
   margin: 0 auto;
   max-width: 1200px;
   min-width: 760px;
-  padding: 0 2%;
+  padding: 0 1%;
 }
 
 .header-app-title {
   color: $cWhite;
-  font-size: 14px;
   display: block;
-  padding: 8px 0 8px 0;
+  line-height: 1;
+  padding: 11px 0 10px 0;
+  position: relative;
 }
 
 .header-supplemental {
@@ -50,10 +51,10 @@
     text-transform: uppercase;
     font-weight: bold;
     display: block;
-    padding: 10px 0 10px 0;
+    padding: 12px 0 12px 0;
     line-height: 1;
     &:hover, &:active {
-      color: white(0.8);
+      color: $cWhite;
     }
   }
 }
@@ -69,14 +70,14 @@
   }
 
   a {
-    color: $cWhite;
+    color: $cGrey;
     position: relative;
     display: block;
-    padding: 8px 0 8px 0;
+    padding: 10px 0 10px 0;
     &:hover, &:active {
-      color: white(0.8);
+      color: $cWhite;
       img {
-        border-color: white(0.8);
+        border-color: $cWhite;
       }
     }
   }
@@ -90,7 +91,7 @@
     float: left;
     margin-top: -1px;
     border-radius: 2px;
-    border: 1px solid $cWhite;
+    border: 1px solid $cGrey;
     margin-right: 6px;
     box-shadow: $plumShadow;
   }

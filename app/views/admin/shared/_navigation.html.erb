@@ -1,7 +1,7 @@
 <div class="navigation">
 
   <div class="navigation-group">
-    <h3><span>Syndication</span></h3>
+    <h3>Syndication</h3>
     <ul>
       <% Tolaria.managed_classes.each do |klass| %>
         <li><%= tolaria_navigation_link klass, klass.icon_name, tolaria_path_for(klass) %></li>
@@ -13,7 +13,7 @@
   </div>
 
   <div class="navigation-group">
-    <h3><span>Collections</span></h3>
+    <h3>Collections</h3>
     <ul>
       <li><%= tolaria_navigation_link "Topics", :list, "#" %></li>
       <li><%= tolaria_navigation_link "Work", :briefcase, "#" %></li>
@@ -22,7 +22,7 @@
   </div>
 
   <div class="navigation-group">
-    <h3><span>People</span></h3>
+    <h3>People</h3>
     <ul>
       <li><%= tolaria_navigation_link "People", :users, "#" %></li>
       <li><%= tolaria_navigation_link "Members", :building, "#" %></li>
@@ -30,7 +30,7 @@
   </div>
 
   <div class="navigation-group">
-    <h3><span>Pages</span></h3>
+    <h3>Pages</h3>
     <ul>
       <li><%= tolaria_navigation_link "About Pages", :book, "#" %></li>
       <li><%= tolaria_navigation_link "Legal Pages", :legal, "#" %></li>
@@ -38,7 +38,7 @@
   </div>
 
   <div class="navigation-group">
-    <h3><span>Components</span></h3>
+    <h3>Components</h3>
     <ul>
       <li><%= tolaria_navigation_link "Headers", :header, "#" %></li>
       <li><%= tolaria_navigation_link "Levers", :lightbulb_o, "#" %></li>
@@ -48,7 +48,7 @@
   </div>
 
   <div class="navigation-group">
-    <h3><span>Settings</span></h3>
+    <h3>Settings</h3>
     <ul>
       <li><%= tolaria_navigation_link "Miscellany", :check, "#" %></li>
       <li><%= tolaria_navigation_link "Administrators", :lock, "#" %></li>
