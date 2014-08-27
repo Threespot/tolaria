@@ -29,7 +29,7 @@ $font-awesome: FontAwesome;
 
 %font-awesome,
 .font-awesome {
-  font: normal normal 14px FontAwesome;
+  font: normal normal 14px FontAwesome !important;
   text-decoration: none;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
@@ -39,7 +39,7 @@ $font-awesome: FontAwesome;
   user-select: none;
 }
 
-.icon {
+.icon:before {
   @extend %font-awesome;
 }
 

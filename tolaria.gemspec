@@ -9,8 +9,8 @@ Gem::Specification.new do |s|
   s.authors       = ["Corey Csuhta"]
   s.licenses      = ["MIT"]
   s.homepage      = "https://github.com/csuhta/tolaria"
-  s.description   = "Tolaria is a seriously opinionated Rails CMS framework for making your clients happy."
-  s.summary       = "Tolaria is an opinionated Rails CMS interface."
+  s.description   = "Tolaria is a seriously opinionated Rails CMS framework for making users happy."
+  s.summary       = "Tolaria is an opinionated Rails CMS framework."
 
   s.files = Dir["lib/**/*.rb"]
   s.require_paths = ["lib"]
@@ -19,6 +19,7 @@ Gem::Specification.new do |s|
 
   s.add_dependency "devise"
   s.add_dependency "rails", "~> 4.0"
+  s.add_dependency "redcarpet"
   s.add_dependency "sass-rails"
 
 end

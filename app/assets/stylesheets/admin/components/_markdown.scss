@@ -1,0 +1,77 @@
+form {
+  margin: 20px;
+}
+
+textarea.markdown {
+  @extend %monospace;
+  font-size: 14px;
+  background: #fafafa;
+  border-radius: 0 0 4px 4px;
+  border: 1px solid $cGrey;
+  border-top: 0;
+  display: block;
+  width: 60%;
+  padding: 9px;
+  &:focus {
+    border-color: #3497be;
+    box-shadow: 0px 0px 3px black(0.25);
+  }
+}
+
+.markdown-controls {
+
+  border: 1px solid $cGrey;
+  border-bottom: 1px solid black(0.05);
+  background: #fafafa;
+  width: 60%;
+  padding: 9px;
+  border-radius: 4px 4px 0 0;
+
+  button {
+
+    border-radius: 2px;
+    border: 1px solid $cGrey;
+    cursor: pointer;
+    display: block;
+    float: left;
+    font-family: $helvetica;
+    font-size: 13px;
+    font-weight: bold;
+    margin-right: 4px;
+    min-width: 27px;
+    padding: 4px 6px;
+    text-align: center;
+
+    background: $buttonNeurtalTop;
+    border: 1px solid darken($buttonNeutralBottom, 15);
+
+    &.md-button-interstitial {
+      &:before {
+        float: right;
+        margin-left: 4px;
+      }
+    }
+
+    &:hover, &:active,
+    .-current {
+      border-color: black(0.5);
+    }
+
+    &.-joined-left {
+      border-left: 0;
+      border-radius: 0 2px 2px 0;
+      margin-left: 0;
+      padding: 4px 8px 4px 8px;
+    }
+
+    &.-joined-right {
+      border-right: 0;
+      border-radius: 2px 0 0 2px;
+      margin-right: 0;
+      padding: 4px 8px 4px 8px;
+      border-right: 1px dashed $cGrey;
+    }
+
+  }
+
+}
