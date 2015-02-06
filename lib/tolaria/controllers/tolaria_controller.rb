@@ -9,14 +9,14 @@ module Tolaria
       # Don't use old IE rendering modes
       response.headers["X-UA-Compatible"] = "IE=edge"
       # Forbid putting the admin in a frameset/iframe
-      response.headers["X-Frame-Options"] = "deny"
+      response.headers["X-Frame-Options"] = "DENY"
       # Strict sniffing and XSS modes for browsers that use these flags
       response.headers["X-Content-Type-Options"] = "nosniff"
       response.headers["X-XSS-Protection"] = "1; mode=block"
     end
 
     def admin_setup!
-      # Noting here just yet.
+      # Nothing here just yet.
     end
 
     def tolaria_template(name)

@@ -1,7 +1,7 @@
 require "ostruct"
 require "securerandom"
 
-require "devise"
+require "clearance"
 require "sass"
 
 require "tolaria/version"

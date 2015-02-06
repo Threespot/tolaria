@@ -9,15 +9,15 @@ Gem::Specification.new do |s|
   s.authors       = ["Corey Csuhta"]
   s.licenses      = ["MIT"]
   s.homepage      = "https://github.com/csuhta/tolaria"
-  s.description   = "Tolaria is a seriously opinionated Rails CMS framework for making users happy."
+  s.description   = "Tolaria is a seriously opinionated Rails CMS framework for making people happy."
   s.summary       = "Tolaria is an opinionated Rails CMS framework."
 
   s.files = Dir["lib/**/*.rb"]
   s.require_paths = ["lib"]
 
-  s.required_ruby_version = ">= 2.0.0"
+  s.required_ruby_version = ">= 2.1.5"
 
-  s.add_dependency "devise"
+  s.add_dependency "clearance"
   s.add_dependency "rails", "~> 4.0"
   s.add_dependency "redcarpet"
   s.add_dependency "sass-rails"
