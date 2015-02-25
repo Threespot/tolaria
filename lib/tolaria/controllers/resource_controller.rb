@@ -20,7 +20,7 @@ module Tolaria
     end
 
     def admin_setup!
-      # Noting here just yet.
+      # Nothing here just yet.
     end
 
     # -------------------------------------------------------------------------

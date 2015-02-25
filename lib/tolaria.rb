@@ -1,4 +1,3 @@
-require "ostruct"
 require "securerandom"
 
 require "clearance"
@@ -15,7 +14,7 @@ require "tolaria/routes"
 
 module Tolaria
   # We have to autoload these classes because they inherit
-  # from a Rails classes (Rails must boot first)
+  # from a Rails class (Rails must boot first)
   autoload :TolariaController, "tolaria/controllers/tolaria_controller"
   autoload :AuthenticationController, "tolaria/controllers/authentication_controller"
   autoload :ResourceController, "tolaria/controllers/resource_controller"

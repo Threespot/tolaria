@@ -1,0 +1,14 @@
+// I stole this from Bourbon
+
+@mixin clearfix {
+  &::after {
+    clear: both;
+    content: "";
+    display: table;
+  }
+}
+
+%clearfix,
+.clearfix {
+  @include clearfix;
+}

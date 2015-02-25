@@ -1,11 +1,13 @@
-$cEggshell: #fafafa;
+$cEggshell: #fcfcfc;
+$cTaupe: #D5D5D7;
 $cDarkPlum: #343242;
+$cBlack: #222222;
 $cThreespotPink: #d21172;
 $cWhite: #fefefe;
 $cGrey: #d8d8d8;
 $cSlate: #4b4f55;
 
-$plumShadow: 0px 1px 0px black(0.5);;
+$plumShadow: 0px 1px 0px black(0.5);
 
 @function black($alpha) {
   @return rgba(0,0,0,$alpha);

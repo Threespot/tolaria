@@ -1,7 +1,7 @@
 module Tolaria
 
   def self.version
-    Gem::Version.new "1.0.0.beta"
+    Gem::Version.new("1.0.0.beta")
   end
 
   module VERSION

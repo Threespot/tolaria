@@ -1,7 +1,9 @@
-////////////////////////////////////////////////////////////////////////
+// ---------------------------------------------------------------------------
 // CSS RESET
 // Replace this with something else if you hates it
-////////////////////////////////////////////////////////////////////////
+// ---------------------------------------------------------------------------
+
+// `border-box` is love, `border-box` is life
 
 *, *:before, *:after {
   -webkit-box-sizing: border-box;
@@ -10,61 +12,81 @@
   background-repeat: no-repeat;
 }
 
+// Reset most styles
+
 a, abbr, acronym, address, applet, article, aside,
-b, big, blockquote, body,
+b, big, blockquote, body, button,
 canvas, caption, cite, code,
 dd, del, details, dfn, div, dl, dt,
 em, fieldset, figcaption, figure, font, footer, form,
 h1, h2, h3, h4, h5, h6, header, html,
 i, iframe, img, input, ins,
 kbd, label, legend, li,
-main, menu, nav, object, ol, p, pre, q,
-s, samp, section, small, span, strike, strong, sub, summary, sup,
-table, tbody, td, tfoot, th, thead, tr, tt,
+main, menu, nav, object, ol, option, p, pre, q,
+s, samp, section, select, small, span, strike, strong, sub, summary, sup,
+table, tbody, td, textarea, tfoot, th, thead, tr, tt,
 ul, var {
-  background-repeat: no-repeat;
-  border: 0;
-  font-family: inherit;
-  font-size: 100%;
-  font-style: normal;
-  font-weight: normal;
-  margin: 0;
-  padding: 0;
-  text-decoration: none;
-  vertical-align: baseline;
-}
-
-button, input, option,
-select, textarea {
   appearance: none;
   background-repeat: no-repeat;
-  background: none;
+  border-collapse: collapse;
   border-radius: 0;
+  border-spacing: 0;
   border: 0;
+  font-size: 100%;
+  font-weight: normal;
+  list-style: none;
   margin: 0;
-  outline: none;
+  outline: 0;
   padding: 0;
-  vertical-align: middle;
+  text-decoration: none;
 }
+
+i, b {
+  font-style: normal;
+  font-weight: normal;
+}
+
+// Add the glove cursor to each
+// universal element that needs it
+
+a, button,
+label, input[type=checkbox],
+select, option {
+  cursor: pointer;
+}
+
+// More sensible font default
+// Prevent zoom issues in iOS
+// Force a scrollbar
+
+html {
+  -ms-text-size-adjust: 100%;
+  -webkit-text-size-adjust: 100%;
+  height: 100%;
+  margin-bottom: 1px;
+}
+
+// Fix textarea overflow on IE 7/8/9/10
+
+textarea {
+  overflow: auto;
+}
+
+// Remove up/down spinners on some WebKit elements
 
 ::-webkit-inner-spin-button,
 ::-webkit-outer-spin-button {
   -webkit-appearance: none;
 }
 
-ol, ul {
-  list-style: none;
-}
+// Reset `table` border junk
 
 table {
   border-collapse: collapse;
   border-spacing: 0;
 }
 
-caption, td, th {
-  text-align: left;
-  font-weight: normal;
-}
+// Ditch default `quote` styles
 
 blockquote, q {
   quotes: none;
@@ -74,6 +96,8 @@ blockquote, q {
   }
 }
 
+// Fix HTML5 issues where these items are not block-level by default
+
 article, aside, canvas, details,
 figcaption, figure, footer,
 header, hgroup, main, menu, nav,
@@ -81,17 +105,21 @@ section, summary {
   display: block;
 }
 
-address, caption, cite,
-code, dfn, th, var {
-  font-style: normal;
-  font-weight: normal;
-  text-align: left;
+// Correct `inline-block` display not defined in IE 8/9.
+// Normalize vertical alignment of `progress` in Chrome, Firefox, and Opera.
+
+audio,
+canvas,
+progress,
+video {
+  display: inline-block;
+  vertical-align: baseline;
 }
 
-ins {
-  text-decoration: none; // remember to highlight inserts somehow!
-}
+// Prevent modern browsers from displaying `audio` without controls.
+// Remove excess height in iOS 5 devices.
 
-del {
-  text-decoration: line-through;
+audio:not([controls]) {
+  display: none;
+  height: 0;
 }

@@ -4,7 +4,7 @@ Tolaria.configure do |config|
 
   config.default_sort_order = "id DESC"
 
-  config.company_name = "Client Site"
+  config.company_name = "Company Name"
 
   config.interface_title = "Content Admin"
 
@@ -39,7 +39,6 @@ Tolaria.configure do |config|
     no_intra_emphasis: true,              # Handle _stuff*like*this_
     no_links: false,                      # Allow links
     no_styles: true,                      # Don't make any <style> tags
-    no_styles: true,                      # Don't output styles
     prettify: false,                      # Don't use google-code-prettify
     quote: false,                         # Don't turn quotes into <q> tags
     safe_links_only: true,                # Only allow HTTP/S links, not FTP or SMB, etc

@@ -1,9 +1,9 @@
 .navigation {
-  width: 22%;
-  padding: 0 0 0 0;
-  float: left;
-  @include min-width(900px) {
-    width: 15%;
+  width: 100%;
+  padding: 10px 0 0 0;
+  @include min-width($bpFull) {
+    width: 16%;
+    float: left;
   }
 }
 
@@ -40,28 +40,21 @@
     }
 
     a {
+      transition: color 200ms;
       color: #555;
-      // background: $cWhite;
       display: block;
       font-size: 14px;
       padding: 0 8px 0 0;
-      // border-left: 1px solid black(0.15);
-      // border-right: 1px solid black(0.15);
-      // border-bottom: 1px solid black(0.15);
-      // border-top: 1px solid transparent;
       text-shadow: 1px 1px 0px white(0.5);
-      // border-radius: 0 0 2px 2px;
+
+      .icon {
+        transition: color 200ms;
+      }
 
       &:hover, &:active,
       &.current {
-        background: white(0.5);
-      }
-
-      &.current {
         color: $cThreespotPink;
         text-shadow: none;
-        // background: $cWhite;
-        // border-left: 2px solid $cThreespotPink;
         .icon {
           color: $cThreespotPink;
         }

@@ -6,7 +6,7 @@
     <%= render "admin/shared/skiplinks" %>
     <%= render "admin/shared/header" %>
 
-    <div class="application-container clearfix">
+    <div class="application-container">
       <%= render "admin/shared/navigation" %>
       <div id="main" class="main" role="main">
         <%= yield %>
@@ -14,6 +14,7 @@
     </div>
 
     <%= render "admin/shared/footer" %>
+    <%= javascript_include_tag "admin/admin" %>
 
   </body>
 </html>

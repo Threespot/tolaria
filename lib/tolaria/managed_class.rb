@@ -18,7 +18,7 @@ module Tolaria
 
       managed_class.icon_name = options.fetch(:icon, :file_o).to_sym
 
-      managed_class
+      return managed_class
 
     end
 

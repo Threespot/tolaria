@@ -4,14 +4,14 @@ html {
 }
 
 body {
+  @include clearfix();
   font-family: $helvetica;
-  background: #fcfcfc;
+  background: $cEggshell;
+  padding: 0 1% 1% 1%;
 }
 
 .application-container {
-  width: 100%;
+  @include clearfix();
   margin: 0 auto;
-  max-width: 1200px;
-  min-width: 760px;
-  padding: 15px 1% 1% 1%;
+  max-width: 1000px;
 }

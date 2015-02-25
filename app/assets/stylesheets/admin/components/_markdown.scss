@@ -1,20 +1,21 @@
 form {
-  margin: 20px;
+  margin: 20px 0;
 }
 
 textarea.markdown {
   @extend %monospace;
+  transition: background-color 100ms;
   font-size: 14px;
   background: #fafafa;
-  border-radius: 0 0 4px 4px;
-  border: 1px solid $cGrey;
+  border: 1px solid $cTaupe;
+  border-radius: 0 0 2px 2px;
   border-top: 0;
   display: block;
   width: 60%;
   padding: 9px;
   &:focus {
     border-color: #3497be;
-    box-shadow: 0px 0px 3px black(0.25);
+    background: $cWhite;
   }
 }
 

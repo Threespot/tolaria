@@ -1,2 +1,2 @@
 The constant `Admin` is reserved
-The route space `/admin/**/*` are reserved by default
+The route space `/admin/**/*` is reserved by default

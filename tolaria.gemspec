@@ -15,7 +15,7 @@ Gem::Specification.new do |s|
   s.files = Dir["lib/**/*.rb"]
   s.require_paths = ["lib"]
 
-  s.required_ruby_version = ">= 2.1.5"
+  s.required_ruby_version = ">= 2.2.0"
 
   s.add_dependency "clearance"
   s.add_dependency "rails", "~> 4.0"
