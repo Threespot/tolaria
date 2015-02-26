@@ -4,7 +4,7 @@
     <h3>Syndication</h3>
     <ul>
       <% Tolaria.managed_classes.each do |klass| %>
-        <li><%= tolaria_navigation_link klass, klass.icon_name, tolaria_path_for(klass) %></li>
+        <li><%= tolaria_navigation_link klass.to_s.pluralize, klass.icon_name, tolaria_path_for(klass) %></li>
       <% end %>
       <li><%= tolaria_navigation_link "Resources", :file_text, "#" %></li>
       <li><%= tolaria_navigation_link "External Links", :external_link, "#" %></li>

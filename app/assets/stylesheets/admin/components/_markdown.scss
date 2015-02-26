@@ -14,7 +14,9 @@ textarea.markdown {
   width: 60%;
   padding: 9px;
   &:focus {
-    border-color: #3497be;
+    border-left-color: darken($cSapphire, 10);
+    border-bottom-color: $cSapphire;
+    border-right-color: $cSapphire;
     background: $cWhite;
   }
 }

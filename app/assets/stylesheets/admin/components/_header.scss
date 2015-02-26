@@ -1,5 +1,5 @@
 .header-stripe {
-  border-bottom: 1px solid black(1);
+  border-bottom: 1px solid black;
   height: 3px;
   background: image-url("admin/rule-banner.jpg") repeat;
   background-size: 100% 100%;
@@ -52,7 +52,7 @@
     text-transform: uppercase;
     font-weight: bold;
     display: block;
-    padding: 12px 0 12px 0;
+    padding: 13px 0 9px 0;
     line-height: 1;
     &:hover, &:active {
       color: $cWhite;
