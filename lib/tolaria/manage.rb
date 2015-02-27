@@ -12,10 +12,14 @@ module Tolaria
   end
 
   def self.manage(klass, options = {}, &block)
+    # If we already have a class of this name, discard it
     discard_managed_class(klass)
+    # Wrap the Rails model inside a Tolaria::ManagedClass
     managed_klass = Tolaria::ManagedClass.create(klass, options)
+    # Create a virtual controller for the model to use in the admin namespace
     managed_controller = Class.new(Tolaria::ResourceController)
     ::Admin.const_set(managed_klass.controller_name, managed_controller)
+    # Add these things to the internal tracker
     managed_classes.push(managed_klass)
     managed_controllers.push(managed_controller)
   end

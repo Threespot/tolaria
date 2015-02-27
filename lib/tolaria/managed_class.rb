@@ -4,6 +4,7 @@ module Tolaria
     attr_accessor :klass
     attr_accessor :controller_name
     attr_accessor :string_representation
+    attr_accessor :string_pluralization
     attr_accessor :symbol_representation
     attr_accessor :icon_name
 
@@ -13,6 +14,7 @@ module Tolaria
       managed_class.klass = klass
 
       managed_class.string_representation = options.fetch(:name, klass.to_s.titleize)
+      managed_class.string_pluralization = managed_class.string_representation.pluralize
       managed_class.symbol_representation = options.fetch(:symbol, klass.to_s.tableize.to_sym)
       managed_class.controller_name = "#{klass.to_s.pluralize}Controller"
 

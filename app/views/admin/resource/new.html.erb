@@ -1,1 +1,3 @@
-
+<%= form_for([:admin, @resource]) do |f| %>
+  <%= render "admin/#{@resource.class.to_s.tableize}/form" %>
+<% end %>
