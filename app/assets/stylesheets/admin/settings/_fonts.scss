@@ -18,6 +18,7 @@ $helvetica: "Helvetica Neue", "Segoe UI", Arial, freesans, sans-serif;
   font-family: "FontAwesome";
   src: font-url("admin/fontawesome.eot");
   src: font-url("admin/fontawesome.eot?#iefix") format("embedded-opentype"),
+       font-url("admin/fontawesome.woff2") format("woff2"),
        font-url("admin/fontawesome.woff") format("woff"),
        font-url("admin/fontawesome.ttf") format("truetype"),
        font-url("admin/fontawesome.svg#fontawesome") format("svg");
@@ -29,14 +30,20 @@ $font-awesome: FontAwesome;
 
 %font-awesome,
 .font-awesome {
-  font: normal normal 14px FontAwesome !important;
+
+  font: normal normal normal 14px FontAwesome !important;
   text-decoration: none;
+
+  text-rendering: auto; // optimizelegibility throws things off #1094
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  transform: translate(0, 0); // ensures no half-pixel rendering in firefox
+
   -webkit-user-select: none;
   -moz-user-select: none;
   -ms-user-select: none;
   user-select: none;
+
 }
 
 .icon:before {

@@ -25,7 +25,7 @@ module Tolaria
 
     def create
       @resource = @managed_class.klass.new
-      @resource.assign_attributes(params[@managed_class.symbol_representation])
+      @resource.assign_attributes(params[@resource.model_name.singular.to_sym])
       if @resource.save
         redirect_to admin_resource_show_path(@resource)
       else
@@ -41,7 +41,7 @@ module Tolaria
 
     def update
       @resource = @managed_class.klass.find_by_id(params[:id])
-      @resource.assign_attributes(params[@managed_class.to_sym])
+      @resource.assign_attributes(params[@resource.model_name.singular.to_sym])
       if @resource.save
         redirect_to admin_resource_update_path(@resource)
       else

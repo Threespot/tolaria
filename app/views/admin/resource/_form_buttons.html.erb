@@ -1,0 +1,10 @@
+<%= button_tag type:"submit", class:"button -primary" do %>
+  <%= fontawesome_icon :check %>
+  <%= @resource.persisted?? "Save" : "Create" %>
+  <%= @resource.model_name.human.titleize %>
+<% end %>
+
+<%= link_to url_for([:admin, @resource.class]), class:"button" do %>
+  <%= fontawesome_icon :close %>
+  Cancel
+<% end %>

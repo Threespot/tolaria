@@ -14,19 +14,32 @@
 
 }
 
-.main-header {
-  @extend %clearfix;
-  width: 100%;
-  padding: 15px 0 15px 15px;
+.main-controls {
+
+  @include clearfix;
+  clear: both;
+  float: left;
   border-bottom: 3px double $cGrey;
+  margin: 0 0 20px 0;
+  padding: 15px 0 15px 0;
+  width: 100%;
+
+  &.-inverse {
+    border: 0;
+    border-top: 3px double $cGrey;
+    margin: 20px 0 0 0;
+  }
+
 }
 
 .form-left {
+  @include clearfix;
   float: left;
   width: 67%;
 }
 
 .form-right {
+  @include clearfix;
   float: right;
   width: 30%;
 }

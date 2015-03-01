@@ -1,1 +1,17 @@
+<%= form_for([:admin, @resource]) do |form_builder| %>
 
+  <div class="main-controls">
+    <div class="right">
+      <%= render "admin/resource/form_buttons" %>
+    </div>
+  </div>
+
+  <%= render partial:"admin/#{@resource.model_name.route_key}.html.erb", locals:{f:form_builder} %>
+
+  <div class="main-controls -inverse">
+    <div class="right">
+      <%= render "admin/resource/form_buttons" %>
+    </div>
+  </div>
+
+<% end %>

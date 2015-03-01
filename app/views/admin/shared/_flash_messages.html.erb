@@ -1,0 +1,30 @@
+<p class="flash-message -primary">
+  <%= fontawesome_icon :check %>
+  <span>Done! You created the <%= @resource.model_name.human.downcase %> “Example title”.</span>
+  <button class="dismiss">Dismiss</button>
+</p>
+
+<p class="flash-message -primary">
+  <%= fontawesome_icon :check %>
+  <span>Done! You updated the <%= @resource.model_name.human.downcase %> “Example title”.</span>
+  <button class="dismiss">Dismiss</button>
+</p>
+
+
+<p class="flash-message -destructive">
+  <%= fontawesome_icon :trash  %>
+  <span>You deleted the <%= @resource.model_name.human.downcase %> “Example title”.</span>
+  <button class="dismiss">Dismiss</button>
+</p>
+
+<p class="flash-message -error">
+  <%= fontawesome_icon :exclamation_triangle %>
+  <span>Your changes couldn’t be saved. Please review the messages below.</span>
+  <button class="dismiss">Jump to first message</button>
+</p>
+
+<p class="flash-message -error">
+  <%= fontawesome_icon :minus_circle %>
+  <span>You cannot delete “Example post” because other items are using it.</span>
+  <button class="dismiss">Dismiss</button>
+</p>

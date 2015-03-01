@@ -1,0 +1,37 @@
+.flash-message {
+
+  background: $cSapphire;
+  border-bottom: 1px solid $cPlum;
+  box-shadow: 0px 1px 0px white(0.2) inset;
+  color: $cWhite;
+  cursor: pointer;
+  font-size: 15px;
+  line-height: 1.4;
+  text-shadow: 0;
+
+  span {
+    margin-left: 5px;
+  }
+
+  button {
+    color: white(0.8);
+    border: 1px solid white(0.8);
+    padding: 0 6px;
+    border-radius: 2px;
+    line-height: 21px;
+    font-size: 12px;
+    background: transparent;
+    font-weight: bold;
+    float: right;
+  }
+
+  @include min-width($bpFull) {
+    margin-left: -15px;
+    padding: 15px;
+  }
+
+  &.-error {
+    background: #da3946;
+  }
+
+}

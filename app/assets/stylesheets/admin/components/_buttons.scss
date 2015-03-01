@@ -57,7 +57,7 @@ $buttonShadow: 0px 1px 2px black(0.05);
   &.-primary,
   &.-danger {
     color: $cWhite;
-    text-shadow: 0px 1px 1px black(0.4);
+    text-shadow: 0px 1px 0px black(0.4);
     &:active {
       box-shadow: 0px 2px 4px black(0.2) inset, $buttonShadow;
     }
