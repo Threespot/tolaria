@@ -7,20 +7,16 @@ module Admin::InternalHelper
     end
   end
 
-  def tolaria_path_for(managed_class, action:"index")
-    url_for({
-      controller: "admin/#{managed_class.to_sym}",
-      action: action,
-      only_path: true,
-    })
-  end
-
   def fontawesome_icon(icon_name = "")
     icon_name = icon_name.to_s.parameterize.gsub("_", "-")
     content_tag :i, "", {
       :class => "icon icon-#{icon_name}",
       :"aria-hidden" => true,
     }
+  end
+
+  def hint(hint_text)
+    return content_tag(:p, hint_text, class:"hint")
   end
 
 end

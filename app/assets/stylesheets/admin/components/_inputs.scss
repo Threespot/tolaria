@@ -3,7 +3,7 @@ label {
   margin-bottom: 8px;
   font-size: 14px;
   font-weight: bold;
-  color: $cDarkPlum;
+  color: $cPlum;
 }
 
 .hint {
@@ -21,6 +21,7 @@ textarea {
   border: 1px solid $cTaupe;
   width: 100%;
   display: block;
+  color: $cPlum;
   font-size: 16px;
   padding: 10px;
   transition: background-color 100ms linear, border-color 100ms linear;

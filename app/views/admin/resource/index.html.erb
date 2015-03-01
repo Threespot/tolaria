@@ -2,27 +2,11 @@
 
   <div class="right">
 
-    <button class="button">
+    <%= link_to url_for([:new, :admin, :blog_post]), class:"button -primary" do %>
       <%= fontawesome_icon :plus %>
       New Blog Post
-    </button>
-
-    <button class="button -primary">
-      <%= fontawesome_icon :plus %>
-      New Blog Post
-    </button>
-
-    <button class="button -danger">
-      <%= fontawesome_icon :plus %>
-      New Blog Post
-    </button>
+    <% end %>
 
   </div>
 
 </div>
-
-<form action="" method="post" accept-charset="utf-8">
-
-
-
-</form>

@@ -7,16 +7,9 @@
   background: white(0.50);
 
   @include min-width($bpFull) {
-
-    background: -webkit-linear-gradient(left, $cWhite, #FCFCFC);
-    background: -moz-linear-gradient(left, $cWhite, #FCFCFC);
-    background: -ms-linear-gradient(left, $cWhite, #FCFCFC);
-    background: -o-linear-gradient(left, $cWhite, #FCFCFC);
-
     border-left: 1px solid black(0.10);
     padding: 0 0 0 15px;
     width: 83.95%;
-
   }
 
 }
@@ -25,16 +18,15 @@
   @extend %clearfix;
   width: 100%;
   padding: 15px 0 15px 15px;
-  //background: #f4f4f6;
   border-bottom: 3px double $cGrey;
 }
 
-.main-left {
+.form-left {
   float: left;
   width: 67%;
 }
 
-.main-right {
+.form-right {
   float: right;
   width: 30%;
 }

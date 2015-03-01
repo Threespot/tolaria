@@ -1,8 +1,8 @@
 $buttonNeurtalTop: #fcfcfc;
 $buttonNeutralBottom: #f1f3f6;
 
-$buttonPrimaryTop: #2d98bf;
-$buttonPrimaryBottom: #2e8bc1;
+$buttonPrimaryTop: #00ADDD;
+$buttonPrimaryBottom: darken(#00ADDD, 5);
 
 $buttonDangerTop: #da3946;
 $buttonDangerBottom: #c32238;
@@ -14,6 +14,7 @@ $buttonShadow: 0px 1px 2px black(0.05);
   @extend %helvetica;
   border-radius: 2px;
   box-shadow: $buttonShadow;
+  color: $cPlum;
   cursor: pointer;
   display: inline-block;
   font-size: 13px;

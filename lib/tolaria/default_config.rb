@@ -1,7 +1,5 @@
 Tolaria.configure do |config|
 
-  config.route_prefix = "admin"
-
   config.default_sort_order = "id DESC"
 
   config.company_name = "Company Name"

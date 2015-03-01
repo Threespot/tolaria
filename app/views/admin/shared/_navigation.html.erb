@@ -3,8 +3,14 @@
   <div class="navigation-group">
     <h3>Syndication</h3>
     <ul>
-      <% Tolaria.managed_classes.each do |klass| %>
-        <li><%= tolaria_navigation_link klass.to_s.pluralize, klass.icon_name, tolaria_path_for(klass) %></li>
+      <% Tolaria.managed_classes.each do |managed_class| %>
+        <li>
+          <%= tolaria_navigation_link(
+            managed_class.model_name.human.titleize,
+            managed_class.icon_name,
+            url_for([:admin, managed_class.klass])
+          ) %>
+        </li>
       <% end %>
       <li><%= tolaria_navigation_link "Resources", :file_text, "#" %></li>
       <li><%= tolaria_navigation_link "External Links", :external_link, "#" %></li>

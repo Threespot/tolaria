@@ -1,3 +1,7 @@
+# Tolaria keeps a list of all managed classes and the controllers
+# for those classes internally so that other parts of the system
+# can iterate over them
+
 module Tolaria
 
   @managed_classes = []
@@ -16,7 +20,7 @@ module Tolaria
     discard_managed_class(klass)
     # Wrap the Rails model inside a Tolaria::ManagedClass
     managed_klass = Tolaria::ManagedClass.create(klass, options)
-    # Create a virtual controller for the model to use in the admin namespace
+    # Create a controller for the model to use in the admin namespace
     managed_controller = Class.new(Tolaria::ResourceController)
     ::Admin.const_set(managed_klass.controller_name, managed_controller)
     # Add these things to the internal tracker
@@ -36,12 +40,6 @@ module Tolaria
       end
     end
     return false
-  end
-
-  def self.reload_app_folder!
-    Dir["#{Rails.root}/app/models/*.rb", "#{Rails.root}/app/admin/*.rb"].each do |file|
-      load file
-    end
   end
 
 end

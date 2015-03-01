@@ -1,11 +1,11 @@
+# This class wraps an ActiveRecord::Base descendant
+# and stores information that Tolaria needs to track about it
+
 module Tolaria
   class ManagedClass
 
     attr_accessor :klass
     attr_accessor :controller_name
-    attr_accessor :string_representation
-    attr_accessor :string_pluralization
-    attr_accessor :symbol_representation
     attr_accessor :icon_name
 
     def self.create(klass, options = {})
@@ -13,20 +13,16 @@ module Tolaria
       managed_class = self.new
       managed_class.klass = klass
 
-      managed_class.string_representation = options.fetch(:name, klass.to_s.titleize)
-      managed_class.string_pluralization = managed_class.string_representation.pluralize
-      managed_class.symbol_representation = options.fetch(:symbol, klass.to_s.tableize.to_sym)
-      managed_class.controller_name = "#{klass.to_s.pluralize}Controller"
-
+      managed_class.controller_name = "#{managed_class.model_name.name.pluralize}Controller"
       managed_class.icon_name = options.fetch(:icon, :file_o).to_sym
 
       return managed_class
 
     end
 
-    alias_method :to_s, :string_representation
-    alias_method :to_sym, :symbol_representation
-    alias_method :intern, :symbol_representation
+    def model_name
+      self.klass.model_name
+    end
 
   end
 end

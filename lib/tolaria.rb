@@ -9,6 +9,7 @@ require "tolaria/config"
 require "tolaria/default_config"
 
 require "tolaria/admin"
+require "tolaria/reload"
 require "tolaria/manage"
 require "tolaria/routes"
 

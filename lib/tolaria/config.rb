@@ -1,7 +1,6 @@
 module Tolaria
 
   TolariaConfig = Struct.new(
-    "TolariaConfig",
     :route_prefix,
     :default_sort_order,
     :company_name,

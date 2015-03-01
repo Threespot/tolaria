@@ -4,7 +4,7 @@
   background: image-url("admin/rule-banner.jpg") repeat;
   background-size: 100% 100%;
   background-position: -250px 0px;
-  margin: 0 -1% 0 -1%;
+  margin: 0 -20px;
 }
 
 .header-stripe-inner {
@@ -15,13 +15,13 @@
 
 .header {
   @extend %clearfix;
-  background: $cDarkPlum;
+  background: $cPlum;
   border-bottom: 2px solid black;
   font-size: 14px;
   min-height: 32px;
   text-shadow: $plumShadow;
-  margin: 0 -1% 0 -1%;
-  padding: 0 1%;
+  margin: 0 -20px;
+  padding: 0 20px;
 }
 
 .header-inner {
