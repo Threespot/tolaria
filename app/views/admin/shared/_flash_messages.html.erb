@@ -1,30 +1,49 @@
-<p class="flash-message -primary">
-  <%= fontawesome_icon :check %>
-  <span>Done! You created the <%= @resource.model_name.human.downcase %> “Example title”.</span>
-  <button class="dismiss">Dismiss</button>
-</p>
+<div class="flash-message">
+  <div class="inner-align">
+    <p>
+      <%= fontawesome_icon :check %>
+      Created
+    </p>
+    <button class="dismiss">Dismiss</button>
+  </div>
+</div>
 
-<p class="flash-message -primary">
-  <%= fontawesome_icon :check %>
-  <span>Done! You updated the <%= @resource.model_name.human.downcase %> “Example title”.</span>
-  <button class="dismiss">Dismiss</button>
-</p>
+<div class="flash-message">
+  <div class="inner-align">
+    <p>
+      <%= fontawesome_icon :check %>
+      Updated
+    </p>
+    <button class="dismiss">Dismiss</button>
+  </div>
+</div>
 
+<div class="flash-message">
+  <div class="inner-align">
+    <p>
+      <%= fontawesome_icon :trash %>
+      Destroyed
+    </p>
+    <button class="dismiss">Dismiss</button>
+  </div>
+</div>
 
-<p class="flash-message -destructive">
-  <%= fontawesome_icon :trash  %>
-  <span>You deleted the <%= @resource.model_name.human.downcase %> “Example title”.</span>
-  <button class="dismiss">Dismiss</button>
-</p>
+<div class="flash-message -error">
+  <div class="inner-align">
+    <p>
+      <%= fontawesome_icon :exclamation_triangle %>
+      Your changes couldn’t be saved. Please review the messages below.
+    </p>
+    <button class="dismiss">Dismiss</button>
+  </div>
+</div>
 
-<p class="flash-message -error">
-  <%= fontawesome_icon :exclamation_triangle %>
-  <span>Your changes couldn’t be saved. Please review the messages below.</span>
-  <button class="dismiss">Jump to first message</button>
-</p>
-
-<p class="flash-message -error">
-  <%= fontawesome_icon :minus_circle %>
-  <span>You cannot delete “Example post” because other items are using it.</span>
-  <button class="dismiss">Dismiss</button>
-</p>
+<div class="flash-message -error">
+  <div class="inner-align">
+    <p>
+      <%= fontawesome_icon :minus_circle %>
+      Your changes couldn’t be saved. Please review the messages below.
+    </p>
+    <button class="dismiss">Dismiss</button>
+  </div>
+</div>

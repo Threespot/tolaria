@@ -24,42 +24,57 @@ module Tolaria
     end
 
     def create
+
       @resource = @managed_class.klass.new
       @resource.assign_attributes(params[@resource.model_name.singular.to_sym])
+      @resource_name = Tolaria.display_name(@resource)
+
       if @resource.save
-        redirect_to admin_resource_show_path(@resource)
+        flash.now[:success] = "Done! You created the #{@managed_class.model_name.human} “#{@resource_name}”."
+        return redirect_to admin_resource_show_path(@resource)
       else
-        flash.now[:error] = "There was a problem saving your #{@managed_class}. Please review the messages below."
-        render tolaria_template("new")
+        flash.now[:error] = "Your changes couldn’t be saved. Please review the messages below."
+        return render tolaria_template("new")
       end
+
     end
 
     def edit
-      @resource = @managed_class.klass.find_by_id(params[:id])
-      render tolaria_template("edit")
+      @resource = @managed_class.klass.find_by_id(params[:id]) or raise ActiveRecord::RecordNotFound
+      return render tolaria_template("edit")
     end
 
     def update
-      @resource = @managed_class.klass.find_by_id(params[:id])
+
+      @resource = @managed_class.klass.find_by_id(params[:id]) or raise ActiveRecord::RecordNotFound
       @resource.assign_attributes(params[@resource.model_name.singular.to_sym])
+      @resource_name = Tolaria.display_name(@resource)
+
       if @resource.save
-        redirect_to admin_resource_update_path(@resource)
+        flash.now[:success] = "Done! You updated the #{@managed_class.model_name.human} “#{@resource_name}”."
+        return redirect_to admin_resource_update_path(@resource)
       else
-        flash.now[:error] = "There was a problem saving your #{managed_class}. Please review the messages below."
-        render tolaria_template("update")
+        flash.now[:error] = "Your changes couldn’t be saved. Please review the messages below."
+        return render tolaria_template("update")
       end
+
     end
 
     def destroy
-      @resource = @managed_class.klass.find_by_id(params[:id])
+
+      @resource = @managed_class.klass.find_by_id(params[:id]) or raise ActiveRecord::RecordNotFound
+      @resource_name = Tolaria.display_name(@resource)
+
       begin
         @resource.destroy
       rescue ActiveRecord::DeleteRestrictionError => e
-        flash[:error] = "You cannot delete that #{managed_class} because other items are using it."
+        flash[:restricted] = "You cannot delete “#{@resource_name}” because other items are using it."
         return redirect_to :index
       end
-      flash[:notice] = "#{managed_class} deleted."
-      redirect_to :index
+
+      flash[:destructive] = "You delet ed the #{@managed_class.model_name.human} “#{@resource_name}”."
+      return redirect_to :index
+
     end
 
     protected

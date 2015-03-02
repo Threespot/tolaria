@@ -32,6 +32,7 @@ $font-awesome: FontAwesome;
 .font-awesome {
 
   font: normal normal normal 14px FontAwesome !important;
+  line-height: 14px;
   text-decoration: none;
 
   text-rendering: auto; // optimizelegibility throws things off #1094

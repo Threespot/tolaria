@@ -15,6 +15,13 @@ label {
   margin: 8px 0 0 0;
 }
 
+hr {
+  height: 0;
+  border: 0;
+  border-top: 3px double $cGrey;
+  margin: 30px 0 30px 0;
+}
+
 input[type=text],
 textarea {
 
@@ -37,3 +44,4 @@ textarea {
   }
 
 }
+
