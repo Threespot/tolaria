@@ -4,7 +4,6 @@
   float: left;
   height: 1000px;
   width: 100%;
-  background: white(0.50);
 
   @include min-width($bpFull) {
     border-left: 1px solid black(0.10);

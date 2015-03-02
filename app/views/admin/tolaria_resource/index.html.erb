@@ -1,0 +1,12 @@
+<div class="main-controls">
+
+  <div class="right">
+
+    <%= link_to url_for([:new, :admin, @managed_class.model_name.singular]), class:"button -primary" do %>
+      <%= fontawesome_icon :plus %>
+      New <%= @resource.model_name.human.titleize %>
+    <% end %>
+
+  </div>
+
+</div>

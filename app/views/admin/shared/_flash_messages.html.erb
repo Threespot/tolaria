@@ -1,49 +1,37 @@
-<div class="flash-message">
-  <div class="inner-align">
-    <p>
-      <%= fontawesome_icon :check %>
-      Created
-    </p>
-    <button class="dismiss">Dismiss</button>
-  </div>
-</div>
+<% if flash[:success].present? %>
 
-<div class="flash-message">
-  <div class="inner-align">
-    <p>
-      <%= fontawesome_icon :check %>
-      Updated
-    </p>
-    <button class="dismiss">Dismiss</button>
+  <div class="flash-message">
+    <div class="inner-align">
+      <p><%= fontawesome_icon :check %> <%= flash[:success] %></p>
+      <button class="dismiss">Dismiss</button>
+    </div>
   </div>
-</div>
 
-<div class="flash-message">
-  <div class="inner-align">
-    <p>
-      <%= fontawesome_icon :trash %>
-      Destroyed
-    </p>
-    <button class="dismiss">Dismiss</button>
-  </div>
-</div>
+<% elsif flash[:error].present? %>
 
-<div class="flash-message -error">
-  <div class="inner-align">
-    <p>
-      <%= fontawesome_icon :exclamation_triangle %>
-      Your changes couldn’t be saved. Please review the messages below.
-    </p>
-    <button class="dismiss">Dismiss</button>
+  <div class="flash-message -error">
+    <div class="inner-align">
+      <p><%= fontawesome_icon :exclamation_triangle %> <%= flash[:error] %></p>
+      <button class="dismiss">Dismiss</button>
+    </div>
   </div>
-</div>
 
-<div class="flash-message -error">
-  <div class="inner-align">
-    <p>
-      <%= fontawesome_icon :minus_circle %>
-      Your changes couldn’t be saved. Please review the messages below.
-    </p>
-    <button class="dismiss">Dismiss</button>
+<% elsif flash[:destructive].present? %>
+
+  <div class="flash-message -error">
+    <div class="inner-align">
+      <p><%= fontawesome_icon :trash %> <%= flash[:destructive] %></p>
+      <button class="dismiss">Dismiss</button>
+    </div>
   </div>
-</div>
+
+<% elsif flash[:restricted].present? %>
+
+  <div class="flash-message -error">
+    <div class="inner-align">
+      <p><%= fontawesome_icon :minus_circle %> <%= flash[:restricted] %></p>
+      <button class="dismiss">Dismiss</button>
+    </div>
+  </div>
+
+<% end %>

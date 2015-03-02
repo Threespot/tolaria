@@ -4,7 +4,7 @@
   <%= @resource.model_name.human.titleize %>
 <% end %>
 
-<%= link_to url_for([:admin, @resource.class]), class:"button" do %>
+<%= link_to url_for([:admin, @managed_class.klass]), class:"button" do %>
   <%= fontawesome_icon :close %>
   Cancel
 <% end %>

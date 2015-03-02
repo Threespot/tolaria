@@ -1,7 +1,7 @@
 module Admin::InternalHelper
 
   def tolaria_navigation_link(label, icon_name, index_path)
-    css_class = url_for.in?(index_path) ? "current" : nil
+    css_class = index_path.in?(url_for) ? "current" : nil
     link_to index_path, class:css_class do
       fontawesome_icon(icon_name) << " #{label}"
     end
