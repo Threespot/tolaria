@@ -10,3 +10,20 @@
   </div>
 
 </div>
+
+<table class="index-table">
+  <thead>
+    <tr>
+      <%= index_th :id %>
+      <%= index_th :title %>
+      <%= actions_th %>
+    </tr>
+  </thead>
+  <tbody>
+    <% @resources.each do |resource| %>
+      <tr>
+
+      </tr>
+    <% end %>
+  </tbody>
+</table>
