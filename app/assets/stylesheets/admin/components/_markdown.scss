@@ -45,8 +45,8 @@ textarea.markdown {
     padding: 4px 6px;
     text-align: center;
 
-    background: $buttonNeurtalTop;
-    border: 1px solid darken($buttonNeutralBottom, 15);
+    background: $cButtonNeutral;
+    border: 1px solid darken($cButtonNeutral, 15);
 
     &.md-button-interstitial {
       &:before {
