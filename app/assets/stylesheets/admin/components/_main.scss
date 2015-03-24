@@ -34,11 +34,14 @@
 .form-left {
   @include clearfix;
   float: left;
-  width: 67%;
+  width: 69%;
+  padding: 5px 1.5% 5px 0;
 }
 
 .form-right {
   @include clearfix;
   float: right;
-  width: 30%;
+  width: 31%;
+  padding: 5px 0 10px 1.5%;
+  border-left: 1px solid black(0.10);
 }
