@@ -1,13 +1,43 @@
 Tolaria.configure do |config|
 
+  # The default order to sort items on index pages.
+  # "id DESC" will usually show newest things at the top of the list.
   config.default_sort_order = "id DESC"
 
-  config.company_name = "Company Name"
+  # The name of the admin interface as used in the system
+  # navigation and HTML page titles.
+  config.interface_title = "Company Name"
 
-  config.interface_title = "Content Admin"
+  # Tolaria sends emails for authentication.
+  # Set the value of the email FROM field here.
+  config.from_address = "Rails <tolaria@example.org>"
 
-  config.markdown_header_delta = -1
+  # The default cost factor for bcrypt. Raising this number
+  # will exponentially increase the wall clock time bcrypt takes
+  # to hash a passphrase. Use 1 in test mode to speed things up.
+  # It is VERY DANGEROUS to set this below 10 for any production code.
+  config.bcrypt_cost = Rails.env.test?? 1 : 10
 
+  # The number of seconds that emailed passcodes should be valid.
+  # It is STRONGLY RECOMENDED that you keep this under 30 minutes.
+  config.passcode_lifespan = 10.minutes
+
+  # The number of times an administrator can flunk their passcode
+  # challenge or request a token before Tolaria disables their account.
+  config.lockout_threshold = 6
+
+  # The length of time that an administrator’s account is disabled
+  # after they trip the lockout threshold.
+  config.lockout_duration = 1.hour
+
+  # The amount of time that an administrator’s login lasts.
+  # Refreshed every time they return to the site.
+  config.session_length = 3.weeks
+
+  # Tolaria attempts to convert models to a pretty “display”
+  # string for presenting in forms and listings.
+  # The methods below are tried in order on models until one responds.
+  # Must be an array of symbols.
   config.display_name_methods = %i[
     admin_name
     display_name
@@ -22,31 +52,5 @@ Tolaria.configure do |config|
     to_s
     id
   ]
-
-  config.markdown_options = {
-    autolink: true,                       # Automatically wrap naked links in <a>
-    disable_indented_code_blocks: false,  # Don't disable code blocks
-    fenced_code_blocks: true,             # Allow ``` code blocks (like GitHub)
-    filter_html: true,                    # Don't allow any HTML, require shortcodes instead
-    footnotes: false,                     # Disable footnotes
-    hard_wrap: false,                     # Don't make <br> inside paragraphs with newlines
-    highlight: false,                     # This is really ugly and missued
-    lax_spacing: true,                    # Allow lazing spacing for lists
-    link_attributes: {},                  # Don't add extra stuff to links (like rel=nofollow)
-    no_images: false,                     # Allow images
-    no_intra_emphasis: true,              # Handle _stuff*like*this_
-    no_links: false,                      # Allow links
-    no_styles: true,                      # Don't make any <style> tags
-    prettify: false,                      # Don't use google-code-prettify
-    quote: false,                         # Don't turn quotes into <q> tags
-    safe_links_only: true,                # Only allow HTTP/S links, not FTP or SMB, etc
-    space_after_headers: true,            # Force space between headers and hash marks
-    strikethrough: true,                  # Allow ~~striked text~~
-    superscript: true,                    # Allow super^(script)
-    tables: false,                        # Tables only if we style and allow for it
-    underline: false,                     # This is really ugly and missued
-    with_toc_data: false,                 # Don't print a table of contents
-    xhtml: false,                         # Output HTML5 instead of XML
-  }
 
 end

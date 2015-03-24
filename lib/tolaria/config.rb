@@ -1,13 +1,15 @@
 module Tolaria
 
   TolariaConfig = Struct.new(
-    :route_prefix,
+    :bcrypt_cost,
     :default_sort_order,
-    :company_name,
-    :interface_title,
-    :markdown_header_delta,
     :display_name_methods,
-    :markdown_options,
+    :from_address,
+    :interface_title,
+    :lockout_duration,
+    :lockout_threshold,
+    :passcode_lifespan,
+    :session_length,
   )
 
   def self.config
