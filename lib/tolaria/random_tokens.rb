@@ -1,15 +1,15 @@
 module Tolaria
   module RandomTokens
 
-    # Returns a login token in the form XXX-XXXX suitable for use
-    # as a one-time passphrase
-    def self.passcode
-      SecureRandom.hex(4)[0..6].tr("f","x").insert(3,"-").upcase
+    # Returns a 32-character random token suitable for stronger temporary keys
+    def self.auth_token
+      SecureRandom.base64(32).delete("+/=")[0..32]
     end
 
-    # Returns a 32-character random token suitable for strong temporary keys
-    def self.recovery
-      SecureRandom.base64(32).delete("+/=")[0..32]
+    # Returns a six-digit numeric passcode suitable for use
+    # as a one-time passphrase
+    def self.passcode
+      "%06d" % SecureRandom.random_number(1_000_000)
     end
 
   end

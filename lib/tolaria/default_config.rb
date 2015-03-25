@@ -19,7 +19,7 @@ Tolaria.configure do |config|
   config.bcrypt_cost = Rails.env.test?? 1 : 10
 
   # The number of seconds that emailed passcodes should be valid.
-  # It is STRONGLY RECOMENDED that you keep this under 30 minutes.
+  # It is STRONGLY RECOMMENDED that you keep this under 30 minutes.
   config.passcode_lifespan = 10.minutes
 
   # The number of times an administrator can flunk their passcode

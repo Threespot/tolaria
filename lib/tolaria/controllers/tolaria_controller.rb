@@ -22,7 +22,7 @@ module Tolaria
     def tolaria_template(name)
       return {
         template: "admin/tolaria_resource/#{name}",
-        layout: "admin/layouts/admin"
+        layout: "admin/admin"
       }
     end
 

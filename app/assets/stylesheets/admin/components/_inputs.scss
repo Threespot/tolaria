@@ -24,6 +24,9 @@ hr {
 }
 
 input[type=text],
+input[type=email],
+input[type=password],
+input[type=number],
 textarea {
 
   background: #fefefe;
@@ -35,7 +38,6 @@ textarea {
   font-size: 16px;
   padding: 10px;
   transition: background-color 100ms linear, border-color 100ms linear;
-
 
   &:focus {
     border-color: darken($cSapphire, 10);

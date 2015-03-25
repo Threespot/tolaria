@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+<html>
+  <%= render "admin/shared/head" %>
+  <body class="admin-session">
+    <%= render "admin/shared/skiplinks" %>
+    <div class="header-stripe">
+      <div class="header-stripe-inner">
+      </div>
+    </div>
+    <%= yield %>
+    <%= javascript_include_tag "admin/admin" %>
+  </body>
+</html>

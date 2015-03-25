@@ -1,0 +1,42 @@
+<%= form_for @admin, url:admin_signin_path, html:{id:"session-form"} do |f| %>
+
+  <h1><%= @greeting %></h1>
+
+  <div id="session-spinner" style="display:none"></div>
+
+  <%= f.label :email, "Email address", for:"session-form-email" %>
+  <%= f.email_field :email, {
+    id: "session-form-email",
+    placeholder: "Enter your email address",
+    autocorrect: "off",
+    autocapitalize: "none",
+    required: "true",
+    tabindex: 1,
+    value: @email,
+  } %>
+
+  <p class="session-form-help" style="display:none">
+    A passcode was just emailed to you.<br>
+    Enter it here to sign in.
+  </p>
+
+  <%= f.label :passcode, "Passcode", for:"session-form-passcode" %>
+  <%= f.number_field :passcode, {
+    id: "session-form-passcode",
+    placeholder: "Passcode",
+    autocorrect: "off",
+    autocomplete: "off",
+    pattern: "[0-9]*",
+    required: "true",
+    tabindex: 2,
+    style: "display:none"
+  } %>
+
+  <%= f.button "Request a passcode", id:"session-form-request", class:"session-button" %>
+  <%= f.button "Sign In", id:"session-form-submit", class:"session-button", style:"display:none" %>
+
+  <p class="session-form-help" style="display:none">
+    <button id="session-form-resend" class="session-resend">Request another code</button>
+  </p>
+
+<% end %>

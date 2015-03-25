@@ -8,10 +8,10 @@ module Tolaria
       namespace :admin do
 
         # Create routes for the authentication/passcode flow
-        get "signin", to:"admin/sessions#new"
-        post "signin/code", to:"admin/sessions#send_code"
-        post "signin", to:"admin/sessions#create"
-        delete "signout", to:"admin/sessions#destroy"
+        get "signin", to:"sessions#new"
+        post "signin/code", to:"sessions#send_code"
+        post "signin", to:"sessions#create"
+        delete "signout", to:"sessions#destroy"
 
         # Create routes for administrator management
         resources :administrators
