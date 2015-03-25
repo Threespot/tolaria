@@ -1,7 +1,7 @@
 module Tolaria
   class ResourceController < TolariaController
 
-    before_filter :load_managed_class
+    before_filter :load_managed_class!
 
     # -------------------------------------------------------------------------
     # RESOURCE ACTIONS
@@ -79,7 +79,7 @@ module Tolaria
 
     protected
 
-    def load_managed_class
+    def load_managed_class!
       Tolaria.managed_classes.each do |managed_class|
         if self.class.to_s == "Admin::#{managed_class.controller_name}"
           @managed_class = managed_class

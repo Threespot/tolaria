@@ -1,6 +1,6 @@
 # Tolaria keeps a list of all managed classes and the controllers
 # for those classes internally so that other parts of the system
-# can iterate over them
+# can iterate over them. Metaprogramming!
 
 module Tolaria
 
@@ -15,6 +15,7 @@ module Tolaria
     @managed_controllers
   end
 
+  # The developer calls `Tolaria.manage MyClass do ... end`
   def self.manage(klass, options = {}, &block)
     # If we already have a class of this name, discard it
     discard_managed_class(klass)

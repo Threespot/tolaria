@@ -1,5 +1,7 @@
 module Tolaria
 
+  # Tolaria’s config is a Struct so that an exception is raised
+  # if you try to configure a key that doesn't exist. See default_config.rb
   TolariaConfig = Struct.new(
     :bcrypt_cost,
     :default_sort_order,
@@ -17,8 +19,7 @@ module Tolaria
   end
 
   def self.configure(&block)
-    @configuration ||= TolariaConfig.new
-    yield @configuration
+    yield self.config
   end
 
 end
