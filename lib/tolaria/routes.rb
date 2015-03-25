@@ -1,7 +1,7 @@
 module Tolaria
 
   # The developer calls `Tolaria.draw_routes(self)` inside the
-  # router’s scope block scope
+  # router’s block scope
 
   def self.draw_routes(router)
 
