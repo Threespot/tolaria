@@ -7,7 +7,7 @@ $cSessionPlaceholder: #888;
   background-repeat: repeat;
 }
 
-#session-form {
+.session-form {
 
   display: block;
   margin: 15% auto 0 auto;
@@ -63,7 +63,7 @@ $cSessionPlaceholder: #888;
     }
   }
 
-  #session-spinner {
+  .session-spinner {
     -webkit-animation: fa-spin 300ms infinite linear;
     animation: fa-spin 300ms infinite linear;
     border-radius: 100%;
@@ -74,19 +74,23 @@ $cSessionPlaceholder: #888;
     width: 46px;
   }
 
-  .session-resend {
-    background: none;
-    color: $cWhite;
+  &-resend {
     text-align: center;
-    color: transparentize($cWhite, 0.5);
-    border-bottom: 1px dotted transparentize($cWhite, 0.5);
-    &:hover, &:active {
+    margin: 35px 0 0 0;
+    button {
+      background: none;
       color: $cWhite;
-      border-bottom: 1px solid $cWhite;
+      display: inline-block;
+      color: transparentize($cWhite, 0.5);
+      border-bottom: 1px dotted transparentize($cWhite, 0.5);
+      &:hover, &:active {
+        color: $cWhite;
+        border-bottom: 1px solid $cWhite;
+      }
     }
   }
 
-  .session-form-help {
+  &-feedback {
     color: $cWhite;
     text-align: center;
     margin: 25px 0 25px 0;

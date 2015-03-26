@@ -1,4 +1,5 @@
 require "securerandom"
+
 require "sass"
 require "bcrypt"
 
@@ -7,11 +8,12 @@ require "tolaria/engine"
 require "tolaria/exceptions"
 require "tolaria/config"
 require "tolaria/default_config"
+require "tolaria/random_tokens"
 
+require "tolaria/routes"
 require "tolaria/admin"
 require "tolaria/reload"
 require "tolaria/manage"
-require "tolaria/routes"
 
 module Tolaria
   # We have to autoload these classes because they inherit

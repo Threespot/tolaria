@@ -3,7 +3,7 @@ module Tolaria
 
     # Returns a 32-character random token suitable for stronger temporary keys
     def self.auth_token
-      SecureRandom.base64(32).delete("+/=")[0..32]
+      SecureRandom.base64(32).delete("+/=")[0..31]
     end
 
     # Returns a six-digit numeric passcode suitable for use

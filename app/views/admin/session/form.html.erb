@@ -1,8 +1,16 @@
-<%= form_for @admin, url:admin_signin_path, html:{id:"session-form"} do |f| %>
+<%= form_for @admin, url:admin_signin_path, html:{id:"session-form", class:"session-form"} do |f| %>
 
   <h1><%= @greeting %></h1>
 
-  <div id="session-spinner" style="display:none"></div>
+  <div class="session-spinner" id="session-spinner" style="display:none"></div>
+
+  <% if flash[:error] || flash[:success] %>
+    <p class="session-form-feedback" id="session-form-feedback">
+      <%= flash[:error] %> <%= flash[:success] %>
+    </p>
+  <% else %>
+    <p class="session-form-feedback" id="session-form-feedback" style="display:none"></p>
+  <% end %>
 
   <%= f.label :email, "Email address", for:"session-form-email" %>
   <%= f.email_field :email, {
@@ -14,11 +22,6 @@
     tabindex: 1,
     value: @email,
   } %>
-
-  <p class="session-form-help" style="display:none">
-    A passcode was just emailed to you.<br>
-    Enter it here to sign in.
-  </p>
 
   <%= f.label :passcode, "Passcode", for:"session-form-passcode" %>
   <%= f.number_field :passcode, {
@@ -35,8 +38,8 @@
   <%= f.button "Request a passcode", id:"session-form-request", class:"session-button" %>
   <%= f.button "Sign In", id:"session-form-submit", class:"session-button", style:"display:none" %>
 
-  <p class="session-form-help" style="display:none">
-    <button id="session-form-resend" class="session-resend">Request another code</button>
+  <p class="session-form-resend" id="session-form-resend" style="display:none">
+    <button>Request another code</button>
   </p>
 
 <% end %>

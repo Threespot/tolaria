@@ -1,46 +1,82 @@
 class Admin::SessionsController < Tolaria::TolariaController
 
+  skip_before_filter :authenticate_admin!
+
+  # ---------------------------------------------------------------------------
+  # NEW
+  # Present the signin form
+  # ---------------------------------------------------------------------------
+
   def new
     @greeting = random_greeting
     @admin = Administrator.new
     render "admin/session/form", layout:"admin/sessions"
   end
 
+  # ---------------------------------------------------------------------------
+  # CODE REQUEST
+  # Dispatch an email with the admin’s passcode, or return JSON errors
+  # ---------------------------------------------------------------------------
+
   def request_code
-    if administrator = Administrator.find_by_email(params[:email])
-      if administrator.locked?
-        # TODO: Better error message for locked accounts
-        render json: { status: "error", :message => "account is locked!" }
-      else
-        passcode = administrator.set_passcode!
-        if PasscodeMailer.passcode(administrator, passcode).deliver_now
-          administrator.accrue_strike!
-        else
-          # TODO: Better error message for passcode sending failure
-          render json: { status: "error", :message => "error sending passcode!" }
-        end
-        # TODO: Better message if we even need to report a message on finding an account
-        render json: { status: "success", :message => "account found!" }
-      end
-    else
-      # TODO: Better error message
-      render json: { status: "error", :message => "no account found!" }
+
+    @administrator = Administrator.find_by_email(params[:administrator][:email].downcase.strip)
+
+    unless @administrator
+      response.status = 404
+      return render json: {
+        status: response.status,
+        error: "That email address couldn’t be found. Contact an existing site administrator if you need an account created for you.",
+      }
     end
+
+    if @administrator.locked?
+      response.status = 423
+      return render json: {
+        status: response.status,
+        error: %{
+          Your account has made too many requests and has been locked.
+          Please try again after #{Tolaria.config.lockout_duration/60} minutes.
+        }.squish,
+      }
+    end
+
+    passcode = @administrator.set_passcode!
+    if PasscodeMailer.passcode(@administrator, passcode).deliver_now
+      @administrator.accrue_strike!
+      response.status = 204
+      return render nothing: true
+    else
+      response.status = 500
+      return render json: {
+        status: response.status,
+        error: "An email couldn’t be sent for you. Please try again later."
+      }
+    end
+
   end
 
+  # ---------------------------------------------------------------------------
+  # CREATE
+  # Attempt to sign in the admin with the email/passocde combination.
+  # ---------------------------------------------------------------------------
+
   def create
-    administrator = Administrator.find_by_email(params[:administrator][:email])
-    if administrator and administrator.authenticate(params[:administrator][:passcode])
-      cookies.permanent[:auth_token] = administrator.auth_token
+    @administrator = Administrator.find_by_email(params[:administrator][:email].downcase.strip)
+    if @administrator and @administrator.authenticate(params[:administrator][:passcode])
+      cookies.permanent[:auth_token] = @administrator.auth_token
       # TODO: redirect to the /admin path
-      redirect_to admin_new_session_path, flash: { success: "it works" }
+      flash[:success] = "It worked!"
+      return redirect_to admin_new_session_path
     else
-      redirect_to admin_new_session_path, flash: { error: "nope" }
+      flash[:error] = "That passcode wasn't correct. Please request a new passcode and try again."
+      return redirect_to admin_new_session_path
     end
   end
 
   def destroy
     cookies.delete(:auth_token)
+    reset_session
     # TODO: revise logout message
     redirect_to new_session_path, :flash => { success: 'You have successfully logged out.' }
   end

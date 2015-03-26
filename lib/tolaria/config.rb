@@ -1,21 +1,22 @@
 module Tolaria
 
-  # Tolaria’s config is a Struct so that an exception is raised
+  # Tolaria’s config is a class so that an exception is raised
   # if you try to configure a key that doesn't exist. See default_config.rb
-  TolariaConfig = Struct.new(
-    :bcrypt_cost,
-    :default_sort_order,
-    :display_name_methods,
-    :from_address,
-    :interface_title,
-    :lockout_duration,
-    :lockout_threshold,
-    :passcode_lifespan,
-    :session_length,
-  )
+  class Configuration
+    attr_accessor :bcrypt_cost
+    attr_accessor :default_sort_order
+    attr_accessor :default_redirect
+    attr_accessor :display_name_methods
+    attr_accessor :from_address
+    attr_accessor :interface_title
+    attr_accessor :lockout_duration
+    attr_accessor :lockout_threshold
+    attr_accessor :passcode_lifespan
+    attr_accessor :session_length
+  end
 
   def self.config
-    @configuration ||= TolariaConfig.new
+    @configuration ||= Tolaria::Configuration.new
   end
 
   def self.configure(&block)

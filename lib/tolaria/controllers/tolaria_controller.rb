@@ -4,7 +4,7 @@ module Tolaria
     protect_from_forgery
     before_filter :add_admin_headers!
     before_filter :admin_setup!
-    before_filter :authenticate_admin
+    before_filter :authenticate_admin!
 
     def add_admin_headers!
       # Don't use old IE rendering modes
@@ -20,14 +20,15 @@ module Tolaria
       # Nothing here just yet.
     end
 
-    def authenticate_admin
-      unless current_administrator or params[:controller] == "admin/sessions"
-        redirect_to admin_new_session_path, :flash => { :alert => "You must log in to continue." }
+    def authenticate_admin!
+      unless current_administrator
+        flash[:error] = "You must log in to continue. Request a passcode below."
+        return redirect_to admin_new_session_path
       end
     end
 
     def current_administrator
-      @current_administrator ||= Administrator.find_by_auth_token( cookies[:auth_token]) if cookies[:auth_token]
+      @current_administrator ||= Administrator.find_by_auth_token(cookies[:auth_token]) if cookies[:auth_token]
     end
     helper_method :current_administrator
 

@@ -8,7 +8,8 @@ var SessionViewController = Backbone.View.extend({
     this.$emailInput = this.$("#session-form-email");
     this.$passcodeInput = this.$("#session-form-passcode");
     this.$spinner = this.$("#session-spinner");
-    this.$helpMessage = this.$(".session-form-help");
+    this.$feedbackMessage = this.$("#session-form-feedback");
+    this.$resendButton = this.$("#session-form-resend");
   },
 
   requestAuthenticationCode: function(event) {
@@ -17,39 +18,67 @@ var SessionViewController = Backbone.View.extend({
     event.preventDefault();
     event.stopPropagation();
 
-    self.$requestButton.fadeOut(200);
-    self.$passcodeInput.hide();
-    self.$helpMessage.hide();
-    self.$submitButton.hide();
-    self.$emailInput.fadeOut(200, function() {
+    self.$passcodeInput.fadeOut(300);
+    self.$submitButton.fadeOut(300);
+    self.$resendButton.fadeOut(300);
+    self.$feedbackMessage.fadeOut(300);
+    self.$requestButton.fadeOut(300);
+    self.$emailInput.fadeOut(300);
+
+    window.setTimeout(function() {
+
       self.$spinner.fadeIn(400);
-    });
 
-    $.ajax({
-      type: "POST",
-      url: "/admin/signin/code?email=" + encodeURIComponent(self.$emailInput.val()),
-      success: function(result) {
-        if (result.status === "success") {
-          window.setTimeout(function() {
+      $.ajax({
+
+        type: "POST",
+        url: "/admin/signin/code",
+        data: {
+          "administrator": {
+            "email": self.$emailInput.val()
+          }
+        },
+
+        beforeSend: function(xhr) {
+          xhr.setRequestHeader(
+            "X-CSRF-Token", $("meta[name='csrf-token']").attr("content")
+          );
+        },
+
+        statusCode: {
+          204: function(data, xstatus, xhr) {
             self.presentPasscodeInput();
-          }, 2000);
-        } else {
-          // auth was not sucessful due to the account being locked or no account with the email submitted found
-          // responses are in result.message
-          // TODO: deal w/ these responses accordingly
-          console.log(result.message);
+          },
+          404: function(xhr, status, error) {
+            self.presentErrorMessage(xhr.responseJSON.error)
+          },
+          423: function(xhr, status, error) {
+            self.presentErrorMessage(xhr.responseJSON.error)
+          }
         }
-      }
-    });
 
+      });
+
+    }, 300);
+
+  },
+
+  presentErrorMessage: function(message) {
+    var self = this;
+    self.$spinner.fadeOut(400, function() {
+      self.$feedbackMessage.html(message).fadeIn(300);
+      self.$emailInput.fadeIn(300);
+      self.$requestButton.fadeIn(300);
+    });
   },
 
   presentPasscodeInput: function() {
     var self = this;
     self.$spinner.fadeOut(400, function() {
-      self.$passcodeInput.fadeIn(200).focus();
-      self.$helpMessage.fadeIn(200);
-      self.$submitButton.fadeIn(200);
+      self.$passcodeInput.fadeIn(300).focus();
+      self.$feedbackMessage.html("A passcode was just emailed to you.<br> Enter it here to sign in.").fadeIn(300);
+      self.$submitButton.fadeIn(300);
+      self.$resendButton.fadeIn(300);
     });
   },
 
