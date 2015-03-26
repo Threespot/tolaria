@@ -25,9 +25,22 @@ var SessionViewController = Backbone.View.extend({
       self.$spinner.fadeIn(400);
     });
 
-    window.setTimeout(function() {
-      self.presentPasscodeInput();
-    }, 2000);
+    $.ajax({
+      type: "POST",
+      url: "/admin/signin/code?email=" + encodeURIComponent(self.$emailInput.val()),
+      success: function(result) {
+        if (result.status === "success") {
+          window.setTimeout(function() {
+            self.presentPasscodeInput();
+          }, 2000);
+        } else {
+          // auth was not sucessful due to the account being locked or no account with the email submitted found
+          // responses are in result.message
+          // TODO: deal w/ these responses accordingly
+          console.log(result.message);
+        }
+      }
+    });
 
   },
 
