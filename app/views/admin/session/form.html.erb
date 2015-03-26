@@ -18,28 +18,27 @@
     placeholder: "Enter your email address",
     autocorrect: "off",
     autocapitalize: "none",
-    required: "true",
+    spellcheck: "false",
     tabindex: 1,
     value: @email,
   } %>
 
   <%= f.label :passcode, "Passcode", for:"session-form-passcode" %>
-  <%= f.number_field :passcode, {
+  <%= f.text_field :passcode, {
     id: "session-form-passcode",
     placeholder: "Passcode",
     autocorrect: "off",
     autocomplete: "off",
+    spellcheck: "false",
     pattern: "[0-9]*",
-    required: "true",
     tabindex: 2,
     style: "display:none"
   } %>
 
-  <%= f.button "Request a passcode", id:"session-form-request", class:"session-button" %>
-  <%= f.button "Sign In", id:"session-form-submit", class:"session-button", style:"display:none" %>
+  <%= f.button "Request a passcode", type:"submit", id:"session-form-submit", class:"session-button" %>
 
   <p class="session-form-resend" id="session-form-resend" style="display:none">
-    <button>Request another code</button>
+    <button type="button">Request another code</button>
   </p>
 
 <% end %>

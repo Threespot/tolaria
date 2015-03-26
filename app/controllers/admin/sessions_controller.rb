@@ -69,7 +69,7 @@ class Admin::SessionsController < Tolaria::TolariaController
       flash[:success] = "It worked!"
       return redirect_to admin_new_session_path
     else
-      flash[:error] = "That passcode wasn't correct. Please request a new passcode and try again."
+      flash[:error] = "That passcode wasn’t correct. Please request a new passcode and try again."
       return redirect_to admin_new_session_path
     end
   end

@@ -1,9 +1,9 @@
 var SessionViewController = Backbone.View.extend({
 
   el: "#session-form",
+  readyToSubmit: false,
 
   initialize: function () {
-    this.$requestButton = this.$("#session-form-request");
     this.$submitButton = this.$("#session-form-submit");
     this.$emailInput = this.$("#session-form-email");
     this.$passcodeInput = this.$("#session-form-passcode");
@@ -15,14 +15,11 @@ var SessionViewController = Backbone.View.extend({
   requestAuthenticationCode: function(event) {
 
     var self = this;
-    event.preventDefault();
-    event.stopPropagation();
 
     self.$passcodeInput.fadeOut(300);
     self.$submitButton.fadeOut(300);
     self.$resendButton.fadeOut(300);
     self.$feedbackMessage.fadeOut(300);
-    self.$requestButton.fadeOut(300);
     self.$emailInput.fadeOut(300);
 
     window.setTimeout(function() {
@@ -65,25 +62,35 @@ var SessionViewController = Backbone.View.extend({
 
   presentErrorMessage: function(message) {
     var self = this;
+    self.readyToSubmit = false;
     self.$spinner.fadeOut(400, function() {
       self.$feedbackMessage.html(message).fadeIn(300);
       self.$emailInput.fadeIn(300);
-      self.$requestButton.fadeIn(300);
+      self.$submitButton.html("Request a passcode").fadeIn(300);
     });
   },
 
   presentPasscodeInput: function() {
     var self = this;
+    self.readyToSubmit = true;
     self.$spinner.fadeOut(400, function() {
-      self.$passcodeInput.fadeIn(300).focus();
+      self.$passcodeInput.fadeIn(300).val("").focus();
       self.$feedbackMessage.html("A passcode was just emailed to you.<br> Enter it here to sign in.").fadeIn(300);
-      self.$submitButton.fadeIn(300);
+      self.$submitButton.html("Sign In").fadeIn(300);
       self.$resendButton.fadeIn(300);
     });
   },
 
+  handleSubmit: function(event) {
+    if (!this.readyToSubmit) {
+      event.preventDefault();
+      event.stopPropagation();
+      this.requestAuthenticationCode();
+    }
+  },
+
   events: {
-    "click #session-form-request": "requestAuthenticationCode",
+    "submit": "handleSubmit",
     "click #session-form-resend": "requestAuthenticationCode"
   }
 
