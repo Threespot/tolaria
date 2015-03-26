@@ -1,6 +1,6 @@
 class Administrator < ActiveRecord::Base
 
-  before_validation :set_auth_token!
+  before_validation :initialize_credentials!
 
   # -----------------------------------------------------------------------------
   # Validations
@@ -23,8 +23,12 @@ class Administrator < ActiveRecord::Base
     presence: true
   }
 
+  validates :passcode, {
+    presence: true
+  }
+
   # -----------------------------------------------------------------------------
-  # Instance Methods
+  # Authentication/passcode system
   # -----------------------------------------------------------------------------
 
   def authenticate(passcode)
@@ -90,7 +94,8 @@ class Administrator < ActiveRecord::Base
     return passcode
   end
 
-  def set_auth_token!
+  def initialize_credentials!
+    self.passcode ||= BCrypt::Password.create(Tolaria::RandomTokens.passcode, cost:Tolaria.config.bcrypt_cost)
     self.auth_token ||= Tolaria::RandomTokens.auth_token
   end
 
