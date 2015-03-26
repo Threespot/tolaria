@@ -40,7 +40,7 @@ class Administrator < ActiveRecord::Base
   def accrue_strike!
     self.update_attributes(lockout_strikes: self.lockout_strikes + 1, total_strikes: self.total_strikes + 1)
     if self.lockout_strikes >= Tolaria.config.lockout_threshold
-      self.account_unlocks_at = Time.now + Tolaria.config.lockout_duration
+      self.update_attributes(account_unlocks_at: Time.now + Tolaria.config.lockout_duration)
       self.reset_strikes!
     end
   end
