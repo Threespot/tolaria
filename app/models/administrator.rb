@@ -27,6 +27,10 @@ class Administrator < ActiveRecord::Base
     presence: true
   }
 
+  validates :passcode_expires_at, {
+    presence: true
+  }
+
   # -----------------------------------------------------------------------------
   # Authentication/passcode system
   # -----------------------------------------------------------------------------
@@ -96,6 +100,7 @@ class Administrator < ActiveRecord::Base
 
   def initialize_credentials!
     self.passcode ||= BCrypt::Password.create(Tolaria::RandomTokens.passcode, cost:Tolaria.config.bcrypt_cost)
+    self.passcode_expires_at ||= Time.current,
     self.auth_token ||= Tolaria::RandomTokens.auth_token
   end
 
