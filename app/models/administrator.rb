@@ -1,6 +1,6 @@
 class Administrator < ActiveRecord::Base
 
-  before_validation :initialize_authentication!
+  after_initialize :initialize_authentication!
 
   # -----------------------------------------------------------------------------
   # VALIDATIONS
