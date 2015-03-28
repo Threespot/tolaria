@@ -53,6 +53,9 @@ var SessionViewController = Backbone.View.extend({
           },
           423: function(xhr, status, error) {
             self.presentErrorMessage(xhr.responseJSON.error)
+          },
+          500: function(xhr, status, error) {
+            self.presentErrorMessage("An unexpected server error occurred. Developers have been notified. Please try again later.")
           }
         }
 
