@@ -9,11 +9,11 @@ class CreateAdministrators < ActiveRecord::Migration
       t.string :name, null:false
       t.string :organization, null:false
 
-      t.string :passcode, limit:60, null:false, index:true
+      t.string :passcode, limit:60, null:false
       t.string :auth_token, limit:32, null:false, index:true
 
-      t.datetime :account_unlocks_at, index:true
-      t.datetime :passcode_expires_at, null:false, index:true
+      t.datetime :account_unlocks_at, null:false
+      t.datetime :passcode_expires_at, null:false
 
       t.integer :lockout_strikes, null:false, default:0
 

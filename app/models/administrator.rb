@@ -1,6 +1,6 @@
 class Administrator < ActiveRecord::Base
 
-  before_validation :initialize_credentials!
+  before_validation :initialize_authentication!
 
   # -----------------------------------------------------------------------------
   # VALIDATIONS
@@ -41,10 +41,11 @@ class Administrator < ActiveRecord::Base
 
   # Create an auth_token for new admins
   # Prevent passcode fields from being null: create an already expired code
-  def initialize_credentials!
+  def initialize_authentication!
     self.passcode ||= BCrypt::Password.create(Tolaria::RandomTokens.passcode, cost:Tolaria.config.bcrypt_cost)
     self.passcode_expires_at ||= Time.current
     self.auth_token ||= Tolaria::RandomTokens.auth_token
+    self.account_unlocks_at ||= Time.current
   end
 
   # Send a passcode challenge to the admin
@@ -120,14 +121,13 @@ class Administrator < ActiveRecord::Base
   # with Rails console access.
   def unlock_account!
     self.update!(
-      account_unlocks_at: nil,
+      account_unlocks_at: Time.current,
       lockout_strikes: 0,
     )
   end
 
   # True if currently inside the lock window
   def locked?
-    return false if self.account_unlocks_at.nil?
     return Time.current < self.account_unlocks_at
   end
 
