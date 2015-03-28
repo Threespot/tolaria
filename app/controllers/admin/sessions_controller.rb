@@ -62,23 +62,34 @@ class Admin::SessionsController < Tolaria::TolariaController
   # ---------------------------------------------------------------------------
 
   def create
+
     @administrator = Administrator.find_by_email(params[:administrator][:email].downcase.strip)
+
     if @administrator and @administrator.authenticate(params[:administrator][:passcode])
-      cookies.permanent[:auth_token] = @administrator.auth_token
-      # TODO: redirect to the /admin path
-      flash[:success] = "It worked!"
-      return redirect_to admin_new_session_path
+      # Set an encrypred admin cookie with our auth_token
+      cookies.encrypted[:admin_auth_token] = {
+        value: @administrator.auth_token,
+        expires: params[:remember_me].eql?("1") ? 1.year.from_now : nil,
+        secure: Rails.env.production?, # Expect a TLS connection in production
+        httponly: true, # JavaScript cannot read this cookie
+      }
+      return redirect_to Tolaria.config.default_redirect
     else
       flash[:error] = "That passcode wasn’t correct. Please request a new passcode and try again."
       return redirect_to admin_new_session_path
     end
   end
 
+  # ---------------------------------------------------------------------------
+  # DESTROY
+  # Sign out the admin and reset the session
+  # ---------------------------------------------------------------------------
+
   def destroy
-    cookies.delete(:auth_token)
+    cookies.delete(:admin_auth_token)
     reset_session
-    # TODO: revise logout message
-    redirect_to new_session_path, :flash => { success: 'You have successfully logged out.' }
+    flash[:success] = "You have successfully signed out."
+    return redirect_to new_session_path
   end
 
   protected

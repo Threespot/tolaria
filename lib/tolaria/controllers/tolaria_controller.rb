@@ -28,7 +28,7 @@ module Tolaria
     end
 
     def current_administrator
-      @current_administrator ||= Administrator.find_by_auth_token(cookies[:auth_token]) if cookies[:auth_token]
+      @current_administrator ||= Administrator.find_by_auth_token(cookies[:admin_auth_token]) if cookies[:admin_auth_token]
     end
     helper_method :current_administrator
 

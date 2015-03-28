@@ -10,6 +10,7 @@ var SessionViewController = Backbone.View.extend({
     this.$spinner = this.$("#session-spinner");
     this.$feedbackMessage = this.$("#session-form-feedback");
     this.$resendButton = this.$("#session-form-resend");
+    this.$rememberGroup = this.$("#session-form-remember-group");
   },
 
   requestAuthenticationCode: function(event) {
@@ -21,6 +22,7 @@ var SessionViewController = Backbone.View.extend({
     self.$resendButton.fadeOut(300);
     self.$feedbackMessage.fadeOut(300);
     self.$emailInput.fadeOut(300);
+    self.$rememberGroup.fadeOut(300);
 
     window.setTimeout(function() {
 
@@ -77,6 +79,7 @@ var SessionViewController = Backbone.View.extend({
       self.$passcodeInput.fadeIn(300).val("").focus();
       self.$feedbackMessage.html("A passcode was just emailed to you.<br> Enter it here to sign in.").fadeIn(300);
       self.$submitButton.html("Sign In").fadeIn(300);
+      self.$rememberGroup.fadeIn(300);
       self.$resendButton.fadeIn(300);
     });
   },
@@ -91,6 +94,7 @@ var SessionViewController = Backbone.View.extend({
 
   events: {
     "submit": "handleSubmit",
+    "click button": "handleSubmit",
     "click #session-form-resend": "requestAuthenticationCode"
   }
 

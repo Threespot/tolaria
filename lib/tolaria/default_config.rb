@@ -5,7 +5,7 @@ Tolaria.configure do |config|
   config.interface_title = "Company Name"
 
   # Redirect the administratior to this route by default when logging in.
-  config.default_redirect = :admin_administrators_path
+  config.default_redirect = :admin_administrators
 
   # The default order to sort items on index pages.
   # "id DESC" will usually show newest things at the top of the list.

@@ -1,0 +1,33 @@
+// -------------------------------------------------------------------------
+// Various Helpers to Show and Hide Content
+// -------------------------------------------------------------------------
+
+// Undo visuallyhidden styles
+@mixin undo-visuallyhidden {
+  clip: auto;
+  height: auto;
+  margin: 0;
+  overflow: visible;
+  position: static;
+  width: auto;
+}
+
+// Hide only visually, but have it available for screenreaders: http://h5bp.com/v
+@mixin visuallyhidden {
+  border: 0;
+  clip: rect(0 0 0 0);
+  height: 1px;
+  margin: -1px;
+  overflow: hidden;
+  padding: 0;
+  position: absolute;
+  width: 1px;
+  &.focusable:active,
+  &.focusable:focus {
+    @include undo-visuallyhidden;
+  }
+}
+
+.visuallyhidden {
+  @include visuallyhidden;
+}

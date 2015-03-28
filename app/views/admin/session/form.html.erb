@@ -12,7 +12,7 @@
     <p class="session-form-feedback" id="session-form-feedback" style="display:none"></p>
   <% end %>
 
-  <%= f.label :email, "Email address", for:"session-form-email" %>
+  <%= f.label :email, "Email address", for:"session-form-email", class:"visuallyhidden" %>
   <%= f.email_field :email, {
     id: "session-form-email",
     placeholder: "Enter your email address",
@@ -23,7 +23,7 @@
     value: @email,
   } %>
 
-  <%= f.label :passcode, "Passcode", for:"session-form-passcode" %>
+  <%= f.label :passcode, "Passcode", for:"session-form-passcode", class:"visuallyhidden" %>
   <%= f.text_field :passcode, {
     id: "session-form-passcode",
     placeholder: "Passcode",
@@ -36,6 +36,15 @@
   } %>
 
   <%= f.button "Request a passcode", type:"submit", id:"session-form-submit", class:"session-button" %>
+
+  <div id="session-form-remember-group" class="session-form-checkbox-group" style="display:none">
+    <%= hidden_field_tag :remember_me, 1 %>
+    <%= check_box_tag :remember_me, 1, true, {
+      class: "session-form-remember",
+      id: "session-form-remember"
+    } %>
+    <%= label_tag "session-form-remember", "Remember this device" %>
+  </div>
 
   <p class="session-form-resend" id="session-form-resend" style="display:none">
     <button type="button">Request another code</button>
