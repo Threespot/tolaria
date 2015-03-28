@@ -8,9 +8,12 @@ class Admin::SessionsController < Tolaria::TolariaController
   # ---------------------------------------------------------------------------
 
   def new
+    if current_administrator
+      return redirect_to(Tolaria.config.default_redirect)
+    end
     @greeting = random_greeting
     @admin = Administrator.new
-    render "admin/session/form", layout:"admin/sessions"
+    return render "admin/session/form", layout:"admin/sessions"
   end
 
   # ---------------------------------------------------------------------------
