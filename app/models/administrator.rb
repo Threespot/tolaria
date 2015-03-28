@@ -3,7 +3,8 @@ class Administrator < ActiveRecord::Base
   before_validation :initialize_credentials!
 
   # -----------------------------------------------------------------------------
-  # Validations
+  # VALIDATIONS
+  # Use some extra validation redundancy
   # -----------------------------------------------------------------------------
 
   validates :email, {
@@ -32,10 +33,39 @@ class Administrator < ActiveRecord::Base
   }
 
   # -----------------------------------------------------------------------------
-  # Authentication/passcode system
+  # AUTHENTICATION SYSTEM
+  # The admin must requiest a passcode challenge via email
+  # To pass the challenge, the admin must enter the correct email address
+  # and passcode inside the time window
   # -----------------------------------------------------------------------------
 
-  def authenticate(passcode)
+  # Create an auth_token for new admins
+  # Prevent passcode fields from being null: create an already expired code
+  def initialize_credentials!
+    self.passcode ||= BCrypt::Password.create(Tolaria::RandomTokens.passcode, cost:Tolaria.config.bcrypt_cost)
+    self.passcode_expires_at ||= Time.current
+    self.auth_token ||= Tolaria::RandomTokens.auth_token
+  end
+
+  # Send a passcode challenge to the admin
+  def send_passcode_email!
+    plaintext_passcode = self.set_passcode!
+    PasscodeMailer.passcode(self, plaintext_passcode).deliver_now
+  end
+
+  # Generate a new passcode challenge.
+  # Create a passcode, save it, and set an expiration window.
+  def set_passcode!
+    plaintext_passcode = Tolaria::RandomTokens.passcode
+    self.update!(
+      passcode: BCrypt::Password.create(plaintext_passcode, cost:Tolaria.config.bcrypt_cost),
+      passcode_expires_at: Time.current + Tolaria.config.passcode_lifespan,
+    )
+    return plaintext_passcode
+  end
+
+  # Attempt to authenticate the admin
+  def authenticate!(passcode)
 
     # Always run bcrypt first so that we incur the time pentaly
     bcrypt_valid = BCrypt::Password.new(self.passcode) == passcode
@@ -43,10 +73,10 @@ class Administrator < ActiveRecord::Base
     # Reject if currently locked
     return false if self.locked?
 
-    # Clear strikes if the passcode is valid
+    # Clear strikes and consume the passcode if the passcode was valid
     # Reject and incur a strike if the challenge was failed
     if bcrypt_valid && Time.current < self.passcode_expires_at
-      self.reset_strikes!
+      self.consume_passcode!
       return true
     else
       self.accrue_strike!
@@ -55,11 +85,18 @@ class Administrator < ActiveRecord::Base
 
   end
 
-  def locked?
-    return false if self.account_unlocks_at.nil?
-    return Time.current < self.account_unlocks_at
+  # When the user authenticates successfully, expire the passcode and
+  # reset their account strikes
+  def consume_passcode!
+    self.update!(
+      passcode_expires_at: Time.current,
+      lockout_strikes: 0,
+    )
   end
 
+  # Add one strike to the account.
+  # An admin is given a strike for requesting a code or flunking a challenge.
+  # Lock the account if they’ve hit the threshold.
   def accrue_strike!
     self.update!(
       lockout_strikes: self.lockout_strikes + 1,
@@ -70,11 +107,8 @@ class Administrator < ActiveRecord::Base
     end
   end
 
-
-  def reset_strikes!
-    self.update!(lockout_strikes: 0)
-  end
-
+  # This user hit the strike threshold.
+  # Lock their account and reset strikes.
   def lock_account!
     self.update!(
       account_unlocks_at: Time.now + Tolaria.config.lockout_duration,
@@ -82,6 +116,8 @@ class Administrator < ActiveRecord::Base
     )
   end
 
+  # Unlock the user’s account, currently only useful for someone
+  # with Rails console access.
   def unlock_account!
     self.update!(
       account_unlocks_at: nil,
@@ -89,19 +125,10 @@ class Administrator < ActiveRecord::Base
     )
   end
 
-  def set_passcode!
-    passcode = Tolaria::RandomTokens.passcode
-    self.update!(
-      passcode: BCrypt::Password.create(passcode, cost:Tolaria.config.bcrypt_cost),
-      passcode_expires_at: Time.current + Tolaria.config.passcode_lifespan,
-    )
-    return passcode
-  end
-
-  def initialize_credentials!
-    self.passcode ||= BCrypt::Password.create(Tolaria::RandomTokens.passcode, cost:Tolaria.config.bcrypt_cost)
-    self.passcode_expires_at ||= Time.current
-    self.auth_token ||= Tolaria::RandomTokens.auth_token
+  # True if currently inside the lock window
+  def locked?
+    return false if self.account_unlocks_at.nil?
+    return Time.current < self.account_unlocks_at
   end
 
 end

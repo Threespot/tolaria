@@ -41,8 +41,7 @@ class Admin::SessionsController < Tolaria::TolariaController
       }
     end
 
-    passcode = @administrator.set_passcode!
-    if PasscodeMailer.passcode(@administrator, passcode).deliver_now
+    if @administrator.send_passcode_email!
       @administrator.accrue_strike!
       response.status = 204
       return render nothing: true
@@ -64,8 +63,9 @@ class Admin::SessionsController < Tolaria::TolariaController
   def create
 
     @administrator = Administrator.find_by_email(params[:administrator][:email].downcase.strip)
+    successful_authentication = @administrator.authenticate!(params[:administrator][:passcode])
 
-    if @administrator and @administrator.authenticate(params[:administrator][:passcode])
+    if @administrator and successful_authentication
       # Set an encrypred admin cookie with our auth_token
       cookies.encrypted[:admin_auth_token] = {
         value: @administrator.auth_token,
