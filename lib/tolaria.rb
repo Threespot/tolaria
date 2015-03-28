@@ -1,4 +1,5 @@
 require "securerandom"
+require "digest/md5"
 
 require "sass"
 require "bcrypt"

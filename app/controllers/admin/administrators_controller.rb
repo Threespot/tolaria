@@ -1,4 +1,7 @@
-class Admin::AdministratorsController < Tolaria::TolariaController
+class Admin::AdministratorsController < Tolaria::ResourceController
+
+  def index
+  end
 
   def show
   end

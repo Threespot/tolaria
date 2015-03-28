@@ -1,6 +1,7 @@
 class Administrator < ActiveRecord::Base
 
   after_initialize :initialize_authentication!
+  before_validation :normalize_email!
 
   # -----------------------------------------------------------------------------
   # VALIDATIONS
@@ -9,7 +10,10 @@ class Administrator < ActiveRecord::Base
 
   validates :email, {
     presence: true,
-    uniqueness: true
+    uniqueness: true,
+    # Don't try to predict all of the possible crazy emails people can have
+    # Just validate that there is one @ and at least one dot: *@*.*
+    format: /\A[^@\s]+@([^@\s]+\.)+[^@\s]+\z/
   }
 
   validates :name, {
@@ -35,6 +39,10 @@ class Administrator < ActiveRecord::Base
   validates :account_unlocks_at, {
     presence: true
   }
+
+  def normalize_email!
+    self.email = self.email.to_s.downcase.strip
+  end
 
   # -----------------------------------------------------------------------------
   # AUTHENTICATION SYSTEM

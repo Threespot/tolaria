@@ -9,7 +9,7 @@
 
     <div class="left">
 
-      <%= link_to "#", class:"header-app-title" do %>
+      <%= link_to Tolaria.config.default_redirect, class:"header-app-title" do %>
         <%= Tolaria.config.interface_title %>
       <% end %>
 
@@ -20,7 +20,8 @@
       <ul class="header-user-controls">
         <li>
           <%= link_to "#" do %>
-            Corey Csuhta <%= image_tag "admin/corey.jpg", alt:"", size:"18x18" %>
+            <%= current_administrator.name %>
+            <%= image_tag gravatar_for(email:current_administrator.email), alt:"", size:"18x18" %>
           <% end %>
         </li>
         <li>
