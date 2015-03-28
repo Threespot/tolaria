@@ -32,6 +32,10 @@ class Administrator < ActiveRecord::Base
     presence: true
   }
 
+  validates :account_unlocks_at, {
+    presence: true
+  }
+
   # -----------------------------------------------------------------------------
   # AUTHENTICATION SYSTEM
   # The admin must requiest a passcode challenge via email
