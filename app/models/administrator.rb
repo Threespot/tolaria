@@ -144,3 +144,7 @@ class Administrator < ActiveRecord::Base
   end
 
 end
+
+# KLUDGE: How do we auto-include this for the developer?
+Tolaria.manage Administrator, icon:"lock" do
+end

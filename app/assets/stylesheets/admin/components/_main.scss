@@ -4,10 +4,11 @@
   float: left;
   height: 1000px;
   width: 100%;
+  background-color: #fff;
 
   @include min-width($bpFull) {
     border-left: 1px solid black(0.10);
-    padding: 0 0 0 15px;
+    padding: 0 0 0 20px;
     width: 83.95%;
   }
 
@@ -19,29 +20,19 @@
   clear: both;
   float: left;
   border-bottom: 3px double $cGrey;
-  margin: 0 0 20px 0;
   padding: 15px 0 15px 0;
   width: 100%;
+
+  h1 {
+    font-weight: bold;
+    margin: 8px 0 0 0;
+  }
 
   &.-inverse {
     border: 0;
     border-top: 3px double $cGrey;
-    margin: 20px 0 0 0;
+    margin: 24px 0 0 0;
   }
 
 }
 
-.form-left {
-  @include clearfix;
-  float: left;
-  width: 69%;
-  padding: 5px 1.5% 5px 0;
-}
-
-.form-right {
-  @include clearfix;
-  float: right;
-  width: 31%;
-  padding: 5px 0 10px 1.5%;
-  border-left: 1px solid black(0.10);
-}

@@ -11,6 +11,7 @@ require "tolaria/config"
 require "tolaria/default_config"
 require "tolaria/random_tokens"
 
+require "tolaria/display_name"
 require "tolaria/routes"
 require "tolaria/admin"
 require "tolaria/reload"

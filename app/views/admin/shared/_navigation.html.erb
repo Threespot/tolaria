@@ -6,7 +6,7 @@
       <% Tolaria.managed_classes.each do |managed_class| %>
         <li>
           <%= tolaria_navigation_link(
-            managed_class.model_name.human.titleize,
+            managed_class.model_name.human.pluralize.titleize,
             managed_class.icon_name,
             url_for([:admin, managed_class.klass])
           ) %>
@@ -57,7 +57,6 @@
     <h3>Settings</h3>
     <ul>
       <li><%= tolaria_navigation_link "Miscellany", :check, "#" %></li>
-      <li><%= tolaria_navigation_link "Administrators", :lock, "#" %></li>
     </ul>
   </div>
 

@@ -1,0 +1,97 @@
+.form-left {
+  @include clearfix;
+  float: left;
+  width: 66%;
+  padding: 5px 1.75% 5px 0;
+}
+
+.form-right {
+  @include clearfix;
+  float: right;
+  width: 34%;
+  padding: 5px 0 10px 1.75%;
+  border-left: 1px dashed black(0.10);
+}
+
+.resource-form {
+
+  label {
+    display: block;
+    margin: 20px 0 5px 0;
+    font-size: 14px;
+    font-weight: bold;
+    line-height: 1.25;
+    color: $cPlum;
+    //text-transform: uppercase;
+  }
+
+  .hint {
+    display: block;
+    clear: both;
+    font-size: 12px;
+    color: #888;
+    font-style: italic;
+    line-height: 1.25;
+    margin: 0 0 6px 0;
+  }
+
+  hr {
+    height: 0;
+    border: 0;
+    border-top: 3px double $cGrey;
+    margin: 30px 0 30px 0;
+  }
+
+  .form-explainer {
+    display: block;
+    font-size: 12px;
+    color: #888;
+    font-style: italic;
+    line-height: 1.25;
+    margin: 0 0 22px 0;
+    h6 {
+      display: block;
+      font-size: 14px;
+      font-weight: bold;
+      line-height: 1.25;
+      color: $cPlum;
+      margin: 22px 0 6px 0;
+      font-style: normal;
+    }
+    p + p {
+      margin-top: 1em;
+    }
+  }
+
+  input[type=text],
+  input[type=email],
+  input[type=password],
+  input[type=number],
+  textarea {
+
+    background: #fefefe;
+    border-radius: 2px;
+    border: 1px solid $cTaupe;
+    width: 100%;
+    display: block;
+    color: $cPlum;
+    font-size: 16px;
+    line-height: 1.25;
+    padding: 9px 10px;
+    transition: background-color 100ms linear, border-color 100ms linear;
+
+    &:focus {
+      border-color: darken($cSapphire, 10);
+      border-bottom-color: $cSapphire;
+      border-right-color: $cSapphire;
+      background: #fff;
+    }
+
+  }
+
+  input::-webkit-input-placeholder {color: #ccc}
+  input:-moz-placeholder {color: #ccc}
+  input::-moz-placeholder {color: #ccc}
+  input:-ms-input-placeholder {color: #ccc}
+
+}

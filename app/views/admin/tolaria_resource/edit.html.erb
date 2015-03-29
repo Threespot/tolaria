@@ -1,6 +1,15 @@
-<%= form_for [:admin, @resource] do |form_builder| %>
+<% if @resource.persisted? %>
+  <%= content_for :title, "Edit #{Tolaria.display_name(@resource)}" %>
+<% else %>
+  <%= content_for :title, "New #{@resource.model_name.human.titleize}" %>
+<% end %>
+
+<%= form_for [:admin, @resource], html:{class:"resource-form"} do |form_builder| %>
 
   <div class="main-controls">
+    <div class="left">
+      <h1><%= content_for :title %></h1>
+    </div>
     <div class="right">
       <%= render "admin/tolaria_resource/form_buttons" %>
     </div>

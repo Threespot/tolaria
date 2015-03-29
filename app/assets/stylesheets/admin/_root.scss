@@ -6,8 +6,9 @@ html {
 body {
   @include clearfix();
   font-family: $helvetica;
-  background: $cEggshell;
-  padding: 0 20px 20px;
+  background-image: linear-gradient(to right, $cEggshell, $cEggshell 50%, #fff 50%);
+  background-repeat: repeat-y;
+  padding: 0 20px 0 20px;
   width: 100%;
 }
 

@@ -25,18 +25,18 @@ module Tolaria
     managed_controller = Class.new(Tolaria::ResourceController)
     ::Admin.const_set(managed_klass.controller_name, managed_controller)
     # Add these things to the internal tracker
-    managed_classes.push(managed_klass)
-    managed_controllers.push(managed_controller)
+    @managed_classes.push(managed_klass)
+    @managed_controllers.push(managed_controller)
   end
 
   def self.discard_managed_class(klass)
-    managed_classes.each do |managed_class|
+    @managed_classes.each do |managed_class|
       if klass == managed_class.klass
-        managed_controllers.reject! do |controller|
+        @managed_controllers.reject! do |controller|
           controller.to_s == "Admin::#{managed_class.controller_name}"
         end
         ::Admin.send(:remove_const, managed_class.controller_name)
-        managed_classes.delete(managed_class)
+        @managed_classes.delete(managed_class)
         return true
       end
     end

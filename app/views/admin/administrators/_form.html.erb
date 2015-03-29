@@ -1,0 +1,38 @@
+<div class="form-left">
+
+  <%= f.label :email %>
+  <%= hint "The email address this administrator will be able to sign in with." %>
+  <%= f.text_field :email, placeholder:"lovelace@example.org" %>
+
+  <%= f.label :name %>
+  <%= hint "The full name of this person." %>
+  <%= f.text_field :name, placeholder:"Ada Lovelace" %>
+
+  <%= f.label :organization %>
+  <%= hint "This person's organization or department." %>
+  <%= f.text_field :organization, placeholder:"Analytical Engineering" %>
+
+</div>
+
+<div class="form-right">
+
+  <div class="form-explainer">
+    <h6>About Administrators</h6>
+    <p>
+      Administrators have the power to change any
+      site content (by default), and can create other administrators.
+      Only people who work directly on web content should be given accounts.
+    </p>
+    <p>
+      Do not allow people to share accounts.
+      Create a new personal account for anyone who requires access.
+    </p>
+    <p>
+      Administrators are not tied to the items they create.
+      You should routinely review the list of administrator accounts
+      and remove anyone that no longer needs access. You can easily
+      add them back later.
+    </p>
+  </div>
+
+</div>
