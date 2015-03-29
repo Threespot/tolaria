@@ -17,15 +17,22 @@ $cSessionPlaceholder: #888;
   input[type=text],
   input[type=email] {
     background: #E7E6E8;
+    border-radius: 2px;
     border-width: 2px;
     box-shadow: 0px 1px 0px black(0.5);
+    border: 2px solid transparent;
     color: $cPlum;
+    transition: border-color 100ms linear;
     display: block;
     font-size: 18px;
     padding: 10px 12px;
     text-align: center;
+    width: 100%;
     &:focus, &:active {
-      background: $cWhite;
+      border-color: darken($cSapphire, 10);
+      border-bottom-color: $cSapphire;
+      border-right-color: $cSapphire;
+      background: #fff;
     }
   }
 

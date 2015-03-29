@@ -9,7 +9,7 @@ class Admin::SessionsController < Tolaria::TolariaController
 
   def new
     if current_administrator
-      return redirect_to(Tolaria.config.default_redirect)
+      return redirect_to(Tolaria.config.default_redirect, status:303)
     end
     @greeting = random_greeting
     @admin = Administrator.new
@@ -76,10 +76,10 @@ class Admin::SessionsController < Tolaria::TolariaController
         secure: Rails.env.production?, # Expect a TLS connection in production
         httponly: true, # JavaScript cannot read this cookie
       }
-      return redirect_to Tolaria.config.default_redirect
+      return redirect_to(Tolaria.config.default_redirect, status:303)
     else
       flash[:error] = "That passcode wasn’t correct. Please request a new passcode and try again."
-      return redirect_to admin_new_session_path
+      return redirect_to(admin_new_session_path, status:303)
     end
   end
 
@@ -92,7 +92,7 @@ class Admin::SessionsController < Tolaria::TolariaController
     cookies.delete(:admin_auth_token)
     reset_session
     flash[:success] = "You have successfully signed out."
-    return redirect_to new_session_path
+    return redirect_to(admin_new_session_path, status:303)
   end
 
   protected

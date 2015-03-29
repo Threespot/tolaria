@@ -19,14 +19,16 @@
 
       <ul class="header-user-controls">
         <li>
-          <%= link_to "#" do %>
+          <%= link_to edit_admin_administrator_path(current_administrator) do %>
             <%= current_administrator.name %>
             <%= image_tag gravatar_for(email:current_administrator.email), alt:"", size:"18x18" %>
           <% end %>
         </li>
         <li>
-          <%= link_to "#" do %>
-            <%= fontawesome_icon :sign_out %> Sign Out
+          <%= form_tag admin_destroy_session_path, method:"delete", class:"header-user-signout" do %>
+            <%= button_tag do %>
+              <%= fontawesome_icon :sign_out %> Sign Out
+            <% end %>
           <% end %>
         </li>
       </ul>
