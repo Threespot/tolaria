@@ -12,6 +12,7 @@ module Tolaria
     attr_accessor :lockout_duration
     attr_accessor :lockout_threshold
     attr_accessor :passcode_lifespan
+    attr_accessor :permitted_params
     attr_accessor :session_length
   end
 

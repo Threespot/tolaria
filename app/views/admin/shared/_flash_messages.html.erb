@@ -11,7 +11,12 @@
 
   <div class="flash-message -error">
     <div class="inner-align">
-      <p><%= fontawesome_icon :exclamation_triangle %> <%= flash[:error] %></p>
+      <p>
+        <%= fontawesome_icon :exclamation_triangle %> <%= flash[:error] %>
+        <% if defined?(@resource) && @resource.errors.any? %>
+          <br><%= @resource.errors.full_messages.to_sentence %>
+        <% end %>
+      </p>
       <button class="dismiss">Dismiss</button>
     </div>
   </div>

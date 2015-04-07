@@ -46,7 +46,7 @@ class Administrator < ActiveRecord::Base
 
   # -----------------------------------------------------------------------------
   # AUTHENTICATION SYSTEM
-  # The admin must requiest a passcode challenge via email
+  # The admin must request a passcode challenge via email
   # To pass the challenge, the admin must enter the correct email address
   # and passcode inside the time window
   # -----------------------------------------------------------------------------
@@ -143,8 +143,16 @@ class Administrator < ActiveRecord::Base
     return Time.current < self.account_unlocks_at
   end
 
-end
+  # -----------------------------------------------------------------------------
+  # MANAGE
+  # Register this model with Tolaria
+  # -----------------------------------------------------------------------------
 
-# KLUDGE: How do we auto-include this for the developer?
-Tolaria.manage Administrator, icon:"lock" do
+  manage_with_tolaria using: {
+    icon: "lock",
+    category: "Settings",
+    priority: 100,
+    permit_params: %i[email name organization],
+  }
+
 end

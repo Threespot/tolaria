@@ -26,14 +26,14 @@ module Tolaria
     def create
 
       @resource = @managed_class.klass.new
-      @resource.assign_attributes(params[@resource.model_name.singular.to_sym])
+      @resource.assign_attributes(resource_params[@managed_class.param_key])
       display_name = Tolaria.display_name(@resource)
 
       if @resource.save
         flash[:success] = "Done! You created the #{@managed_class.model_name.human} “#{display_name}”."
         return redirect_to url_for([:admin, @managed_class.klass])
       else
-        flash.now[:error] = "Your changes couldn’t be saved. Please review the messages below."
+        flash.now[:error] = "Your changes couldn’t be saved. Please correct the following errors:"
         return render tolaria_template("new")
       end
 
@@ -47,14 +47,14 @@ module Tolaria
     def update
 
       @resource = @managed_class.klass.find_by_id(params[:id]) or raise ActiveRecord::RecordNotFound
-      @resource.assign_attributes(params[@resource.model_name.singular.to_sym])
+      @resource.assign_attributes(resource_params[@managed_class.param_key])
       display_name = Tolaria.display_name(@resource)
 
       if @resource.save
         flash[:success] = "Done! You updated the #{@managed_class.model_name.human} “#{display_name}”."
         return redirect_to url_for([:admin, @managed_class.klass])
       else
-        flash.now[:error] = "Your changes couldn’t be saved. Please review the messages below."
+        flash.now[:error] = "Your changes couldn’t be saved. Please correct the following errors:"
         return render tolaria_template("update")
       end
 
@@ -86,6 +86,15 @@ module Tolaria
           break
         end
       end
+    end
+
+    # Filters params, including the default params Tolaria needs
+    # and the configured permitted_params from the managed class
+    def resource_params
+      params.permit(
+        *Tolaria.config.permitted_params,
+        @managed_class.param_key => @managed_class.permitted_params
+      )
     end
 
   end

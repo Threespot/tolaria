@@ -12,10 +12,11 @@ require "tolaria/default_config"
 require "tolaria/random_tokens"
 
 require "tolaria/display_name"
-require "tolaria/routes"
 require "tolaria/admin"
 require "tolaria/reload"
 require "tolaria/manage"
+require "tolaria/active_record"
+require "tolaria/routes"
 
 module Tolaria
   # We have to autoload these classes because they inherit

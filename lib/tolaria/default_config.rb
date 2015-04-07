@@ -51,4 +51,13 @@ Tolaria.configure do |config|
     id
   ]
 
+  # Default permitted_params for all forms
+  # End-users probably shouldn’t change this
+  config.permitted_params = %i[
+    _method
+    authenticity_token
+    id
+    utf8
+  ]
+
 end
