@@ -3,7 +3,7 @@
   Cancel
 <% end %>
 
-<%= button_tag type:"submit", class:"button -primary" do %>
+<%= button_tag type:"submit", name:nil, class:"button -primary" do %>
   <%= fontawesome_icon :check %>
   <%= @resource.persisted?? "Save" : "Create" %>
   <%= @resource.model_name.human.titleize %>
