@@ -1,16 +1,11 @@
 .header-stripe {
   border-bottom: 1px solid black;
   height: 3px;
-  background: image-url("admin/rule-banner.jpg") repeat;
+  background-image: asset-data-url("admin/columbia_banner.png");
+  background-repeat: repeat-x;
   background-size: 100% 100%;
   background-position: -250px 0px;
   margin: 0 -20px;
-}
-
-.header-stripe-inner {
-  width: 100%;
-  height: 3px;
-  background: image-url("admin/columbia.png") center center repeat;
 }
 
 .header {
@@ -86,7 +81,6 @@
 
   .icon {
     margin-right: 3px;
-    font-size: 14px;
   }
 
   img {

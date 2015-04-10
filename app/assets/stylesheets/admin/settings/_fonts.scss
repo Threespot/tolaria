@@ -28,26 +28,4 @@ $helvetica: "Helvetica Neue", "Segoe UI", Arial, freesans, sans-serif;
 
 $font-awesome: FontAwesome;
 
-%font-awesome,
-.font-awesome {
-
-  font: normal normal normal 14px FontAwesome !important;
-  line-height: 14px;
-  text-decoration: none;
-
-  text-rendering: auto; // optimizelegibility throws things off #1094
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  transform: translate(0, 0); // ensures no half-pixel rendering in firefox
-
-  -webkit-user-select: none;
-  -moz-user-select: none;
-  -ms-user-select: none;
-  user-select: none;
-
-}
-
-.icon:before {
-  @extend %font-awesome;
-}
 

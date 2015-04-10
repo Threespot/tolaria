@@ -1,4 +1,28 @@
+.icon {
+
+  display: inline-block;
+  width: 16px;
+  text-align: center;
+
+  font: normal normal normal 14px/1 FontAwesome !important;
+  text-decoration: none !important;
+
+  text-rendering: auto; // optimizeLegibility throws things off
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  transform: translate(0, 0); // ensures no half-pixel rendering in firefox
+
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+
+}
+
+// ----------------------------------------------------------------------------
+// ICON CLASSES
 // Modified from Font Awesome 4.3.0
+// ----------------------------------------------------------------------------
 
 .icon-glass:before {
   content: "\f000";
