@@ -9,7 +9,6 @@ class Administrator < ActiveRecord::Base
   # -----------------------------------------------------------------------------
 
   validates :email, {
-    presence: true,
     uniqueness: true,
     # Don't try to predict all of the possible crazy emails people can have
     # Just validate that there is one @ and at least one dot: *@*.*

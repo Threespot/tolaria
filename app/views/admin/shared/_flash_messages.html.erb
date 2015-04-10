@@ -2,8 +2,8 @@
 
   <div class="flash-message">
     <div class="inner-align">
-      <p><%= fontawesome_icon :check %> <%= flash[:success] %></p>
       <button class="dismiss">Dismiss</button>
+      <p><%= fontawesome_icon :check %> <%= flash[:success] %></p>
     </div>
   </div>
 
@@ -11,13 +11,13 @@
 
   <div class="flash-message -error">
     <div class="inner-align">
+      <button class="dismiss">Dismiss</button>
       <p>
         <%= fontawesome_icon :exclamation_triangle %> <%= flash[:error] %>
         <% if defined?(@resource) && @resource.errors.any? %>
-          <br><%= @resource.errors.full_messages.to_sentence %>
+          <%= @resource.errors.full_messages.to_sentence.capitalize %>.
         <% end %>
       </p>
-      <button class="dismiss">Dismiss</button>
     </div>
   </div>
 
@@ -25,8 +25,8 @@
 
   <div class="flash-message">
     <div class="inner-align">
-      <p><%= fontawesome_icon :trash %> <%= flash[:destructive] %></p>
       <button class="dismiss">Dismiss</button>
+      <p><%= fontawesome_icon :trash %> <%= flash[:destructive] %></p>
     </div>
   </div>
 
@@ -34,8 +34,8 @@
 
   <div class="flash-message -error">
     <div class="inner-align">
-      <p><%= fontawesome_icon :minus_circle %> <%= flash[:restricted] %></p>
       <button class="dismiss">Dismiss</button>
+      <p><%= fontawesome_icon :minus_circle %> <%= flash[:restricted] %></p>
     </div>
   </div>
 
