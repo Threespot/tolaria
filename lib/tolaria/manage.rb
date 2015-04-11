@@ -15,7 +15,7 @@ module Tolaria
     @managed_controllers
   end
 
-  # The developer calls `Tolaria.manage MyClass do ... end`
+  # The developer calls `Tolaria.manage(MyClass)`
   def self.manage(klass, options = {}, &block)
     # If we already have a class of this name, discard it
     discard_managed_class(klass)
@@ -27,16 +27,17 @@ module Tolaria
     # Add these things to the internal tracker
     @managed_classes.push(managed_klass)
     @managed_controllers.push(managed_controller)
+    return managed_klass
   end
 
   def self.discard_managed_class(klass)
-    @managed_classes.each do |managed_class|
-      if klass == managed_class.klass
+    @managed_classes.each_with_index do |managed_class, index|
+      if klass.to_s == managed_class.klass.to_s
         @managed_controllers.reject! do |controller|
           controller.to_s == "Admin::#{managed_class.controller_name}"
         end
         ::Admin.send(:remove_const, managed_class.controller_name)
-        @managed_classes.delete(managed_class)
+        @managed_classes.delete_at(index)
         return true
       end
     end
