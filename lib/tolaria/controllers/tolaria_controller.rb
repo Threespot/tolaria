@@ -23,7 +23,7 @@ module Tolaria
     def authenticate_admin!
       unless current_administrator
         flash[:error] = "You must log in to continue. Request a passcode below."
-        return redirect_to admin_new_session_path
+        return redirect_to(admin_new_session_path, status:303)
       end
     end
 

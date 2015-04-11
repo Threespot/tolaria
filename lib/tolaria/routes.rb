@@ -10,6 +10,8 @@ module Tolaria
     router.instance_exec(managed_classes) do |managed_classes|
       namespace :admin do
 
+        root to:"admin#root", as:"root"
+
         # Create routes for the authentication/passcode flow
         get "signin", to:"sessions#new", as:"new_session"
         post "signin/code", to:"sessions#request_code"
