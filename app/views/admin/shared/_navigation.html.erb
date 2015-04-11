@@ -1,63 +1,22 @@
 <div class="navigation">
 
-  <div class="navigation-group">
-    <h3>Syndication</h3>
-    <ul>
-      <% Tolaria.managed_classes.each do |managed_class| %>
-        <li>
-          <%= tolaria_navigation_link(
-            managed_class.model_name.human.pluralize.titleize,
-            managed_class.icon_name,
-            url_for([:admin, managed_class.klass])
-          ) %>
-        </li>
-      <% end %>
-      <li><%= tolaria_navigation_link "Resources", :file_text, "#" %></li>
-      <li><%= tolaria_navigation_link "External Links", :external_link, "#" %></li>
-      <li><%= tolaria_navigation_link "Images", :image, "#" %></li>
-    </ul>
-  </div>
+  <% Tolaria.managed_classes.group_by(&:category).each do |category, managed_classes| %>
 
-  <div class="navigation-group">
-    <h3>Collections</h3>
-    <ul>
-      <li><%= tolaria_navigation_link "Topics", :list, "#" %></li>
-      <li><%= tolaria_navigation_link "Work", :briefcase, "#" %></li>
-      <li><%= tolaria_navigation_link "Locations", :plane, "#" %></li>
-    </ul>
-  </div>
+    <div class="navigation-group">
+      <h3><%= category %></h3>
+      <ul>
+        <% managed_classes.sort_by(&:priority).each do |managed_class| %>
+          <li>
+            <%= tolaria_navigation_link(
+              managed_class.model_name.human.pluralize.titleize,
+              managed_class.icon_name,
+              url_for([:admin, managed_class.klass])
+            ) %>
+          </li>
+        <% end %>
+      </ul>
+    </div>
 
-  <div class="navigation-group">
-    <h3>People</h3>
-    <ul>
-      <li><%= tolaria_navigation_link "People", :users, "#" %></li>
-      <li><%= tolaria_navigation_link "Members", :building, "#" %></li>
-    </ul>
-  </div>
-
-  <div class="navigation-group">
-    <h3>Pages</h3>
-    <ul>
-      <li><%= tolaria_navigation_link "About Pages", :book, "#" %></li>
-      <li><%= tolaria_navigation_link "Legal Pages", :legal, "#" %></li>
-    </ul>
-  </div>
-
-  <div class="navigation-group">
-    <h3>Components</h3>
-    <ul>
-      <li><%= tolaria_navigation_link "Headers", :header, "#" %></li>
-      <li><%= tolaria_navigation_link "Levers", :lightbulb_o, "#" %></li>
-      <li><%= tolaria_navigation_link "Twitter Users", :twitter, "#" %></li>
-      <li><%= tolaria_navigation_link "Homepage Videos", :file_movie_o, "#" %></li>
-    </ul>
-  </div>
-
-  <div class="navigation-group">
-    <h3>Settings</h3>
-    <ul>
-      <li><%= tolaria_navigation_link "Miscellany", :check, "#" %></li>
-    </ul>
-  </div>
+  <% end %>
 
 </div>
