@@ -12,11 +12,6 @@
   padding: 10px 20px;
   text-shadow: 0;
 
-  .inner-align {
-    max-width: 1000px;
-    margin: 0 auto;
-  }
-
   @include min-width($bpFull) {
     padding: 12px 20px;
   }

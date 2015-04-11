@@ -12,6 +12,12 @@ body {
   width: 100%;
 }
 
+.inner-align {
+  @include clearfix;
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
 .application-container {
   @include clearfix();
   margin: 0 auto;

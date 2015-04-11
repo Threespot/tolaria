@@ -1,45 +1,31 @@
-<div class="header-stripe">
-  <div class="header-stripe-inner">
-  </div>
-</div>
+<div class="header-stripe"></div>
 
 <div class="header">
+  <div class="inner-align">
 
-  <div class="header-inner">
 
-    <div class="left">
+    <%= link_to Tolaria.config.default_redirect, class:"header-app-title" do %>
+      <%= Tolaria.config.interface_title %>
+    <% end %>
 
-      <%= link_to Tolaria.config.default_redirect, class:"header-app-title" do %>
-        <%= Tolaria.config.interface_title %>
-      <% end %>
-
-    </div>
-
-    <div class="right">
-
-      <ul class="header-user-controls">
-        <li>
-          <%= link_to edit_admin_administrator_path(current_administrator) do %>
-            <%= current_administrator.name %>
-            <%= image_tag gravatar_for(email:current_administrator.email), alt:"", size:"18x18" %>
+    <ul class="header-user-controls">
+      <li><%= link_to "Help Link", "#", class:"header-help-link" %></li>
+      <li><%= link_to "Another Link", "#", class:"header-help-link" %></li>
+      <li>
+        <%= link_to edit_admin_administrator_path(current_administrator), class:"header-user-profile" do %>
+          <%= image_tag gravatar_for(email:current_administrator.email), alt:"", size:"18x18" %>
+          <%= current_administrator.name %>
+        <% end %>
+      </li>
+      <li>
+        <%= form_tag admin_destroy_session_path, method:"delete" do %>
+          <%= button_tag class:"header-user-signout" do %>
+            <%= fontawesome_icon :sign_out %>
+            Sign Out
           <% end %>
-        </li>
-        <li>
-          <%= form_tag admin_destroy_session_path, method:"delete", class:"header-user-signout" do %>
-            <%= button_tag do %>
-              <%= fontawesome_icon :sign_out %> Sign Out
-            <% end %>
-          <% end %>
-        </li>
-      </ul>
-
-      <ul class="header-supplemental">
-        <li><%= link_to "Help Link", "#", class:"header-supplemental-link" %></li>
-        <li><%= link_to "Another Link", "#", class:"header-supplemental-link" %></li>
-      </ul>
-
-    </div>
+        <% end %>
+      </li>
+    </ul>
 
   </div>
-
 </div>

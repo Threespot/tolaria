@@ -1,98 +1,83 @@
 .header-stripe {
-  border-bottom: 1px solid black;
-  height: 3px;
   background-image: asset-data-url("admin/columbia_banner.png");
+  background-position: -250px 0px;
   background-repeat: repeat-x;
   background-size: 100% 100%;
-  background-position: -250px 0px;
+  border-bottom: 1px solid black;
+  height: 3px;
   margin: 0 -20px;
 }
 
 .header {
-  @extend %clearfix;
+
+  @include clearfix;
   background: $cPlum;
   border-bottom: 2px solid black;
   font-size: 14px;
-  min-height: 32px;
   text-shadow: $plumShadow;
   margin: 0 -20px;
   padding: 0 20px;
-}
 
-.header-inner {
-  @extend %clearfix;
-  width: 100%;
-  margin: 0 auto;
-  max-width: 1000px;
-}
-
-.header-app-title {
-  color: $cWhite;
-  display: block;
-  line-height: 1;
-  padding: 11px 0 10px 0;
-  position: relative;
-}
-
-.header-supplemental {
-  display: block;
-  float: left;
-  li {
-    float: left;
-    padding: 0 15px 0 0px;
-  }
-  a {
-    color: white(0.75);
-    font-size: 12px;
-    text-transform: uppercase;
-    font-weight: bold;
+  &-app-title {
+    color: $cWhite;
     display: block;
-    padding: 13px 0 9px 0;
-    line-height: 1;
+    line-height: 18px;
+    padding: 8px 0 8px 0;
+    float: left;
+  }
+
+  &-user-controls {
+    display: table;
+    float: right;
+    li {
+      display: table-cell;
+      padding: 8px 0 8px 20px;
+      line-height: 18px;
+      vertical-align: middle;
+    }
+  }
+
+  &-help-link {
+    color: $cGrey;
+    text-transform: uppercase;
+    font-size: 12px;
+    font-weight: bold;
     &:hover, &:active {
       color: $cWhite;
     }
   }
-}
 
-.header-user-controls {
+  &-user-profile {
 
-  display: block;
-  float: right;
-
-  li {
-    float: left;
-    padding: 0 0px 0 15px;
-  }
-
-  a, button {
     color: $cGrey;
-    position: relative;
-    display: block;
-    background: none;
-    padding: 10px 0 10px 0;
+
+    img {
+      float: left;
+      margin: 0 7px 0 0;
+      border: 1px solid $cGrey;
+      border-radius: 1px;
+    }
+
     &:hover, &:active {
       color: $cWhite;
       img {
         border-color: $cWhite;
       }
     }
+
   }
 
-  .icon {
-    margin-right: 3px;
-  }
-
-  img {
-    float: left;
-    margin-top: -1px;
-    border-radius: 2px;
-    border: 1px solid $cGrey;
-    margin-right: 6px;
-    box-shadow: $plumShadow;
+  &-user-signout {
+    background: 0;
+    color: $cGrey;
+    &:hover, &:active {
+      color: $cWhite;
+    }
   }
 
 }
+
+
 
 
 
