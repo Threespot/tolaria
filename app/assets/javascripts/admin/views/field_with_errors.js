@@ -1,4 +1,4 @@
-var FieldWithErrorViewController = Backbone.View.extend({
+var FieldWithErrorsViewController = Backbone.View.extend({
 
   implode: function() {
     this.$el.removeClass("field_with_errors");
@@ -15,5 +15,5 @@ var FieldWithErrorViewController = Backbone.View.extend({
 });
 
 $(".field_with_errors").each(function() {
-  new FieldWithErrorViewController({el:this});
+  new FieldWithErrorsViewController({el:this});
 });
