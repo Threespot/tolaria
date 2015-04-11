@@ -3,20 +3,23 @@
 <div class="header">
   <div class="inner-align">
 
-
     <%= link_to Tolaria.config.default_redirect, class:"header-app-title" do %>
       <%= Tolaria.config.interface_title %>
     <% end %>
 
     <ul class="header-user-controls">
+
       <li><%= link_to "Help Link", "#", class:"header-help-link" %></li>
+
       <li><%= link_to "Another Link", "#", class:"header-help-link" %></li>
+
       <li>
         <%= link_to edit_admin_administrator_path(current_administrator), class:"header-user-profile" do %>
           <%= image_tag gravatar_for(email:current_administrator.email), alt:"", size:"18x18" %>
           <%= current_administrator.name %>
         <% end %>
       </li>
+
       <li>
         <%= form_tag admin_destroy_session_path, method:"delete" do %>
           <%= button_tag class:"header-user-signout" do %>
@@ -25,6 +28,7 @@
           <% end %>
         <% end %>
       </li>
+
     </ul>
 
   </div>
