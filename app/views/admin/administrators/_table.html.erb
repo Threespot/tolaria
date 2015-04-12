@@ -3,6 +3,7 @@
     <tr>
       <%= index_th :id %>
       <%= index_th :title %>
+      <%= index_th :organization %>
       <%= index_th :email %>
       <%= actions_th %>
     </tr>
@@ -12,6 +13,7 @@
       <tr>
         <%= index_td resource, :id %>
         <%= index_td resource, :name %>
+        <%= index_td resource, :organization %>
         <%= index_td resource, :email, class:"monospace" %>
         <%= actions_td resource %>
       </tr>
