@@ -15,16 +15,38 @@ module Admin::ViewHelper
       label = label.to_s.humanize.titleize
     end
 
-    content_tag(:th, label, class:"#{sorting_class} #{sort_direction}")
+    content_tag(:th, label, class:"index-th #{sorting_class} #{sort_direction}")
 
   end
 
-  def index_td(content, class:false)
-    content_tag :td, content
+  def index_td(resource, method_or_content, options = {})
+
+    if method_or_content.is_a?(Symbol)
+      content = resource.send(method_or_content)
+    else
+      content = method_or_content
+    end
+
+    options[:class] = "index-td #{options[:class]}"
+
+    return content_tag(:td, options) do
+      link_to url_for(action:"edit", id:resource.id) do
+        content.to_s
+      end
+    end
+
   end
 
   def actions_th
     index_th("Actions", sort:false)
+  end
+
+  def actions_td(resource)
+    content_tag :td, class:"actions-td" do
+      link_to("Edit", url_for(action:"edit", id:resource.id), class:"button -small") <<
+      link_to("Inspect", url_for(action:"show", id:resource.id), class:"button -small") <<
+      link_to("Delete", url_for(action:"show", id:resource.id), class:"button -small", method: :delete)
+    end
   end
 
 end

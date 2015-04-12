@@ -4,8 +4,9 @@
   width: 16px;
   text-align: center;
 
-  font: normal normal normal 14px/1 FontAwesome !important;
+  font: normal normal normal 14px/16px FontAwesome;
   text-decoration: none !important;
+  vertical-align: baseline;
 
   text-rendering: auto; // optimizeLegibility throws things off
   -webkit-font-smoothing: antialiased;

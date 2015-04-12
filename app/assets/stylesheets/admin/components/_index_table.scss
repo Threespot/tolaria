@@ -1,0 +1,69 @@
+.index-table {
+
+  width: 100%;
+  text-align: left;
+
+  .monospace {
+    font-size: 14px;
+  }
+
+  thead tr {
+    border-bottom: 1px solid $cGrey;
+  }
+
+  tbody tr {
+
+    font-size: 15px;
+    border-bottom: 1px dashed $cGrey;
+
+    &:nth-child(even) {
+      background-color: #fbfbfb;
+    }
+
+    &:hover, &:active,
+    &:focus {
+      background-color: transparentize($cButtonPrimary, 0.95) !important;
+    }
+
+  }
+
+}
+
+.index-th {
+  padding: 8px 8px 8px 8px;
+  font-size: 12px;
+  text-transform: uppercase;
+  color: $cPlum;
+  font-weight: bold;
+}
+
+.index-td {
+
+  border: 0;
+  margin: 0;
+  text-align: left;
+
+  &:first-of-type {
+    width: 1px; // Makes this auto-size to the content
+    white-space: nowrap; // Makes this auto-size to the content
+  }
+
+  a {
+    color: $cPlum;
+    display: block;
+    padding: 11px 8px 11px 8px;
+    width: 100%;
+  }
+
+}
+
+.actions-td {
+
+  width: 1px; // Makes this auto-size to the content
+  white-space: nowrap; // Makes this auto-size to the content
+
+  .button {
+    margin: 0 0 0 8px;
+  }
+
+}

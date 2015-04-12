@@ -8,7 +8,10 @@
 
   <div class="main-controls">
     <div class="left">
-      <h1><%= content_for :title %></h1>
+      <h1>
+        <span class="crumb"><%= @resource.model_name.human.pluralize.titleize %></span>
+        <%= content_for :title %>
+      </h1>
     </div>
     <div class="right">
       <%= render "admin/tolaria_resource/form_buttons" %>

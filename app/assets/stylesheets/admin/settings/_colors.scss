@@ -5,10 +5,20 @@ $cBlack: #222222;
 $cThreespotPink: #d21172;
 $cWhite: #fefefe;
 $cGrey: #d8d8d8;
+$cCoolGrey: #F7F8F9;
 $cSlate: #4b4f55;
 
 $cRuby: #da3946;
 $cSapphire: #3497be;
+
+$cButtonNeutral: #fcfcfc;
+$cButtonNeutralActive: #fff;
+
+$cButtonPrimary: #00addf;
+$cButtonPrimaryActive: lighten($cButtonPrimary, 3);
+
+$cButtonDanger: #da3946;
+$cButtonDangerActive: lighten($cButtonDanger, 10);
 
 $plumShadow: 0px 1px 0px black(0.5);
 

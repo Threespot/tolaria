@@ -6,6 +6,12 @@ module Tolaria
     before_filter :admin_setup!
     before_filter :authenticate_admin!
 
+    protected
+
+    def admin_setup!
+      # Nothing here just yet.
+    end
+
     def add_admin_headers!
       # Don't use old IE rendering modes
       response.headers["X-UA-Compatible"] = "IE=edge"
@@ -16,8 +22,11 @@ module Tolaria
       response.headers["X-XSS-Protection"] = "1; mode=block"
     end
 
-    def admin_setup!
-      # Nothing here just yet.
+    def tolaria_template(name)
+      return {
+        template: "admin/tolaria_resource/#{name}",
+        layout: "admin/admin"
+      }
     end
 
     def authenticate_admin!
@@ -30,14 +39,9 @@ module Tolaria
     def current_administrator
       @current_administrator ||= Administrator.find_by_auth_token(cookies.encrypted[:admin_auth_token])
     end
+
     helper_method :current_administrator
 
-    def tolaria_template(name)
-      return {
-        template: "admin/tolaria_resource/#{name}",
-        layout: "admin/admin"
-      }
-    end
 
   end
 end

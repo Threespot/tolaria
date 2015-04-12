@@ -14,7 +14,7 @@
       <button class="dismiss">Dismiss</button>
       <p>
         <%= fontawesome_icon :exclamation_triangle %> <%= flash[:error] %>
-        <% if defined?(@resource) && @resource.errors.any? %>
+        <% if defined?(@resource) && @resource.respond_to?(:errors) && @resource.errors.any? %>
           <%= @resource.errors.full_messages.to_sentence.capitalize %>.
         <% end %>
       </p>

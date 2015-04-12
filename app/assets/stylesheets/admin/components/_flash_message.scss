@@ -7,7 +7,7 @@
   color: $cWhite;
   cursor: pointer;
   font-size: 15px;
-  line-height: 1.4;
+  line-height: 21px;
   margin: 0 -20px 0 -20px;
   padding: 10px 20px;
   text-shadow: 0;
@@ -16,8 +16,9 @@
     padding: 12px 20px;
   }
 
-  i {
-    margin-right: 5px;
+  .icon {
+    float: left;
+    margin: 2px 5px 0 0;
   }
 
   p {
@@ -40,6 +41,7 @@
       background: transparent;
       font-weight: bold;
       float: right;
+      margin: 0 0 -2px 0;
     }
   }
 

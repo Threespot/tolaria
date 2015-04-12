@@ -1,10 +1,10 @@
-#main {
+.main {
 
-  position: relative;
+  background-color: #fff;
   float: left;
   height: 1000px;
+  position: relative;
   width: 100%;
-  background-color: #fff;
 
   @include min-width($bpFull) {
     border-left: 1px solid black(0.10);
@@ -17,9 +17,9 @@
 .main-controls {
 
   @include clearfix;
+  border-bottom: 3px double $cGrey;
   clear: both;
   float: left;
-  border-bottom: 3px double $cGrey;
   padding: 15px 0 15px 0;
   width: 100%;
 
@@ -34,5 +34,13 @@
     margin: 24px 0 0 0;
   }
 
+}
+
+.crumb {
+  color: #999;
+  &:after {
+    content: " / ";
+    font-weight: bold;
+  }
 }
 

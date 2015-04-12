@@ -14,7 +14,7 @@ module Tolaria
     end
 
     def show
-      @resource = @managed_class.klass.find_by_id(params[:id])
+      @resource = @managed_class.klass.find_by_id(params[:id]) or raise ActiveRecord::RecordNotFound
       render tolaria_template("show")
     end
 

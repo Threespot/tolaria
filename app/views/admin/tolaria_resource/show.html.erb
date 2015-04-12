@@ -1,2 +1,26 @@
 <%= content_for :title, Tolaria.display_name(@resource) %>
-<div class="main-controls"></div>
+
+<div class="main-controls">
+
+  <div class="left">
+    <h1>
+      <span class="crumb"><%= @resource.model_name.human.pluralize.titleize %></span>
+      <%= content_for :title %>
+    </h1>
+  </div>
+
+  <div class="right">
+
+    <%= link_to url_for(action:"edit", id:@resource.id), class:"button -primary" do %>
+      <%= fontawesome_icon :pencil %>
+      Edit This <%= @resource.model_name.human.titleize %>
+    <% end %>
+
+    <%= link_to url_for(action:"show", id:@resource.id), class:"button -danger", method: :delete do %>
+      <%= fontawesome_icon :trash %>
+      Delete
+    <% end %>
+
+  </div>
+
+</div>
