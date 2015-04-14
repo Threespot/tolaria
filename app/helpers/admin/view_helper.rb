@@ -42,11 +42,19 @@ module Admin::ViewHelper
   end
 
   def actions_td(resource)
-    content_tag :td, class:"actions-td" do
-      link_to("Edit", url_for(action:"edit", id:resource.id), class:"button -small") <<
-      link_to("Inspect", url_for(action:"show", id:resource.id), class:"button -small") <<
-      link_to("Delete", url_for(action:"show", id:resource.id), class:"button -small", method: :delete)
-    end
+
+    edit_link = link_to("Edit", url_for(action:"edit", id:resource.id), class:"button -small")
+
+    inspect_link = link_to("Inspect", url_for(action:"show", id:resource.id), class:"button -small")
+
+    delete_link = link_to("Delete", url_for(action:"show", id:resource.id), {
+      class: "button -small",
+      method: :delete,
+      :'data-confirm' => "Are you sure you want to delete the #{resource.model_name.human.downcase} “#{Tolaria.display_name(resource)}”? This action is not reversible.",
+    })
+
+    return content_tag(:td, "#{edit_link}#{inspect_link}#{delete_link}".html_safe, class:"actions-td")
+
   end
 
 end

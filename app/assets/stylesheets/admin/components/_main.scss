@@ -14,18 +14,22 @@
 
 }
 
+.main-interior {
+  @include clearfix;
+}
+
 .main-controls {
 
   @include clearfix;
   border-bottom: 3px double $cGrey;
   clear: both;
-  float: left;
   padding: 15px 0 15px 0;
   width: 100%;
 
   h1 {
     font-weight: bold;
-    margin: 8px 0 0 0;
+    line-height: 16px;
+    margin: 9px 0 0 0;
   }
 
   &.-inverse {

@@ -1,9 +1,18 @@
-// I stole this from Bourbon
+// -------------------------------------------------------------------------
+// MICRO CLEARFIX
+// http://nicolasgallagher.com/micro-clearfix-hack/
+// -------------------------------------------------------------------------
 
 @mixin clearfix {
-  &::after {
-    clear: both;
-    content: "";
-    display: table;
+
+  &:before,
+  &:after {
+    content: " "; // 1
+    display: table; // 2
   }
+
+  &:after {
+    clear: both;
+  }
+
 }

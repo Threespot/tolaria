@@ -1,0 +1,39 @@
+.blank-slate {
+
+  @include clearfix;
+  display: block;
+  text-align: center;
+  padding: 10% 0 12% 0;
+  margin: 20px 0 20px 0;
+  border: 1px dashed $cGrey;
+  background: $cCoolGrey;
+  border-radius: 3px;
+
+  &-header {
+    font-size: 22px;
+    font-weight: bold;
+  }
+
+  &-icons {
+
+    display: block;
+    margin: 0 0 25px 0;
+    text-align: center;
+
+    .icon {
+      font-size: 42px;
+      color: $cGrey;
+      width: 42px;
+      height: 42px;
+      text-align: center;
+      line-height: 1;
+    }
+
+  }
+
+  &-text {
+    margin: 10px auto 25px auto;
+
+  }
+
+}

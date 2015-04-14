@@ -3,7 +3,10 @@
 <div class="main-controls">
 
   <div class="left">
-    <h1><%= content_for :title %></h1>
+    <h1>
+      <%= fontawesome_icon @managed_class.icon_name %>
+      <%= content_for :title %>
+    </h1>
   </div>
 
   <div class="right">
@@ -15,4 +18,49 @@
 
 </div>
 
-<%= render partial:"admin/#{@resource.model_name.route_key}/table" %>
+<% if @resources.none? %>
+
+  <% # Render a blank-slate because there’s nothing to list %>
+
+  <div class="blank-slate">
+    <span class="blank-slate-icons"><%= fontawesome_icon @managed_class.icon_name %></span>
+    <h3 class="blank-slate-header">
+      No <%= @resource.model_name.human.pluralize.titleize %> live here.
+    </h3>
+    <p class="blank-slate-text"><%= ["Get started on the first one:", "But, suddenly…", "Until now:"].sample %></p>
+    <%= link_to url_for(action:"new"), class:"button -primary" do %>
+      <%= fontawesome_icon :plus %>
+      New <%= @resource.model_name.human.titleize %>
+    <% end %>
+  </div>
+
+<% elsif lookup_context.template_exists?("admin/#{@resource.model_name.route_key}/table", [], true) %>
+
+  <%= render partial:"admin/#{@resource.model_name.route_key}/table" %>
+
+<% else %>
+
+  <% # Render a default table because the developer didn’t provide one %>
+
+  <table class="index-table">
+    <thead>
+      <tr>
+        <%= index_th :id %>
+        <%= index_th :title %>
+        <%= actions_th %>
+      </tr>
+    </thead>
+    <tbody>
+      <% @resources.each do |resource| %>
+        <tr>
+          <%= index_td resource, :id %>
+          <%= index_td resource, Tolaria.display_name(resource) %>
+          <%= actions_td resource %>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+
+<% end %>
+
+

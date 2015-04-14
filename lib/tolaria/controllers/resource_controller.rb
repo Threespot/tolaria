@@ -30,7 +30,7 @@ module Tolaria
       display_name = Tolaria.display_name(@resource)
 
       if @resource.save
-        flash[:success] = "Done! You created the #{@managed_class.model_name.human} “#{display_name}”."
+        flash[:success] = "#{random_blingword} You created the #{@managed_class.model_name.human} “#{display_name}”."
         return redirect_to url_for([:admin, @managed_class.klass])
       else
         flash.now[:error] = "Your changes couldn’t be saved. Please correct the following errors:"
@@ -51,7 +51,7 @@ module Tolaria
       display_name = Tolaria.display_name(@resource)
 
       if @resource.save
-        flash[:success] = "Done! You updated the #{@managed_class.model_name.human} “#{display_name}”."
+        flash[:success] = "#{random_blingword} You updated the #{@managed_class.model_name.human.downcase} “#{display_name}”."
         return redirect_to url_for([:admin, @managed_class.klass])
       else
         flash.now[:error] = "Your changes couldn’t be saved. Please correct the following errors:"
@@ -72,12 +72,16 @@ module Tolaria
         return redirect_to url_for([:admin, @managed_class.klass])
       end
 
-      flash[:destructive] = "You deleted the #{@managed_class.model_name.human} “#{display_name}”."
+      flash[:destructive] = "You deleted the #{@managed_class.model_name.human.downcase} “#{display_name}”."
       return redirect_to url_for([:admin, @managed_class.klass])
 
     end
 
     protected
+
+    def random_blingword
+      ["Done!", "Boom!", "Success!"].sample
+    end
 
     def load_managed_class!
       Tolaria.managed_classes.each do |managed_class|
@@ -88,7 +92,7 @@ module Tolaria
       end
     end
 
-    # Filters params, including the default params Tolaria needs
+    # Filters params, allows the default params Tolaria needs
     # and the configured permitted_params from the managed class
     def resource_params
       params.permit(

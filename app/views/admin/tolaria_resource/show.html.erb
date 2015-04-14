@@ -4,7 +4,10 @@
 
   <div class="left">
     <h1>
-      <span class="crumb"><%= @resource.model_name.human.pluralize.titleize %></span>
+      <span class="crumb">
+        <%= fontawesome_icon @managed_class.icon_name %>
+        <%= @resource.model_name.human.pluralize.titleize %>
+      </span>
       <%= content_for :title %>
     </h1>
   </div>

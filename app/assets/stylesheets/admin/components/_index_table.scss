@@ -1,3 +1,9 @@
+// Make this table-cell auto-size to its content
+@mixin auto-size-column {
+  width: 1px;
+  white-space: nowrap;
+}
+
 .index-table {
 
   width: 100%;
@@ -30,11 +36,17 @@
 }
 
 .index-th {
+
   padding: 8px 8px 8px 8px;
   font-size: 12px;
   text-transform: uppercase;
   color: $cPlum;
   font-weight: bold;
+
+  &:first-of-type {
+    @include auto-size-column;
+  }
+
 }
 
 .index-td {
@@ -44,8 +56,7 @@
   text-align: left;
 
   &:first-of-type {
-    width: 1px; // Makes this auto-size to the content
-    white-space: nowrap; // Makes this auto-size to the content
+    @include auto-size-column;
   }
 
   a {
@@ -59,8 +70,7 @@
 
 .actions-td {
 
-  width: 1px; // Makes this auto-size to the content
-  white-space: nowrap; // Makes this auto-size to the content
+  @include auto-size-column;
 
   .button {
     margin: 0 0 0 8px;
