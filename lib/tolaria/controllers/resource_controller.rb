@@ -80,7 +80,7 @@ module Tolaria
     protected
 
     def random_blingword
-      ["Done!", "Boom!", "Success!"].sample
+      ["Done!", "Okay!", "Success!"].sample
     end
 
     def load_managed_class!
