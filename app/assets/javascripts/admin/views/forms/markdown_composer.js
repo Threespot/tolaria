@@ -82,7 +82,7 @@ var MarkdownComposerViewController = Backbone.View.extend({
 
       statusCode: {
         200: function(data, xstatus, xhr) {
-          self.setPreview(data);
+          self.$preview.html(data);
         },
         404: function(xhr, status, error) {
           self.presentErrorMessage("The server refused to send you a preview. Please sign in and out of the admin panel and try again.");
@@ -101,6 +101,8 @@ var MarkdownComposerViewController = Backbone.View.extend({
 
   },
 
+  // Act on a formatting button by either inserting the example
+  // sytnax or wrapping the text selection in the chosen button's syntax
   formatButton: function(event, mode) {
 
     event.preventDefault();
@@ -109,6 +111,7 @@ var MarkdownComposerViewController = Backbone.View.extend({
     var buttonOps = ComposerButtons[mode];
 
     if (selectedText.length > 0) {
+      // Wrap the selected text in the syntax
       this.$textarea.selection("insert", {
         mode: "before",
         text: buttonOps.before,
@@ -121,6 +124,7 @@ var MarkdownComposerViewController = Backbone.View.extend({
       });
     }
     else {
+      // Insert some example text with the syntax
       this.$textarea.selection("replace", {
         text: buttonOps.vanilla,
         caret: "keep"
@@ -129,21 +133,20 @@ var MarkdownComposerViewController = Backbone.View.extend({
 
   },
 
-  setPreview: function(htmlSnippet) {
-    this.$preview.html(htmlSnippet);
-  },
-
+  // Show an error message in the preview with dimmed text
   presentErrorMessage: function(message) {
     this.$preview.html("<p class='dim'>" + message + "</p>");
   },
 
   events: {
 
-    "click .-fullscreen-toggle": "toggleFullscreen",
     "keyup": "updatePreview",
     "focus textarea": "brightenSelf",
     "blur textarea": "dimSelf",
 
+    "click .-fullscreen-toggle": "toggleFullscreen",
+
+    // Formatting buttons
     "click .-header": function(event) {this.formatButton(event, "header")},
     "click .-em": function(event) {this.formatButton(event, "em")},
     "click .-strong": function(event) {this.formatButton(event, "strong")},
