@@ -5,11 +5,14 @@ html {
 
 body {
   @include clearfix();
-  font-family: $helvetica;
+  font-family: $fHelvetica;
   background-image: linear-gradient(to right, $cEggshell, $cEggshell 50%, #fff 50%);
   background-repeat: repeat-y;
   padding: 0 20px 0 20px;
   width: 100%;
+  &.-modal-open {
+    overflow: hidden;
+  }
 }
 
 .inner-align {

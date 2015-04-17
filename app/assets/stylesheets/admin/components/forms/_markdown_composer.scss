@@ -1,0 +1,115 @@
+.markdown-composer {
+
+  &-controls {
+
+    @include clearfix;
+    padding: 12px 10px 12px 10px;
+    border: 1px solid $cGrey;
+    border-bottom: 0;
+    border-radius: 2px 2px 0 0;
+    margin-bottom: -1px;
+    background: $cWhite;
+    transition: background-color 100ms linear, border-color 100ms linear;
+
+    .-focused & {
+      border-color: darken($cSapphire, 10);
+      border-bottom: 0;
+      border-right-color: $cSapphire;
+    }
+
+  }
+
+  textarea {
+    font-family: $fMonospace;
+    font-size: 14px;
+    border-top: 1px dashed $cGrey;
+    border-radius: 0px 0px 2px 2px;
+    padding: 12px 12px 12px 12px;
+    color: #000;
+    &:focus {
+      border-top-color: $cGrey;
+    }
+  }
+
+  // THIS ISN'T EVEN MY FINAL FORM!
+
+  &.-fullscreen {
+
+    display: block;
+    position: absolute;
+    z-index: 1000000;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: $cWhite;
+    padding: 3% 5%;
+    background: $cCoolGrey;
+
+    .markdown-composer-workspace {
+      @include clearfix;
+      position: relative;
+      height: 100%;
+    }
+
+    textarea {
+      display: block;
+      width: 50%;
+      height: 94%;
+      position: absolute;
+      top: 0;
+      left: 0;
+      border-color: darken($cSapphire, 10);
+      border-bottom-color: $cSapphire;
+      border-right-color: $cSapphire;
+    }
+
+    .markdown-composer-preview {
+
+      width: 50%;
+      height: 94%;
+      position: absolute;
+      right: 0;
+      top: 0;
+      overflow-y: scroll;
+
+      background: #fdfdfd;
+      border-top: 1px dashed $cGrey;
+      border-radius: 0 0 2px 0;
+      border-bottom: 1px solid $cSapphire;
+      border-right: 1px solid $cSapphire;
+
+    }
+
+  }
+
+}
+
+.markdown-composer-button {
+
+  background: none;
+  color: $cGrey;
+  transition: color 100ms linear;
+
+  span {
+    font-size: 12px;
+    font-weight: bold;
+    line-height: 16px;
+    text-transform: uppercase;
+  }
+
+}
+
+.markdown-composer.-focused,
+.markdown-composer:hover,
+.markdown-composer:focus {
+
+  .markdown-composer-button {
+    color: $cBlack;
+    &:hover, &:active {
+      color: $cSapphire;
+    }
+  }
+
+}
+

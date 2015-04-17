@@ -34,6 +34,13 @@ Tolaria.configure do |config|
   # after they trip the lockout threshold.
   config.lockout_duration = 1.hour
 
+  # Tolaria does not come bundled with a Markdown processing strategy.
+  # You must provide a string that names a Ruby constant that can process Markdown.
+  # The constant must respond to render(document), returning a string of HTML.
+  # For example: if you provide "MyMarkDownRenderer", Tolaria will
+  # call MyMarkdownRenderer.render(document).
+  config.markdown_renderer = nil
+
   # Tolaria attempts to convert models to a pretty “display”
   # string for presenting in forms and listings.
   # The methods below are tried in order on models until one responds.

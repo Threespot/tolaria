@@ -1,7 +1,7 @@
 Tolaria.configure do |config|
 
-  # The name of the admin interface as used in the system
-  # navigation and HTML page titles.
+  # The name of the admin interface as used in the system navigation
+  # and HTML page titles. Usually the name of the company or org.
   config.interface_title = "Company Name"
 
   # Tolaria sends authentication emails. Set the value of the FROM field here.
@@ -9,8 +9,17 @@ Tolaria.configure do |config|
   # whitelisted by your target companies.
   config.from_address = "Rails <tolaria@example.org>"
 
-  # Redirect the administratior to this route by default when logging in.
+  # Redirect the administrator to this route by default when logging in.
   config.default_redirect = :admin_administrators
+
+  # Tolaria does not come bundled with a Markdown processing strategy.
+  # You must provide a string that names a Ruby constant that can process Markdown.
+  # The constant must respond to render(document), returning a string of HTML.
+  # For example: if you provide "MyMarkDownRenderer", Tolaria will
+  # call MyMarkdownRenderer.render(document).
+  # If you leave this setting nil, Tolaria will assume that you do not
+  # plan to use the markdown_composer form field.
+  config.markdown_renderer = nil
 
   # The default order to sort items on index pages.
   # "id DESC" will usually show newest things at the top of the list.

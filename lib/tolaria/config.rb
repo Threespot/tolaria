@@ -11,6 +11,7 @@ module Tolaria
     attr_accessor :interface_title
     attr_accessor :lockout_duration
     attr_accessor :lockout_threshold
+    attr_accessor :markdown_renderer
     attr_accessor :passcode_lifespan
     attr_accessor :permitted_params
     attr_accessor :session_length
@@ -21,7 +22,7 @@ module Tolaria
   end
 
   def self.configure(&block)
-    yield self.config
+    yield @configuration ||= Tolaria::Configuration.new
   end
 
 end

@@ -1,17 +1,17 @@
-$monospace: Menlo, Consolas, "Liberation Mono", Courier, monospace;
+$fMonospace: Menlo, Consolas, "Liberation Mono", Courier, monospace;
 
 %monospace,
 .monospace {
-  font-family: $monospace;
+  font-family: $fMonospace;
   font-weight: normal;
   -webkit-font-smoothing: subpixel-antialiased;
 }
 
-$helvetica: "Helvetica Neue", "Segoe UI", Arial, Freesans, sans-serif;
+$fHelvetica: "Helvetica Neue", "Segoe UI", Arial, Freesans, sans-serif;
 
 %helvetica,
 .helvetica {
-  font-family: $helvetica;
+  font-family: $fHelvetica;
 }
 
 @font-face {
@@ -26,6 +26,6 @@ $helvetica: "Helvetica Neue", "Segoe UI", Arial, Freesans, sans-serif;
   font-style: normal;
 }
 
-$font-awesome: FontAwesome;
+$fFontAwesome: FontAwesome;
 
 

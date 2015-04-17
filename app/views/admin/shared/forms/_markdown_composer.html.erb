@@ -1,0 +1,41 @@
+<div class="markdown-composer">
+
+  <div class="markdown-composer-controls">
+
+    <div class="left">
+      <button class="markdown-composer-button -header icon icon-header" title="Header"></button>
+      <button class="markdown-composer-button -em icon icon-italic" title="Italic Text"></button>
+      <button class="markdown-composer-button -strong icon icon-bold" title="Bold Text"></button>
+      <!-- <button class="markdown-composer-button -image icon icon-image" title="Image"></button> -->
+      <button class="markdown-composer-button -link icon icon-link" title="Link"></button>
+      <button class="markdown-composer-button -ordered-list icon icon-list-ol" title="Numeric List"></button>
+      <button class="markdown-composer-button -unordered-list icon icon-list-ul" title="Bullet List"></button>
+      <button class="markdown-composer-button -blockquote icon icon-quote-left" title="Pullquote"></button>
+    </div>
+
+    <div class="right">
+      <button class="markdown-composer-button -fullscreen-toggle">
+        <span>Fullscreen</span>
+        <%= fontawesome_icon :arrows_alt %>
+      </button>
+      <button class="markdown-composer-button -preview-toggle">
+        <span>Preview</span>
+        <%= fontawesome_icon :eye %>
+      </button>
+    </div>
+
+  </div>
+
+   <div class="markdown-composer-workspace">
+
+    <%= f.text_area method, options.reverse_merge({
+      rows: 20,
+    }) %>
+
+    <div class="markdown-composer-preview">
+
+    </div>
+
+  </div>
+
+</div>

@@ -1,0 +1,67 @@
+.markdown-composer-preview {
+
+  padding: 12px 16px;
+  font-size: 15px;
+  line-height: 1.333;
+
+  .dim {
+    color: #999;
+  }
+
+  * + * {
+    margin-top: 1em;
+  }
+
+  strong {
+    font-weight: bold;
+  }
+
+  em {
+    font-style: italic;
+  }
+
+  a {
+    color: $cSapphire;
+    text-decoration: underline;
+    &:hover, &:active {
+      text-decoration: none;
+    }
+  }
+
+  ol li {
+    list-style: decimal;
+    margin: 0 1.5em 0 1.5em;
+  }
+
+  ul li {
+    list-style: square;
+    margin: 0 1.5em 0 1.5em;
+  }
+
+  hr {
+    margin: 1.25em 0 1.25em 0;
+  }
+
+  code, pre {
+    background-color: black(0.04);
+    border-radius: 2px;
+    color: $cPlum;
+    font-family: $fMonospace;
+    font-size: 14px;
+  }
+
+  pre {
+    display: block;
+    padding: 1em;
+  }
+
+  code {
+    margin: 0;
+    padding: 0.1em 0.2em 0.1em 0.2em;
+  }
+
+  pre > code {
+    background: none;
+  }
+
+}

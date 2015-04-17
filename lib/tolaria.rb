@@ -17,6 +17,7 @@ require "tolaria/reload"
 require "tolaria/manage"
 require "tolaria/active_record"
 require "tolaria/routes"
+require "tolaria/markdown"
 
 module Tolaria
   # We have to autoload these classes because they inherit
