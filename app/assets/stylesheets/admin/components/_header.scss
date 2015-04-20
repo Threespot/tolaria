@@ -6,6 +6,8 @@
   border-bottom: 1px solid black;
   height: 3px;
   margin: 0 -20px;
+  position: relative;
+  z-index: 100;
 }
 
 .header {
@@ -17,6 +19,8 @@
   text-shadow: $plumShadow;
   margin: 0 -20px;
   padding: 0 20px;
+  position: relative;
+  z-index: 100;
 
   &-app-title {
     color: $cWhite;

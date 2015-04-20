@@ -93,10 +93,12 @@
   input::-moz-placeholder {color: #ccc}
   input:-ms-input-placeholder {color: #ccc}
 
-  .field_with_errors input {
-    border: 1px solid darken($cRuby, 10);
-    border-bottom-color: $cRuby;
-    border-right-color: $cRuby;
+  .field_with_errors {
+    input, textarea, select {
+      border: 1px solid darken($cRuby, 10);
+      border-bottom-color: $cRuby;
+      border-right-color: $cRuby;
+    }
   }
 
 }

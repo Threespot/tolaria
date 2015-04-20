@@ -1,9 +1,10 @@
 .navigation {
-  width: 100%;
   padding: 10px 0 0 0;
+  position: relative;
   @include min-width($bpFull) {
     width: 16%;
-    float: left;
+    display: table-cell;
+    vertical-align: top;
   }
 }
 

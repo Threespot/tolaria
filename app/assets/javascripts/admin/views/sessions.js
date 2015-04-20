@@ -39,9 +39,7 @@ var SessionViewController = Backbone.View.extend({
         },
 
         beforeSend: function(xhr) {
-          xhr.setRequestHeader(
-            "X-CSRF-Token", $("meta[name='csrf-token']").attr("content")
-          );
+          xhr.setRequestHeader("X-CSRF-Token", RailsMeta.csrfToken);
         },
 
         statusCode: {

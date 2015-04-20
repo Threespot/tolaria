@@ -2,9 +2,6 @@ var VirualFormViewController = Backbone.View.extend({
 
   el: "body",
 
-  csrfToken: $("meta[name=csrf-token]").attr("content"),
-  csrfParam: $("meta[name=csrf-param]").attr("content"),
-
   submitVirtualForm: function(event) {
 
     event.preventDefault();
@@ -23,11 +20,11 @@ var VirualFormViewController = Backbone.View.extend({
     var href = $link.attr("href");
     var target = $link.attr("target");
 
-    var $form = $('<form method="post" action="' + href + '"></form>');
-    var $metadataInputs = '<input name="_method" value="' + method + '" type="hidden" />';
+    var $form = $("<form method='post' action=" + href + "></form>");
+    var $metadataInputs = "<input name='_method' value='" + method + "' type='hidden' />";
 
     if (!!this.csrfToken && !!this.csrfParam) {
-      $metadataInputs += '<input name="' + this.csrfParam + '" value="' + this.csrfToken + '" type="hidden" />';
+      $metadataInputs += "<input name='" + RailsMeta.csrfParam + "' value='" + RailsMeta.csrfToken + "' type='hidden' />";
     }
 
     if (!!target) {

@@ -1,11 +1,11 @@
 .main {
 
+  @include clearfix;
   background-color: #fff;
-  float: left;
-  height: 1000px;
   width: 100%;
 
   @include min-width($bpFull) {
+    display: table-cell;
     border-left: 1px solid black(0.10);
     padding: 0 0 0 20px;
     width: 83.95%;

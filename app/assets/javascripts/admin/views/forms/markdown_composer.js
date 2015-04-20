@@ -1,21 +1,24 @@
 var MarkdownComposerViewController = Backbone.View.extend({
 
-  fullscreen: false,
-  previewLive: false,
+  fullscreen: false, // Currently expanded to fullscreen
+  livePreview: false, // The preview block is currently updating on keyup
 
   initialize: function() {
     this.$textarea = this.$("textarea");
     this.$preview = this.$(".markdown-composer-preview");
+    this.$previewButton = this.$(".-preview-toggle");
     this.$previewButtonLabel = this.$(".-preview-toggle span");
     this.$previewButtonIcon = this.$(".-preview-toggle .icon");
     this.$fullscreenButtonLabel = this.$(".-fullscreen-toggle span");
     this.$fullscreenButtonIcon = this.$(".-fullscreen-toggle .icon");
   },
 
+  // Brighten and highlight the composer UI
   brightenSelf: function() {
     this.$el.addClass("-focused");
   },
 
+  // Dim the composer. Cannot be dimmed at fullscreen.
   dimSelf: function() {
     if (!this.fullscreen) {
       this.$el.removeClass("-focused");
@@ -26,10 +29,12 @@ var MarkdownComposerViewController = Backbone.View.extend({
     event.preventDefault();
     if (!this.fullscreen) {
       this.fullscreen = true;
-      this.previewLive = true;
+      this.livePreview = true;
       this.updatePreview();
+      this.$preview.show();
       this.$el.addClass("-fullscreen");
       $("body").addClass("-modal-open");
+      this.$previewButton.hide();
       this.brightenSelf();
       this.$fullscreenButtonLabel.html("Close Fullscreen");
       this.$fullscreenButtonIcon.removeClass("icon-arrows-alt").addClass("icon-compress");
@@ -37,18 +42,25 @@ var MarkdownComposerViewController = Backbone.View.extend({
     }
     else {
       this.fullscreen = false;
-      this.previewLive = false;
+      this.livePreview = false;
+      this.$preview.hide();
       this.$el.removeClass("-fullscreen");
       $("body").removeClass("-modal-open");
+      this.$previewButton.show();
       this.dimSelf();
       this.$fullscreenButtonLabel.html("Fullscreen");
       this.$fullscreenButtonIcon.removeClass("icon-compress").addClass("icon-arrows-alt");
     }
   },
 
-  updatePreview: function() {
+  // Update the preview on keyup if it is currently live-updating
+  keyupCallback: function() {
+    if (this.livePreview) {
+      this.updatePreview();
+    }
+  },
 
-    if (!this.previewLive) { return false; }
+  updatePreview: function() {
 
     var trimmedDocument = $.trim(this.$textarea.val());
 
@@ -56,11 +68,11 @@ var MarkdownComposerViewController = Backbone.View.extend({
       this.presentErrorMessage("A preview of what you type will be shown here.");
       return true;
     }
-
     this.renderMarkdown(trimmedDocument);
     return true;
-
   },
+
+  // Send the Markdown to the server for converting into HTML
 
   renderMarkdown: function(markdownDocument) {
 
@@ -71,14 +83,14 @@ var MarkdownComposerViewController = Backbone.View.extend({
       type: "POST",
       url: "/admin/api/markdown",
       data: markdownDocument,
-      traditional: true,
       contentType: "text/plain",
 
       beforeSend: function(xhr) {
-        xhr.setRequestHeader(
-          "X-CSRF-Token", $("meta[name='csrf-token']").attr("content")
-        );
+        xhr.setRequestHeader("X-CSRF-Token", RailsMeta.csrfToken);
       },
+
+      dataType: "html",
+      processData: false,
 
       statusCode: {
         200: function(data, xstatus, xhr) {
@@ -92,7 +104,7 @@ var MarkdownComposerViewController = Backbone.View.extend({
         }
       },
 
-      timeout: 5000,
+      timeout: 3000,
       error: function(xhr, status, error) {
         self.presentErrorMessage("Could not connect to the server. Please check your network connection and try\xA0again.");
       }
@@ -102,7 +114,8 @@ var MarkdownComposerViewController = Backbone.View.extend({
   },
 
   // Act on a formatting button by either inserting the example
-  // sytnax or wrapping the text selection in the chosen button's syntax
+  // syntax or wrapping the text selection in the chosen button's syntax
+
   formatButton: function(event, mode) {
 
     event.preventDefault();
@@ -131,6 +144,8 @@ var MarkdownComposerViewController = Backbone.View.extend({
       });
     }
 
+    this.updatePreview();
+
   },
 
   // Show an error message in the preview with dimmed text
@@ -145,12 +160,12 @@ var MarkdownComposerViewController = Backbone.View.extend({
     "blur textarea": "dimSelf",
 
     "click .-fullscreen-toggle": "toggleFullscreen",
+    "click .-preview-toggle": "togglePreview",
 
     // Formatting buttons
     "click .-header": function(event) {this.formatButton(event, "header")},
     "click .-em": function(event) {this.formatButton(event, "em")},
     "click .-strong": function(event) {this.formatButton(event, "strong")},
-    "click .-image": function(event) {this.formatButton(event, "image")},
     "click .-link": function(event) {this.formatButton(event, "link")},
     "click .-ordered-list": function(event) {this.formatButton(event, "ordered-list")},
     "click .-unordered-list": function(event) {this.formatButton(event, "unordered-list")},
