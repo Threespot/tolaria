@@ -23,7 +23,7 @@ class Admin::TolariaFormBuilder < ActionView::Helpers::FormBuilder
       f: self,
       method: method,
       options: options,
-      download_url: "https://d13yacurqjgara.cloudfront.net/users/48702/screenshots/1509857/url_1x.png"
+      preview_url: options[:preview_url]
     })
   end
 

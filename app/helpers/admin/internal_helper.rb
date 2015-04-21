@@ -7,12 +7,12 @@ module Admin::InternalHelper
     end
   end
 
-  def fontawesome_icon(icon_name = "")
+  def fontawesome_icon(icon_name = "", options = {})
     icon_name = icon_name.to_s.parameterize.gsub("_", "-")
-    content_tag :i, "", {
+    content_tag :i, nil, options.reverse_merge({
       :class => "icon icon-#{icon_name}",
       :"aria-hidden" => true,
-    }
+    })
   end
 
   def gravatar_for(email:)

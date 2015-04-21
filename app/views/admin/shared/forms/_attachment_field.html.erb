@@ -1,3 +1,17 @@
 <div class="attachment-field">
+
   <%= f.file_field method, options %>
+
+  <%= button_tag type:"button", class:"button attachment-field-button" do %>
+
+    <% if f.object.send(method).present? %>
+      <%= fontawesome_icon :file_text_o %>
+      <%= content_tag :span, "Replace this file", class:"attachment-field-label" %>
+    <% else %>
+      <%= fontawesome_icon :paperclip %>
+      <%= content_tag :span, "Attach a file", class:"attachment-field-label" %>
+    <% end %>
+
+  <% end %>
+
 </div>

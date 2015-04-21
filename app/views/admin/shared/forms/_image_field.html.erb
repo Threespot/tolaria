@@ -1,0 +1,19 @@
+<div class="attachment-field">
+
+  <%= f.file_field method, options %>
+
+  <%= button_tag type:"button", class:"button attachment-field-button" do %>
+
+    <% if f.object.send(method).present? %>
+      <%= fontawesome_icon :paperclip, style:"display:none" %>
+      <%= content_tag :span, nil, class:"attachment-field-preview -present", style:"background-image:url(#{preview_url})" %>
+      <%= content_tag :span, "Replace this image", class:"attachment-field-label" %>
+    <% else %>
+      <%= fontawesome_icon :paperclip, style:"display:none" %>
+      <%= content_tag :span, nil, class:"attachment-field-preview" %>
+      <%= content_tag :span, "Attach an image", class:"attachment-field-label" %>
+    <% end %>
+
+  <% end %>
+
+</div>

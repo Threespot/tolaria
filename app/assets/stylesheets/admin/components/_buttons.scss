@@ -11,7 +11,7 @@
   height: 32px;
   line-height: 16px;
   padding: 7px 14px 7px 12px;
-  transition: background-color 100ms linear;
+  transition: background-color 100ms linear, border-color 100ms linear;
   white-space: nowrap;
 
   &.-small {

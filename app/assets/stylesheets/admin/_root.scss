@@ -7,35 +7,18 @@ html {
 body {
 
   @include clearfix();
-  background: #fff;
+  background-color: $cEggshell;
   font-family: $fHelvetica;
-  height: 100%;
   padding: 0 20px 0 20px;
-  position: relative;
   width: 100%;
 
-  &.admin {
-    &:after {
-      z-index: 5;
-      content: "";
-      position: absolute;
-      width: 50%;
-      height: 100%;
-      background: $cEggshell;
-      top: 0;
-      left: 0;
-      display: block;
-    }
+  @include min-width($bpFull) {
+    background-image: linear-gradient(to right, $cEggshell 50%, #fff 50%);
   }
 
   &.-modal-open {
     overflow: hidden;
   }
-
-  //@include min-width($bpFull) {
-  //  background-image: linear-gradient(to right, $cEggshell, $cEggshell 25%, #fff 25%);
-  //  background-repeat: repeat-y;
-  //}
 
 }
 
@@ -50,8 +33,6 @@ body {
   margin: 0 auto;
   max-width: 1000px;
   min-height: 100vh;
-  position: relative;
-  z-index: 100;
   @include min-width($bpFull) {
     display: table;
   }

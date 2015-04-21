@@ -27,7 +27,7 @@
     <h3 class="blank-slate-header">
       No <%= @resource.model_name.human.pluralize.titleize %> live here.
     </h3>
-    <p class="blank-slate-text"><%= ["Get started on the first one:", "But, suddenly…", "Until now:"].sample %></p>
+    <p class="blank-slate-text">Get started on the first one:</p>
     <%= link_to url_for(action:"new"), class:"button -primary" do %>
       <%= fontawesome_icon :plus %>
       New <%= @resource.model_name.human.titleize %>

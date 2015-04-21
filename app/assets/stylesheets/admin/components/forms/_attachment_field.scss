@@ -1,0 +1,57 @@
+.attachment-field {
+
+  input[type=file] {
+    display: none;
+  }
+
+  &-preview {
+    background-size: cover;
+    border-radius: 3px;
+    border: 1px dashed $cGrey;
+    display: block;
+    float: left;
+    height: 42px;
+    margin: 0 10px 0 0;
+    transition: border-color 100ms linear;
+    width: 42px;
+    &.-present {
+      border: 1px solid $cPlum;
+      border-radius: 2px;
+    }
+  }
+
+  &-label {
+    font-weight: bold;
+  }
+
+  .icon {
+    color: $cGrey;
+    display: block;
+    float: left;
+    font-size: 36px;
+    height: 42px;
+    line-height: 42px;
+    margin: 0 10px 0 0;
+    width: 42px;
+  }
+
+  &.-ready .icon {
+    color: $cSapphire;
+  }
+
+  .button {
+    border: 1px solid $cGrey;
+    color: $cSlate;
+    height: auto;
+    line-height: 42px;
+    min-width: 260px;
+    text-align: left;
+    width: auto;
+    &:hover, &:active {
+      border-color: $cPlum;
+      color: $cPlum;
+    }
+  }
+
+
+}

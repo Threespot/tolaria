@@ -3,13 +3,14 @@
   &-controls {
 
     @include clearfix;
-    padding: 12px 10px 12px 10px;
+    background: $cWhite;
+    border-radius: 2px 2px 0 0;
     border: 1px solid $cGrey;
     border-bottom: 0;
-    border-radius: 2px 2px 0 0;
-    margin-bottom: -1px;
-    background: $cWhite;
+    padding: 12px 10px 12px 10px;
     transition: background-color 100ms linear, border-color 100ms linear;
+    max-width: 1300px;
+    margin: 0 auto -1px auto;
 
     .-focused & {
       border-color: darken($cSapphire, 10);
@@ -50,6 +51,8 @@
       @include clearfix;
       position: relative;
       height: 100%;
+      max-width: 1300px;
+      margin: 0 auto;
     }
 
     textarea {
