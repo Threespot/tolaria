@@ -59,7 +59,7 @@ var SessionViewController = Backbone.View.extend({
 
         timeout: 5000,
         error: function(xhr, status, error) {
-          self.presentErrorMessage("Could not connect to the server. Please check your network connection and try\xA0again.")
+          self.presentErrorMessage("Could not connect to the server. Check your network connection and try\xA0again.")
         }
 
       });

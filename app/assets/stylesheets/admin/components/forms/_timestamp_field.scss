@@ -1,0 +1,14 @@
+.timestamp-field {
+
+  @include clearfix;
+
+  &-selects {
+    display: none;
+  }
+
+  input[type=text] {
+    font-size: 15px;
+    font-family: $fMonospace;
+  }
+
+}

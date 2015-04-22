@@ -27,4 +27,12 @@ class Admin::TolariaFormBuilder < ActionView::Helpers::FormBuilder
     })
   end
 
+  def timestamp_field(method, options = {})
+    render(partial:"admin/shared/forms/timestamp_field", locals: {
+      f: self,
+      method: method,
+      options: options,
+    })
+  end
+
 end

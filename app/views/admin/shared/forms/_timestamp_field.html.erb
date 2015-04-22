@@ -1,0 +1,17 @@
+<div class="timestamp-field">
+
+  <div class="timestamp-field-selects">
+    <%= f.datetime_select method, {
+      use_two_digit_numbers: true,
+      date_seperator: false,
+      ampm: true,
+      include_blank: "",
+    } %>
+  </div>
+
+  <%= f.text_field method, options.reverse_merge({
+    :value => f.object.send(method).try(:strftime, "%Y-%m-%d %I:%M %p"),
+    :'data-recovery-value' => Time.current.strftime("%Y-%m-%d %I:%M %p")
+  }) %>
+
+</div>

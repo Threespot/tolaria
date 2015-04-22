@@ -66,6 +66,10 @@
   input[type=email],
   input[type=password],
   input[type=number],
+  input[type=date],
+  input[type=time],
+  input[type=datetime],
+  input[type=datetime-local],
   textarea {
 
     background: #fefefe;
@@ -86,6 +90,13 @@
       background: #fff;
     }
 
+  }
+
+  input[type=date],
+  input[type=datetime],
+  input[type=time] {
+    font-family: $fMonospace;
+    font-size: 14px;
   }
 
   input::-webkit-input-placeholder {color: #ccc}
