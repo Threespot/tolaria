@@ -1,0 +1,14 @@
+.slug-field {
+
+  &-preview {
+    font-family: $fMonospace;
+    font-size: 12px;
+    margin: 0 0 0 0;
+    padding: 6px 8px;
+    background: $cCoolGrey;
+    border-radius: 0 0 2px 2px;
+    border: 1px solid $cGrey;
+    border-top: 0;
+  }
+
+}

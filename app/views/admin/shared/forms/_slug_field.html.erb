@@ -1,0 +1,9 @@
+<div class="slug-field">
+
+  <%= f.text_field method, options %>
+
+  <p class="slug-field-preview">
+    <%= pattern.gsub("*", %{<span class="slug-field-preview-fragment">*</span>}).html_safe %>
+  </p>
+
+</div>
