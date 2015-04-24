@@ -44,4 +44,12 @@ class Admin::TolariaFormBuilder < ActionView::Helpers::FormBuilder
     })
   end
 
+  def color_field(method, options = {})
+    render(partial:"admin/shared/forms/color_field", locals: {
+      f: self,
+      method: method,
+      options: options,
+    })
+  end
+
 end

@@ -1,0 +1,47 @@
+.color-field {
+
+  @include clearfix;
+
+  input[type=text] {
+    font-family: $fMonospace;
+    font-size: 15px;
+    width: 9em;
+    float: left;
+    margin: 0 0.5em 0 0;
+  }
+
+  &-swatch {
+    position: relative;
+    display: block;
+    float: left;
+    border: 1px solid $cPlum;
+    border-radius: 2px;
+    width: 38px;
+    height: 38px;
+    background: linear-gradient(135deg, white 48%, #FBA4B4 48%, #FBA4B4 52%, white 52%);
+
+    // Show a 20% light and dark region in the swatch
+    &.-active {
+      &:before {
+        position: absolute;
+        width: 20%;
+        height: 100%;
+        content: "";
+        right: 20%;
+        top: 0;
+        background: white(0.20);
+      }
+      &:after {
+        position: absolute;
+        width: 20%;
+        height: 100%;
+        content: "";
+        right: 0;
+        top: 0;
+        background: black(0.20);
+      }
+    }
+
+  }
+
+}

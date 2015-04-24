@@ -9,7 +9,7 @@
     border-bottom: 0;
     padding: 12px 10px 12px 10px;
     transition: background-color 100ms linear, border-color 100ms linear;
-    max-width: 1300px;
+    max-width: 1150px;
     margin: 0 auto -1px auto;
 
     .-focused & {
@@ -34,6 +34,13 @@
 
   // THIS ISN'T EVEN MY FINAL FORM!
 
+  .-fullscreen-toggle {
+    display: none;
+    @include min-width($bpFull) {
+      display: block;
+    }
+  }
+
   &.-fullscreen {
 
     display: block;
@@ -51,7 +58,7 @@
       @include clearfix;
       position: relative;
       height: 100%;
-      max-width: 1300px;
+      max-width: 1150px;
       margin: 0 auto;
     }
 

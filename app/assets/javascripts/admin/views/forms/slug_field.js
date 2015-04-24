@@ -3,6 +3,7 @@ var SlugFieldViewController = Backbone.View.extend({
   initialize: function() {
     this.$previewFragment = this.$(".slug-field-preview-fragment");
     this.$input = this.$("input");
+    this.refreshPreview();
   },
 
   refreshPreview: function() {
@@ -18,7 +19,7 @@ var SlugFieldViewController = Backbone.View.extend({
 
   },
 
-  seperatorRegex: /([^a-z0-9\-_]+|-{2,}|\s{1,})/gi,
+  seperatorRegex: /(?:[^a-z0-9\-_]+|-{2,}|\s{1,})/gi,
   badSeperatorRegex: /^-|-$/,
 
   parameterize: function(string) {

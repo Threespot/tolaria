@@ -3,6 +3,10 @@
 <div class="header">
   <div class="inner-align">
 
+    <%= link_to Tolaria.config.default_redirect, class:"header-menu-trigger" do %>
+      <span><%= fontawesome_icon :bars %> Menu</span>
+    <% end %>
+
     <%= link_to Tolaria.config.default_redirect, class:"header-app-title" do %>
       <%= Tolaria.config.interface_title %>
     <% end %>

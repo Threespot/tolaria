@@ -22,12 +22,32 @@
   position: relative;
   z-index: 100;
 
-  &-app-title {
+  &-menu-trigger {
     color: $cWhite;
     display: block;
     line-height: 18px;
     padding: 10px 0 10px 0;
     float: left;
+    span {
+      background-color: white(0.10);
+      border: 1px solid white(0.10);
+      border-radius: 2px;
+      padding: 5px 18px 5px 5px;
+    }
+    @include min-width($bpFull) {
+      display: none;
+    }
+  }
+
+  &-app-title {
+    display: none;
+    @include min-width($bpFull) {
+      color: $cWhite;
+      display: block;
+      line-height: 18px;
+      padding: 10px 0 10px 0;
+      float: left;
+    }
   }
 
   &-user-controls {
