@@ -20,4 +20,8 @@ module Admin::InternalHelper
     return "https://secure.gravatar.com/avatar/#{digest}?d=retro&s=36"
   end
 
+  def admin_template_exisits?(template_path)
+    lookup_context.template_exists?("admin/#{template_path}", [], true)
+  end
+
 end

@@ -34,7 +34,7 @@
     <% end %>
   </div>
 
-<% elsif lookup_context.template_exists?("admin/#{@resource.model_name.route_key}/table", [], true) %>
+<% elsif admin_template_exisits?("#{@resource.model_name.route_key}/table") %>
 
   <%= render partial:"admin/#{@resource.model_name.route_key}/table" %>
 

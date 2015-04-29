@@ -10,7 +10,7 @@ var SearchableSelectViewController = Backbone.View.extend({
     inherit_select_classes: true,
     max_selected_options: Infinity,
     no_results_text: "Nothing matched",
-    placeholder_text_multiple: "Press to search",
+    placeholder_text_multiple: "Select one or many",
     placeholder_text_single:	"Select one",
     search_contains: true,
     single_backstroke_delete: true,

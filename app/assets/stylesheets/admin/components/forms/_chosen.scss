@@ -241,7 +241,7 @@
   border-radius: 2px;
   font-size: 16px;
   line-height: 1.25;
-  padding: 4px 10px 3px 10px;
+  padding: 4px 7px 3px 7px;
 }
 
 .chosen-container-multi .chosen-choices li {
@@ -277,7 +277,7 @@
   padding: 5px 24px 5px 8px;
   border: 1px solid #aaa;
   max-width: 100%;
-  border-radius: 3px;
+  border-radius: 2px;
   background-color: #fcfcfc;
   background-size: 100% 19px;
   color: #333;
@@ -290,7 +290,6 @@
 }
 
 .chosen-container-multi .chosen-choices li.search-choice .search-choice-close {
-  border-radius: 100%;
   color: $cPlum;
   display: block;
   font-size: 12px;
