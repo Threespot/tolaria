@@ -1,7 +1,7 @@
 var SearchableSelectViewController = Backbone.View.extend({
 
-  // See http://harvesthq.github.io/chosen/options.html for
-  // help with these options
+  // See http://harvesthq.github.io/chosen/options.html
+  // for help with these options
   chosenOptions: {
     allow_single_deselect: false,
     disable_search: false,
