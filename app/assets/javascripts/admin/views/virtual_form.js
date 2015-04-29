@@ -21,10 +21,10 @@ var VirualFormViewController = Backbone.View.extend({
     var target = $link.attr("target");
 
     var $form = $("<form method='post' action=" + href + "></form>");
-    var $metadataInputs = "<input name='_method' value='" + method + "' type='hidden' />";
+    var $metadataInputs = "<input name='_method' value='" + method + "' type='hidden'>";
 
-    if (!!this.csrfToken && !!this.csrfParam) {
-      $metadataInputs += "<input name='" + RailsMeta.csrfParam + "' value='" + RailsMeta.csrfToken + "' type='hidden' />";
+    if (!!RailsMeta.csrfParam && !!RailsMeta.csrfToken) {
+      $metadataInputs += "<input name='" + RailsMeta.csrfParam + "' value='" + RailsMeta.csrfToken + "' type='hidden'>";
     }
 
     if (!!target) {

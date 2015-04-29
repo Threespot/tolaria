@@ -78,6 +78,7 @@
   input[type=time],
   input[type=datetime],
   input[type=datetime-local],
+  select,
   textarea {
 
     background: #fefefe;
@@ -105,6 +106,21 @@
   input[type=time] {
     font-family: $fMonospace;
     font-size: 14px;
+  }
+
+  select {
+    -ms-appearance: none;
+    -moz-appearance: none;
+    -webkit-appearance: none;
+    appearance: none;
+    background-image: image-url("admin/select_arrows.png");
+    background-size: 6px 10px;
+    background-position: right 9px center;
+    background-repeat: no-repeat;
+    &[multiple] {
+      background-image: none;
+      height: 43px;
+    }
   }
 
   input::-webkit-input-placeholder {color: #ccc}

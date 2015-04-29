@@ -18,8 +18,9 @@ Gem::Specification.new do |s|
   s.required_ruby_version = ">= 2.2.0"
 
   s.add_dependency "bcrypt", "~> 3.1"
+  s.add_dependency "kaminari", "~> 0.16"
   s.add_dependency "rails", "~> 4.0"
-  s.add_dependency "sass-rails", "~> 5.0"
   s.add_dependency "sass", "~> 3.3"
+  s.add_dependency "sass-rails", "~> 5.0"
 
 end
