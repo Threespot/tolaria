@@ -3,6 +3,8 @@ require "digest/md5"
 
 require "sass"
 require "bcrypt"
+require "kaminari"
+require "ransack"
 
 require "tolaria/version"
 require "tolaria/engine"

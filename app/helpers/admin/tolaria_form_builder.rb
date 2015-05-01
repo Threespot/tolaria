@@ -2,6 +2,10 @@ class Admin::TolariaFormBuilder < ActionView::Helpers::FormBuilder
 
   delegate :content_tag, :tag, :render, to: :@template
 
+  def hint(hint_text)
+    content_tag(:p, hint_text.chomp, class:"hint")
+  end
+
   def searchable_select(method, collection, value_method, text_method, options = {})
     render(partial:"admin/shared/forms/searchable_select", locals: {
       f: self,

@@ -1,0 +1,29 @@
+.pagination {
+
+  margin-top: 20px;
+  float: right;
+
+  &-desc {
+    display: none;
+    @include min-width(990px) {
+      display: block;
+      color: #BBB;
+      float: left;
+      font-size: 14px;
+      line-height: 16px;
+      border: 1px solid $cTaupe;
+      margin: 20px 0 0 0;
+      border-radius: 2px;
+      padding: 7px 14px 7px 12px;
+    }
+  }
+
+  li {
+    display: inline;
+  }
+
+  a {
+    display: inline-block;
+  }
+
+}

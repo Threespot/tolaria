@@ -10,6 +10,12 @@
   </div>
 
   <div class="right">
+
+    <%= button_tag type:"button", class:"button" do %>
+      <%= fontawesome_icon :search %>
+      Search
+    <% end %>
+
     <%= link_to url_for(action:"new"), class:"button -primary" do %>
       <%= fontawesome_icon :plus %>
       New <%= @resource.model_name.human.titleize %>
@@ -17,6 +23,19 @@
   </div>
 
 </div>
+
+<% if false %>
+
+  <%= search_form_for @search, url:url_for([:admin, @managed_class.klass]) do |f| %>
+
+    <%= f.label Tolaria.text_search_chain_for(@resource), "Containing" %>
+    <%= f.search_field Tolaria.text_search_chain_for(@resource) %>
+
+    <%= f.submit %>
+
+  <% end %>
+
+<% end %>
 
 <% if @resources.none? %>
 
@@ -63,4 +82,9 @@
 
 <% end %>
 
+<% if @resources.any? %>
+  <p class="pagination-desc"><%= page_entries_info @resources %></p>
+<% end %>
+
+<%= paginate @resources, theme:"admin", window:2 %>
 

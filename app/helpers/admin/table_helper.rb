@@ -1,8 +1,4 @@
-module Admin::ViewHelper
-
-  def hint(hint_text)
-    return content_tag(:p, hint_text, class:"hint")
-  end
+module Admin::TableHelper
 
   def index_th(label, sort:false)
 

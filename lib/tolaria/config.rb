@@ -13,6 +13,7 @@ module Tolaria
     attr_accessor :lockout_threshold
     attr_accessor :markdown_renderer
     attr_accessor :passcode_lifespan
+    attr_accessor :page_size
     attr_accessor :permitted_params
     attr_accessor :session_length
   end

@@ -10,4 +10,11 @@ module Tolaria
     end
   end
 
+  def self.text_search_chain_for(model)
+    textual_columns = model.columns_hash.select do |column, settings|
+      settings.sql_type.include?("character") || settings.sql_type.include?("text")
+    end
+    return %{#{textual_columns.keys.join("_or_")}_cont}.to_sym
+  end
+
 end

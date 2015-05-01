@@ -9,18 +9,19 @@ module Tolaria
 
     def index
       @resource = @managed_class.klass
-      @resources = @managed_class.klass.all
-      render tolaria_template("index")
+      @search = @managed_class.klass.ransack(params[:q])
+      @resources = @search.result.page(params[:page]).per(Tolaria.config.page_size)
+      return render tolaria_template("index")
     end
 
     def show
       @resource = @managed_class.klass.find_by_id(params[:id]) or raise ActiveRecord::RecordNotFound
-      render tolaria_template("show")
+      return render tolaria_template("show")
     end
 
     def new
       @resource = @managed_class.klass.new
-      render tolaria_template("new")
+      return render tolaria_template("new")
     end
 
     def create

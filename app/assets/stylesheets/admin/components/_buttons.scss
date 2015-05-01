@@ -53,4 +53,14 @@
     }
   }
 
+  &:disabled, &.disabled {
+    opacity: 0.75;
+    background: $cGrey;
+    cursor: not-allowed;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+  }
+
 }

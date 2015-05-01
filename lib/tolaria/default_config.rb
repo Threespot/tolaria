@@ -58,6 +58,10 @@ Tolaria.configure do |config|
     id
   ]
 
+  # The size of a page when paginating models
+  # End-users probably don't need to change this
+  config.page_size = 15
+
   # Default permitted_params for all forms
   # End-users probably shouldn’t change this
   config.permitted_params = %i[
