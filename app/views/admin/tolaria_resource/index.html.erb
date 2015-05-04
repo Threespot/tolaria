@@ -1,0 +1,38 @@
+<%= content_for :title, "#{@resource.model_name.human.pluralize.titleize}" %>
+
+<div class="main-controls">
+
+  <div class="left">
+    <h1>
+      <%= fontawesome_icon @managed_class.icon_name %>
+      <%= content_for :title %>
+    </h1>
+  </div>
+
+  <div class="right">
+
+    <% unless no_resources_exist? %>
+      <%= button_tag type:"button", class:"button search-form-toggle" do %>
+        <%= fontawesome_icon :search %>
+        Search
+      <% end %>
+    <% end %>
+
+    <%= link_to url_for(action:"new"), class:"button -primary" do %>
+      <%= fontawesome_icon :plus %>
+      New <%= @resource.model_name.human.titleize %>
+    <% end %>
+
+  </div>
+
+</div>
+
+<%= render "admin/tolaria_resource/search_form" %>
+<%= render "admin/tolaria_resource/index_table" %>
+
+<% if @resources.any? %>
+  <p class="pagination-desc"><%= page_entries_info @resources %></p>
+<% end %>
+
+<%= paginate @resources, theme:"admin", window:2 %>
+
