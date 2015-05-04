@@ -1,17 +1,25 @@
 module Admin::TableHelper
 
-  def index_th(label, sort:false)
+  def index_th(field_or_label, sort:true)
 
-    sorting_class = sort.present?? "-sortable" : "-unsortable"
-    sort_direction = nil
-
-    if label == :id
-      label = "ID"
-    elsif label.is_a?(Symbol)
-      label = label.to_s.humanize.titleize
+    case field_or_label
+    when :id
+      display_label = "ID"
+    when Symbol
+      display_label = field_or_label.to_s.humanize.titleize
+    else
+      display_label = field_or_label
     end
 
-    content_tag(:th, label, class:"index-th #{sorting_class} #{sort_direction}")
+    if sort.is_a?(Symbol)
+      return content_tag(:th, sort_link(@search, sort, display_label), class:"index-th")
+    end
+
+    if sort.eql?(true) && field_or_label.is_a?(Symbol)
+      return content_tag(:th, sort_link(@search, field_or_label, display_label), class:"index-th")
+    end
+
+    return content_tag(:th, display_label, class:"index-th")
 
   end
 
@@ -46,7 +54,7 @@ module Admin::TableHelper
     delete_link = link_to("Delete", url_for(action:"show", id:resource.id), {
       class: "button -small",
       method: :delete,
-      :'data-confirm' => "Are you sure you want to delete the #{resource.model_name.human.downcase} “#{Tolaria.display_name(resource)}”? This action is not reversible.",
+      :'data-confirm' => Tolaria.deletion_warning_for(resource),
     })
 
     return content_tag(:td, "#{edit_link}#{inspect_link}#{delete_link}".html_safe, class:"actions-td")

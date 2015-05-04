@@ -7,10 +7,6 @@ Tolaria.configure do |config|
   # Redirect the administratior to this route by default when logging in.
   config.default_redirect = :admin_administrators
 
-  # The default order to sort items on index pages.
-  # "id DESC" will usually show newest things at the top of the list.
-  config.default_sort_order = "id DESC"
-
   # Tolaria sends authentication emails. Set the value of the FROM field here.
   # This is NOT a trivial choice, you might have to get this address
   # whitelisted by your target companies.

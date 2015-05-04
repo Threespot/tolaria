@@ -2,6 +2,9 @@
 
   @include clearfix;
   display: block;
+  clear: both;
+  float: left;
+  width: 100%;
   text-align: center;
   padding: 10% 0 12% 0;
   margin: 20px 0 20px 0;
@@ -33,7 +36,9 @@
 
   &-text {
     margin: 10px auto 25px auto;
-
+    a {
+      color: $cSapphire;
+    }
   }
 
 }

@@ -1,43 +1,4 @@
-<%= content_for :title, "#{@resource.model_name.human.pluralize.titleize}" %>
-
-<div class="main-controls">
-
-  <div class="left">
-    <h1>
-      <%= fontawesome_icon @managed_class.icon_name %>
-      <%= content_for :title %>
-    </h1>
-  </div>
-
-  <div class="right">
-
-    <%= button_tag type:"button", class:"button" do %>
-      <%= fontawesome_icon :search %>
-      Search
-    <% end %>
-
-    <%= link_to url_for(action:"new"), class:"button -primary" do %>
-      <%= fontawesome_icon :plus %>
-      New <%= @resource.model_name.human.titleize %>
-    <% end %>
-  </div>
-
-</div>
-
-<% if false %>
-
-  <%= search_form_for @search, url:url_for([:admin, @managed_class.klass]) do |f| %>
-
-    <%= f.label Tolaria.text_search_chain_for(@resource), "Containing" %>
-    <%= f.search_field Tolaria.text_search_chain_for(@resource) %>
-
-    <%= f.submit %>
-
-  <% end %>
-
-<% end %>
-
-<% if @resources.none? %>
+<% if no_resources_exist? %>
 
   <% # Render a blank-slate because there’s nothing to list %>
 
@@ -53,6 +14,21 @@
     <% end %>
   </div>
 
+<% elsif currently_filtering? && @resources.none? %>
+
+  <% # Render a blank slate because nothing was found by searching %>
+
+  <div class="blank-slate">
+    <span class="blank-slate-icons"><%= fontawesome_icon :search %></span>
+    <h3 class="blank-slate-header">
+      Your search didn't find any <%= @resource.model_name.human.pluralize.titleize %>.
+    </h3>
+    <p class="blank-slate-text">
+      You can <%= link_to "clear the search form", url_for([:admin, @managed_class.klass]) %>
+      to start over.
+    </p>
+  </div>
+
 <% elsif admin_template_exisits?("#{@resource.model_name.route_key}/table") %>
 
   <%= render partial:"admin/#{@resource.model_name.route_key}/table" %>
@@ -65,7 +41,7 @@
     <thead>
       <tr>
         <%= index_th :id %>
-        <%= index_th :title %>
+        <%= index_th "Name", sort:false %>
         <%= actions_th %>
       </tr>
     </thead>
@@ -81,10 +57,3 @@
   </table>
 
 <% end %>
-
-<% if @resources.any? %>
-  <p class="pagination-desc"><%= page_entries_info @resources %></p>
-<% end %>
-
-<%= paginate @resources, theme:"admin", window:2 %>
-

@@ -19,7 +19,7 @@
       Edit This <%= @resource.model_name.human.titleize %>
     <% end %>
 
-    <%= link_to url_for(action:"show", id:@resource.id), class:"button -danger", method: :delete do %>
+    <%= link_to url_for(action:"show", id:@resource.id), class:"button -danger", method: :delete, :'data-confirm' => Tolaria.deletion_warning_for(@resource) do %>
       <%= fontawesome_icon :trash %>
       Delete
     <% end %>

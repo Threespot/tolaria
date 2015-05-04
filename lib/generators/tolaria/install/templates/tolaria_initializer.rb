@@ -21,10 +21,6 @@ Tolaria.configure do |config|
   # plan to use the markdown_composer form field.
   config.markdown_renderer = nil
 
-  # The default order to sort items on index pages.
-  # "id DESC" will usually show newest things at the top of the list.
-  # config.default_sort_order = "id DESC"
-
   # The cost factor for bcrypt. Raising this number will increase the
   # wall clock time bcrypt takes to hash a passphrase.
   # It is VERY DANGEROUS to set this below 10 for production.

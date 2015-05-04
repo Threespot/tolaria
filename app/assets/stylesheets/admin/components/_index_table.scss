@@ -43,6 +43,15 @@
   color: $cPlum;
   font-weight: bold;
 
+  a {
+    color: $cPlum;
+    font-weight: bold;
+    &.desc, &.asc,
+    &:hover, &:active {
+      color: $cThreespotPink;
+    }
+  }
+
   &:first-of-type {
     @include auto-size-column;
   }

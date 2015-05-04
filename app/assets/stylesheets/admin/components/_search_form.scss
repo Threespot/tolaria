@@ -1,0 +1,67 @@
+.search-form {
+
+  @include clearfix;
+  background: black(0.02);
+  padding: 10px 15px 25px 15px;
+  border-bottom: 1px solid $cGrey;
+  width: 100%;
+  float: right;
+
+  label {
+    margin: 0 0 10px 0;
+    border: 0;
+    @include min-width($bpFull) {
+      float: left;
+      width: 33%;
+      display: block;
+      line-height: 1.25;
+      padding: 11px 0 0 0;
+      text-align: right;
+      margin: 15px 0 10px 0;
+      &:first-of-type {
+        padding: 11px 0 0 0;
+      }
+    }
+  }
+
+  input[type=text],
+  input[type=email],
+  input[type=password],
+  input[type=number],
+  input[type=date],
+  input[type=time],
+  input[type=datetime],
+  input[type=datetime-local],
+  input[type=search],
+  select,
+  textarea {
+    @include min-width($bpFull) {
+      float: right;
+      width: 65%;
+      margin: 15px 0 0 0;
+    }
+  }
+
+  input[type=text]::-ms-clear { display: none; width : 0; height: 0; }
+  input[type=text]::-ms-reveal { display: none; width : 0; height: 0; }
+
+  input[type="search"]::-webkit-search-decoration,
+  input[type="search"]::-webkit-search-cancel-button,
+  input[type="search"]::-webkit-search-results-button,
+  input[type="search"]::-webkit-search-results-decoration {
+    display: none;
+  }
+
+  &-controlls {
+    @include clearfix;
+    clear: both;
+    display: block;
+    text-align: left;
+    margin: 15px 0 0 0;
+    @include min-width($bpFull) {
+      float: right;
+      width: 65%;
+    }
+  }
+
+}

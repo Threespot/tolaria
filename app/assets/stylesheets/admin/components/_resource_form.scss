@@ -83,9 +83,14 @@
   input[type=time],
   input[type=datetime],
   input[type=datetime-local],
+  input[type=search],
   select,
   textarea {
 
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    -ms-appearance: none;
+    appearance: none;
     background: #fefefe;
     border-radius: 2px;
     border: 1px solid $cTaupe;
@@ -101,7 +106,7 @@
       border-color: darken($cSapphire, 10);
       border-bottom-color: $cSapphire;
       border-right-color: $cSapphire;
-      background: #fff;
+      background-color: #fff;
     }
 
   }

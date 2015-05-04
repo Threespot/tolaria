@@ -2,6 +2,7 @@ module Tolaria
   class ResourceController < TolariaController
 
     before_filter :load_managed_class!
+    before_filter :strip_invalid_ransack_params!, only:[:index]
 
     # -------------------------------------------------------------------------
     # RESOURCE ACTIONS
@@ -11,6 +12,9 @@ module Tolaria
       @resource = @managed_class.klass
       @search = @managed_class.klass.ransack(params[:q])
       @resources = @search.result.page(params[:page]).per(Tolaria.config.page_size)
+      unless currently_sorting?
+        @resources = @resources.order(@managed_class.default_order)
+      end
       return render tolaria_template("index")
     end
 
@@ -100,6 +104,20 @@ module Tolaria
         *Tolaria.config.permitted_params,
         @managed_class.param_key => @managed_class.permitted_params
       )
+    end
+
+    # Some Ransack methods raise exceptions if the :q param is invalid
+    # Ignore q params not created by Ransack
+    def strip_invalid_ransack_params!
+      return true if params[:q].blank?
+      unless params[:q].is_a?(Hash)
+        params.delete(:q)
+      end
+    end
+
+    # Returns true if there is a sorting parameter for Ransack
+    def currently_sorting?
+      params[:q].present? && params[:q][:s].present?
     end
 
   end
