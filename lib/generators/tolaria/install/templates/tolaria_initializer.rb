@@ -12,6 +12,15 @@ Tolaria.configure do |config|
   # Redirect the administrator to this route by default when logging in.
   config.default_redirect = :admin_administrators
 
+  # You can assign models to a category to group them on the admin menu.
+  # Add/modify categories by changing the array below.
+  # Categories first in the array will be first on the menu.
+  config.menu_categories = [
+    # "Syndication",
+    # "Pages",
+    "Settings",
+  ]
+
   # Tolaria does not come bundled with a Markdown processing strategy.
   # You must provide a string that names a Ruby constant that can process Markdown.
   # The constant must respond to render(document), returning a string of HTML.

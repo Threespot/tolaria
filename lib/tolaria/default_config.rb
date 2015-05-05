@@ -12,6 +12,11 @@ Tolaria.configure do |config|
   # whitelisted by your target companies.
   config.from_address = "Rails <tolaria@example.org>"
 
+  # You can assign models to a category group them on the nav menu.
+  # Add/modify categories by changing the array below.
+  # Categories first in the array will be first on the menu.
+  config.menu_categories = ["Syndication", "Settings"]
+
   # The cost factor for bcrypt. Raising this number will increase the
   # wall clock time bcrypt takes to hash a passphrase.
   # It is VERY DANGEROUS to set this below 10 for production.
