@@ -6,9 +6,6 @@ var MarkdownComposerViewController = Backbone.View.extend({
   initialize: function() {
     this.$textarea = this.$("textarea");
     this.$preview = this.$(".markdown-composer-preview");
-    this.$previewButton = this.$(".-preview-toggle");
-    this.$previewButtonLabel = this.$(".-preview-toggle span");
-    this.$previewButtonIcon = this.$(".-preview-toggle .icon");
     this.$fullscreenButtonLabel = this.$(".-fullscreen-toggle span");
     this.$fullscreenButtonIcon = this.$(".-fullscreen-toggle .icon");
   },
@@ -160,7 +157,6 @@ var MarkdownComposerViewController = Backbone.View.extend({
     "blur textarea": "dimSelf",
 
     "click .-fullscreen-toggle": "toggleFullscreen",
-    "click .-preview-toggle": "togglePreview",
 
     // Formatting buttons
     "click .-header": function(event) {this.formatButton(event, "header")},
@@ -174,7 +170,6 @@ var MarkdownComposerViewController = Backbone.View.extend({
   }
 
 });
-
 
 $(".markdown-composer").each(function() {
   new MarkdownComposerViewController({el:this});

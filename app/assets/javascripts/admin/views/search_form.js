@@ -8,6 +8,7 @@ var SearchFormViewController = Backbone.View.extend({
 
   toggleForm: function() {
     this.$form.fadeToggle(100);
+    this.$("input:visible, select:visible, textarea:visible").first().focus();
   },
 
   events: {

@@ -8,18 +8,19 @@
     <% end %>
 
     <%= link_to Tolaria.config.default_redirect, class:"header-app-title" do %>
-      <%= Tolaria.config.interface_title %>
+      <%= Tolaria.config.company_name %>
     <% end %>
 
     <ul class="header-user-controls">
 
-      <li><%= link_to "Help Link", "#", class:"header-help-link" %></li>
-
-      <li><%= link_to "Another Link", "#", class:"header-help-link" %></li>
+      <% if false # FIXME: How shall we hook these up? %>
+        <li><%= link_to "Help Link", "#", class:"header-help-link" %></li>
+        <li><%= link_to "Another Link", "#", class:"header-help-link" %></li>
+      <% end %>
 
       <li>
         <%= link_to edit_admin_administrator_path(current_administrator), class:"header-user-profile" do %>
-          <%= image_tag gravatar_for(email:current_administrator.email), alt:"", size:"18x18" %>
+          <%= image_tag gravatar_for(current_administrator.email), alt:"", size:"18x18" %>
           <%= current_administrator.name %>
         <% end %>
       </li>

@@ -75,6 +75,14 @@
     width: 100%;
   }
 
+  img {
+    display: block;
+    float: left;
+    margin: -1px 7px 0 0;
+    border: 1px solid $cPlum;
+    border-radius: 1px;
+  }
+
 }
 
 .actions-td {

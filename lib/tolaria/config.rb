@@ -7,7 +7,7 @@ module Tolaria
     attr_accessor :default_redirect
     attr_accessor :display_name_methods
     attr_accessor :from_address
-    attr_accessor :interface_title
+    attr_accessor :company_name
     attr_accessor :lockout_duration
     attr_accessor :lockout_threshold
     attr_accessor :markdown_renderer

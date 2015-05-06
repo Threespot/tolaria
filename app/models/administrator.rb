@@ -51,7 +51,7 @@ class Administrator < ActiveRecord::Base
   # -----------------------------------------------------------------------------
 
   # Create an auth_token for new admins
-  # Prevent passcode fields from being null: create an already expired code
+  # Prevent passcode fields from being null, create an already expired code
   def initialize_authentication!
     self.passcode ||= BCrypt::Password.create(Tolaria::RandomTokens.passcode, cost:Tolaria.config.bcrypt_cost)
     self.passcode_expires_at ||= Time.current
@@ -123,7 +123,7 @@ class Administrator < ActiveRecord::Base
   # Lock their account and reset strikes.
   def lock_account!
     self.update!(
-      account_unlocks_at: Time.now + Tolaria.config.lockout_duration,
+      account_unlocks_at: Time.current + Tolaria.config.lockout_duration,
       lockout_strikes: 0,
     )
   end

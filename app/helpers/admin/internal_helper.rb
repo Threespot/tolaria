@@ -19,7 +19,7 @@ module Admin::InternalHelper
   end
 
   # Returns a URI to a Gravatar for the given email
-  def gravatar_for(email:)
+  def gravatar_for(email)
     digest = Digest::MD5.hexdigest(email)
     return "https://secure.gravatar.com/avatar/#{digest}?d=retro&s=36"
   end

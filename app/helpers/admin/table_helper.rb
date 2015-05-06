@@ -23,9 +23,13 @@ module Admin::TableHelper
 
   end
 
-  def index_td(resource, method_or_content, options = {})
+  def index_td(resource, method_or_content, options = {}, &block)
 
-    if method_or_content.is_a?(Symbol)
+    options = method_or_content if block_given?
+
+    if block_given?
+      content = yield
+    elsif method_or_content.is_a?(Symbol)
       content = resource.send(method_or_content)
     else
       content = method_or_content
@@ -33,10 +37,12 @@ module Admin::TableHelper
 
     options[:class] = "index-td #{options[:class]}"
 
+    if image = options.delete(:image)
+      image = image_tag(image, size:"18x18", alt:"")
+    end
+
     return content_tag(:td, options) do
-      link_to url_for(action:"edit", id:resource.id) do
-        content.to_s
-      end
+      link_to("#{image}#{content}".html_safe, url_for(action:"edit", id:resource.id))
     end
 
   end
@@ -46,19 +52,10 @@ module Admin::TableHelper
   end
 
   def actions_td(resource)
-
     edit_link = link_to("Edit", url_for(action:"edit", id:resource.id), class:"button -small")
-
     inspect_link = link_to("Inspect", url_for(action:"show", id:resource.id), class:"button -small")
-
-    delete_link = link_to("Delete", url_for(action:"show", id:resource.id), {
-      class: "button -small",
-      method: :delete,
-      :'data-confirm' => deletion_warning(resource),
-    })
-
+    delete_link = link_to("Delete", url_for(action:"show", id:resource.id), class: "button -small", method: :delete, :'data-confirm' => deletion_warning(resource))
     return content_tag(:td, "#{edit_link}#{inspect_link}#{delete_link}".html_safe, class:"actions-td")
-
   end
 
 end

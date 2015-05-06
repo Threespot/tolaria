@@ -1,13 +1,13 @@
 Tolaria.configure do |config|
 
-  # The name of the admin interface as used in the system
-  # navigation and HTML page titles.
-  config.interface_title = "Company Name"
+  # The name of the company or group using this admin interface.
+  # Used in system navigation and HTML page titles.
+  config.company_name = "Company Name"
 
   # Redirect the administratior to this route by default when logging in.
   config.default_redirect = :admin_administrators
 
-  # Tolaria sends authentication emails. Set the value of the FROM field here.
+  # Tolaria sends authentication emails. Set the value of the From header here.
   # This is NOT a trivial choice, you might have to get this address
   # whitelisted by your target companies.
   config.from_address = "Rails <tolaria@example.org>"

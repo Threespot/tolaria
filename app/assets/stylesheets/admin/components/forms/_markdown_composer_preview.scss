@@ -1,7 +1,7 @@
 .markdown-composer-preview {
 
-  font-size: 15px;
-  line-height: 1.333;
+  font-size: 14px;
+  line-height: 1.5;
   padding: 12px 16px;
 
   .dim {
@@ -26,6 +26,35 @@
     &:hover, &:active {
       text-decoration: none;
     }
+  }
+
+  h1 {
+    font-size: 140%;
+    font-weight: bold;
+    margin-top: 0.75em;
+  }
+
+  h2 {
+    font-size: 120%;
+    font-weight: bold;
+  }
+
+  h3 {
+    font-size: 100%;
+    font-weight: bold;
+  }
+
+  h4 {
+    font-size: 100%;
+    font-style: italic;
+    margin-bottom: -1em;
+  }
+
+  blockquote {
+    display: block;
+    color: $cDarkGrey;
+    border-left: 2px solid $cDarkGrey;
+    padding: 0 0 0 0.5em;
   }
 
   ol li {
