@@ -52,11 +52,12 @@ class Admin::TolariaFormBuilder < ActionView::Helpers::FormBuilder
   end
 
   def slug_field(method, options = {})
+    pattern = options.delete(:pattern)
     render(partial:"admin/shared/forms/slug_field", locals: {
       f: self,
       method: method,
       options: options,
-      pattern: options.fetch(:pattern, "/blog-example/*")
+      pattern: (pattern || "/blog-example/*")
     })
   end
 
