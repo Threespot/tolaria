@@ -11,8 +11,8 @@
     <% else %>
 
       <% # Show a default text filter because no filters were provided %>
-      <%= f.label Tolaria.text_search_chain_for(@resource), "Containing the text" %>
-      <%= f.search_field Tolaria.text_search_chain_for(@resource) %>
+      <%= f.label ransack_text_search_chain(@resource), "Containing the text" %>
+      <%= f.search_field ransack_text_search_chain(@resource) %>
 
     <% end %>
 

@@ -3,14 +3,9 @@ module Tolaria
 
     protect_from_forgery
     before_filter :add_admin_headers!
-    before_filter :admin_setup!
     before_filter :authenticate_admin!
 
     protected
-
-    def admin_setup!
-      # Nothing here just yet.
-    end
 
     def add_admin_headers!
       # Don't use old IE rendering modes
@@ -41,7 +36,6 @@ module Tolaria
     end
 
     helper_method :current_administrator
-
 
   end
 end

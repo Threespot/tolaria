@@ -54,7 +54,7 @@ module Admin::TableHelper
     delete_link = link_to("Delete", url_for(action:"show", id:resource.id), {
       class: "button -small",
       method: :delete,
-      :'data-confirm' => Tolaria.deletion_warning_for(resource),
+      :'data-confirm' => deletion_warning(resource),
     })
 
     return content_tag(:td, "#{edit_link}#{inspect_link}#{delete_link}".html_safe, class:"actions-td")

@@ -1,5 +1,5 @@
 # Adds a new DSL method to ActiveRecord model definition, allowing the
-# developer to configure a model to be managed as a resource in Tolaria.
+# developer to configure a model to manage with Tolaria.
 # The developer passes a hash of configuration options which are
 # forwarded as keyword arguments to Tolaria.manage
 

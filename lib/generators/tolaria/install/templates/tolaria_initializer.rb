@@ -14,7 +14,7 @@ Tolaria.configure do |config|
 
   # You can assign models to a category to group them on the admin menu.
   # Add/modify categories by changing the array below.
-  # Categories first in the array will be first on the menu.
+  # Categories will be in the same order in the menu as they are here.
   config.menu_categories = [
     # "Syndication",
     # "Pages",

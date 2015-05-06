@@ -1,11 +1,11 @@
 <div class="navigation">
 
-  <% Tolaria.managed_classes.group_by(&:category).each do |category, managed_classes| %>
+  <% Tolaria.categories.each do |category| %>
 
     <div class="navigation-group">
       <h3><%= category %></h3>
       <ul>
-        <% managed_classes.sort_by(&:priority).each do |managed_class| %>
+        <% Tolaria.classes_for_category(category).each do |managed_class| %>
           <li>
             <%= tolaria_navigation_link(
               managed_class.model_name.human.pluralize.titleize,

@@ -15,7 +15,7 @@ Tolaria.configure do |config|
   # You can assign models to a category group them on the nav menu.
   # Add/modify categories by changing the array below.
   # Categories first in the array will be first on the menu.
-  config.menu_categories = ["Syndication", "Settings"]
+  config.menu_categories = ["Settings"]
 
   # The cost factor for bcrypt. Raising this number will increase the
   # wall clock time bcrypt takes to hash a passphrase.

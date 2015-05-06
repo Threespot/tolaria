@@ -148,7 +148,7 @@ class Administrator < ActiveRecord::Base
   # -----------------------------------------------------------------------------
 
   manage_with_tolaria using: {
-    icon: "lock",
+    icon: "shield",
     category: "Settings",
     priority: 100,
     permit_params: %i[email name organization],

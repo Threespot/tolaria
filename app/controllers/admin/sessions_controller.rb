@@ -60,7 +60,7 @@ class Admin::SessionsController < Tolaria::TolariaController
 
   # ---------------------------------------------------------------------------
   # CREATE
-  # Attempt to sign in the admin with the email/passocde combination.
+  # Attempt to sign in the admin with the email/passcode combination.
   # ---------------------------------------------------------------------------
 
   def create
@@ -69,7 +69,7 @@ class Admin::SessionsController < Tolaria::TolariaController
     successful_authentication = @administrator.authenticate!(params[:administrator][:passcode])
 
     if @administrator and successful_authentication
-      # Set an encrypred admin cookie with our auth_token
+      # Set an signed admin cookie with our auth_token
       cookies.encrypted[:admin_auth_token] = {
         value: @administrator.auth_token,
         expires: params[:remember_me].eql?("1") ? 1.year.from_now : nil,
