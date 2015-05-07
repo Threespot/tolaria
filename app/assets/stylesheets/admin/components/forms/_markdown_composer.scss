@@ -18,7 +18,8 @@
     max-width: 1150px;
     margin: 0 auto -1px auto;
 
-    .-focused & {
+    .-focused &,
+    .-fullscreen & {
       border-color: darken($cSapphire, 10);
       border-bottom: 0;
       border-right-color: $cSapphire;
@@ -78,9 +79,9 @@
       position: absolute;
       top: 0;
       left: 0;
-      border-color: darken($cSapphire, 10);
+      border-left-color: darken($cSapphire, 10);
       border-bottom-color: $cSapphire;
-      border-right-color: $cSapphire;
+      border-right-color: $cTaupe;
     }
 
     .markdown-composer-preview {

@@ -17,9 +17,7 @@ var MarkdownComposerViewController = Backbone.View.extend({
 
   // Dim the composer. Cannot be dimmed at fullscreen.
   dimSelf: function() {
-    if (!this.fullscreen) {
-      this.$el.removeClass("-focused");
-    }
+    this.$el.removeClass("-focused");
   },
 
   toggleFullscreen: function(event) {
@@ -32,7 +30,6 @@ var MarkdownComposerViewController = Backbone.View.extend({
       this.$el.addClass("-fullscreen");
       $("body").addClass("-modal-open");
       this.$previewButton.hide();
-      this.brightenSelf();
       this.$fullscreenButtonLabel.html("Close Fullscreen");
       this.$fullscreenButtonIcon.removeClass("icon-arrows-alt").addClass("icon-compress");
       this.$textarea.focus();
@@ -44,7 +41,6 @@ var MarkdownComposerViewController = Backbone.View.extend({
       this.$el.removeClass("-fullscreen");
       $("body").removeClass("-modal-open");
       this.$previewButton.show();
-      this.dimSelf();
       this.$fullscreenButtonLabel.html("Fullscreen");
       this.$fullscreenButtonIcon.removeClass("icon-compress").addClass("icon-arrows-alt");
     }
@@ -58,9 +54,7 @@ var MarkdownComposerViewController = Backbone.View.extend({
   },
 
   updatePreview: function() {
-
     var trimmedDocument = $.trim(this.$textarea.val());
-
     if (!trimmedDocument) {
       this.presentErrorMessage("A preview of what you type will be shown here.");
       return true;
