@@ -1,0 +1,7 @@
+.searchable-select {
+  @include min-width($bpFull) {
+    float: left;
+    width: 79%;
+    max-width: 520px;
+  }
+}

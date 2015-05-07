@@ -1,89 +1,65 @@
-.form-left {
-  @include clearfix;
-  padding: 5px 0 0 0;
-  @include min-width($bpFull) {
-    float: left;
-    width: 66%;
-    padding: 5px 1.75% 5px 0;
-  }
-}
-
-.form-right {
-  @include clearfix;
-  padding: 0 0 5px 0;
-  @include min-width($bpFull) {
-    float: right;
-    width: 34%;
-    padding: 5px 0 10px 1.75%;
-  }
-}
+// .form-left {
+//   @include clearfix;
+//   padding: 5px 0 0 0;
+//   @include min-width($bpFull) {
+//     float: left;
+//     width: 66%;
+//     padding: 5px 1.75% 5px 0;
+//   }
+// }
+//
+// .form-right {
+//   @include clearfix;
+//   padding: 0 0 5px 0;
+//   @include min-width($bpFull) {
+//     float: right;
+//     width: 34%;
+//     padding: 5px 0 10px 1.75%;
+//   }
+// }
 
 .resource-form {
 
-  padding: 0 0 25px 0;
+  &-interior {
+    @include clearfix;
+    padding: 18px 0 0 0;
+  }
 
   label {
+
     display: block;
     margin: 25px 0 5px 0;
     font-size: 14px;
     font-weight: bold;
     line-height: 1.25;
     color: $cPlum;
-    border-top: 1px dashed black(0.09);
     padding: 20px 0 0 0;
-    &:first-of-type {
-      border-top: 0;
-      padding-top: 0;
-    }
-  }
+    clear: left;
 
-  .hint {
-    display: block;
-    clear: both;
-    font-size: 12px;
-    color: #888;
-    font-style: italic;
-    line-height: 1.25;
-    margin: 0 0 6px 0;
-  }
-
-  hr {
-    height: 0;
-    border: 0;
-    border-top: 3px double $cGrey;
-    margin: 30px 0 30px 0;
-  }
-
-  .form-explainer {
-    display: block;
-    font-size: 12px;
-    color: #888;
-    font-style: italic;
-    line-height: 1.25;
-    margin: 0 0 22px 0;
-    h6 {
+    @include min-width($bpFull) {
+      float: left;
+      width: 20%;
       display: block;
-      font-size: 14px;
-      font-weight: bold;
+      clear: left;
       line-height: 1.25;
-      color: $cPlum;
-      margin: 22px 0 6px 0;
-      font-style: normal;
+      padding: 0;
+      margin: 11px 0 10px 0;
     }
-    p + p {
-      margin-top: 1em;
-    }
+
   }
 
-  input[type=text],
-  input[type=email],
-  input[type=password],
-  input[type=number],
-  input[type=date],
-  input[type=time],
-  input[type=datetime],
+  input[type=color],
   input[type=datetime-local],
+  input[type=datetime],
+  input[type=date],
+  input[type=email],
+  input[type=number],
+  input[type=password],
+  input[type=range],
   input[type=search],
+  input[type=tel],
+  input[type=text],
+  input[type=time],
   select,
   textarea {
 
@@ -94,13 +70,19 @@
     background: #fefefe;
     border-radius: 2px;
     border: 1px solid $cTaupe;
-    width: 100%;
-    display: block;
     color: $cPlum;
+    display: block;
     font-size: 16px;
-    line-height: 1.25;
+    line-height: 21px;
     padding: 9px 10px;
     transition: background-color 100ms linear, border-color 100ms linear;
+    width: 100%;
+
+    @include min-width($bpFull) {
+      float: left;
+      width: 79%;
+      max-width: 520px;
+    }
 
     &:focus {
       border-color: darken($cSapphire, 10);
@@ -111,26 +93,48 @@
 
   }
 
-  input[type=date],
-  input[type=datetime],
-  input[type=time] {
-    font-family: $fMonospace;
-    font-size: 14px;
-  }
-
   select {
-    -ms-appearance: none;
-    -moz-appearance: none;
-    -webkit-appearance: none;
-    appearance: none;
     background-image: image-url("admin/select_arrows.png");
     background-size: 6px 10px;
-    background-position: right 9px center;
+    background-position: right 12px center;
     background-repeat: no-repeat;
     &[multiple] {
       background-image: none;
       height: 43px;
     }
+  }
+
+  .hint {
+    color: #888;
+    display: block;
+    font-size: 12px;
+    font-style: italic;
+    line-height: 1.25;
+    margin: 0 0 6px 0;
+    span {
+      display: block;
+      max-width: 520px;
+    }
+    @include min-width($bpFull) {
+      clear: both;
+      float: right;
+      margin: 10px 0 15px 0;
+      width: 100%;
+      padding: 0 0 10px 20%;
+      border-bottom: 1px dashed black(0.1);
+      &:last-of-type {
+        margin-bottom: 0;
+        border-bottom: 0;
+        padding-bottom: 0;
+      }
+    }
+  }
+
+  hr {
+    height: 0;
+    border: 0;
+    border-top: 3px double $cGrey;
+    margin: 30px 0 30px 0;
   }
 
   input::-webkit-input-placeholder {color: #ccc}

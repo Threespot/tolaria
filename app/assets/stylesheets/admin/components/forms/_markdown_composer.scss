@@ -1,5 +1,11 @@
 .markdown-composer {
 
+  @include min-width($bpFull) {
+    float: left;
+    width: 79%;
+    max-width: 620px;
+  }
+
   &-controls {
 
     @include clearfix;
@@ -21,12 +27,14 @@
   }
 
   textarea {
-    font-family: $fMonospace;
-    font-size: 15px;
-    border-top: 1px dashed $cGrey;
     border-radius: 0px 0px 2px 2px;
-    padding: 12px 12px 12px 12px;
+    border-top: 1px dashed $cGrey;
     color: #000;
+    font-family: $fMonospace;
+    font-size: 16px;
+    max-width: none;
+    padding: 12px 12px 12px 12px;
+    width: 100%;
     &:focus {
       border-top-color: $cGrey;
     }
@@ -53,6 +61,7 @@
     background: $cWhite;
     padding: 3% 5%;
     background: $cCoolGrey;
+    max-width: none;
 
     .markdown-composer-workspace {
       @include clearfix;

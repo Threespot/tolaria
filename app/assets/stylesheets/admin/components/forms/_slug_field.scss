@@ -9,6 +9,12 @@
     border-radius: 0 0 2px 2px;
     border: 1px solid $cGrey;
     border-top: 0;
+    @include min-width($bpFull) {
+      float: left;
+      width: 79%;
+      max-width: 520px;
+      margin-left: 20%;
+    }
   }
 
 }
