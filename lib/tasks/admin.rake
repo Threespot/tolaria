@@ -5,7 +5,7 @@ namespace :admin do
 
     @administrator = Administrator.new
 
-    STDOUT.puts "Enter the new Administrator’s credentials. All fields are required."
+    STDOUT.puts "Enter the new administrator’s credentials. All fields are required."
 
     STDOUT.print "Email address: "
     @administrator.email = STDIN.gets.chomp
@@ -20,7 +20,7 @@ namespace :admin do
       STDOUT.puts %{The administrator "#{@administrator.name}" <#{@administrator.email}> was successfully created.}
       exit(true)
     else
-      STDOUT.puts "Your changes couldn’t be saved."
+      STDOUT.puts "Your changes couldn’t be saved:"
       @administrator.errors.full_messages.each do |message|
         STDOUT.puts message
       end
