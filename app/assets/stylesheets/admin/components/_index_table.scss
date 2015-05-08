@@ -9,7 +9,7 @@
   &-wrap {
     overflow-x: scroll;
     @include min-width($bpFull) {
-      overflow-x: auto;
+      overflow-x: visible;
     }
   }
 
