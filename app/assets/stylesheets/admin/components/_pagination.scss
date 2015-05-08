@@ -18,6 +18,13 @@
     }
   }
 
+  .-page {
+    display: none;
+    @include min-width($bpFull) {
+      display: inline-block;
+    }
+  }
+
   li {
     display: inline;
   }

@@ -19,4 +19,16 @@
 
   <% end %>
 
+  <div class="navigation-group mobile-only">
+    <h3>Options</h3>
+    <ul>
+      <li>
+        <%= tolaria_navigation_link("Your Account", :user, edit_admin_administrator_path(current_administrator)) %>
+      </li>
+      <li>
+        <%= tolaria_navigation_link("Sign Out", :sign_out, admin_destroy_session_path, method: :delete) %>
+      </li>
+    </ul>
+  </div>
+
 </div>

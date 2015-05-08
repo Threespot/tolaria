@@ -7,12 +7,13 @@ html {
 body {
 
   @include clearfix();
-  background-color: $cEggshell;
+  background-color: $cWhite;
   font-family: $fHelvetica;
   padding: 0 20px 0 20px;
   width: 100%;
 
   @include min-width($bpFull) {
+    background-color: $cEggshell;
     background-image: linear-gradient(to right, $cEggshell 50%, #fff 50%);
   }
 
@@ -35,5 +36,17 @@ body {
   min-height: 100vh;
   @include min-width($bpFull) {
     display: table;
+  }
+}
+
+.mobile-only {
+  @include min-width($bpFull) {
+    display: none !important;
+  }
+}
+
+.desktop-only {
+  @include max-width($bpFull) {
+    display: none !important;
   }
 }

@@ -23,18 +23,13 @@
   z-index: 100;
 
   &-menu-trigger {
-    color: $cWhite;
+    color: #fff;
     display: block;
     line-height: 18px;
     padding: 10px 0 10px 0;
     float: left;
     span {
-      border: 1px solid white(0.25);
-      border-radius: 2px;
-      padding: 5px 18px 5px 5px;
-    }
-    @include min-width($bpFull) {
-      display: none;
+      padding: 5px 18px 5px 0;
     }
   }
 

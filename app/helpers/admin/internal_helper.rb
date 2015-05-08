@@ -2,9 +2,9 @@ module Admin::InternalHelper
 
   # Returns a navigation menu link with the given label,
   # Font Awesome icon name, and URI
-  def tolaria_navigation_link(label, icon_name, index_path)
-    css_class = index_path.in?(url_for) ? "current" : nil
-    link_to index_path, class:css_class do
+  def tolaria_navigation_link(label, icon_name, index_path, options = {})
+    options[:class] = "#{options[:class]} current" if index_path.in?(url_for)
+    link_to index_path, options do
       fontawesome_icon(icon_name) << " #{label}"
     end
   end

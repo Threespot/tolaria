@@ -6,6 +6,7 @@ module Tolaria
       app.config.assets.precompile += %w[
         admin/admin.css
         admin/admin.js
+        admin/lib/no.js
       ]
     end
 

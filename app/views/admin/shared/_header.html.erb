@@ -3,8 +3,8 @@
 <div class="header">
   <div class="inner-align">
 
-    <%= link_to Tolaria.config.default_redirect, class:"header-menu-trigger" do %>
-      <span><%= fontawesome_icon :bars %> Menu</span>
+    <%= link_to Tolaria.config.default_redirect, class:"header-menu-trigger mobile-only" do %>
+      <span><%= fontawesome_icon :bars %> <%= Tolaria.config.company_name %></span>
     <% end %>
 
     <%= link_to Tolaria.config.default_redirect, class:"header-app-title" do %>
@@ -19,7 +19,7 @@
       <% end %>
 
       <li>
-        <%= link_to edit_admin_administrator_path(current_administrator), class:"header-user-profile" do %>
+        <%= link_to edit_admin_administrator_path(current_administrator), class:"header-user-profile desktop-only" do %>
           <%= image_tag gravatar_for(current_administrator.email), alt:"", size:"18x18" %>
           <%= current_administrator.name %>
         <% end %>

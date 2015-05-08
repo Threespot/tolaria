@@ -6,8 +6,16 @@
 
 .index-table {
 
-  width: 100%;
+  &-wrap {
+    overflow-x: scroll;
+    @include min-width($bpFull) {
+      overflow-x: auto;
+    }
+  }
+
+  min-width: 730px;
   text-align: left;
+  width: 100%;
 
   .monospace {
     font-size: 14px;

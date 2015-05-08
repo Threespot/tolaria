@@ -8,7 +8,7 @@
   float: right;
 
   label {
-    margin: 0 0 10px 0;
+    margin: 10px 0 10px 0;
     border: 0;
     @include min-width($bpFull) {
       float: left;

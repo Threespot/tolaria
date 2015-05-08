@@ -31,29 +31,39 @@
 
 <% elsif admin_template_exisits?("#{@resource.model_name.route_key}/table") %>
 
-  <%= render partial:"admin/#{@resource.model_name.route_key}/table" %>
+  <div class="index-table-wrap">
+    <%= render partial:"admin/#{@resource.model_name.route_key}/table" %>
+  </div>
 
 <% else %>
 
   <% # Render a default table because the developer didn’t provide one %>
 
-  <table class="index-table">
-    <thead>
-      <tr>
-        <%= index_th :id %>
-        <%= index_th "Name", sort:false %>
-        <%= actions_th %>
-      </tr>
-    </thead>
-    <tbody>
-      <% @resources.each do |resource| %>
+  <div class="index-table-wrap">
+    <table class="index-table">
+      <thead>
         <tr>
-          <%= index_td resource, :id %>
-          <%= index_td resource, Tolaria.display_name(resource) %>
-          <%= actions_td resource %>
+          <%= index_th :id %>
+          <%= index_th "Name", sort:false %>
+          <%= actions_th %>
         </tr>
-      <% end %>
-    </tbody>
-  </table>
+      </thead>
+      <tbody>
+        <% @resources.each do |resource| %>
+          <tr>
+            <%= index_td resource, :id %>
+            <%= index_td resource, Tolaria.display_name(resource) %>
+            <%= actions_td resource %>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
 
 <% end %>
+
+<% if @resources.any? %>
+  <p class="pagination-desc"><%= page_entries_info @resources %></p>
+<% end %>
+
+<%= paginate @resources, theme:"admin", window:2 %>

@@ -2,14 +2,14 @@
 
 <div class="main-controls">
 
-  <div class="left">
+  <div class="main-controls-left">
     <h1>
       <%= fontawesome_icon @managed_class.icon_name %>
       <%= content_for :title %>
     </h1>
   </div>
 
-  <div class="right">
+  <div class="main-controls-right">
 
     <% unless no_resources_exist? %>
       <%= button_tag type:"button", class:"button search-form-toggle" do %>
@@ -30,9 +30,5 @@
 <%= render "admin/tolaria_resource/search_form" %>
 <%= render "admin/tolaria_resource/index_table" %>
 
-<% if @resources.any? %>
-  <p class="pagination-desc"><%= page_entries_info @resources %></p>
-<% end %>
 
-<%= paginate @resources, theme:"admin", window:2 %>
 

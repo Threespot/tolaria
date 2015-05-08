@@ -3,6 +3,8 @@
   <title><%= "#{content_for(:title)} • " if content_for(:title) %><%= Tolaria.config.company_name %></title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="robots" content="noindex">
+  <meta name="google" content="notranslate">
   <%= csrf_meta_tags %>
   <%= stylesheet_link_tag "admin/admin", media:"all" %>
+  <%= javascript_include_tag "admin/lib/no" %>
 </head>
