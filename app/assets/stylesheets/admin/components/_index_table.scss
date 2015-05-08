@@ -4,14 +4,17 @@
   white-space: nowrap;
 }
 
-.index-table {
-
-  &-wrap {
-    overflow-x: scroll;
-    @include min-width($bpFull) {
-      overflow-x: visible;
-    }
+.index-table-wrap {
+  @include clearfix;
+  float: left;
+  overflow-x: scroll;
+  width: 100%;
+  @include min-width($bpFull) {
+    overflow-x: visible;
   }
+}
+
+.index-table {
 
   min-width: 730px;
   text-align: left;
