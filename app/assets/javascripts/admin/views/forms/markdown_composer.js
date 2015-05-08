@@ -41,6 +41,7 @@ var MarkdownComposerViewController = Backbone.View.extend({
       $("body").removeClass("-modal-open");
       this.$fullscreenButtonLabel.html("Fullscreen");
       this.$fullscreenButtonIcon.removeClass("icon-compress").addClass("icon-arrows-alt");
+      this.$textarea.focus();
     }
   },
 
