@@ -8,8 +8,10 @@
     remote:        data-remote
 -%>
 <li>
+  <% rel = "next" if page.next? %>
+  <% rel = "prev" if page.prev? %>
   <%= link_to page, url, {
     class: (page.current?? "button -primary -page-current" : "button -page"),
-    rel: ("next" if page.next? || "prev" if page.prev?)
+    rel: rel,
   } %>
 </li>
