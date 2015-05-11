@@ -12,8 +12,8 @@ module Admin::TableHelper
   #    # Create a header that sorts a named column
   #    index_th(:title, sort:true)
   #
-  #    # Create a header that sorts column, with custom label
-  #    index_th("Strange Title", sort:true)
+  #    # Create a header that sorts a column, with custom label
+  #    index_th("Strange Title", sort: :title)
   #
   #    # Create a header that can't be sorted
   #    index_th("Strange Title", sort:false)
