@@ -8,7 +8,6 @@ require "ransack"
 
 require "tolaria/version"
 require "tolaria/engine"
-require "tolaria/exceptions"
 require "tolaria/config"
 require "tolaria/default_config"
 require "tolaria/random_tokens"

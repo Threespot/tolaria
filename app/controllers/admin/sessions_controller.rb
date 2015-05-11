@@ -2,10 +2,7 @@ class Admin::SessionsController < Tolaria::TolariaController
 
   skip_before_filter :authenticate_admin!
 
-  # ---------------------------------------------------------------------------
-  # NEW
   # Present the signin form
-  # ---------------------------------------------------------------------------
 
   def new
     if current_administrator
@@ -16,10 +13,7 @@ class Admin::SessionsController < Tolaria::TolariaController
     return render "admin/session/form", layout:"admin/sessions"
   end
 
-  # ---------------------------------------------------------------------------
-  # CODE REQUEST
-  # Dispatch an email with the admin’s passcode, or return JSON errors
-  # ---------------------------------------------------------------------------
+  # Code request: Dispatch an email with the admin’s passcode, or return JSON errors
 
   def request_code
 
@@ -58,10 +52,7 @@ class Admin::SessionsController < Tolaria::TolariaController
 
   end
 
-  # ---------------------------------------------------------------------------
-  # CREATE
-  # Attempt to sign in the admin with the email/passcode combination.
-  # ---------------------------------------------------------------------------
+  # Create: Attempt to sign in the admin with the email/passcode combination.
 
   def create
 
@@ -83,10 +74,7 @@ class Admin::SessionsController < Tolaria::TolariaController
     end
   end
 
-  # ---------------------------------------------------------------------------
-  # DESTROY
-  # Sign out the admin and reset the session
-  # ---------------------------------------------------------------------------
+  # Destroy: Sign out the admin and reset the session
 
   def destroy
     cookies.delete(:admin_auth_token)
@@ -97,6 +85,7 @@ class Admin::SessionsController < Tolaria::TolariaController
 
   protected
 
+  # Returns a random UI greeting.
   def random_greeting
     case [1,2,3].sample
     when 1

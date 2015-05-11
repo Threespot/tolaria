@@ -3,7 +3,7 @@
   <% # Render a blank-slate because there’s nothing to list %>
 
   <div class="blank-slate">
-    <span class="blank-slate-icons"><%= fontawesome_icon @managed_class.icon_name %></span>
+    <span class="blank-slate-icons"><%= fontawesome_icon @managed_class.icon %></span>
     <h3 class="blank-slate-header">
       No <%= @resource.model_name.human.pluralize.titleize %> live here.
     </h3>

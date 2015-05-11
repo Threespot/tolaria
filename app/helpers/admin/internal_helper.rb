@@ -2,18 +2,18 @@ module Admin::InternalHelper
 
   # Returns a navigation menu link with the given label,
   # Font Awesome icon name, and URI
-  def tolaria_navigation_link(label, icon_name, index_path, options = {})
+  def tolaria_navigation_link(label, icon, index_path, options = {})
     options[:class] = "#{options[:class]} current" if index_path.in?(url_for)
     link_to index_path, options do
-      fontawesome_icon(icon_name) << " #{label}"
+      fontawesome_icon(icon) << " #{label}"
     end
   end
 
   # Returns an <i> tag that displays a Font Awesome icon
-  def fontawesome_icon(icon_name = "", options = {})
-    icon_name = icon_name.to_s.parameterize.gsub("_", "-")
+  def fontawesome_icon(icon = "", options = {})
+    icon = icon.to_s.parameterize.gsub("_", "-")
     content_tag :i, nil, options.reverse_merge({
-      :class => "icon icon-#{icon_name}",
+      :class => "icon icon-#{icon}",
       :"aria-hidden" => true,
     })
   end

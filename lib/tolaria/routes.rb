@@ -1,11 +1,10 @@
 module Tolaria
 
   # The developer calls `Tolaria.draw_routes(self)` inside the
-  # router’s block scope
-
+  # router’s scope. Tolaria automatically adds routes for managed classes.
   def self.draw_routes(router)
 
-    self.reload_app_folder!
+    self.reload!
 
     router.instance_exec(managed_classes) do |managed_classes|
       namespace :admin do

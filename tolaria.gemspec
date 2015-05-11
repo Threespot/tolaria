@@ -8,7 +8,7 @@ Gem::Specification.new do |s|
   s.platform      = Gem::Platform::RUBY
   s.authors       = ["Threespot Media"]
   s.licenses      = ["MIT"]
-  s.homepage      = "https://github.com/csuhta/tolaria"
+  s.homepage      = "https://github.com/threespot/tolaria"
   s.description   = "Tolaria is a seriously opinionated Rails CMS framework for making people happy."
   s.summary       = "Tolaria is an opinionated Rails CMS framework."
 
@@ -23,5 +23,8 @@ Gem::Specification.new do |s|
   s.add_dependency "ransack", "~> 1.6"
   s.add_dependency "sass", "~> 3.3"
   s.add_dependency "sass-rails", "~> 5.0"
+
+  s.add_development_dependency "sdoc"
+  s.add_development_dependency "minitest"
 
 end

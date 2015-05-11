@@ -1,5 +1,22 @@
 module Admin::TableHelper
 
+  # Returns a `<th>` tag, suitable for use inside a `table.index-table`.
+  # +field_or_label+ may be any string, or a symbol naming a model column.
+  # +sort+ may be `true`, `false`, or a symbol. See the signtures below.
+  #
+  # If the column is sortable, the `<th>` will contain a Ransack sort link
+  # that allows the end-user to organize the table by that column.
+  #
+  # ==== Signatures
+  #
+  #    # Create a header that sorts a named column
+  #    index_th(:title, sort:true)
+  #
+  #    # Create a header that sorts column, with custom label
+  #    index_th("Strange Title", sort:true)
+  #
+  #    # Create a header that can't be sorted
+  #    index_th("Strange Title", sort:false)
   def index_th(field_or_label, sort:true)
 
     case field_or_label
@@ -23,6 +40,18 @@ module Admin::TableHelper
 
   end
 
+  # Returns a `<td>` tag, suitable for use inside a `table.index-table`.
+  # If +method_or_content+ is a symbol, it will call that method on the
+  # given +resource+ to obtain the content of the `<td>`. Otherwise
+  # it expects +method_or_content+ or a passed block to provide suitable string.
+  #
+  # #### Special Options
+  #
+  # - `:image` - A URL to a square image to use in the <td>, floating to the
+  #   left of the content. The image should be a square at least
+  #   14×14px in size.
+  #
+  # Other options are forwarded to `content_tag` for the `<td>`.
   def index_td(resource, method_or_content, options = {}, &block)
 
     options = method_or_content if block_given?
@@ -47,10 +76,13 @@ module Admin::TableHelper
 
   end
 
+  # Returns an `index_th` with label `"Actions"` that is not sortable.
   def actions_th
     index_th("Actions", sort:false)
   end
 
+  # Returns a `<td>` tag, suitable for use inside a `table.index-table`.
+  # The tag contains buttons to edit, inspect, and delete the given +resource+.
   def actions_td(resource)
     edit_link = link_to("Edit", url_for(action:"edit", id:resource.id), class:"button -small")
     inspect_link = link_to("Inspect", url_for(action:"show", id:resource.id), class:"button -small")

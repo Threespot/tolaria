@@ -18,10 +18,17 @@ module Tolaria
     attr_accessor :session_length
   end
 
+  # Returns Tolaria’s configuration as an object
   def self.config
     @configuration ||= Tolaria::Configuration.new
   end
 
+  # Configure Tolaria, block-style. Use something similar to:
+  #
+  #    Tolaria.configure |config| do
+  #       # Assign to config properties here
+  #    end
+  #
   def self.configure(&block)
     yield @configuration ||= Tolaria::Configuration.new
   end

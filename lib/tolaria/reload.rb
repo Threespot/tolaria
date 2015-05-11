@@ -1,15 +1,15 @@
 module Tolaria
 
-  # To provide admin pane development magic, Tolaria provides this method
+  # To provide admin pane development magic, Tolaria has this method
   # to force Rails to autoload/reload all model files.
-  def self.reload_models!
+  def self.reload!
 
     # Reference the `Administrator` object so that Rails autoloads
     # it from the engine directory
     Administrator
 
     # Reference each ActiveRecord::Base model so Rails
-    # autoloads or reloads it.
+    # autoloads it or reloads changed files.
     Dir["#{Rails.root}/app/models/*.rb"].each do |file|
       File.basename(file, ".rb").camelize.constantize
     end

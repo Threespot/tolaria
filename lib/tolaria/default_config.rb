@@ -4,12 +4,10 @@ Tolaria.configure do |config|
   # Used in system navigation and HTML page titles.
   config.company_name = "Company Name"
 
-  # Redirect the administratior to this route by default when logging in.
+  # Redirect the users to this route by default when logging in.
   config.default_redirect = :admin_administrators
 
   # Tolaria sends authentication emails. Set the value of the From header here.
-  # This is NOT a trivial choice, you might have to get this address
-  # whitelisted by your target companies.
   config.from_address = "Rails <tolaria@example.org>"
 
   # You can assign models to a category group them on the nav menu.
@@ -17,11 +15,10 @@ Tolaria.configure do |config|
   # Categories first in the array will be first on the menu.
   config.menu_categories = ["Settings"]
 
-  # The cost factor for bcrypt. Raising this number will increase the
-  # wall clock time bcrypt takes to hash a passphrase.
+  # The cost factor for bcrypt.
   # It is VERY DANGEROUS to set this below 10 for production.
   # Use 1 in test mode to speed up your test suite.
-  config.bcrypt_cost = Rails.env.test?? 1 : 12
+  config.bcrypt_cost = Rails.env.test?? 1 : 13
 
   # The length of time that emailed passcodes should be valid.
   # It is STRONGLY RECOMMENDED that you keep this under 30 minutes.
@@ -59,12 +56,11 @@ Tolaria.configure do |config|
     id
   ]
 
-  # The size of a page when paginating models
-  # End-users probably don't need to change this
+  # The number of items on each page when paginating models.
   config.page_size = 15
 
-  # Default permitted_params for all forms
-  # End-users probably shouldn’t change this
+  # Default permitted_params for all forms.
+  # End-developers probably shouldn’t change this.
   config.permitted_params = %i[
     _method
     authenticity_token

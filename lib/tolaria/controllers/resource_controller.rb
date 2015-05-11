@@ -98,7 +98,7 @@ module Tolaria
     end
 
     # Filters params, allows the default params Tolaria needs
-    # and the configured permitted_params from the managed class
+    # and the configured `permitted_params` from the managed class
     def resource_params
       params.permit(
         *Tolaria.config.permitted_params,
@@ -106,8 +106,8 @@ module Tolaria
       )
     end
 
-    # Some Ransack methods raise exceptions if the :q param is invalid
-    # Ignore q params not created by Ransack
+    # Some Ransack methods raise exceptions if the `q` param is invalid.
+    # Strip `q` params not created by Ransack
     def strip_invalid_ransack_params!
       return true if params[:q].blank?
       unless params[:q].is_a?(Hash)

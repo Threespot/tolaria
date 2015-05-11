@@ -15,32 +15,19 @@ class Administrator < ActiveRecord::Base
     format: /\A[^@\s]+@([^@\s]+\.)+[^@\s]+\z/
   }
 
-  validates :name, {
-    presence: true
-  }
+  # Require all user-visible fields
+  validates_presence_of :name
+  validates_presence_of :organization
 
-  validates :organization, {
-    presence: true
-  }
+  # Parts of the admin system should not be empty
+  validates_presence_of :auth_token
+  validates_presence_of :passcode
+  validates_presence_of :passcode_expires_at
+  validates_presence_of :account_unlocks_at
 
-  validates :auth_token, {
-    presence: true
-  }
-
-  validates :passcode, {
-    presence: true
-  }
-
-  validates :passcode_expires_at, {
-    presence: true
-  }
-
-  validates :account_unlocks_at, {
-    presence: true
-  }
-
+  # Downcase and strip whitespace from the current email
   def normalize_email!
-    self.email = self.email.to_s.downcase.strip
+    self.email = self.email.to_s.downcase.squish
   end
 
   # -----------------------------------------------------------------------------
@@ -50,8 +37,10 @@ class Administrator < ActiveRecord::Base
   # and passcode inside the time window
   # -----------------------------------------------------------------------------
 
-  # Create an auth_token for new admins
-  # Prevent passcode fields from being null, create an already expired code
+  # Initalize +passcode+, +passcode_expires_at+,
+  # +auth_token+, and +account_unlocks_at+ for a new admin.
+  # To prevent passcode system fields from being null,
+  # we fill them with an immediately expired passcode.
   def initialize_authentication!
     self.passcode ||= BCrypt::Password.create(Tolaria::RandomTokens.passcode, cost:Tolaria.config.bcrypt_cost)
     self.passcode_expires_at ||= Time.current
@@ -59,7 +48,7 @@ class Administrator < ActiveRecord::Base
     self.account_unlocks_at ||= Time.current
   end
 
-  # Send a passcode challenge to the admin
+  # Send a passcode challenge email to the admin
   def send_passcode_email!
     plaintext_passcode = self.set_passcode!
     PasscodeMailer.passcode(self, plaintext_passcode).deliver_now
@@ -67,6 +56,7 @@ class Administrator < ActiveRecord::Base
 
   # Generate a new passcode challenge.
   # Create a passcode, save it, and set an expiration window.
+  # Returns the plaintext passcode to send to the user.
   def set_passcode!
     plaintext_passcode = Tolaria::RandomTokens.passcode
     self.update!(
@@ -76,7 +66,8 @@ class Administrator < ActiveRecord::Base
     return plaintext_passcode
   end
 
-  # Attempt to authenticate the admin
+  # Attempt to authenticate the account with the given plaintext +passcode+.
+  # Returns true if the passcode was valid, false otherwise.
   def authenticate!(passcode)
 
     # Always run bcrypt first so that we incur the time pentaly
@@ -85,8 +76,8 @@ class Administrator < ActiveRecord::Base
     # Reject if currently locked
     return false if self.locked?
 
-    # Clear strikes and consume the passcode if the passcode was valid
-    # Reject and incur a strike if the challenge was failed
+    # Clear strikes and consume the passcode if the passcode was valid.
+    # Reject and incur a strike if the challenge was failed.
     if bcrypt_valid && Time.current < self.passcode_expires_at
       self.consume_passcode!
       return true
@@ -97,8 +88,7 @@ class Administrator < ActiveRecord::Base
 
   end
 
-  # When the user authenticates successfully, expire the passcode and
-  # reset their account strikes
+  # Immediately expire the current passcode and reset lockout strikes.
   def consume_passcode!
     self.update!(
       passcode_expires_at: Time.current,
@@ -108,7 +98,7 @@ class Administrator < ActiveRecord::Base
 
   # Add one strike to the account.
   # An admin is given a strike for requesting a code or flunking a challenge.
-  # Lock the account if they’ve hit the threshold.
+  # Will lock the account if they’ve hit the threshold.
   def accrue_strike!
     self.update!(
       lockout_strikes: self.lockout_strikes + 1,
@@ -119,8 +109,7 @@ class Administrator < ActiveRecord::Base
     end
   end
 
-  # This user hit the strike threshold.
-  # Lock their account and reset strikes.
+  # Lock this account immediately and reset lockout strikes.
   def lock_account!
     self.update!(
       account_unlocks_at: Time.current + Tolaria.config.lockout_duration,
@@ -128,7 +117,7 @@ class Administrator < ActiveRecord::Base
     )
   end
 
-  # Unlock the user’s account, currently only useful for someone
+  # Unlock the user’s account. Currently only usable by someone
   # with Rails console access.
   def unlock_account!
     self.update!(
@@ -137,7 +126,7 @@ class Administrator < ActiveRecord::Base
     )
   end
 
-  # True if currently inside the lock window
+  # True if the account is currently inside a lockout window
   def locked?
     return Time.current < self.account_unlocks_at
   end
