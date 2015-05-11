@@ -14,17 +14,17 @@ class ActiveRecord::Base
   # - `:category` - The navigation category to use for this resource.
   #   Should be one of the configured labels in Tolaria.config.menu_categories.
   #   The default is `"Settings"`.
-  # - `:priority` - The priortiy for this item in its menu category.
-  #   Items with lower priorirty are sorted first.
+  # - `:priority` - The priority for this item in its menu category.
+  #   Items with lower priority are sorted first.
   #   The default is 10.
   # - `:icon` - The Font Awesome icon to use for this model.
   #   Should be one of the names on the Font Awesome site at
   #   http://fortawesome.github.io/Font-Awesome/icons/
   #   The default is `"file-o"`.
-  # - `:permitted_params` - A array of parameters names to pass to `params.permit()` for this model/form.
-  #   The default is an empty array,
-  #   you will need to set this option to list the fields you included
-  #   on your admin form.
+  # - `:permitted_params` - A array of parameter names to pass to
+  #   `params.permit()` for this model/form.
+  #   The default is an empty array. You will need to set this option to
+  #   match the fields you included on your admin form.
   # - `:default_order` - The default `order()` for sorting this
   #   model when no other sorting is happening.
   #   The default is `"id DESC"`.
