@@ -28,6 +28,9 @@ class ActiveRecord::Base
   # - `:default_order` - The default `order()` for sorting this
   #   model when no other sorting is happening.
   #   The default is `"id DESC"`.
+  # - `:paginated` - If `true`, Tolaria will apply the default
+  #   pagination controls/system to the model. Set to `false` to disable.
+  #   The default is `true`.
   # - `:allowed_actions` - The router actions to draw for this model.
   #   Only set this value yourself if you are overriding or forbidding some
   #   route construction.

@@ -11,7 +11,10 @@ module Tolaria
     def index
       @resource = @managed_class.klass
       @search = @managed_class.klass.ransack(params[:q])
-      @resources = @search.result.page(params[:page]).per(Tolaria.config.page_size)
+      @resources = @search.result
+      if @managed_class.paginated?
+        @resources = @resources.page(params[:page]).per(Tolaria.config.page_size)
+      end
       unless currently_sorting?
         @resources = @resources.order(@managed_class.default_order)
       end
@@ -60,7 +63,7 @@ module Tolaria
         return redirect_to url_for([:admin, @managed_class.klass])
       else
         flash.now[:error] = "Your changes couldn’t be saved. Please correct the following errors:"
-        return render tolaria_template("update")
+        return render tolaria_template("edit")
       end
 
     end
