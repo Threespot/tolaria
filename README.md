@@ -8,7 +8,7 @@ Tolaria is a content management system (CMS) framework for Ruby on Rails. It gre
 
 ### Features
 
-- Fully responsive, and we think it's beautiful too.
+- Fully responsive (and we think it's beautiful too!)
 - Automatically builds navigation and admin routes for you.
 - Automatically creates simple index screens and text search tools, which you can expand.
 - Includes a handful of advanced form fields, notably a fullscreen Markdown editor and searchable select/tag lists.
@@ -41,7 +41,7 @@ $ rake db:migrate
 
 Review all of the settings in `config/initializers/tolaria.rb`.
 
-Now run this Rake command to create your first administrator account:
+Run this Rake command to create your first administrator account:
 
 ```shell
 $ rake admin:create
@@ -68,17 +68,94 @@ ActionMailer::Base.smtp_settings = {
 
 Now start your Rails server and go to `/admin` to log in!
 
+### Adding Administrator Accounts
+
+You can add administrators from the command line using a Rake task. This is particularly useful for creating the very first one.
+
+```shell
+$ rake admin:create
+```
+
+If you are already logged in to Tolaria, you can also simply visit `/admin/administrators` to create a new account using the CMS interface.
+
 ### Managing a Model
 
-FIXME.
+Inside your ActiveRecord definition for your model, call `manage_with_tolaria`, passing configuration in the `using` Hash. Refer to the documentation for all of the options. Not that you need to provide the options to pass to `params.permit` here.
 
-### Customizing the Views
+```ruby
+class BlogPost < ActiveRecord::Base
+  manage_with_tolaria using: {
+    icon: "file-o",
+    category: "Settings",
+    priority: 5,
+    permit_params: [
+      :title,
+      :body,
+      :publish_at,
+      :author_id,
+    ]
+  }
+end
+```
 
-FIXME.
+### Customizing Indexes
+
+By default, Tolaria will build a simple index screen for each model. You'll likely want to replace it for complicated models, or to allow administrators to sort the columns.
+
+If your model was `BlogPost`, you'll need to create a file in your project at: `app/views/admin/blog_posts/_table.html.erb`. You'll provide only the table code, the system will wrap it in a parent template for you.
+
+See the TableHelper documentation for more information.
+
+```html
+<% # app/views/admin/blog_posts/_table.html.erb %>
+
+<table class="index-table">
+  <thead>
+    <tr>
+      <%= index_th :id %>
+      <%= index_th :title %>
+      <%= index_th "Author", sortable: false %>
+      <%= actions_th %>
+    </tr>
+  </thead>
+  <tbody>
+    <% @resources.each do |blog_post| %>
+      <tr>
+        <%= index_td blog_post, :id %>
+        <%= index_td blog_post, :title %>
+        <%= index_td blog_post, blog_post.author.name, image:blog_post.author.portrait_uri %>
+        <%= actions_td blog_post %>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+```
+
+### Adding Model Forms
+
+Tolaria does not build edit forms for you, but it attempts to help speed up your work by providing a wrapper.
+
+If your model was `BlogPost`, you'll need to create a file in your project at  `app/views/admin/blog_posts/_form.html.erb`. You'll provide the form code that would appear inside the `form_for` block, excluding the submit buttons. The builder variable is `f`.
+
+```html
+<% # app/views/admin/blog_posts/_form.html.erb %>
+
+<%= f.label :title %>
+<%= f.text_field :title, placeholder:"Post title" %>
+<%= f.hint "The title of this post. A good title is both summarizing and enticing, much like a newspaper headline."
+
+<%= f.label :author_id, "Author" %>
+<%= f.searchable_select :author_id, Author.all, :id, :name, include_blank:false %>
+<%= f.hint "Select the person who wrote this post."
+
+<%= f.label :body %>
+<%= f.markdown_composer :body %>
+<%= f.hint "The body of this post. You can use Markdown!"
+```
 
 ### Provided Form Fields
 
-Tolaria comes with a handful of useful and powerful form fields, beyond those available to Rails. Details on each of the fields below.
+You can use all of the Rails-provided fields on your forms, but Tolaria also comes with a set of advanced, JavaScript-backed fields:
 
 ##### Markdown Composer
 
@@ -108,6 +185,14 @@ FIXME.
 
 FIXME.
 
+##### Hints
+
+Inline help is useful for reminding administrators about what should be provided for each field. Use `f.hint` to present a hint for a field.
+
+### Customizing The Search Form
+
+FIXME.
+
 ### Customizing the Menu
 
 FIXME
@@ -127,7 +212,7 @@ FIXME
 
 ### License and Contributing
 
-Tolaria is free software, and may be redistributed under the terms of the [MIT license](https://github.com/Threespot/tolaria/blob/master/LICENSE.txt). If Tolaria works great for your project, [we'd love to hear about it](http://twitter.com/threespot)!
+Tolaria is free software, and may be redistributed under the terms of the [MIT license](https://github.com/Threespot/tolaria/blob/master/LICENSE). If Tolaria works great for your project, [we'd love to hear about it](http://twitter.com/threespot)!
 
 Threespot has limited capacity to provide support or assess pull requests for Tolaria. We'll change and update Tolaria for our purposes, but for now, we do not accept issues or contributions. Our apologies!
 
