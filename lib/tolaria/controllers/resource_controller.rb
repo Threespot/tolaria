@@ -4,12 +4,7 @@ module Tolaria
     before_filter :load_managed_class!
     before_filter :strip_invalid_ransack_params!, only:[:index]
 
-    # -------------------------------------------------------------------------
-    # RESOURCE ACTIONS
-    # -------------------------------------------------------------------------
-
     def index
-      @resource = @managed_class.klass
       @search = @managed_class.klass.ransack(params[:q])
       @resources = @search.result
       if @managed_class.paginated?
@@ -127,7 +122,7 @@ module Tolaria
 
     # Logs all validation errors for the current resource to the Rails console
     def log_validation_errors!
-      puts "#{@resource.class.model_name.human} ##{@resource.id} failed validation and was not saved:"
+      puts "#{@resource.class} failed validation and was not saved:"
       @resource.errors.full_messages.each do |message|
         puts "  #{message}"
       end

@@ -5,12 +5,12 @@
   <div class="blank-slate">
     <span class="blank-slate-icons"><%= fontawesome_icon @managed_class.icon %></span>
     <h3 class="blank-slate-header">
-      No <%= @resource.model_name.human.pluralize.titleize %> live here.
+      No <%= @managed_class.model_name.human.pluralize.titleize %> live here.
     </h3>
     <p class="blank-slate-text">Get started on the first one:</p>
     <%= link_to url_for(action:"new"), class:"button -primary" do %>
       <%= fontawesome_icon :plus %>
-      New <%= @resource.model_name.human.titleize %>
+      New <%= @managed_class.model_name.human.titleize %>
     <% end %>
   </div>
 
@@ -21,7 +21,7 @@
   <div class="blank-slate">
     <span class="blank-slate-icons"><%= fontawesome_icon :search %></span>
     <h3 class="blank-slate-header">
-      Your search didn't find any <%= @resource.model_name.human.pluralize.titleize %>.
+      Your search didn't find any <%= @managed_class.model_name.human.pluralize.titleize %>.
     </h3>
     <p class="blank-slate-text">
       You can <%= link_to "clear the search form", url_for([:admin, @managed_class.klass]) %>
@@ -29,10 +29,10 @@
     </p>
   </div>
 
-<% elsif admin_template_exisits?("#{@resource.model_name.route_key}/table") %>
+<% elsif admin_template_exisits?("#{@managed_class.model_name.route_key}/table") %>
 
   <div class="index-table-wrap">
-    <%= render partial:"admin/#{@resource.model_name.route_key}/table" %>
+    <%= render partial:"admin/#{@managed_class.model_name.route_key}/table" %>
   </div>
 
 <% else %>

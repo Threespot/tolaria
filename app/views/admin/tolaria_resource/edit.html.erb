@@ -1,7 +1,7 @@
 <% if @resource.persisted? %>
   <%= content_for :title, "#{Tolaria.display_name(@resource)}" %>
 <% else %>
-  <%= content_for :title, "New #{@resource.model_name.human.titleize}" %>
+  <%= content_for :title, "New #{@managed_class.model_name.human.titleize}" %>
 <% end %>
 
 <%= form_for [:admin, @resource], builder:Admin::TolariaFormBuilder, html:{class:"resource-form"}  do |form_builder| %>
@@ -11,7 +11,7 @@
       <h1>
         <span class="crumb">
           <%= fontawesome_icon @managed_class.icon %>
-          <%= @resource.model_name.human.pluralize.titleize %>
+          <%= @managed_class.model_name.human.pluralize.titleize %>
         </span>
         <%= content_for :title %>
       </h1>
@@ -22,7 +22,7 @@
   </div>
 
   <div class="resource-form-interior">
-    <%= render partial:"admin/#{@resource.model_name.route_key}/form", locals:{f:form_builder} %>
+    <%= render partial:"admin/#{@managed_class.model_name.route_key}/form", locals:{f:form_builder} %>
   </div>
 
   <div class="main-controls -inverse">

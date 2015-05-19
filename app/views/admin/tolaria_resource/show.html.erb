@@ -6,7 +6,7 @@
     <h1>
       <span class="crumb">
         <%= fontawesome_icon @managed_class.icon %>
-        <%= @resource.model_name.human.pluralize.titleize %>
+        <%= @managed_class.model_name.human.pluralize.titleize %>
       </span>
       <%= content_for :title %>
     </h1>
@@ -21,7 +21,7 @@
 
     <%= link_to url_for(action:"edit", id:@resource.id), class:"button -primary" do %>
       <%= fontawesome_icon :pencil %>
-      Edit This <%= @resource.model_name.human.titleize %>
+      Edit This <%= @managed_class.model_name.human.titleize %>
     <% end %>
 
   </div>

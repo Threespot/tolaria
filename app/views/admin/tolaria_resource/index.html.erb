@@ -1,4 +1,4 @@
-<%= content_for :title, "#{@resource.model_name.human.pluralize.titleize}" %>
+<%= content_for :title, "#{@managed_class.model_name.human.pluralize.titleize}" %>
 
 <div class="main-controls">
 
@@ -20,7 +20,7 @@
 
     <%= link_to url_for(action:"new"), class:"button -primary" do %>
       <%= fontawesome_icon :plus %>
-      New <%= @resource.model_name.human.titleize %>
+      New <%= @managed_class.model_name.human.titleize %>
     <% end %>
 
   </div>
