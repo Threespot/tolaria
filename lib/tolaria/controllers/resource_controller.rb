@@ -41,6 +41,7 @@ module Tolaria
         flash[:success] = "#{random_blingword} You created the #{@managed_class.model_name.human} “#{display_name}”."
         return redirect_to url_for([:admin, @managed_class.klass])
       else
+        log_validation_errors!
         flash.now[:error] = "Your changes couldn’t be saved. Please correct the following errors:"
         return render tolaria_template("new")
       end
@@ -62,6 +63,7 @@ module Tolaria
         flash[:success] = "#{random_blingword} You updated the #{@managed_class.model_name.human.downcase} “#{display_name}”."
         return redirect_to url_for([:admin, @managed_class.klass])
       else
+        log_validation_errors!
         flash.now[:error] = "Your changes couldn’t be saved. Please correct the following errors:"
         return render tolaria_template("edit")
       end
@@ -121,6 +123,14 @@ module Tolaria
     # Returns true if there is a sorting parameter for Ransack
     def currently_sorting?
       params[:q].present? && params[:q][:s].present?
+    end
+
+    # Logs all validation errors for the current resource to the Rails console
+    def log_validation_errors!
+      puts "#{@resource.class.model_name.human} ##{@resource.id} failed validation and was not saved:"
+      @resource.errors.full_messages.each do |message|
+        puts "  #{message}"
+      end
     end
 
   end
