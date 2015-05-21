@@ -25,7 +25,7 @@ module Tolaria
 
   # Configure Tolaria, block-style. Use something similar to:
   #
-  #    Tolaria.configure |config| do
+  #    Tolaria.configure do |config|
   #       # Assign to config properties here
   #    end
   #
