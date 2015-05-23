@@ -91,7 +91,6 @@ class BlogPost < ActiveRecord::Base
     permit_params: [
       :title,
       :body,
-      :publish_at,
       :author_id,
     ]
   }
@@ -106,7 +105,7 @@ If your model was `BlogPost`, you'll need to create a file in your project at: `
 
 See the TableHelper documentation for more information.
 
-```html
+```erb
 <% # app/views/admin/blog_posts/_table.html.erb %>
 
 <table class="index-table">
@@ -133,11 +132,11 @@ See the TableHelper documentation for more information.
 
 ### Adding Model Forms
 
-Tolaria does not build edit forms for you, but it attempts to help speed up your work by providing a wrapper.
+Tolaria does not build editing forms for you, but it attempts to help speed up your work by providing a wrapper.
 
 If your model was `BlogPost`, you'll need to create a file in your project at  `app/views/admin/blog_posts/_form.html.erb`. You'll provide the form code that would appear inside the `form_for` block, excluding the submit buttons. The builder variable is `f`.
 
-```html
+```erb
 <% # app/views/admin/blog_posts/_form.html.erb %>
 
 <%= f.label :title %>
