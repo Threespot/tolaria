@@ -98,10 +98,12 @@ class Admin::TolariaFormBuilder < ActionView::Helpers::FormBuilder
   # Other options are forwarded to `text_field`.
   def slug_field(method, options = {})
     pattern = options.delete(:pattern)
+    preview_value = self.object.send(method).try(:parameterize).presence || "*"
     render(partial:"admin/shared/forms/slug_field", locals: {
       f: self,
       method: method,
       options: options,
+      preview_value: preview_value,
       pattern: (pattern || "/blog-example/*")
     })
   end

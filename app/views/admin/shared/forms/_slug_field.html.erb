@@ -3,7 +3,7 @@
   <%= f.text_field method, options %>
 
   <p class="slug-field-preview">
-    <%= pattern.gsub("*", %{<span class="slug-field-preview-fragment">*</span>}).html_safe %>
+    <%= pattern.gsub("*", %{<span class="slug-field-preview-fragment">#{preview_value}</span>}).html_safe %>
   </p>
 
 </div>
