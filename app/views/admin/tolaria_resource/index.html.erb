@@ -11,16 +11,18 @@
 
   <div class="main-controls-right">
 
-    <% unless no_resources_exist? %>
+    <% unless @managed_class.no_resources? %>
       <%= button_tag type:"button", class:"button search-form-toggle" do %>
         <%= fontawesome_icon :search %>
         Search
       <% end %>
     <% end %>
 
-    <%= link_to url_for(action:"new"), class:"button -primary" do %>
-      <%= fontawesome_icon :plus %>
-      New <%= @managed_class.model_name.human.titleize %>
+    <% if @managed_class.allows?(:new) %>
+      <%= link_to url_for(action:"new"), class:"button -primary" do %>
+        <%= fontawesome_icon :plus %>
+        New <%= @managed_class.model_name.human.titleize %>
+      <% end %>
     <% end %>
 
   </div>

@@ -29,7 +29,7 @@ class Admin::TolariaFormBuilder < ActionView::Helpers::FormBuilder
   end
 
   # Renders a Markdown composer element for editing +method+,
-  # with fullscreen previewing and some text assitance tools.
+  # with fullscreen previewing and some text assistance tools.
   # Requires that you set `Tolaria.config.markdown_renderer`.
   # Options are forwarded to `text_area`.
   def markdown_composer(method, options = {})
@@ -41,7 +41,7 @@ class Admin::TolariaFormBuilder < ActionView::Helpers::FormBuilder
   end
 
   # Returns a file upload field with a more pleasant interface than browser
-  # file inputs. Changes messaging if the +method+ already exisits.
+  # file inputs. Changes messaging if the +method+ already exists.
   # Options are forwarded to the hidden `file_field`.
   def attachment_field(method, options = {})
     render(partial:"admin/shared/forms/attachment_field", locals: {
@@ -52,7 +52,7 @@ class Admin::TolariaFormBuilder < ActionView::Helpers::FormBuilder
   end
 
   # Returns an image upload field with a more pleasant interface than browser
-  # file inputs. Changes messaging if the +method+ already exisits.
+  # file inputs. Changes messaging if the +method+ already exists.
   #
   # #### Special Options
   #

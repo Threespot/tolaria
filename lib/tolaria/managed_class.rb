@@ -37,7 +37,7 @@ module Tolaria
 
     # A factory method that registers a new model in Tolaria and configures
     # its menu and param settings. Developers should use `ActiveRecord::Base.manage_with_tolaria`
-    def self.create(klass, icon:"file-o", permit_params:[], priority:10, category:"Settings", default_order:"id DESC", paginated:true, actions:%i[index show new create edit update destroy])
+    def self.create(klass, icon:"file-o", permit_params:[], priority:10, category:"Settings", default_order:"id DESC", paginated:true, allowed_actions:%i[index show new create edit update destroy])
 
       managed_class = self.new
       managed_class.klass = klass
@@ -49,7 +49,7 @@ module Tolaria
       managed_class.default_order = default_order.to_s.freeze
       managed_class.paginated = paginated.present?
       managed_class.permitted_params = permit_params.freeze
-      managed_class.allowed_actions = actions.freeze
+      managed_class.allowed_actions = allowed_actions.freeze
 
       # Set auto-generated attributes
       managed_class.controller_name = "#{managed_class.model_name.name.pluralize}Controller".freeze
@@ -59,9 +59,19 @@ module Tolaria
 
     end
 
+    # True if the given symbol is in the managed class's allowed_actions array.
+    def allows?(action)
+      self.allowed_actions.include?(action)
+    end
+
     # True if this managed class should be paginated
     def paginated?
       self.paginated
+    end
+
+    # True if there are no resources in the database for this class
+    def no_resources?
+      self.klass.count.eql?(0)
     end
 
     # Defer to the ActiveRecord::Base model_name system for producing

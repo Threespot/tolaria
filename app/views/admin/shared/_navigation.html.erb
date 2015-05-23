@@ -6,13 +6,15 @@
       <h3><%= category %></h3>
       <ul>
         <% Tolaria.classes_for_category(category).each do |managed_class| %>
-          <li>
-            <%= tolaria_navigation_link(
-              managed_class.model_name.human.pluralize.titleize,
-              managed_class.icon,
-              url_for([:admin, managed_class.klass])
-            ) %>
-          </li>
+          <% if managed_class.allows?(:index) %>
+            <li>
+              <%= tolaria_navigation_link(
+                managed_class.model_name.human.pluralize.titleize,
+                managed_class.icon,
+                url_for([:admin, managed_class.klass])
+              ) %>
+            </li>
+          <% end %>
         <% end %>
       </ul>
     </div>

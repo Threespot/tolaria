@@ -84,10 +84,23 @@ module Admin::TableHelper
   # Returns a `<td>` tag, suitable for use inside a `table.index-table`.
   # The tag contains buttons to edit, inspect, and delete the given +resource+.
   def actions_td(resource)
-    edit_link = link_to("Edit", url_for(action:"edit", id:resource.id), class:"button -small")
-    inspect_link = link_to("Inspect", url_for(action:"show", id:resource.id), class:"button -small")
-    delete_link = link_to("Delete", url_for(action:"show", id:resource.id), class: "button -small", method: :delete, :'data-confirm' => deletion_warning(resource))
-    return content_tag(:td, "#{edit_link}#{inspect_link}#{delete_link}".html_safe, class:"actions-td")
+
+    links = []
+
+    if @managed_class.allows?(:edit)
+      links << link_to("Edit", url_for(action:"edit", id:resource.id), class:"button -small")
+    end
+
+    if @managed_class.allows?(:show)
+      links << link_to("Inspect", url_for(action:"show", id:resource.id), class:"button -small")
+    end
+
+    if @managed_class.allows?(:destroy)
+      links << link_to("Delete", url_for(action:"destroy", id:resource.id), class: "button -small", method: :delete, :'data-confirm' => deletion_warning(resource))
+    end
+
+    return content_tag(:td, links.join("").html_safe, class:"actions-td")
+
   end
 
 end

@@ -7,8 +7,7 @@ module Tolaria
       SecureRandom.base64(32).delete("+/=")[0..31]
     end
 
-    # Returns a six-digit numeric passcode suitable for use
-    # as a one-time passphrase
+    # Returns a six-digit numeric code suitable for use as a one-time passphrase
     def self.passcode
       "%06d" % SecureRandom.random_number(1_000_000)
     end

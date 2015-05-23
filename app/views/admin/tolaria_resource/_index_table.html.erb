@@ -1,4 +1,4 @@
-<% if no_resources_exist? %>
+<% if @managed_class.no_resources? %>
 
   <% # Render a blank-slate because there’s nothing to list %>
 
@@ -8,9 +8,11 @@
       No <%= @managed_class.model_name.human.pluralize.titleize %> live here.
     </h3>
     <p class="blank-slate-text">Get started on the first one:</p>
-    <%= link_to url_for(action:"new"), class:"button -primary" do %>
-      <%= fontawesome_icon :plus %>
-      New <%= @managed_class.model_name.human.titleize %>
+    <% if @managed_class.allows?(:new) %>
+      <%= link_to url_for(action:"new"), class:"button -primary" do %>
+        <%= fontawesome_icon :plus %>
+        New <%= @managed_class.model_name.human.titleize %>
+      <% end %>
     <% end %>
   </div>
 
@@ -29,7 +31,7 @@
     </p>
   </div>
 
-<% elsif admin_template_exisits?("#{@managed_class.model_name.route_key}/table") %>
+<% elsif admin_template_exists?("#{@managed_class.model_name.route_key}/table") %>
 
   <div class="index-table-wrap">
     <%= render partial:"admin/#{@managed_class.model_name.route_key}/table" %>

@@ -14,14 +14,18 @@
 
   <div class="main-controls-right">
 
-    <%= link_to url_for(action:"show", id:@resource.id), class:"button -danger", method: :delete, :'data-confirm' => deletion_warning(@resource) do %>
-      <%= fontawesome_icon :trash %>
-      Delete
+    <% if @managed_class.allows?(:destroy) %>
+      <%= link_to url_for(action:"show", id:@resource.id), class:"button -danger", method: :delete, :'data-confirm' => deletion_warning(@resource) do %>
+        <%= fontawesome_icon :trash %>
+        Delete
+      <% end %>
     <% end %>
 
-    <%= link_to url_for(action:"edit", id:@resource.id), class:"button -primary" do %>
-      <%= fontawesome_icon :pencil %>
-      Edit This <%= @managed_class.model_name.human.titleize %>
+    <% if @managed_class.allows?(:edit) %>
+      <%= link_to url_for(action:"edit", id:@resource.id), class:"button -primary" do %>
+        <%= fontawesome_icon :pencil %>
+        Edit This <%= @managed_class.model_name.human.titleize %>
+      <% end %>
     <% end %>
 
   </div>

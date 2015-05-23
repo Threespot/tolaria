@@ -1,9 +1,9 @@
-<% unless no_resources_exist? %>
+<% unless @managed_class.no_resources? %>
 
   <% search_visbility = currently_filtering?? "display:block" : "display:none" %>
   <%= search_form_for @search, url:url_for([:admin, @managed_class.klass]), enforce_utf8:false, html:{class:"resource-form search-form", style:search_visbility} do |f| %>
 
-    <% if admin_template_exisits?("#{@managed_class.model_name.route_key}/search") %>
+    <% if admin_template_exists?("#{@managed_class.model_name.route_key}/search") %>
 
       <% # Use the developer-provided search/filter template %>
       <%= render partial:"admin/#{@managed_class.model_name.route_key}/search", locals:{f:f} %>
