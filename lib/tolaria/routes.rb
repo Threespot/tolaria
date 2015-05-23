@@ -19,9 +19,6 @@ module Tolaria
         post "signin", to:"sessions#create"
         delete "signout", to:"sessions#destroy", as:"destroy_session"
 
-        # Create routes for administrator management
-        resources :administrators
-
         # Create routes for every managed class
         managed_classes.each do |managed_class|
           resources managed_class.model_name.route_key, only:managed_class.allowed_actions
