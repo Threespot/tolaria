@@ -1,5 +1,8 @@
 .button {
 
+  -ms-appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
   appearance: none;
   border-radius: 2px;
   border: 1px solid black(0.5);
@@ -9,8 +12,9 @@
   font-size: 14px;
   font-weight: bold;
   height: 32px;
-  line-height: 16px;
-  padding: 7px 14px 7px 12px;
+  line-height: 30px;
+  padding: 0px 14px 0px 12px;
+  vertical-align: middle;
   transition: background-color 100ms linear, border-color 100ms linear;
   white-space: nowrap;
 
@@ -63,4 +67,12 @@
     user-select: none;
   }
 
+}
+
+// Currently convinced it is impossible to make <a> and <button>
+// look the same in Firefox without hacks like this.
+@-moz-document url-prefix() {
+  button.button {
+    line-height: 1;
+  }
 }

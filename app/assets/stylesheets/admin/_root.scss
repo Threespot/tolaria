@@ -23,6 +23,10 @@ body {
 
 }
 
+:focus {
+  outline: 1px solid transparentize($cSapphire, 0.25);
+}
+
 .inner-align {
   @include clearfix;
   max-width: 1000px;
@@ -34,8 +38,10 @@ body {
   margin: 0 auto;
   max-width: 1000px;
   min-height: 100vh;
+  width: 100%;
   @include min-width($bpFull) {
     display: table;
+    height: 100vh;
   }
 }
 

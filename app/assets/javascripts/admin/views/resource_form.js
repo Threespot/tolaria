@@ -1,6 +1,6 @@
 var ResourceFormViewController = Backbone.View.extend({
 
-  el: ".resource-form",
+  el: ".resource-form:not(.search-form)",
 
   initialize: function() {
     this.focusFirstInput();

@@ -54,7 +54,7 @@
     display: block;
     font-size: 16px;
     line-height: 21px;
-    padding: 9px 10px;
+    padding: 8px 10px;
     transition: background-color 100ms linear, border-color 100ms linear;
     width: 100%;
 
@@ -65,12 +65,23 @@
     }
 
     &:focus {
-      border-color: darken($cSapphire, 10);
-      border-bottom-color: $cSapphire;
-      border-right-color: $cSapphire;
       background-color: #fff;
+      border-bottom-color: $cSapphire;
+      border-color: darken($cSapphire, 10);
+      border-right-color: $cSapphire;
+      outline: none;
     }
 
+  }
+
+  input[type=text]::-ms-clear { display: none; width : 0; height: 0; }
+  input[type=text]::-ms-reveal { display: none; width : 0; height: 0; }
+
+  input[type="search"]::-webkit-search-decoration,
+  input[type="search"]::-webkit-search-cancel-button,
+  input[type="search"]::-webkit-search-results-button,
+  input[type="search"]::-webkit-search-results-decoration {
+    display: none;
   }
 
   select {
@@ -78,6 +89,7 @@
     background-size: 6px 10px;
     background-position: right 12px center;
     background-repeat: no-repeat;
+    padding-right: 20px;
     &[multiple] {
       background-image: none;
       height: 43px;
@@ -96,7 +108,7 @@
     border-bottom: 1px dashed black(0.1);
     padding: 0 0 10px 0;
 
-    &:last-of-type {
+    &:last-child {
       margin-bottom: 0;
       border-bottom: 0;
       padding-bottom: 0;
@@ -119,7 +131,12 @@
     height: 0;
     border: 0;
     border-top: 3px double $cGrey;
-    margin: 30px 0 30px 0;
+    margin: 20px 0 20px 0;
+    width: 100%;
+    @include min-width($bpFull) {
+      float: left;
+      clear: both;
+    }
   }
 
   input::-webkit-input-placeholder {color: #ccc}

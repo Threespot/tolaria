@@ -80,6 +80,14 @@ textarea {
   -webkit-appearance: none;
 }
 
+// Remove extra padding that Firefox adds elements
+
+::-moz-focus-inner {
+  border: 0 !important;
+  margin: 0 !important;
+  padding: 0 !important;
+}
+
 // Reset `table` border junk
 
 table {

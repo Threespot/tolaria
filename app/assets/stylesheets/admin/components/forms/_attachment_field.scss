@@ -48,6 +48,8 @@
     min-width: 260px;
     text-align: left;
     width: auto;
+    padding-top: 6px;
+    padding-bottom: 6px;
     &:hover, &:active {
       border-color: $cPlum;
       color: $cPlum;
