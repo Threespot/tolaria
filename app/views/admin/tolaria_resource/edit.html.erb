@@ -4,7 +4,7 @@
   <%= content_for :title, "New #{@managed_class.model_name.human.titleize}" %>
 <% end %>
 
-<%= form_for [:admin, @resource], builder:Admin::TolariaFormBuilder, html:{class:"resource-form"}  do |form_builder| %>
+<%= form_for [:admin, @resource], builder:Admin::FormBuilder, html:{class:"resource-form"}  do |form_builder| %>
 
   <div class="main-controls">
     <div class="main-controls-left">

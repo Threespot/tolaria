@@ -20,6 +20,7 @@ require "tolaria/routes"
 require "tolaria/introspection"
 require "tolaria/categories"
 require "tolaria/markdown"
+require "tolaria/form_buildable"
 
 module Tolaria
   # We have to autoload these classes because they inherit
