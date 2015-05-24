@@ -1,4 +1,4 @@
-module Admin::ViewHelperw
+module Admin::ViewHelper
 
   # Returns a navigation menu link with the given label,
   # Font Awesome icon name, and URI
