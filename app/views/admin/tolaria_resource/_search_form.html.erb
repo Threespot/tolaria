@@ -19,7 +19,7 @@
     <div class="search-form-controlls">
       <%= f.button type:"submit", class:"button -primary", name:nil do %>
         <%= fontawesome_icon :search %>
-        Search <%= @managed_class.model_name.human.pluralize %>
+        Search <%= @managed_class.model_name.human.pluralize.titleize %>
       <% end %>
       <%= link_to url_for([:admin, @managed_class.klass]), class:"button" do %>
         <%= fontawesome_icon :close %>
