@@ -11,7 +11,7 @@ module Admin::ViewHelper
 
   # Returns an `<i>` tag that displays a Font Awesome icon
   def fontawesome_icon(icon = "", options = {})
-    icon = icon.to_s.parameterize.gsub("_", "-")
+    icon = icon.to_s.parameterize.tr("_", "-")
     content_tag :i, nil, options.reverse_merge({
       :class => "icon icon-#{icon}",
       :"aria-hidden" => true,
