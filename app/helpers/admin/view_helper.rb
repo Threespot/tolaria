@@ -1,5 +1,13 @@
 module Admin::ViewHelper
 
+  ADMIN_PILL_COLORS = HashWithIndifferentAccess.new({
+    green: "53BE3C",
+    red: "DA3946",
+    blue: "3497BE",
+    black: "343242",
+    grey: "777777",
+  })
+
   # Returns a navigation menu link with the given label,
   # Font Awesome icon name, and URI
   def tolaria_navigation_link(label, icon, index_path, options = {})
@@ -47,6 +55,18 @@ module Admin::ViewHelper
   # Returns a deletion warning message for the given ActiveRecord instance
   def deletion_warning(resource)
     return %{Are you sure you want to delete the #{resource.model_name.human.downcase} “#{Tolaria.display_name(resource)}”? This action is not reversible.}
+  end
+
+  def pill(label, color: :black)
+
+    if ADMIN_PILL_COLORS[color].present?
+      color = ADMIN_PILL_COLORS[color]
+    else
+      color = color.to_s.delete("#")
+    end
+
+    content_tag :span, label.to_s, class:"pill", style:"background-color:##{color}"
+
   end
 
 end

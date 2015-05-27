@@ -48,11 +48,12 @@
 
 .index-th {
 
-  padding: 8px 8px 8px 8px;
-  font-size: 12px;
-  text-transform: uppercase;
   color: $cPlum;
+  font-size: 12px;
   font-weight: bold;
+  padding: 8px 8px 8px 8px;
+  text-transform: uppercase;
+  vertical-align: middle;
 
   a {
     color: $cPlum;
@@ -74,12 +75,14 @@
   border: 0;
   margin: 0;
   text-align: left;
+  vertical-align: middle;
 
   &:first-of-type {
     @include auto-size-column;
   }
 
   a {
+    @include clearfix;
     color: $cPlum;
     display: block;
     padding: 11px 8px 11px 8px;
@@ -87,11 +90,11 @@
   }
 
   img {
+    border-radius: 1px;
+    border: 1px solid $cPlum;
     display: block;
     float: left;
     margin: -1px 7px 0 0;
-    border: 1px solid $cPlum;
-    border-radius: 1px;
   }
 
 }

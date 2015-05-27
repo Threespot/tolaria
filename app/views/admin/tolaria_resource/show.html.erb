@@ -13,21 +13,48 @@
   </div>
 
   <div class="main-controls-right">
+    <%= render "admin/tolaria_resource/show_buttons" %>
+  </div>
 
-    <% if @managed_class.allows?(:destroy) %>
-      <%= link_to url_for(action:"show", id:@resource.id), class:"button -danger", method: :delete, :'data-confirm' => deletion_warning(@resource) do %>
-        <%= fontawesome_icon :trash %>
-        Delete
-      <% end %>
-    <% end %>
+</div>
 
-    <% if @managed_class.allows?(:edit) %>
-      <%= link_to url_for(action:"edit", id:@resource.id), class:"button -primary" do %>
-        <%= fontawesome_icon :pencil %>
-        Edit This <%= @managed_class.model_name.human.titleize %>
-      <% end %>
-    <% end %>
+<% if admin_template_exists?("#{@managed_class.model_name.route_key}/show") %>
 
+  <%= render partial:"admin/#{@managed_class.model_name.route_key}/show" %>
+
+<% else %>
+
+  <% # Render a default table because the developer didn’t provide one %>
+
+  <table class="show-table">
+    <thead>
+      <tr>
+        <th>Field</th>
+        <th>Details</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td class="show-td-field">Created At</td>
+        <td class="monospace"><%= @resource.created_at.presence.try(:strftime, "%Y-%m-%d %I:%M %p") %></td>
+      </tr>
+      <tr>
+        <td class="show-td-field">Updated At</td>
+        <td class="monospace"><%= @resource.updated_at.presence.try(:strftime, "%Y-%m-%d %I:%M %p") %></td>
+      </tr>
+      <tr>
+        <td class="show-td-field">Name</td>
+        <td><%= Tolaria.display_name(@resource) %></td>
+      </tr>
+    </tbody>
+  </table>
+
+<% end %>
+
+<div class="main-controls -inverse">
+
+  <div class="main-controls-right">
+    <%= render "admin/tolaria_resource/show_buttons" %>
   </div>
 
 </div>

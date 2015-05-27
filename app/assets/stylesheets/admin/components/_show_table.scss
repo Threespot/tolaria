@@ -1,0 +1,63 @@
+.show-table {
+
+  background: $cEggshell;
+  border-left: 1px solid $cGrey;
+  border-right: 1px solid $cGrey;
+  font-size: 15px;
+  text-align: left;
+  width: 100%;
+
+  thead tr {
+    border-bottom: 1px solid $cGrey;
+    display: none;
+    @include min-width($bpFull) {
+      display: table-row;
+    }
+  }
+
+  tbody tr {
+    border-bottom: 1px solid $cGrey;
+    @include min-width($bpFull) {
+      border-bottom-style: dashed;
+    }
+  }
+
+  th {
+    color: $cPlum;
+    font-size: 12px;
+    font-weight: bold;
+    padding: 10px 8px 10px 8px;
+    text-transform: uppercase;
+    vertical-align: middle;
+  }
+
+  td {
+
+    display: block;
+    padding: 10px 8px 10px 8px;
+    position: relative;
+    vertical-align: middle;
+    width: 100%;
+
+    img {
+      max-width: 100%;
+    }
+
+    @include min-width($bpFull) {
+      display: table-cell;
+    }
+  }
+
+  .show-td-field {
+    border-bottom: 1px solid $cGrey;
+    color: black(0.5);
+    font-size: 12px;
+    font-weight: bold;
+    text-transform: uppercase;
+    @include min-width($bpFull) {
+      border-bottom: 0;
+      width: 18%;
+    }
+  }
+
+}

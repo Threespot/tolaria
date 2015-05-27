@@ -41,26 +41,24 @@
 
   <% # Render a default table because the developer didn’t provide one %>
 
-  <div class="index-table-wrap">
-    <table class="index-table">
-      <thead>
+  <%= index_table do %>
+    <thead>
+      <tr>
+        <%= index_th :id %>
+        <%= index_th "Name", sort:false %>
+        <%= actions_th %>
+      </tr>
+    </thead>
+    <tbody>
+      <% @resources.each do |resource| %>
         <tr>
-          <%= index_th :id %>
-          <%= index_th "Name", sort:false %>
-          <%= actions_th %>
+          <%= index_td resource, :id %>
+          <%= index_td resource, Tolaria.display_name(resource) %>
+          <%= actions_td resource %>
         </tr>
-      </thead>
-      <tbody>
-        <% @resources.each do |resource| %>
-          <tr>
-            <%= index_td resource, :id %>
-            <%= index_td resource, Tolaria.display_name(resource) %>
-            <%= actions_td resource %>
-          </tr>
-        <% end %>
-      </tbody>
-    </table>
-  </div>
+      <% end %>
+    </tbody>
+  <% end %>
 
 <% end %>
 

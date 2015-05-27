@@ -1,5 +1,13 @@
 module Admin::TableHelper
 
+  def index_table(content = nil, &block)
+    content_tag :div, class:"index-table-wrap" do
+      content_tag :table, class:"index-table" do
+        content || yield
+      end
+    end
+  end
+
   # Returns a `<th>` tag, suitable for use inside a `table.index-table`.
   # +field_or_label+ may be any string, or a symbol naming a model column.
   # +sort+ may be `true`, `false`, or a symbol. See the signtures below.
