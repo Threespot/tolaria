@@ -1,11 +1,70 @@
 module Admin::TableHelper
 
+  # Returns a `<table class="index-table">` tag with the appropriate wrapper
+  # and the given +content+ or block content inside it.
   def index_table(content = nil, &block)
     content_tag :div, class:"index-table-wrap" do
       content_tag :table, class:"index-table" do
         content || yield
       end
     end
+  end
+
+  # Returns a `<table class="show-table">` tag with the given +content+
+  # or block content inside it.
+  def show_table(content = nil, &block)
+    content_tag :table, class:"show-table" do
+      content || yield
+    end
+  end
+
+  # Returns the following `<tr>`, suitable for use in a `table.show-table`:
+  #
+  #     <tr>
+  #       <th>Field</th>
+  #       <th>Details</th>
+  #     </tr>
+  def show_thead_tr
+    %{<tr><th>Field</th><th>Details</th></tr>}.html_safe
+  end
+
+  # Returns a `<tr>` with two `<td>`s suitable for use in a `table.show-table`.
+  # The given +label+ is placed inside the first `<td>`, while the +value+
+  # is placed in the second `<td>`. Options are forwarded to `content_tag`
+  # for the *second* `<td>`.
+  #
+  # If +label+ is a symbol, it is assumed to be a method on a variabled named
+  # `@resource` in the current template, and the `<tr>` is constructed
+  # automatically for you by converting the symbol to a human-readable label
+  # and calling the named method on @resource to get the +value+.
+  #
+  # ==== Signatures
+  #
+  #     # Set the values yourself, and a class on the second `<td>`
+  #     show_trs "Slug", resource.slug, class:"monospace"
+  #
+  #     # Attempt to auto-fill the row based on a method name
+  #     show_trs :slug
+  def show_tr(label, value = nil, options = nil)
+
+    if label.is_a?(Symbol)
+      options = value
+      value = @resource.send(label)
+      label = label.to_s.titleize
+    end
+
+    content = content_tag(:td, class:"show-td-field") do
+      label
+    end
+
+    content << content_tag(:td, options) do
+      value
+    end
+
+    content_tag :tr do
+      content
+    end
+
   end
 
   # Returns a `<th>` tag, suitable for use inside a `table.index-table`.

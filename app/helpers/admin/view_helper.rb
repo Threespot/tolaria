@@ -57,6 +57,10 @@ module Admin::ViewHelper
     return %{Are you sure you want to delete the #{resource.model_name.human.downcase} “#{Tolaria.display_name(resource)}”? This action is not reversible.}
   end
 
+  # Returns a `<span>` tag that displays the given +label+ as a pill
+  # status badge. You can change the color of the pill by providing a
+  # six-digit hexadecimal +color+, or passing one of the predefined
+  # color names: `:green`, `:red`, `:blue`, `:black`, `:grey`.
   def pill(label, color: :black)
 
     if ADMIN_PILL_COLORS[color].present?

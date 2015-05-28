@@ -28,24 +28,12 @@
 
   <table class="show-table">
     <thead>
-      <tr>
-        <th>Field</th>
-        <th>Details</th>
-      </tr>
+      <%= show_thead_tr %>
     </thead>
     <tbody>
-      <tr>
-        <td class="show-td-field">Created At</td>
-        <td class="monospace"><%= @resource.created_at.presence.try(:strftime, "%Y-%m-%d %I:%M %p") %></td>
-      </tr>
-      <tr>
-        <td class="show-td-field">Updated At</td>
-        <td class="monospace"><%= @resource.updated_at.presence.try(:strftime, "%Y-%m-%d %I:%M %p") %></td>
-      </tr>
-      <tr>
-        <td class="show-td-field">Name</td>
-        <td><%= Tolaria.display_name(@resource) %></td>
-      </tr>
+      <%= show_tr "Created At", @resource.created_at.presence.try(:strftime, "%Y-%m-%d %I:%M %p"), class:"monospace" %>
+      <%= show_tr "Updated At", @resource.updated_at.presence.try(:strftime, "%Y-%m-%d %I:%M %p"), class:"monospace" %>
+      <%= show_tr "Label", Tolaria.display_name(@resource) %>
     </tbody>
   </table>
 
