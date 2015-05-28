@@ -108,7 +108,7 @@ See the TableHelper documentation for more information.
 ```erb
 <% # app/views/admin/blog_posts/_table.html.erb %>
 
-<table class="index-table">
+<%= index_table do %>
   <thead>
     <tr>
       <%= index_th :id %>
@@ -127,7 +127,7 @@ See the TableHelper documentation for more information.
       </tr>
     <% end %>
   </tbody>
-</table>
+<% end %>
 ```
 
 ### Adding Model Forms
@@ -191,6 +191,30 @@ Inline help is useful for reminding administrators about what should be provided
 ### Customizing The Search Form
 
 FIXME.
+
+### Customizing The Inspect Screen
+
+Tolaria provides a very basic show/inspect screen for models. You'll want to provide
+your own for complex models.
+
+If your model was `BlogPost`, you'll need to create a file in your project at: `app/views/admin/blog_posts/_show.html.erb`.
+
+See the TableHelper documentation for more information.
+
+```erb
+<%= show_table do %>
+
+  <thead>
+    <%= show_thead_tr %>
+  </thead>
+  <tbody>
+    <%= show_tr :title %>
+    <%= show_tr "Author", @resource.author.name %>
+    <%= show_tr :body %>
+  </tbody>
+
+<% end %>
+```
 
 ### Customizing the Menu
 
