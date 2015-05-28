@@ -1,0 +1,14 @@
+<%= show_table do %>
+
+  <thead>
+    <%= show_thead_tr %>
+  </thead>
+  <tbody>
+    <%= show_tr "Avatar", image_tag(gravatar_for(@resource.email)) %>
+    <%= show_tr :name %>
+    <%= show_tr :organization %>
+    <%= show_tr :email, class:"monospace" %>
+    <%= show_tr "Created At", @resource.created_at.presence.try(:strftime, "%Y-%m-%d %I:%M %p"), class:"monospace" %>
+  </tbody>
+
+<% end %>
