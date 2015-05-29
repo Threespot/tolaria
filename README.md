@@ -210,39 +210,39 @@ You can use all of the Rails-provided fields on your forms, but Tolaria also com
 
 ##### Markdown Composer
 
-The markdown_composer helper will generate a very fancy Markdown editor, which includes text snippet tools and a fullscreen mode with live previewing.
+The [markdown_composer helper](#FIXME) will generate a very fancy Markdown editor, which includes text snippet tools and a fullscreen mode with live previewing.
 
 **Important:** You cannot use this field properly if you do not set up `Tolaria.config.markdown_renderer`. Without it, the live preview will only use `simple_format`!
 
 ##### Searchable Select
 
-The searchable_select helper displays out a [Chosen select field][chosen] that authors can filter by typing.
+The [searchable_select helper](#FIXME) displays out a [Chosen select field][chosen] that authors can filter by typing.
 
 [chosen]: http://harvesthq.github.io/chosen/
 
 ##### Timestamp Field
 
-The timestamp_field helper displays a text field that validates a provided timestamp and recovers to a template if blanked.
+The [`timestamp_field` helper](#FIXME) displays a text field that validates a provided timestamp and recovers to a template if blanked.
 
 ##### Slug Field
 
-The slug_field helper allows you to show the parameterized value of a field in a given pattern preview.
+The [`slug_field` helper](#FIXME) allows you to show the parameterized value of a field in a given pattern preview.
 
 ##### Color Field
 
-The color_field helper validates and displays a given hexadecimal color.
+The [`color_field` helper](#FIXME) validates and displays a given hexadecimal color.
 
 ##### Image Field
 
-The image_field helper displays a button that makes uploading an image a little more pleasant than a regular `file_field`.
+The [image_field helper](#FIXME) displays a button that makes uploading an image a little more pleasant than a regular `file_field`.
 
 ##### Attachment Field
 
-The attachment_field helper displays a button that makes uploading an arbirary file a little more pleasant than a regular `file_field`.
+The [`attachment_field` helper](#FIXME) displays a button that makes uploading an arbirary file a little more pleasant than a regular `file_field`.
 
 ##### Hints
 
-Inline help is useful for reminding administrators about what should be provided for each field. Use `f.hint` to present a hint for a field.
+[Inline help](#FIXME) is useful for reminding administrators about what should be provided for each field. Use `f.hint` to present a hint for a field.
 
 ### Customizing the Menu
 
