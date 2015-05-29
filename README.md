@@ -170,11 +170,11 @@ If your model was `BlogPost`, you'll need to create a file in your project at  `
 
 <%= f.label :title %>
 <%= f.text_field :title, placeholder:"Post title" %>
-<%= f.hint "The title of this post. A good title is both summarizing and enticing, much like a newspaper headline."
+<%= f.hint "The title of this post. A good title is both summarizing and enticing, much like a newspaper headline." %>
 
 <%= f.label :author_id, "Author" %>
 <%= f.searchable_select :author_id, Author.all, :id, :name, include_blank:false %>
-<%= f.hint "Select the person who wrote this post."
+<%= f.hint "Select the person who wrote this post." %>
 
 <%= f.label :body %>
 <%= f.markdown_composer :body %>
@@ -210,13 +210,13 @@ You can use all of the Rails-provided fields on your forms, but Tolaria also com
 
 ##### Markdown Composer
 
-The [markdown_composer helper](#FIXME) will generate a very fancy Markdown editor, which includes text snippet tools and a fullscreen mode with live previewing.
+The [`markdown_composer` helper](#FIXME) will generate a very fancy Markdown editor, which includes text snippet tools and a fullscreen mode with live previewing.
 
 **Important:** You cannot use this field properly if you do not set up `Tolaria.config.markdown_renderer`. Without it, the live preview will only use `simple_format`!
 
 ##### Searchable Select
 
-The [searchable_select helper](#FIXME) displays out a [Chosen select field][chosen] that authors can filter by typing.
+The [`searchable_select` helper](#FIXME) displays out a [Chosen select field][chosen] that authors can filter by typing.
 
 [chosen]: http://harvesthq.github.io/chosen/
 
@@ -234,7 +234,7 @@ The [`color_field` helper](#FIXME) validates and displays a given hexadecimal co
 
 ##### Image Field
 
-The [image_field helper](#FIXME) displays a button that makes uploading an image a little more pleasant than a regular `file_field`.
+The [`image_field` helper](#FIXME) displays a button that makes uploading an image a little more pleasant than a regular `file_field`.
 
 ##### Attachment Field
 
