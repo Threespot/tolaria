@@ -17,6 +17,10 @@
     transition: background-color 100ms linear, border-color 100ms linear;
     max-width: 1150px;
     margin: 0 auto -1px auto;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    -webkit-user-select: none;
+    user-select: none;
 
     .-focused &,
     .-fullscreen & {
