@@ -1,6 +1,6 @@
 ## Tolaria
 
-Tolaria is a content management system (CMS) framework for Ruby on Rails. It greatly speeds up the necessary (but repetitive) task of creating useful admin panels, forms, and model workflows for site authors.
+Tolaria is a [content management system](https://en.wikipedia.org/wiki/Content_management_system) (CMS) framework for [Ruby on Rails](https://en.wikipedia.org/wiki/Ruby_on_Rails). It greatly speeds up the necessary (but repetitive) task of creating useful admin panels, forms, and model workflows for site authors.
 
 [![](https://cloud.githubusercontent.com/assets/769083/7573791/56eda172-f7f6-11e4-8df7-36015cf5cf85.png)](https://cloud.githubusercontent.com/assets/769083/7573791/56eda172-f7f6-11e4-8df7-36015cf5cf85.png)
 
@@ -10,10 +10,10 @@ Tolaria is a content management system (CMS) framework for Ruby on Rails. It gre
 
 - Fully responsive (and we think it's beautiful too!)
 - Automatically builds navigation and admin routes for you.
-- Automatically creates simple index screens and text search tools, which you can expand.
+- Automatically creates simple index screens, show screens, and text search tools, which you can expand.
 - Includes a handful of advanced form fields, notably a fullscreen Markdown editor and searchable select/tag lists.
 - Assists in providing inline help and documentation to your editors.
-- No passwords to manage. Tolaria uses email-based authentication.
+  No passwords to manage! Tolaria uses email-based authentication.
 - No magic DSL. Work directly in ERB on admin forms, index views, and inspection screens.
 - Completely divorced/compartmentalized from the rest of the Rails application.
 - Easily overridable on a case-by-case basis for more advanced CMS functionality.
@@ -26,11 +26,13 @@ Tolaria supports IE10+, Safari, Chrome, Firefox, iOS, and Android 2.3+. Note tha
 
 ### Getting Started
 
-Add Tolaria to your project's `Gemfile`, then update your bundle.
+Add Tolaria to your project's `Gemfile`:
 
 ```ruby
 gem "tolaria"
 ```
+
+Then update your bundle.
 
 Now run the installation generator. This will create an initializer for Tolaria plus a migration to set up an `administrators` table. Migrate your database.
 
@@ -80,7 +82,9 @@ If you are already logged in to Tolaria, you can also simply visit `/admin/admin
 
 ### Managing a Model
 
-Inside your ActiveRecord definition for your model, call `manage_with_tolaria`, passing configuration in the `using` Hash. Refer to the documentation for all of the options. Not that you need to provide the options to pass to `params.permit` here.
+Inside your ActiveRecord definition for your model, call `manage_with_tolaria`, passing configuration in the `using` Hash. [Refer to the documentation for all of the options](#FIXME).
+
+**Important:** you'll need to provide the options to pass to `params.permit` here for the admin system. Your form won't work without it!
 
 ```ruby
 class BlogPost < ActiveRecord::Base
@@ -101,12 +105,12 @@ end
 
 By default, Tolaria will build a simple index screen for each model. You'll likely want to replace it for complicated models, or to allow administrators to sort the columns.
 
-If your model was `BlogPost`, you'll need to create a file in your project at: `app/views/admin/blog_posts/_table.html.erb`. You'll provide only the table code, the system will wrap it in a parent template for you.
+If your model was `BlogPost`, you'll need to create a file in your project at: `app/views/admin/blog_posts/_index.html.erb`.
 
-See the TableHelper documentation for more information.
+See the [TableHelper documentation](#FIXME) for more information.
 
 ```erb
-<% # app/views/admin/blog_posts/_table.html.erb %>
+<% # app/views/admin/blog_posts/_index.html.erb %>
 
 <%= index_table do %>
   <thead>
@@ -127,6 +131,31 @@ See the TableHelper documentation for more information.
       </tr>
     <% end %>
   </tbody>
+<% end %>
+```
+
+### Customizing The Inspect Screen
+
+Tolaria provides a very basic show/inspect screen for models. You'll want to provide your own for complex models.
+
+If your model was `BlogPost`, you'll need to create a file in your project at: `app/views/admin/blog_posts/_show.html.erb`.
+
+See the [TableHelper documentation](#FIXME) for more information.
+
+```erb
+<% # app/views/admin/blog_posts/_show.html.erb %>
+
+<%= show_table do %>
+
+  <thead>
+    <%= show_thead_tr %>
+  </thead>
+  <tbody>
+    <%= show_tr :title %>
+    <%= show_tr "Author", @resource.author.name %>
+    <%= show_tr :body %>
+  </tbody>
+
 <% end %>
 ```
 
@@ -152,81 +181,130 @@ If your model was `BlogPost`, you'll need to create a file in your project at  `
 <%= f.hint "The body of this post. You can use Markdown!"
 ```
 
+### Customizing The Search Form
+
+By default, Tolaria provides a single search field that searches over all of the text or character columns of a model. You can expand the search tool to include other facets.
+
+**Important:** This system uses the [Ransack gem][ransack], which you'll need to familiarize yourself with.
+
+If your model was `BlogPost`, you'll need to create a file in your project at  `app/views/admin/blog_posts/_search.html.erb`. You'll provide the form code that would appear inside the `search_form_for` block, excluding the submit buttons. The builder variable is `f`.
+
+```erb
+<% # app/views/admin/blog_posts/_search.html.erb %>
+
+<%= f.label :title_cont, "Title contains" %>
+<%= f.search_field :title_cont, placeholder:"Anything" %>
+
+<%= f.label :author_name_cont, "Author is" %>
+<%= f.searchable_select :author_name_cont, Author.all, :name, :name, prompt:"Any author" %>
+
+<%= f.label :body_cont, "Body contains" %>
+<%= f.search_field :body_cont, placeholder:"Anything" %>
+```
+
+[ransack]: https://github.com/activerecord-hackery/ransack
+
 ### Provided Form Fields
 
-You can use all of the Rails-provided fields on your forms, but Tolaria also comes with a set of advanced, JavaScript-backed fields:
+You can use all of the Rails-provided fields on your forms, but Tolaria also comes with a set of advanced, JavaScript-backed fields. Make sure to [review the documentation for the form builder](#FIXME) to get all the details.
 
 ##### Markdown Composer
 
-FIXME.
+The markdown_composer helper will generate a very fancy Markdown editor, which includes text snippet tools and a fullscreen mode with live previewing.
+
+**Important:** You cannot use this field properly if you do not set up `Tolaria.config.markdown_renderer`. Without it, the live preview will only use `simple_format`!
 
 ##### Searchable Select
 
-FIXME.
+The searchable_select helper displays out a [Chosen select field][chosen] that authors can filter by typing.
+
+[chosen]: http://harvesthq.github.io/chosen/
 
 ##### Timestamp Field
 
-FIXME.
+The timestamp_field helper displays a text field that validates a provided timestamp and recovers to a template if blanked.
 
 ##### Slug Field
 
-FIXME.
+The slug_field helper allows you to show the parameterized value of a field in a given pattern preview.
 
 ##### Color Field
 
-FIXME.
+The color_field helper validates and displays a given hexadecimal color.
 
 ##### Image Field
 
-FIXME.
+The image_field helper displays a button that makes uploading an image a little more pleasant than a regular `file_field`.
 
 ##### Attachment Field
 
-FIXME.
+The attachment_field helper displays a button that makes uploading an arbirary file a little more pleasant than a regular `file_field`.
 
 ##### Hints
 
 Inline help is useful for reminding administrators about what should be provided for each field. Use `f.hint` to present a hint for a field.
 
-### Customizing The Search Form
-
-FIXME.
-
-### Customizing The Inspect Screen
-
-Tolaria provides a very basic show/inspect screen for models. You'll want to provide
-your own for complex models.
-
-If your model was `BlogPost`, you'll need to create a file in your project at: `app/views/admin/blog_posts/_show.html.erb`.
-
-See the TableHelper documentation for more information.
-
-```erb
-<%= show_table do %>
-
-  <thead>
-    <%= show_thead_tr %>
-  </thead>
-  <tbody>
-    <%= show_tr :title %>
-    <%= show_tr "Author", @resource.author.name %>
-    <%= show_tr :body %>
-  </tbody>
-
-<% end %>
-```
-
 ### Customizing the Menu
 
-FIXME
+When you call `manage_with_tolaria`, you can provide a category and a priority like below. Items in the same category will be grouped together in the navigation menu. Items are sorted priority ascending in their group.
 
-### Overriding a Controller
+```ruby
+class BlogPost < ActiveRecord::Base
+  manage_with_tolaria using:{
+    category: "Prose",
+    priority: 5,
+  }
+end
+```
 
-FIXME
+If you want to re-order the groups, you need to set an array of menu titles ahead of time in `Tolaria.config.menu_categories`:
+
+```ruby
+# config/initializers/tolaria.rb
+Tolaria.configure do |config|
+  config.menu_categories = [
+    "Prose",
+    "Animals",
+    "Settings",
+  ]
+end
+```
+
+### Patching a Controller
+
+Tolaria dynamically creates controllers for managed models, named as you would expect. If you want to replace or add to controller functionality, create the file in your parent application and patch away:
+
+If your model was `BlogPost`, you should create `app/controllers/admin/blog_posts_controller.rb`
+
+```ruby
+# app/controllers/admin/blog_posts_controller.rb
+class Admin::BlogPostsController < TolariaController
+  def another_method
+     # do stuff
+     # render a template
+  end
+end
+```
+
+You might want to [check out what we've done in the base ResourceController](https://github.com/Threespot/tolaria/blob/master/lib/tolaria/controllers/resource_controller.rb) file so that you know what you're patching. If you override any of the existing methods, you're on your own to handle everything correctly.
 
 ### Adding Your Own Styles or JavaScript
 
-FIXME
+If you want to add additional Sass or JavaScript to the admin system, you can create these files and then append to them as you need. Make sure that you import the base styles and JavaScript so you inherit what's already been done.
+
+`app/assets/stylesheets/admin/admin.scss`:
+
+```sass
+@import "admin/base";
+// Your code goes here
+```
+
+`app/assets/javascripts/admin/admin.js`:
+
+```javascript
+//= require admin/base
+// Your code goes here
+```
 
 ### Miscellaneous Technical Details
 
