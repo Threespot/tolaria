@@ -12,7 +12,7 @@
 
       <% # Show a default text filter because no filters were provided %>
       <%= f.label ransack_text_search_chain(@managed_class.klass), "Containing the text" %>
-      <%= f.search_field ransack_text_search_chain(@managed_class.klass) %>
+      <%= f.search_field ransack_text_search_chain(@managed_class.klass), placeholder:"Anything" %>
 
     <% end %>
 

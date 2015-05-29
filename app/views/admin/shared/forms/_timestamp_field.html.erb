@@ -11,7 +11,9 @@
 
   <%= f.text_field method, options.reverse_merge({
     :value => f.object.send(method).try(:strftime, "%Y-%m-%d %I:%M %p"),
-    :'data-recovery-value' => Time.current.strftime("%Y-%m-%d %I:%M %p")
+    :'data-recovery-value' => Time.current.strftime("%Y-%m-%d %I:%M %p"),
+    name: "", # KLUDGE: don't duplicate field names
+    id: "", # KLUDGE: don't duplicate field IDs
   }) %>
 
 </div>

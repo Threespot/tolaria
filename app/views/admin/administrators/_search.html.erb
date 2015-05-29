@@ -1,0 +1,5 @@
+<%= f.label :email_cont, "Email contains" %>
+<%= f.search_field :email_cont, placeholder:"Contains anything" %>
+
+<%= f.label ransack_text_search_chain(@managed_class.klass), "Containing the text" %>
+<%= f.search_field ransack_text_search_chain(@managed_class.klass), placeholder:"Anything" %>
