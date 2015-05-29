@@ -1,12 +1,4 @@
-//= require admin/lib/jquery
-//= require admin/lib/jquery.selection
-//= require admin/lib/jquery.chosen
-//= require admin/lib/underscore
-//= require admin/lib/backbone
-//= require admin/lib/moment
+// To override, create app/assets/admin/admin.js in your parent app.
+// The actual manifest is stored in base.js.
 
-//= require_directory ./models
-//= require_directory ./views
-//= require_directory ./views/forms
-
-//= require_self
+//= require admin/base.js
