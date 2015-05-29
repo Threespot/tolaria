@@ -55,9 +55,9 @@ module Tolaria
     #
     # #### Special Options
     #
-    # - `:preview_url` If the image already exists, provide a URL to a 42×42px
-    #   version of the image, and it will be show as a preview of the file the
-    #   user will be replacing.
+    # - `:preview_url` If the file already exists, provide a URL to a 42×42px
+    #   version of the image, and it will be displayed to the user in a preview
+    #   box to better communicate which file they are replacing.
     #
     # Other options are forwarded to the hidden `file_field`.
     def image_field(method, options = {})

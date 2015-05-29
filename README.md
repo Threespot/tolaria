@@ -15,14 +15,14 @@ Tolaria is a [content management system](https://en.wikipedia.org/wiki/Content_m
 - Assists in providing inline help and documentation to your editors.
   No passwords to manage! Tolaria uses email-based authentication.
 - No magic DSL. Work directly in ERB on admin forms, index views, and inspection screens.
-- Completely divorced/compartmentalized from the rest of the Rails application.
+- Completely divorced/compartmentalized from the rest of the Rails application. Does not use `to_param`.
 - Easily overridable on a case-by-case basis for more advanced CMS functionality.
 - Designed for use on Heroku, in containers, and on websites with TLS.
 - Modest dependencies.
 
 ### Browser Support
 
-Tolaria supports IE10+, Safari, Chrome, Firefox, iOS, and Android 2.3+. Note that these are the browsers your site editors will need, not the general site audience, which can differ.
+Tolaria supports IE10+, Safari, Chrome, Firefox, iOS, and Chrome for Android. Note that these are the browsers your site editors will need, not the general site audience, which can differ.
 
 ### Getting Started
 
@@ -214,35 +214,49 @@ The [`markdown_composer` helper](#FIXME) will generate a very fancy Markdown edi
 
 **Important:** You cannot use this field properly if you do not set up `Tolaria.config.markdown_renderer`. Without it, the live preview will only use `simple_format`!
 
+![markdown_composer](https://cloud.githubusercontent.com/assets/769083/7888521/407d0116-0607-11e5-91fe-a046c22ea777.png)
+
 ##### Searchable Select
 
-The [`searchable_select` helper](#FIXME) displays out a [Chosen select field][chosen] that authors can filter by typing.
+The [`searchable_select` helper](#FIXME) displays out a [Chosen select field](http://harvesthq.github.io/chosen/) that authors can filter by typing.
 
-[chosen]: http://harvesthq.github.io/chosen/
+![searchable_select](https://cloud.githubusercontent.com/assets/769083/7888524/41aba54c-0607-11e5-9c5f-483b5ecf5ea9.png)
 
 ##### Timestamp Field
 
 The [`timestamp_field` helper](#FIXME) displays a text field that validates a provided timestamp and recovers to a template if blanked.
 
+![timestamp_field](https://cloud.githubusercontent.com/assets/769083/7888528/4487a9b4-0607-11e5-9298-bc26116b59f0.png)
+
 ##### Slug Field
 
 The [`slug_field` helper](#FIXME) allows you to show the parameterized value of a field in a given pattern preview.
+
+![slug_field](https://cloud.githubusercontent.com/assets/769083/7888526/42ac965e-0607-11e5-9be6-0300f0f0f04d.png)
 
 ##### Color Field
 
 The [`color_field` helper](#FIXME) validates and displays a given hexadecimal color.
 
+![color_field](https://cloud.githubusercontent.com/assets/769083/7888518/3e2e1828-0607-11e5-8bca-79bdfa3b6a06.png)
+
 ##### Image Field
 
 The [`image_field` helper](#FIXME) displays a button that makes uploading an image a little more pleasant than a regular `file_field`.
+
+![image_field](https://cloud.githubusercontent.com/assets/769083/7888520/3f700750-0607-11e5-952a-e81edbb58017.png)
 
 ##### Attachment Field
 
 The [`attachment_field` helper](#FIXME) displays a button that makes uploading an arbirary file a little more pleasant than a regular `file_field`.
 
+![attachment_field](https://cloud.githubusercontent.com/assets/769083/7888501/2c5d3160-0607-11e5-8b44-9c8affaa1f8d.png)
+
 ##### Hints
 
 [Inline help](#FIXME) is useful for reminding administrators about what should be provided for each field. Use `f.hint` to present a hint for a field.
+
+![hint](https://cloud.githubusercontent.com/assets/769083/7888576/8d20f8a6-0607-11e5-80ea-2c8f66ad7449.png)
 
 ### Customizing the Menu
 
