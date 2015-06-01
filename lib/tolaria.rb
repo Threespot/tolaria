@@ -2,6 +2,7 @@ require "securerandom"
 require "digest/md5"
 
 require "sass"
+require "sass-rails"
 require "bcrypt"
 require "kaminari"
 require "ransack"

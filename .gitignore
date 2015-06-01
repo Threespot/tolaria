@@ -4,6 +4,7 @@
 *.gem
 *.log
 *.rbc
+*.cache
 *.sqlite3
 *.sqlite3-journal
 .bundle

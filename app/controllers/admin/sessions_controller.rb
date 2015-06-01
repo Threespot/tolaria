@@ -56,22 +56,28 @@ class Admin::SessionsController < Tolaria::TolariaController
 
   def create
 
-    @administrator = Administrator.find_by_email(params[:administrator][:email].downcase.strip)
-    successful_authentication = @administrator.authenticate!(params[:administrator][:passcode])
+    if params[:administrator] && params[:administrator][:email] && params[:administrator][:passcode]
 
-    if @administrator and successful_authentication
-      # Set an signed admin cookie with our auth_token
-      cookies.encrypted[:admin_auth_token] = {
-        value: @administrator.auth_token,
-        expires: params[:remember_me].eql?("1") ? 1.year.from_now : nil,
-        secure: Rails.env.production?, # Expect a TLS connection in production
-        httponly: true, # JavaScript cannot read this cookie
-      }
-      return redirect_to(Tolaria.config.default_redirect, status:303)
-    else
-      flash[:error] = "That passcode wasn’t correct. Please request a new passcode and try again."
-      return redirect_to(admin_new_session_path, status:303)
+      @administrator = Administrator.find_by_email(params[:administrator][:email].downcase.strip)
+      successful_authentication = @administrator.authenticate!(params[:administrator][:passcode])
+
+      if @administrator and successful_authentication
+        # Set an signed admin cookie with our auth_token
+        cookies.encrypted[:admin_auth_token] = {
+          value: @administrator.auth_token,
+          expires: params[:remember_me].eql?("1") ? 1.year.from_now : nil,
+          secure: Rails.env.production?, # Expect a TLS connection in production
+          httponly: true, # JavaScript cannot read this cookie
+        }
+        return redirect_to(Tolaria.config.default_redirect, status:303)
+      end
+
     end
+
+    # Auth failed
+    flash[:error] = "That passcode wasn’t correct. Please request a new passcode and try again."
+    return redirect_to(admin_new_session_path, status:303)
+
   end
 
   # Destroy: Sign out the admin and reset the session
