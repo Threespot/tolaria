@@ -1,4 +1,4 @@
 Rails.application.routes.draw do
-  root to:"welcome#homepage"
+  root to:"homepage#homepage"
   Tolaria.draw_routes(self)
 end

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150601202901) do
+ActiveRecord::Schema.define(version: 20150603204006) do
 
   create_table "administrators", force: :cascade do |t|
     t.datetime "created_at"
@@ -30,5 +30,35 @@ ActiveRecord::Schema.define(version: 20150601202901) do
 
   add_index "administrators", ["auth_token"], name: "index_administrators_on_auth_token"
   add_index "administrators", ["email"], name: "index_administrators_on_email"
+
+  create_table "blog_post_categories", force: :cascade do |t|
+    t.integer "blog_post_id", null: false
+    t.integer "category_id",  null: false
+  end
+
+  add_index "blog_post_categories", ["blog_post_id"], name: "index_blog_post_categories_on_blog_post_id"
+  add_index "blog_post_categories", ["category_id"], name: "index_blog_post_categories_on_category_id"
+
+  create_table "blog_posts", force: :cascade do |t|
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
+    t.string   "title",        null: false
+    t.datetime "published_at", null: false
+    t.text     "teaser"
+    t.text     "summary"
+    t.text     "body"
+    t.string   "color"
+    t.text     "portrait"
+    t.text     "attachment"
+  end
+
+  create_table "categories", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.string   "label",      null: false
+    t.string   "slug",       null: false
+  end
+
+  add_index "categories", ["slug"], name: "index_categories_on_slug"
 
 end
