@@ -1,3 +1,14 @@
+# No lockfile for this project
+
+Gemfile.lock
+
+# Generate docs yourself
+
+rdoc
+doc
+_yardoc
+.yardoc
+
 # Ignore local dev only files
 
 *.dump
@@ -10,9 +21,9 @@
 .bundle
 .config
 .env
-.env.test
-.yardoc
+.env.*
 config/database.yml
+config/secrets.yml
 coverage
 export
 InstalledFiles
@@ -20,18 +31,16 @@ lib/bundler/man
 node_modules
 pkg
 public/system/**/*
-rdoc
-doc
 rerun.txt
 spec/reports
 spec/tmp/**/*
 tags
 test/tmp
 test/version_tmp
-vendor/**/*
+vendor/cache/**/*
+vendor/bundle/**/*
 vim/.netrwhist
 zeus.json
-_yardoc
 
 # Ignore compilation junk
 
