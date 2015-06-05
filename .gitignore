@@ -1,3 +1,7 @@
+# Special ignores for this project
+
+Gemfile.lock
+
 # Ignore local dev only files
 
 *.dump
