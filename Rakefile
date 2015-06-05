@@ -14,3 +14,22 @@ Rake::TestTask.new(:test) do |t|
 end
 
 task default: :test
+
+namespace :admin do
+  task :create do
+    Dir.chdir "./test/dummy"
+    exec "./bin/rake admin:create"
+  end
+end
+
+task :server do
+  Dir.chdir "./test/dummy"
+  system "./bin/rake db:migrate"
+  exec "./bin/rails server --port 8080"
+end
+
+task :console do
+  Dir.chdir "./test/dummy"
+  system "./bin/rake db:migrate"
+  exec "./bin/rails console"
+end

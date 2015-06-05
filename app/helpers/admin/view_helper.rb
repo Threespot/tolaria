@@ -48,7 +48,7 @@ module Admin::ViewHelper
     textual_columns = model.columns_hash.select do |column, settings|
       settings.sql_type.include?("character") || settings.sql_type.include?("text")
     end
-    textual_columns = ["id"] if textual_columns.none?
+    textual_columns = {id:"id"} if textual_columns.none?
     return %{#{textual_columns.keys.join("_or_")}_cont}.to_sym
   end
 
