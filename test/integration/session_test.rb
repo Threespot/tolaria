@@ -26,15 +26,8 @@ class SessionTest < ActionDispatch::IntegrationTest
   end
 
   test "can sign in with passcode" do
-    passcode = @administrator.set_passcode!
-    post "/admin/signin", {
-      administrator: {
-        email: @administrator.email,
-        passcode: passcode
-      }
-    }
-    assert_response :see_other
-    assert response["Location"].exclude?("/admin/signin")
+    sign_in_dummy_administrator!
+    assert page.current_path.exclude?("/admin/signin")
   end
 
   test "can't sign in with bad passcode" do
