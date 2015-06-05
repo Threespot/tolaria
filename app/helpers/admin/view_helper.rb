@@ -46,7 +46,7 @@ module Admin::ViewHelper
   # field name for Ransack from a given model's table settings
   def ransack_text_search_chain(model)
     textual_columns = model.columns_hash.select do |column, settings|
-      settings.sql_type.include?("character") || settings.sql_type.include?("text")
+      settings.sql_type.include?("char") || settings.sql_type.include?("text")
     end
     textual_columns = {id:"id"} if textual_columns.none?
     return %{#{textual_columns.keys.join("_or_")}_cont}.to_sym
