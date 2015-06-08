@@ -1,6 +1,6 @@
 require "test_helper"
 
-class ManagedClassesTest < ActionDispatch::IntegrationTest
+class ManagedClassesTest < ActiveSupport::TestCase
 
   test "can manage, check, and unmanage a model" do
 
@@ -15,11 +15,6 @@ class ManagedClassesTest < ActionDispatch::IntegrationTest
       }
     end
 
-    # Re-draw the routes
-    Rails.application.routes.draw do
-      Tolaria.draw_routes(self)
-    end
-
     # Find that class
     managed_class = Tolaria.managed_classes.select do |managed_class|
       managed_class.klass.eql?(Card)
@@ -28,10 +23,6 @@ class ManagedClassesTest < ActionDispatch::IntegrationTest
     # Did we find the class we just managed?
     assert managed_class.present?
     assert managed_class.klass.eql?(Card)
-
-    # Can we use the routes?
-    assert_equal admin_cards_path, "/admin/cards"
-    assert_equal admin_card_path(1), "/admin/cards/1"
 
     # Can we can get our settings back?
     assert_equal managed_class.icon, "credit-card"
