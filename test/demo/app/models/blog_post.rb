@@ -10,7 +10,10 @@ class BlogPost < ActiveRecord::Base
 
   manage_with_tolaria using: {
     icon: :file_o,
+    priority: 1,
+    default_order: "id DESC",
     category: "Syndication",
+    paginated: true,
     permit_params: [
       :title,
       :teaser,

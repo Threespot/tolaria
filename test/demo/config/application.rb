@@ -3,7 +3,7 @@ require "rails/all"
 Bundler.require(*Rails.groups)
 require "tolaria"
 
-module Dummy
+module Demo
   class Application < Rails::Application
 
     # Settings in config/environments/* take precedence over those specified here.

@@ -4,7 +4,7 @@
 
 # Configure Rails and load libraries
 ENV["RAILS_ENV"] = "test"
-require File.expand_path("../../test/dummy/config/environment.rb",  __FILE__)
+require File.expand_path("../../test/demo/config/environment.rb",  __FILE__)
 require "rails/test_help"
 require "tolaria"
 require "capybara/rails"
