@@ -333,8 +333,6 @@ If you want to add additional Sass or JavaScript to the admin system, you can cr
 
 Tolaria comes with a test suite and a demo server that the test suite exercises.
 
-**Important:** To run tests, you need the `qt` package on your system. If you're using homebrew, it's just `brew install qt`. For other systems or help, refer to the [Qt wiki page for capybara-webkit](https://github.com/thoughtbot/capybara-webkit/wiki/Installing-Qt-and-compiling-capybara-webkit).
-
 To run tests, first clone the repo:
 
 ```shell
@@ -342,7 +340,7 @@ $ git clone -o github git@github.com:threespot/tolaria.git
 $ cd tolaria
 ```
 
-Install the development dependencies. This will fail if you don't have qt installed as above.
+Install the development dependencies:
 
 ```
 $ bundle install
