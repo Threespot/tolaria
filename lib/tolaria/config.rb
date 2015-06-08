@@ -20,6 +20,9 @@ module Tolaria
 
   # Returns Tolaria’s configuration as an object
   def self.config
+    if block_given?
+      raise ArgumentError, "You passed a block to Tolaria.config but such a block will be ignored. Did you mean to call Tolaria.configure instead?"
+    end
     @configuration ||= Tolaria::Configuration.new
   end
 
