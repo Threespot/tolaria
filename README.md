@@ -49,6 +49,15 @@ Run this Rake command to create your first administrator account:
 $ rake admin:create
 ```
 
+Now you'll need to add Tolaria's route drawing to the top of your `routes.rb` file like so:
+
+```ruby
+Rails.application.routes.draw do
+  Tolaria.draw_routes(self)
+  # Your other routes below here
+end
+```
+
 Tolaria needs to be able to dispatch email. You'll need to configure ActionMailer to use an appropriate mail service. Here's an example using [Mailgun on Heroku](https://devcenter.heroku.com/articles/mailgun):
 
 ```ruby
@@ -318,6 +327,33 @@ If you want to add additional Sass or JavaScript to the admin system, you can cr
 ```javascript
 //= require admin/base
 // Your code goes here
+```
+
+### Testing and Running the Demo Server
+
+Tolaria comes with a test suite and a demo server that the test suite exercises.
+
+**Important:** To run tests, you need the `qt` package on your system. If you're using homebrew, it's just `brew install qt`. For other systems or help, refer to the [Qt wiki page for capybara-webkit](https://github.com/thoughtbot/capybara-webkit/wiki/Installing-Qt-and-compiling-capybara-webkit).
+
+To run tests, first clone the repo:
+
+```shell
+$ git clone -o github git@github.com:threespot/tolaria.git
+$ cd tolaria
+```
+
+Install the development dependencies. This will fail if you don't have qt installed as above.
+
+```
+$ bundle install
+```
+
+Now in the project root, you have several `rake` tasks available:
+
+```shell
+$ rake test      # Run the tests
+$ rake console   # Start a Rails console with Tolaria loaded
+$ rake server    # Start a Rails Webrick server with Tolaria and some example models loaded
 ```
 
 ### Miscellaneous Technical Details

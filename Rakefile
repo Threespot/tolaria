@@ -1,6 +1,7 @@
 require "bundler/setup"
 
 APP_RAKEFILE = File.expand_path("../test/demo/Rakefile", __FILE__)
+TOLARIA_ROOT = File.dirname(__FILE__)
 
 Bundler::GemHelper.install_tasks
 
@@ -18,7 +19,7 @@ task default: :test
 desc "Create an admin in the demo development database"
 namespace :admin do
   task :create do
-    Dir.chdir "./test/demo"
+    Dir.chdir "#{TOLARIA_ROOT}/test/demo"
     system "./bin/rake db:migrate"
     exec "./bin/rake admin:create"
   end
@@ -27,7 +28,7 @@ end
 desc "Migrate the development database"
 namespace :db do
   task :migrate do
-    Dir.chdir "./test/demo"
+    Dir.chdir "#{TOLARIA_ROOT}/test/demo"
     system "./bin/rake db:migrate"
   end
 end
@@ -35,14 +36,18 @@ end
 desc "Start a Rails Webrick server with Tolaria and some example models loaded"
 task :server do
   port = ENV.fetch("PORT", 8080)
-  Dir.chdir "./test/demo"
+  binding = ENV.fetch("BIND_ON", "0.0.0.0")
+  Dir.chdir "#{TOLARIA_ROOT}/test/demo"
   system "./bin/rake db:migrate"
-  exec "./bin/rails server --port #{port}"
+  exec "./bin/rails server --environment development --bind #{binding} --port #{port}"
 end
 
 desc "Start a Rails console with Tolaria loaded"
 task :console do
-  Dir.chdir "./test/demo"
+  Dir.chdir "#{TOLARIA_ROOT}/test/demo"
   system "./bin/rake db:migrate"
   exec "./bin/rails console"
 end
+
+desc "Start a Rails console with Tolaria loaded (same as `rake console`)"
+task :shell => :console
