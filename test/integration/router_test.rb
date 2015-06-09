@@ -64,7 +64,7 @@ class RouterTest < ActionDispatch::IntegrationTest
     assert_equal "/admin/miscellany/1", admin_miscellany_path(1)
     assert_equal "/admin/miscellany/1/edit", edit_admin_miscellany_path(1)
 
-    # Unseat the Card class so that it doesn't leak out of this test
+    # Unseat the class so that it doesn't leak out of this test
     assert Tolaria.discard_managed_class(Miscellany), "should discard class"
     Object.send(:remove_const, :Miscellany)
 
