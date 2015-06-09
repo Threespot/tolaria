@@ -33,7 +33,7 @@ module Admin::TableHelper
   # is placed in the second `<td>`. Options are forwarded to `content_tag`
   # for the *second* `<td>`.
   #
-  # If +label+ is a symbol, it is assumed to be a method on a variabled named
+  # If +label+ is a symbol, it is assumed to be a method on a variable named
   # `@resource` in the current template, and the `<tr>` is constructed
   # automatically for you by converting the symbol to a human-readable label
   # and calling the named method on @resource to get the +value+.
@@ -41,10 +41,10 @@ module Admin::TableHelper
   # ==== Signatures
   #
   #     # Set the values yourself, and a class on the second `<td>`
-  #     show_trs "Slug", resource.slug, class:"monospace"
+  #     show_tr "Slug", resource.slug, class:"monospace"
   #
   #     # Attempt to auto-fill the row based on a method name
-  #     show_trs :slug
+  #     show_tr :slug
   def show_tr(label, value = nil, options = nil)
 
     if label.is_a?(Symbol)
