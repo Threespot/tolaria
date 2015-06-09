@@ -3,7 +3,7 @@ class CreateAdministrators < ActiveRecord::Migration
 
     create_table :administrators, force:true do |t|
 
-      t.timestamps
+      t.timestamps null:false
 
       # The email used to log into this account
       t.string :email, null:false, index:true
