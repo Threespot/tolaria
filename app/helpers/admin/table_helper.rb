@@ -58,10 +58,10 @@ module Admin::TableHelper
     end
 
     content << content_tag(:td, options) do
-      value
+      value.to_s
     end
 
-    content_tag :tr do
+    content_tag(:tr) do
       content
     end
 
