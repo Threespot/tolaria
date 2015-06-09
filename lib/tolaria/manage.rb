@@ -9,7 +9,7 @@ module Tolaria
     @safe_mangagment
   end
 
-  # Se the value of Tolaria.safe_management. +bool+ should be truthy.
+  # Set the value of Tolaria.safe_management. +bool+ should be truthy.
   # Don't call this method directly.
   def self.safe_management=(bool)
     @safe_mangagment = !!bool
