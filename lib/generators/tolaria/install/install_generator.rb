@@ -6,7 +6,7 @@ module Tolaria
     source_root File.expand_path("../templates", __FILE__)
 
     def install
-      copy_file "tolaria_initializer.rb", "app/config/initializers/tolaria.rb"
+      copy_file "tolaria_initializer.rb", "config/initializers/tolaria.rb"
       migration_template "administrators_migration.rb", "db/migrate/create_administrators.rb"
     end
 
