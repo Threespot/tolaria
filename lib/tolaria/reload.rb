@@ -4,14 +4,13 @@ module Tolaria
   # to force Rails to autoload/reload all model files.
   def self.reload!
 
-    # Reference the `Administrator` class so that Rails autoloads
-    # it from the engine directory
-    Administrator
+    # Manage the models included with the engine
+    Administrator.generate_tolaria_bindings!
 
-    # Reference each ActiveRecord::Base model so Rails
-    # autoloads it or reloads changed files.
+    # Reference each ActiveRecord::Base model so Rails autoloads it or
+    # reloads changed files. Call generate_tolaria_bindings! on them.
     Dir["#{Rails.root}/app/models/*.rb"].each do |file|
-      File.basename(file, ".rb").camelize.safe_constantize
+      File.basename(file, ".rb").camelize.safe_constantize.try(:generate_tolaria_bindings!)
     end
 
   end

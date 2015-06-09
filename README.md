@@ -301,7 +301,7 @@ If your model was `BlogPost`, you should create `app/controllers/admin/blog_post
 
 ```ruby
 # app/controllers/admin/blog_posts_controller.rb
-class Admin::BlogPostsController < TolariaController
+class Admin::BlogPostsController < Tolaria::ResourceController
   def another_method
      # do stuff
      # render a template

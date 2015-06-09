@@ -16,6 +16,7 @@ require "tolaria/random_tokens"
 require "tolaria/admin"
 
 require "tolaria/reload"
+require "tolaria/managed_class"
 require "tolaria/manage"
 require "tolaria/active_record"
 require "tolaria/routes"
@@ -23,11 +24,3 @@ require "tolaria/introspection"
 require "tolaria/categories"
 require "tolaria/markdown"
 require "tolaria/form_buildable"
-require "tolaria/managed_class"
-
-module Tolaria
-  # We have to autoload these classes because they inherit
-  # from a Rails class (Rails must boot first)
-  autoload :TolariaController, "tolaria/controllers/tolaria_controller"
-  autoload :ResourceController, "tolaria/controllers/resource_controller"
-end

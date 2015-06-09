@@ -1,17 +1,22 @@
 module Tolaria
   class Engine < ::Rails::Engine
 
-    # Add ourselves to the auto/eagerload paths
-    config.autoload_paths   += Dir["#{config.root}/lib/**/*"]
-    config.eager_load_paths += Dir["#{config.root}/lib/**/*"]
-
     # Add Tolaria’s assets to config.assets.precompile
-    initializer "Tolaria precompile hook", group: :all do |app|
+    initializer "tolaria.assets.precompile", group: :all do |app|
       app.config.assets.precompile += %w[
         admin/admin.css
         admin/admin.js
         admin/lib/no.js
       ]
+    end
+
+    # Reference ApplicationController and set Tolaria.safe_management
+    # to indicate that the application has finished booting
+    initializer "tolaria.safe_management", group: :all do |app|
+      app.config.after_initialize do
+        "ApplicationController".safe_constantize
+        Tolaria.safe_management = true
+      end
     end
 
   end

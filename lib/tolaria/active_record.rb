@@ -38,7 +38,18 @@ class ActiveRecord::Base
   #   The default includes all CRUD actions:
   #   `[:index, :show, :new, :create, :edit, :update, :destroy]`
   def self.manage_with_tolaria(using:{})
-    Tolaria.manage(self, **using)
+    @tolaria_management_options = using
+    if Tolaria.safe_management
+      generate_tolaria_bindings!
+    end
+  end
+
+  # Instructs Tolaria to start managing the model and create the correct controllers.
+  # You shouldn't call this method directly.
+  def self.generate_tolaria_bindings!
+    if @tolaria_management_options.present?
+      Tolaria.manage(self, **@tolaria_management_options)
+    end
   end
 
 end
