@@ -21,7 +21,7 @@ module Tolaria
 
         # Create routes for every managed class
         managed_classes.each do |managed_class|
-          resources managed_class.model_name.route_key, only:managed_class.allowed_actions
+          resources managed_class.plural, only:managed_class.allowed_actions
         end
 
       end

@@ -31,10 +31,10 @@
     </p>
   </div>
 
-<% elsif admin_template_exists?("#{@managed_class.model_name.route_key}/index") %>
+<% elsif admin_template_exists?("#{@managed_class.plural}/index") %>
 
   <div class="index-table-wrap">
-    <%= render partial:"admin/#{@managed_class.model_name.route_key}/index" %>
+    <%= render partial:"admin/#{@managed_class.plural}/index" %>
   </div>
 
 <% else %>

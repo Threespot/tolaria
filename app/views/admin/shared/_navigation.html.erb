@@ -11,7 +11,7 @@
               <%= tolaria_navigation_link(
                 managed_class.model_name.human.pluralize.titleize,
                 managed_class.icon,
-                url_for([:admin, managed_class.klass])
+                url_for(action:"index", controller:managed_class.plural)
               ) %>
             </li>
           <% end %>

@@ -80,5 +80,11 @@ module Tolaria
       self.klass.model_name
     end
 
+    # Delegate model_name methods to model_name
+    delegate :route_key, to: :model_name
+    delegate :singular, to: :model_name
+    delegate :singular_route_key, to: :model_name
+    delegate :plural, to: :model_name
+
   end
 end

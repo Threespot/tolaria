@@ -22,7 +22,7 @@
   </div>
 
   <div class="resource-form-interior">
-    <%= render partial:"admin/#{@managed_class.model_name.route_key}/form", locals:{f:form_builder} %>
+    <%= render partial:"admin/#{@managed_class.plural}/form", locals:{f:form_builder} %>
   </div>
 
   <div class="main-controls -inverse">

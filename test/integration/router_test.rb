@@ -43,4 +43,31 @@ class RouterTest < ActionDispatch::IntegrationTest
 
   end
 
+  test "correctly draws uncountable routes" do
+
+    ActiveSupport::Inflector.inflections do |inflect|
+      inflect.uncountable %w[miscellany]
+    end
+
+    class ::Miscellany < ActiveRecord::Base
+      manage_with_tolaria using:{
+        icon: "gear",
+      }
+    end
+
+    # Re-draw the routes
+    Rails.application.routes.draw do
+      Tolaria.draw_routes(self)
+    end
+
+    assert_equal "/admin/miscellany", admin_miscellany_index_path
+    assert_equal "/admin/miscellany/1", admin_miscellany_path(1)
+    assert_equal "/admin/miscellany/1/edit", edit_admin_miscellany_path(1)
+
+    # Unseat the Card class so that it doesn't leak out of this test
+    assert Tolaria.discard_managed_class(Miscellany), "should discard class"
+    Object.send(:remove_const, :Miscellany)
+
+  end
+
 end

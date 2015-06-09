@@ -18,9 +18,9 @@
 
 </div>
 
-<% if admin_template_exists?("#{@managed_class.model_name.route_key}/show") %>
+<% if admin_template_exists?("#{@managed_class.plural}/show") %>
 
-  <%= render partial:"admin/#{@managed_class.model_name.route_key}/show" %>
+  <%= render partial:"admin/#{@managed_class.plural}/show" %>
 
 <% else %>
 
