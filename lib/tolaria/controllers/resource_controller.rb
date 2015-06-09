@@ -122,9 +122,11 @@ module Tolaria
 
     # Logs all validation errors for the current resource to the Rails console
     def log_validation_errors!
-      puts "#{@resource.class} failed validation and was not saved:"
-      @resource.errors.full_messages.each do |message|
-        puts "  #{message}"
+      unless Rails.env.test?
+        puts "#{@resource.class} failed validation and was not saved:"
+        @resource.errors.full_messages.each do |message|
+          puts "  #{message}"
+        end
       end
     end
 

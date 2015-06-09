@@ -4,16 +4,31 @@ class SessionTest < ActionDispatch::IntegrationTest
 
   def setup
     @administrator = create_dummy_administrator!
+    reset!
+  end
+
+  def fill_out_signin_form!(email:, passcode:)
+    visit("/admin/signin")
+    find("#session-form-email").set(email)
+    find("#session-form-passcode", visible:false).set(passcode)
+    find("#session-form-submit").click
+  end
+
+  # Assert that we landed back on the signin form with the rejection message showing
+  def assert_failed_authentication!
+    assert page.has_content?("wasn’t correct"), "should see rejection flash message"
+    assert_equal "/admin/signin", current_path
   end
 
   test "should get redirected to the signin form" do
-    get "/admin"
-    assert_response :see_other
+    visit("/admin")
+    assert_equal "/admin/signin", current_path
+    assert_equal 200, status_code
   end
 
   test "should get the signin form" do
-    get "/admin/signin"
-    assert_response :success
+    visit "/admin/signin"
+    assert_equal 200, status_code
   end
 
   test "session form doesn't explode when junk submitted" do
@@ -27,19 +42,46 @@ class SessionTest < ActionDispatch::IntegrationTest
 
   test "can sign in with passcode" do
     sign_in_dummy_administrator!
-    assert page.current_path.exclude?("/admin/signin")
+    assert current_path.exclude?("/admin/signin")
   end
 
   test "can't sign in with bad passcode" do
     passcode = @administrator.set_passcode!
-    post "/admin/signin", {
-      administrator: {
-        email: @administrator.email,
-        passcode: "F#{passcode}"
-      }
-    }
-    assert_response :see_other
-    assert_redirected_to "/admin/signin"
+    fill_out_signin_form! email:@administrator.email, passcode:"bad passcode"
+    assert_failed_authentication!
+  end
+
+  test "can't sign in with an expired passcode" do
+    passcode = @administrator.set_passcode!
+    Timecop.freeze(Time.current + Tolaria.config.passcode_lifespan + 1.second) do
+      fill_out_signin_form! email:@administrator.email, passcode:passcode
+      assert_failed_authentication!
+    end
+  end
+
+  test "account gets locked and unlocks" do
+
+    passcode = @administrator.set_passcode!
+
+    Tolaria.config.lockout_threshold.times do |i|
+      fill_out_signin_form! email:@administrator.email, passcode:"bad passcode"
+      assert_failed_authentication!
+    end
+
+    fill_out_signin_form! email:@administrator.email, passcode:passcode
+    assert_failed_authentication!
+
+    @administrator.reload
+    assert @administrator.locked?, "account should be locked"
+
+    Timecop.freeze(Time.current + Tolaria.config.lockout_duration + 1.second) do
+      refute @administrator.locked?, "account should unlock after duration"
+    end
+
+    @administrator.unlock_account!
+    @administrator.reload
+    refute @administrator.locked?, "account should be unlock when instructed"
+
   end
 
 end

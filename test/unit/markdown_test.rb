@@ -4,8 +4,8 @@ class MarkdownTest < ActiveSupport::TestCase
 
   test "generate a paragraph" do
     assert_equal(
-      Tolaria.render_markdown("Ach! Hans, run! It's the Pascagoyf!"),
-      "<p>Ach! Hans, run! It's the Pascagoyf!</p>"
+      "<p>Ach! Hans, run! It's the Pascagoyf!</p>",
+      Tolaria.render_markdown("Ach! Hans, run! It's the Pascagoyf!")
     )
   end
 

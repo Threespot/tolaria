@@ -5,7 +5,6 @@ class AddTestingModels < ActiveRecord::Migration
       t.timestamps null:false
       t.string :title, null: false
       t.datetime :published_at, null: false
-      t.text :teaser
       t.text :summary
       t.text :body
       t.string :color

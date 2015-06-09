@@ -8,12 +8,16 @@ require File.expand_path("../../test/demo/config/environment.rb",  __FILE__)
 require "rails/test_help"
 require "tolaria"
 require "capybara/rails"
+require "timecop"
 require "minitest/unit"
 require "minitest/pride"
 
 # Filter out Minitest backtrace while allowing backtrace from
 # other libraries to be shown.
 Minitest.backtrace_filter = Minitest::BacktraceFilter.new
+
+# Run Timecop in safe mode so time tests don't leak
+Timecop.safe_mode = true
 
 # Load support files
 Dir["#{File.dirname(__FILE__)}/support/**/*.rb"].each { |f| require f }
@@ -45,10 +49,10 @@ class ActionDispatch::IntegrationTest
   def sign_in_dummy_administrator!
     @administrator = create_dummy_administrator!
     passcode = @administrator.set_passcode!
-    visit "/admin/signin"
-    fill_in "session-form-email", with: @administrator.email
+    visit("/admin/signin")
+    find("#session-form-email").set(@administrator.email)
     find("#session-form-passcode", visible:false).set(passcode)
-    click_button "session-form-submit"
+    find("#session-form-submit").click
   end
 
 end

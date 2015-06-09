@@ -37,7 +37,7 @@ class Administrator < ActiveRecord::Base
   # and passcode inside the time window
   # -----------------------------------------------------------------------------
 
-  # Initalize +passcode+, +passcode_expires_at+,
+  # Initialize +passcode+, +passcode_expires_at+,
   # +auth_token+, and +account_unlocks_at+ for a new admin.
   # To prevent passcode system fields from being null,
   # we fill them with an immediately expired passcode.

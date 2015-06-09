@@ -1,6 +1,6 @@
 require "test_helper"
 
-class MenuTest < ActionDispatch::IntegrationTest
+class MenuTest < ActiveSupport::TestCase
 
   test "categories from the demo application returned correctly" do
     assert_equal ::Tolaria.categories, ["Syndication", "Settings"]
@@ -19,10 +19,6 @@ class MenuTest < ActionDispatch::IntegrationTest
       manage_with_tolaria using:{
         category: "Payments",
       }
-    end
-
-    Rails.application.routes.draw do
-      Tolaria.draw_routes(self)
     end
 
     assert_equal Tolaria.categories, ["Syndication", "Settings", "Payments"]

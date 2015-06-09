@@ -3,9 +3,9 @@ require "test_helper"
 class RouterTest < ActionDispatch::IntegrationTest
 
   test "draws admin routes" do
-    assert admin_new_session_path
-    assert admin_destroy_session_path
-    assert admin_root_path
+    assert admin_new_session_path, "route should exist"
+    assert admin_destroy_session_path, "route should exist"
+    assert admin_root_path, "route should exist"
   end
 
   test "draws automatic model routes" do
@@ -27,18 +27,18 @@ class RouterTest < ActionDispatch::IntegrationTest
     assert_equal admin_cards_path, "/admin/cards"
     assert_equal admin_card_path(1), "/admin/cards/1"
 
-    assert admin_blog_posts_path
-    assert admin_blog_posts_path(1)
-    assert edit_admin_blog_post_path(1)
-    assert admin_blog_post_path(1)
+    assert admin_blog_posts_path, "route should exist"
+    assert admin_blog_posts_path(1), "route should exist"
+    assert edit_admin_blog_post_path(1), "route should exist"
+    assert admin_blog_post_path(1), "route should exist"
 
-    assert admin_categories_path
-    assert admin_category_path(1)
-    assert edit_admin_category_path(1)
-    assert admin_category_path(1)
+    assert admin_categories_path, "route should exist"
+    assert admin_category_path(1), "route should exist"
+    assert edit_admin_category_path(1), "route should exist"
+    assert admin_category_path(1), "route should exist"
 
     # Unseat the Card class so that it doesn't leak out of this test
-    assert Tolaria.discard_managed_class(Card)
+    assert Tolaria.discard_managed_class(Card), "should discard class"
     Object.send(:remove_const, :Card)
 
   end

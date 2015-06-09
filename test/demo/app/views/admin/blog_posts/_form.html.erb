@@ -1,0 +1,42 @@
+<%= f.label :title, "Post Title" %>
+<%= f.slug_field :title, placeholder:"Post title", pattern:"/blog/255-*" %>
+<%= f.hint "The title of this post. The title is featured prominently across the site and used to construct the page URL. A good title is both summarizing and enticing, much like a newspaper headline." %>
+
+<%= f.label :published_at, "Publishing Date" %>
+<%= f.timestamp_field :published_at %>
+<%= f.hint %{
+  The date this post should be published.
+  Published posts with a date set in the future will be scheduled to appear on that date.
+} %>
+
+<%#= f.label :title, "Category" %>
+<%#= f.collection_select :categories, Category.all, :id, :label, prompt:"No category"%>
+<%#= f.hint "Chose a single categories for this blog post" %>
+
+<%#= f.label :title, "Category" %>
+<%#= f.searchable_select :categories, Category.all, :id, :label, prompt:"No category"%>
+<%#= f.hint "Chose a single categories for this blog post" %>
+
+<%= f.label :title, "Categories" %>
+<%= f.searchable_select :category_ids, Category.all, :id, :label, multiple:true, placeholder:"Select categories" %>
+<%= f.hint "Chose some categories for this blog post" %>
+
+<%= f.label :color, "Background Color" %>
+<%= f.color_field :color, placeholder:"#CC0000" %>
+<%= f.hint "Choose a background color for this campaign" %>
+
+<%= f.label :summary %>
+<%= f.text_area :summary, rows:3, placeholder:"Summary for search engines and social media" %>
+<%= f.hint "Summarize this post in less than 300 characters. The summary is used for blog listings and the SEO/social metadata for the page." %>
+
+<%= f.label :portrait, "Portrait" %>
+<%= f.image_field :portrait, preview_url:"http://f.cl.ly/items/0H2g1v100l470l2c381A/slack-imgs.com.jpeg" %>
+<%= f.hint "Attach a portrait of this author, at least 600×600 pixels in size. The subject should be centered." %>
+
+<%= f.label :attachment, "File Download" %>
+<%= f.attachment_field :attachment %>
+<%= f.hint "Attach a portrait of this author, at least 600×600 pixels in size. The subject should be centered." %>
+
+<%= f.label :body, "Body" %>
+<%= f.markdown_composer :body %>
+<%= f.hint "The body of this post. You can use Markdown!" %>

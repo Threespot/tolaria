@@ -6,16 +6,17 @@ Gem::Specification.new do |s|
   s.name          = "tolaria"
   s.version       = Tolaria::VERSION::STRING
   s.platform      = Gem::Platform::RUBY
-  s.authors       = ["Threespot Media"]
+  s.authors       = ["Corey Csuhta", "Daniel Boggs"]
   s.licenses      = ["MIT"]
   s.homepage      = "https://github.com/threespot/tolaria"
   s.description   = "Tolaria is a CMS framework for Ruby on Rails. Make your editors happy!"
   s.summary       = "A Rails CMS framework for making people happy."
 
   s.files = `git ls-files`.split("\n")
+  s.test_files = `git ls-files --directory test`.split("\n")
   s.require_paths = ["lib"]
 
-  s.required_ruby_version = ">= 2.2.0"
+  s.required_ruby_version = ">= 2.2"
 
   s.add_dependency "bcrypt", ">= 3.1"
   s.add_dependency "kaminari", "~> 0.16"
@@ -27,6 +28,7 @@ Gem::Specification.new do |s|
   s.add_development_dependency "rdoc"
   s.add_development_dependency "minitest"
   s.add_development_dependency "sqlite3"
+  s.add_development_dependency "timecop"
   s.add_development_dependency "capybara", "~> 2.4"
 
 end
