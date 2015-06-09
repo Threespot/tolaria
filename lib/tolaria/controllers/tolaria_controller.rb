@@ -1,5 +1,5 @@
 module Tolaria
-  class TolariaController < ApplicationController
+  class TolariaController < ::ApplicationController
 
     protect_from_forgery
     before_filter :add_admin_headers!
