@@ -13,17 +13,20 @@
   text-shadow: 0;
 
   @include min-width($bpFull) {
-    padding: 12px 20px;
+    padding: 12px 40px;
   }
 
   .icon {
     float: left;
     margin: 2px 5px 0 0;
+    @include min-width($bpFull) {
+      margin: 2px 0px 0 -24px;
+    }
   }
 
   p {
     display: block;
-    max-width: 840px;
+    max-width: 36em;
     float: left;
   }
 
