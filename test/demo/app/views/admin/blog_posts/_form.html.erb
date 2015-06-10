@@ -9,16 +9,8 @@
   Published posts with a date set in the future will be scheduled to appear on that date.
 } %>
 
-<%#= f.label :title, "Category" %>
-<%#= f.collection_select :categories, Category.all, :id, :label, prompt:"No category"%>
-<%#= f.hint "Chose a single categories for this blog post" %>
-
-<%#= f.label :title, "Category" %>
-<%#= f.searchable_select :categories, Category.all, :id, :label, prompt:"No category"%>
-<%#= f.hint "Chose a single categories for this blog post" %>
-
-<%= f.label :title, "Categories" %>
-<%= f.searchable_select :category_ids, Category.all, :id, :label, multiple:true, placeholder:"Select categories" %>
+<%= f.label :title, "Topics" %>
+<%= f.searchable_select :topic_ids, Topic.order("label ASC"), :id, :label, multiple:true, placeholder:"Select topicss" %>
 <%= f.hint "Chose some categories for this blog post" %>
 
 <%= f.label :color, "Background Color" %>

@@ -1,6 +1,6 @@
 class BlogPost < ActiveRecord::Base
 
-  has_and_belongs_to_many :categories, join_table:"blog_post_categories"
+  has_and_belongs_to_many :topics, join_table:"blog_post_topics"
 
   validates_presence_of :title
   validates_presence_of :summary
@@ -8,10 +8,10 @@ class BlogPost < ActiveRecord::Base
   validates_presence_of :body
 
   manage_with_tolaria using: {
-    icon: :file_o,
+    icon: "pencil-square-o",
     priority: 1,
     default_order: "id DESC",
-    category: "Syndication",
+    category: "Prose",
     paginated: true,
     permit_params: [
       :title,
@@ -21,7 +21,7 @@ class BlogPost < ActiveRecord::Base
       :color,
       :portrait,
       :attachment,
-      category_ids: []
+      topic_ids: []
     ],
   }
 

@@ -7,8 +7,8 @@
     <h3 class="blank-slate-header">
       No <%= @managed_class.model_name.human.pluralize.titleize %> live here.
     </h3>
-    <p class="blank-slate-text">Get started on the first one:</p>
     <% if @managed_class.allows?(:new) %>
+      <p class="blank-slate-text">Get started on the first one:</p>
       <%= link_to url_for(action:"new"), class:"button -primary" do %>
         <%= fontawesome_icon :plus %>
         New <%= @managed_class.model_name.human.titleize %>

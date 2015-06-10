@@ -32,10 +32,10 @@ class RouterTest < ActionDispatch::IntegrationTest
     assert edit_admin_blog_post_path(1), "route should exist"
     assert admin_blog_post_path(1), "route should exist"
 
-    assert admin_categories_path, "route should exist"
-    assert admin_category_path(1), "route should exist"
-    assert edit_admin_category_path(1), "route should exist"
-    assert admin_category_path(1), "route should exist"
+    assert admin_topics_path, "route should exist"
+    assert admin_topic_path(1), "route should exist"
+    assert edit_admin_topic_path(1), "route should exist"
+    assert admin_topic_path(1), "route should exist"
 
     # Unseat the Card class so that it doesn't leak out of this test
     assert Tolaria.discard_managed_class(Card), "should discard class"

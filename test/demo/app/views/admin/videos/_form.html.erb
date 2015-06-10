@@ -1,0 +1,11 @@
+<%= f.label :title, "Video title" %>
+<%= f.text_field :title, placeholder:"Title" %>
+<%= f.hint "The title of this video" %>
+
+<%= f.label :youtube_id, "YouTube ID" %>
+<%= f.text_field :youtube_id, class:"monospace" %>
+<%= f.hint "The YouTube ID for this video embed" %>
+
+<%= f.label :description %>
+<%= f.text_area :description %>
+<%= f.hint "A summary of this video's purpose. Used as caption when embedding the video." %>

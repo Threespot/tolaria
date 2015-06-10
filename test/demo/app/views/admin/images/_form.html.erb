@@ -1,0 +1,26 @@
+<%= f.label :title, "Title" %>
+<%= f.text_field :title, placeholder: "Image title" %>
+<%= f.hint "The title of this image, not shown to site visitors. Use a clear name that helps you quickly find the image." %>
+
+<%= f.label :alternate_text, "Alternate Text" %>
+<%= f.text_area :alternate_text, placeholder: "Alt text" %>
+<%= f.hint %{
+  Text that represents this image when described to users that can't see it.
+  Provide text that could replace the image if it wasn't there.
+  You should succinctly note what is important or what is occuring,
+  rather than simply describing everything in the picture.
+  Blank alternate text implies that the image is only for visual-interest
+  and that describing it is not required.
+} %>
+
+<%= f.label :credit, "Credit" %>
+<%= f.text_field :credit, placeholder: "Photographer name or company name" %>
+<%= f.hint "The image credit for this file." %>
+
+<%= f.label :keywords, "Keywords" %>
+<%= f.text_area :keywords, placeholder: "Keywords" %>
+<%= f.hint "Extra, optional, internal-only keywords to help search for this image." %>
+
+<%= f.label :attachment_address, "Image File" %>
+<%= f.image_field :attachment_address %>
+<%= f.hint "Attach a high-quality image file, at least 1200×600 pixels in size. The subject should be centered." %>

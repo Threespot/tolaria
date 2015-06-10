@@ -1,0 +1,15 @@
+<%= f.label :title, "Title" %>
+<%= f.text_field :title, placeholder:"Page title" %>
+<%= f.hint "The title of this page." %>
+
+<%= f.label :slug, "URL Slug" %>
+<%= f.slug_field :slug, placeholder:"page-slug", pattern:"/*", class:"monospace" %>
+<%= f.hint "The URL fragment for this page." %>
+
+<%= f.label :summary %>
+<%= f.text_area :summary, rows:3, placeholder:"Summary for search engines and social media" %>
+<%= f.hint "Summarize this page content in less than 300 characters. The summary is used for search engine results." %>
+
+<%= f.label :body %>
+<%= f.markdown_composer :body %>
+<%= f.hint "The body of this post. You can use Markdown!" %>
