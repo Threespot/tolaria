@@ -349,9 +349,10 @@ $ bundle install
 Now in the project root, you have several `rake` tasks available:
 
 ```shell
-$ rake test      # Run the tests
-$ rake console   # Start a Rails console with Tolaria loaded
-$ rake server    # Start a Rails Webrick server with Tolaria and some example models loaded
+$ rake test         # Run the tests
+$ rake admin:create # Create an admin in the demo development database
+$ rake console      # Start a Rails console with Tolaria loaded
+$ rake server       # Start a Rails Webrick server with Tolaria and some example models loaded
 ```
 
 ### Miscellaneous Technical Details
