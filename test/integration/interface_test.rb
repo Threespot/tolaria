@@ -14,7 +14,7 @@ class InterfaceTest < ActionDispatch::IntegrationTest
     sign_in_dummy_administrator!
     visit("/admin/blog_posts")
     assert page.has_content?("Blog Posts")
-    assert page.has_content?("Categories")
+    assert page.has_content?("Topics")
     assert page.has_content?("Administrators")
   end
 

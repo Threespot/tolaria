@@ -46,10 +46,10 @@ class RouterTest < ActionDispatch::IntegrationTest
   test "correctly draws uncountable routes" do
 
     ActiveSupport::Inflector.inflections do |inflect|
-      inflect.uncountable %w[miscellany]
+      inflect.uncountable << "pokemon"
     end
 
-    class ::Miscellany < ActiveRecord::Base
+    class ::Pokemon < ActiveRecord::Base
       manage_with_tolaria using:{
         icon: "gear",
       }
@@ -60,13 +60,13 @@ class RouterTest < ActionDispatch::IntegrationTest
       Tolaria.draw_routes(self)
     end
 
-    assert_equal "/admin/miscellany", admin_miscellany_index_path
-    assert_equal "/admin/miscellany/1", admin_miscellany_path(1)
-    assert_equal "/admin/miscellany/1/edit", edit_admin_miscellany_path(1)
+    assert_equal "/admin/pokemon", admin_pokemon_index_path
+    assert_equal "/admin/pokemon/1", admin_pokemon_path(1)
+    assert_equal "/admin/pokemon/1/edit", edit_admin_pokemon_path(1)
 
     # Unseat the class so that it doesn't leak out of this test
-    assert Tolaria.discard_managed_class(Miscellany), "should discard class"
-    Object.send(:remove_const, :Miscellany)
+    assert Tolaria.discard_managed_class(Pokemon), "should discard class"
+    Object.send(:remove_const, :Pokemon)
 
   end
 
