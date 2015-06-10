@@ -1,5 +1,5 @@
 <%= f.label ransack_text_search_chain(BlogPost), "Containing the text" %>
 <%= f.search_field ransack_text_search_chain(BlogPost) %>
 
-<%= f.label :categories_label_cont, "In the category" %>
-<%= f.searchable_select :categories_label_cont, Topic.order("name ASC"), :label, :label, prompt:"Any category" %>
+<%= f.label :topics_label_cont, "In the category" %>
+<%= f.searchable_select :topics_label_cont, Topic.order("label ASC"), :id, :label, prompt:"Any category" %>
