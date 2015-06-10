@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150603204006) do
+ActiveRecord::Schema.define(version: 20150609232013) do
 
   create_table "administrators", force: :cascade do |t|
     t.datetime "created_at"
@@ -60,5 +60,15 @@ ActiveRecord::Schema.define(version: 20150603204006) do
   end
 
   add_index "categories", ["slug"], name: "index_categories_on_slug"
+
+  create_table "footnotes", force: :cascade do |t|
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
+    t.integer  "blog_post_id", null: false
+    t.text     "description"
+    t.text     "url"
+  end
+
+  add_index "footnotes", ["blog_post_id"], name: "index_footnotes_on_blog_post_id"
 
 end

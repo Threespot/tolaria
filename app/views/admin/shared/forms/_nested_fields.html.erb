@@ -1,0 +1,21 @@
+<div class="nested-fields">
+
+  <%= existing_fields %>
+
+  <% if allow_create %>
+
+    <%= button_tag type:"button", class:"nested-fields-create", data:data do %>
+
+      <%= content_tag :span, class:"button" do %>
+        <%= fontawesome_icon :plus %>
+        <%= "Add a new #{button_label}" %>
+      <% end %>
+
+    <% end %>
+
+  <% end %>
+
+</div>
+
+
+

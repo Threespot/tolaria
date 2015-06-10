@@ -119,6 +119,55 @@ module Tolaria
       })
     end
 
+    # Opens an ERB block to manage an accepts_nested_attributes_for association
+    # in the current form. The block will look similar to this:
+    #
+    #    <%= f.nested_fields_for :footnotes do |ff| %>
+    #      <%= ff.nested_fields_header allow_destroy:true %>
+    #      <% # Your nested model fields for footnote here %>
+    #    <% end %>
+    #
+    # You must use `f.nested_fields_header` inside the block to create headers.
+    #
+    # If +allow_create+ is `false` then the button to append a new model
+    # instance will be disabled. The default is `true`.
+    def nested_fields_for(association, allow_create:true, &block)
+
+      new_object = self.object.send(association).klass.new
+
+      view_template = self.fields_for(association, new_object, child_index:new_object.object_id) do |builder|
+        yield(builder)
+      end
+
+      existing_fields = self.fields_for(association) do |builder|
+        yield(builder)
+      end
+
+      render(partial:"admin/shared/forms/nested_fields", locals: {
+        association: association,
+        button_label: association.to_s.humanize.singularize.titleize,
+        new_object: new_object,
+        existing_fields: existing_fields,
+        allow_create: allow_create,
+        f: self,
+        data: {
+          template: view_template.tr("\n"," "),
+          id: new_object.object_id,
+        }
+      })
+
+    end
+
+    # Creates a header suitable for use inside `nested_fields_for` for separating
+    # form elements. If +allow_destroy+ is `true`, controls will be exposed that allow
+    # removing nested instances of the model. The default is `false`.
+    def nested_fields_header(allow_destroy:false)
+      render(partial:"admin/shared/forms/nested_fields_header", locals: {
+        allow_destroy: allow_destroy,
+        f: self,
+      })
+    end
+
   end
 end
 

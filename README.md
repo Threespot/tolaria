@@ -190,6 +190,53 @@ If your model was `BlogPost`, you'll need to create a file in your project at  `
 <%= f.hint "The body of this post. You can use Markdown!"
 ```
 
+### Nested Attributes
+
+If you want to provide an interface for an `accepts_nested_attributes_for` relationship, you can use the `nested_fields_for` helper. The interface allows slating persisted objects for removal when the form is saved.
+
+**Important**: You need to include `f.nested_fields_header` to create the form headers and turn on or off the destruction controls with `allow_destroy`.
+
+```erb
+<%= f.nested_fields_for :footnotes do |f| %>
+
+  <%= f.nested_fields_header allow_destroy:true %>
+
+  <%= f.label :description %>
+  <%= f.text_field :description %>
+  <%= f.hint "The name or other description of this reference" %>
+
+  <%= f.label :url, "URL" %>
+  <%= f.text_field :url, class:"monospace" %>
+  <%= f.hint "A full URL to the source or reference material" %>
+
+<% end %>
+```
+
+![](https://cloud.githubusercontent.com/assets/769083/8117475/50e5d0e2-1056-11e5-87a6-07bc7458da1e.png)
+
+Don't forget that you also need to change `permit_params` so that you include your nested attributes:
+
+```ruby
+class BlogPost < ActiveRecord::Base
+  manage_with_tolaria using: {
+    icon: "file-o",
+    category: "Settings",
+    priority: 5,
+    permit_params: [
+      :title,
+      :body,
+      :author_id,
+      :footnotes_attributes: [
+        :id,
+        :_destroy,
+        :url,
+        :description,
+      ]
+    ]
+  }
+end
+```
+
 ### Customizing The Search Form
 
 By default, Tolaria provides a single search field that searches over all of the text or character columns of a model. You can expand the search tool to include other facets.

@@ -9,18 +9,6 @@
   Published posts with a date set in the future will be scheduled to appear on that date.
 } %>
 
-<%#= f.label :title, "Category" %>
-<%#= f.collection_select :categories, Category.all, :id, :label, prompt:"No category"%>
-<%#= f.hint "Chose a single categories for this blog post" %>
-
-<%#= f.label :title, "Category" %>
-<%#= f.searchable_select :categories, Category.all, :id, :label, prompt:"No category"%>
-<%#= f.hint "Chose a single categories for this blog post" %>
-
-<%= f.label :title, "Categories" %>
-<%= f.searchable_select :category_ids, Category.all, :id, :label, multiple:true, placeholder:"Select categories" %>
-<%= f.hint "Chose some categories for this blog post" %>
-
 <%= f.label :color, "Background Color" %>
 <%= f.color_field :color, placeholder:"#CC0000" %>
 <%= f.hint "Choose a background color for this campaign" %>
@@ -40,3 +28,17 @@
 <%= f.label :body, "Body" %>
 <%= f.markdown_composer :body %>
 <%= f.hint "The body of this post. You can use Markdown!" %>
+
+<%= f.nested_fields_for :footnotes do |ff| %>
+
+  <%= ff.nested_fields_header allow_destroy:true %>
+
+  <%= ff.label :description %>
+  <%= ff.text_field :description %>
+  <%= ff.hint "The name or other description of this reference" %>
+
+  <%= ff.label :url, "URL" %>
+  <%= ff.text_field :url, class:"monospace" %>
+  <%= ff.hint "A full URL to the source or reference material" %>
+
+<% end %>

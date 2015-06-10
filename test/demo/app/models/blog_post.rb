@@ -1,6 +1,8 @@
 class BlogPost < ActiveRecord::Base
 
   has_and_belongs_to_many :categories, join_table:"blog_post_categories"
+  has_many :footnotes
+  accepts_nested_attributes_for :footnotes
 
   validates_presence_of :title
   validates_presence_of :summary
@@ -21,7 +23,13 @@ class BlogPost < ActiveRecord::Base
       :color,
       :portrait,
       :attachment,
-      category_ids: []
+      category_ids: [],
+      footnotes_attributes: [
+        :_destroy,
+        :id,
+        :url,
+        :description,
+      ]
     ],
   }
 
