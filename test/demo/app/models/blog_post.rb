@@ -23,7 +23,7 @@ class BlogPost < ActiveRecord::Base
       :color,
       :portrait,
       :attachment,
-      topic_ids: []
+      topic_ids: [],
       footnotes_attributes: [
         :_destroy,
         :id,
