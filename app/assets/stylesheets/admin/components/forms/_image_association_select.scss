@@ -1,0 +1,20 @@
+.image-association-select {
+
+  &-image {
+    border-radius: 1px;
+    border: 1px solid $cPlum;
+    display: inline-block;
+    margin-top: 12px;
+    max-width: 100%;
+    width: 520px;
+
+    &.-hidden {
+      display: none;
+    }
+
+    @include min-width($bpFull) {
+      margin-left: 20%;
+    }
+  }
+
+}

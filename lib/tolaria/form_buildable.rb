@@ -27,6 +27,24 @@ module Tolaria
       })
     end
 
+    # Creates a `<select>` list for selecting an associated image,
+    # providing a real-time preview of the current selection.
+    # Uses the jQuery Chosen plugin internally to power the user interface.
+    # Requires passing +preview_url_method+ which should be defined on the
+    # Model used for gathering the collection.
+    def image_association_select(method, collection, value_method, text_method, preview_url_method, options = {})
+      render(partial:"admin/shared/forms/image_association_select", locals: {
+        f: self,
+        method: method,
+        collection: collection,
+        value_method: value_method,
+        text_method: text_method,
+        preview_url_method: preview_url_method,
+        options: options,
+        html_options: options,
+      })
+    end
+
     # Renders a Markdown composer element for editing +method+,
     # with fullscreen previewing and some text assistance tools.
     # Requires that you set `Tolaria.config.markdown_renderer`.
