@@ -1,0 +1,63 @@
+.nested-fields {
+
+  h3 {
+    @include clearfix;
+    display: block;
+    clear: both;
+    float: left;
+    width: 100%;
+    width: calc(100% + 20px);
+    background-color: $cCoolGrey;
+    border-top: 1px solid $cPlum;
+    border-bottom: 1px solid black(0.2);
+    padding: 8px 4px;
+    font-size: 14px;
+    padding: 8px 0 8px 20px;
+    margin: -16px -16px 15px -20px;
+    span {
+      font-weight: bold;
+      float: left;
+      padding: 2px 0 2px 0;
+    }
+    .button {
+      float: right;
+      margin: 0 20px 0 0;
+    }
+  }
+
+  &-create {
+
+    @include clearfix;
+    border-bottom: 1px dashed $cGrey;
+    border-top: 3px double $cGrey;
+    clear: both;
+    margin-top: -16px;
+    padding: 30px 0;
+    text-align: center;
+    transition: background-color 100ms linear;
+    width: 100%;
+    &:hover, &:active, &:focus {
+      background: black(0.02);
+    }
+  }
+
+  &-undo {
+    @include clearfix;
+    display: block;
+    clear: both;
+    float: left;
+    width: 100%;
+    text-align: center;
+    padding: 30px 5% 30px 5%;
+    margin: -16px 0 16px 0;
+    &:hover, &:active, &:focus {
+      background: black(0.01);
+    }
+    &-text {
+      display: block;
+      margin: 0 0 15px 0;
+    }
+  }
+
+}
+

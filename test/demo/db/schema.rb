@@ -107,4 +107,14 @@ ActiveRecord::Schema.define(version: 20150610135235) do
     t.string   "description"
   end
 
+  create_table "footnotes", force: :cascade do |t|
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
+    t.integer  "blog_post_id", null: false
+    t.text     "description"
+    t.text     "url"
+  end
+
+  add_index "footnotes", ["blog_post_id"], name: "index_footnotes_on_blog_post_id"
+
 end
