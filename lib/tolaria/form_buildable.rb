@@ -27,11 +27,10 @@ module Tolaria
       })
     end
 
-    # Creates a `<select>` list for selecting an associated image,
-    # providing a real-time preview of the current selection.
-    # Uses the jQuery Chosen plugin internally to power the user interface.
-    # Requires passing +preview_url_method+ which should be defined on the
-    # Model used for gathering the collection.
+    # Creates a `searchable_select` that also shows a dynamic image preview of the selected record.
+    # Useful for previewing images or avatars chosen by name.
+    # +preview_url_method+ should be a method name to call on the associated model instance
+    # that returns a fully-qualified URL to the image preview.
     def image_association_select(method, collection, value_method, text_method, preview_url_method, options = {})
       render(partial:"admin/shared/forms/image_association_select", locals: {
         f: self,

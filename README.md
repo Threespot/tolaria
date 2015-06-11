@@ -280,7 +280,9 @@ The [`searchable_select` helper](#FIXME) displays out a [Chosen select field](ht
 
 ##### Image Association Select
 
-The [`image_association_select` helper](#FIXME) displays out a [Chosen select field](http://harvesthq.github.io/chosen/) that authors can filter by typing and provides a real time preview of the selected image.
+The [`image_association_select` helper](#FIXME) displays a `searchable_select` provides a real time preview of the currently selected model as an image.
+
+![](https://cloud.githubusercontent.com/assets/769083/8119314/a83565c2-1062-11e5-92e6-5a6bcd1bb5ea.png)
 
 ##### Timestamp Field
 
