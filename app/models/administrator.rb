@@ -70,7 +70,7 @@ class Administrator < ActiveRecord::Base
   # Returns true if the passcode was valid, false otherwise.
   def authenticate!(passcode)
 
-    # Always run bcrypt first so that we incur the time pentaly
+    # Always run bcrypt first so that we incur the time penalty
     bcrypt_valid = BCrypt::Password.new(self.passcode) == passcode
 
     # Reject if currently locked
