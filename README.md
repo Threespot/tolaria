@@ -268,7 +268,7 @@ If your model was `BlogPost`, you'll need to create a file in your project at  `
 
 You can use all of the Rails-provided fields on your forms, but Tolaria also comes with a set of advanced, JavaScript-backed fields. Make sure to [review the documentation for the form builder](#FIXME) to get all the details.
 
-##### Markdown Composer
+#### Markdown Composer
 
 The [`markdown_composer` helper](#FIXME) will generate a very fancy Markdown editor, which includes text snippet tools and a fullscreen mode with live previewing.
 
@@ -282,7 +282,7 @@ The [`markdown_composer` helper](#FIXME) will generate a very fancy Markdown edi
 
 ![markdown_composer](https://cloud.githubusercontent.com/assets/769083/7888521/407d0116-0607-11e5-91fe-a046c22ea777.png)
 
-##### Searchable Select
+#### Searchable Select
 
 The [`searchable_select` helper](#FIXME) displays a [Chosen select field](http://harvesthq.github.io/chosen/) that authors can filter by typing.
 
@@ -294,7 +294,7 @@ The [`searchable_select` helper](#FIXME) displays a [Chosen select field](http:/
 
 ![searchable_select](https://cloud.githubusercontent.com/assets/769083/7888524/41aba54c-0607-11e5-9c5f-483b5ecf5ea9.png)
 
-##### Image Association Select
+#### Image Association Select
 
 The [`image_association_select` helper](#FIXME) displays a `searchable_select` that provides an instant preview of the currently selected model as an image.
 
@@ -306,7 +306,7 @@ The [`image_association_select` helper](#FIXME) displays a `searchable_select` t
 
 ![](https://cloud.githubusercontent.com/assets/769083/8119314/a83565c2-1062-11e5-92e6-5a6bcd1bb5ea.png)
 
-##### Timestamp Field
+#### Timestamp Field
 
 The [`timestamp_field` helper](#FIXME) displays a text field that validates a provided timestamp and recovers to a template if blanked.
 
@@ -318,7 +318,7 @@ The [`timestamp_field` helper](#FIXME) displays a text field that validates a pr
 
 ![timestamp_field](https://cloud.githubusercontent.com/assets/769083/7888528/4487a9b4-0607-11e5-9298-bc26116b59f0.png)
 
-##### Slug Field
+#### Slug Field
 
 The [`slug_field` helper](#FIXME) allows you to show the parameterized value of a field in a given pattern preview.
 
@@ -330,7 +330,7 @@ The [`slug_field` helper](#FIXME) allows you to show the parameterized value of 
 
 ![slug_field](https://cloud.githubusercontent.com/assets/769083/7888526/42ac965e-0607-11e5-9be6-0300f0f0f04d.png)
 
-##### Color Field
+#### Color Field
 
 The [`color_field` helper](#FIXME) validates and displays a given hexadecimal color.
 
@@ -342,7 +342,7 @@ The [`color_field` helper](#FIXME) validates and displays a given hexadecimal co
 
 ![color_field](https://cloud.githubusercontent.com/assets/769083/7888518/3e2e1828-0607-11e5-8bca-79bdfa3b6a06.png)
 
-##### Image Field
+#### Image Field
 
 The [`image_field` helper](#FIXME) displays a button that makes uploading an image a little more pleasant than a regular `file_field`.
 
@@ -354,7 +354,7 @@ The [`image_field` helper](#FIXME) displays a button that makes uploading an ima
 
 ![image_field](https://cloud.githubusercontent.com/assets/769083/7888520/3f700750-0607-11e5-952a-e81edbb58017.png)
 
-##### Attachment Field
+#### Attachment Field
 
 The [`attachment_field` helper](#FIXME) displays a button that makes uploading an arbirary file a little more pleasant than a regular `file_field`.
 
@@ -366,7 +366,7 @@ The [`attachment_field` helper](#FIXME) displays a button that makes uploading a
 
 ![attachment_field](https://cloud.githubusercontent.com/assets/769083/7888501/2c5d3160-0607-11e5-8b44-9c8affaa1f8d.png)
 
-##### Field Clusters (Checkboxes and 2+ Selects)
+#### Field Clusters (Checkboxes and 2+ Selects)
 
 If you need to run two or more `select` controls together (like for `date_select`), or you need to group a set of checkboxes together (like for `collection_checkboxes`), you'll need to wrap the form field in `<div class="field-cluster">`:
 
@@ -382,7 +382,7 @@ If you need to run two or more `select` controls together (like for `date_select
 
 ![](https://cloud.githubusercontent.com/assets/769083/8136506/7cce0e9a-110a-11e5-867f-b1bed2a81b74.png)
 
-##### Hints
+#### Hints
 
 [Inline help](#FIXME) is useful for reminding administrators about what should be provided for each field. Use `f.hint` to present a hint for a field.
 
