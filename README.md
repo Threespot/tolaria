@@ -93,6 +93,10 @@ If you are already logged in to Tolaria, you can also simply visit `/admin/admin
 
 Inside your ActiveRecord definition for your model, call `manage_with_tolaria`, passing configuration in the `using` Hash. [Refer to the documentation for all of the options](#FIXME).
 
+The icon system uses [Font Awesome][fa], and you'll need to pass one of [the icon names][fa] for the `icon` key.
+
+[fa]: http://fontawesome.io/icons/
+
 **Important:** you'll need to provide the options to pass to `params.permit` here for the admin system. Your form won't work without it!
 
 ```ruby
