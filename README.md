@@ -388,7 +388,7 @@ If you need to run two or more `select` controls together (like for `date_select
 <%= f.hint "Choose each topic that applies to this blog post" %>
 ```
 
-![](https://cloud.githubusercontent.com/assets/769083/8136506/7cce0e9a-110a-11e5-867f-b1bed2a81b74.png)
+![](https://cloud.githubusercontent.com/assets/769083/8138732/774630c2-111b-11e5-8024-bdec00ed18c4.png)
 
 #### Hints
 
