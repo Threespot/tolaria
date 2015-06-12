@@ -83,16 +83,16 @@ class Tolaria::ResourceController < Tolaria::TolariaController
 
   protected
 
+  # Returns a random positive expression for use in
+  # flash messages
   def random_blingword
     ["Done!", "Okay!", "Success!"].sample
   end
 
+  # Load the Tolaria managed class for this controller
   def load_managed_class!
-    Tolaria.managed_classes.each do |managed_class|
-      if self.class.to_s == "Admin::#{managed_class.controller_name}"
-        @managed_class = managed_class
-        break
-      end
+    @managed_class ||= Tolaria.managed_classes.find do |managed_class|
+      self.class.to_s == "Admin::#{managed_class.controller_name}"
     end
   end
 
