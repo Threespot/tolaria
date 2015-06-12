@@ -1,6 +1,5 @@
 require "bundler/setup"
 
-APP_RAKEFILE = File.expand_path("../test/demo/Rakefile", __FILE__)
 TOLARIA_ROOT = File.dirname(__FILE__)
 
 Bundler::GemHelper.install_tasks
