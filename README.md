@@ -9,7 +9,7 @@ Tolaria is a [content management system](https://en.wikipedia.org/wiki/Content_m
 ### Features
 
 - Fully responsive (and we think it's beautiful too!)
-- A complete email-based authentication system is included. There are no passwords to manage.
+- A complete email-based authentication system is included, and there are no passwords to manage.
 - Automatically builds navigation and admin routes for you.
 - Automatically creates simple index screens, show screens, and text search tools, which you can expand.
 - Includes a handful of advanced form fields, notably a fullscreen Markdown editor and searchable select/tag lists.
@@ -88,6 +88,14 @@ $ rake admin:create
 ```
 
 If you are already logged in to Tolaria, you can also simply visit `/admin/administrators` to create a new account using the CMS interface.
+
+### Passcode Authentication
+
+Tolaria authenticates editors via email, using a one-time passcode. When an editor wants to sign in, they must type a passcode dispatched to their email address. Passcodes are invalidated after use.
+
+You can configure Tolaria's passcode paranoia in the initializer you installed above.
+
+![](https://cloud.githubusercontent.com/assets/769083/8137572/5e81bb1e-1112-11e5-9626-fc7a0010f0c4.png)
 
 ### Managing a Model
 
