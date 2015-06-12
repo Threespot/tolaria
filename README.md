@@ -274,17 +274,35 @@ The [`markdown_composer` helper](#FIXME) will generate a very fancy Markdown edi
 
 **Important:** You cannot use this field properly if you do not set up `Tolaria.config.markdown_renderer`. Without it, the live preview will only use `simple_format`!
 
+```
+<%= f.label :body %>
+<%= f.markdown_composer :body %>
+<%= f.hint "The body of this post. You can use Markdown!" %>
+```
+
 ![markdown_composer](https://cloud.githubusercontent.com/assets/769083/7888521/407d0116-0607-11e5-91fe-a046c22ea777.png)
 
 ##### Searchable Select
 
-The [`searchable_select` helper](#FIXME) displays out a [Chosen select field](http://harvesthq.github.io/chosen/) that authors can filter by typing.
+The [`searchable_select` helper](#FIXME) displays a [Chosen select field](http://harvesthq.github.io/chosen/) that authors can filter by typing.
+
+```
+<%= f.label :title, "Topics" %>
+<%= f.searchable_select :topic_ids, Topic.order("label ASC"), :id, :label, multiple:true %>
+<%= f.hint "Select each topic that applies to this blog post" %>
+```
 
 ![searchable_select](https://cloud.githubusercontent.com/assets/769083/7888524/41aba54c-0607-11e5-9c5f-483b5ecf5ea9.png)
 
 ##### Image Association Select
 
-The [`image_association_select` helper](#FIXME) displays a `searchable_select` provides a real time preview of the currently selected model as an image.
+The [`image_association_select` helper](#FIXME) displays a `searchable_select` that provides an instant preview of the currently selected model as an image.
+
+```erb
+<%= f.label :featured_image_id, "Featured Image" %>
+<%= f.image_association_select :featured_image_id, Image.order("title ASC"), :id, :title, :preview_uri %>
+<%= f.hint "Select a featured image for this blog post." %>
+```
 
 ![](https://cloud.githubusercontent.com/assets/769083/8119314/a83565c2-1062-11e5-92e6-5a6bcd1bb5ea.png)
 
@@ -292,11 +310,23 @@ The [`image_association_select` helper](#FIXME) displays a `searchable_select` p
 
 The [`timestamp_field` helper](#FIXME) displays a text field that validates a provided timestamp and recovers to a template if blanked.
 
+```erb
+<%= f.label :published_at, "Publishing Date" %>
+<%= f.timestamp_field :published_at %>
+<%= f.hint "The date this post should be published." %>
+```
+
 ![timestamp_field](https://cloud.githubusercontent.com/assets/769083/7888528/4487a9b4-0607-11e5-9298-bc26116b59f0.png)
 
 ##### Slug Field
 
 The [`slug_field` helper](#FIXME) allows you to show the parameterized value of a field in a given pattern preview.
+
+```erb
+<%= f.label :title %>
+<%= f.slug_field :title, placeholder:"Post title", pattern:"/blog/255-*" %>
+<%= f.hint "The title of this post." %>
+```
 
 ![slug_field](https://cloud.githubusercontent.com/assets/769083/7888526/42ac965e-0607-11e5-9be6-0300f0f0f04d.png)
 
@@ -304,11 +334,23 @@ The [`slug_field` helper](#FIXME) allows you to show the parameterized value of 
 
 The [`color_field` helper](#FIXME) validates and displays a given hexadecimal color.
 
+```erb
+<%= f.label :color %>
+<%= f.color_field :color, placeholder:"#CC0000" %>
+<%= f.hint "Choose a background color for this campaign">
+```
+
 ![color_field](https://cloud.githubusercontent.com/assets/769083/7888518/3e2e1828-0607-11e5-8bca-79bdfa3b6a06.png)
 
 ##### Image Field
 
 The [`image_field` helper](#FIXME) displays a button that makes uploading an image a little more pleasant than a regular `file_field`.
+
+```erb
+<%= f.label :portrait %>
+<%= f.image_field :portrait, preview_url:@resource.portrait.url(:preview) %>
+<%= f.hint "Attach a portrait of this author, at least 600×600 pixels in size. The subject should be centered." %>
+```
 
 ![image_field](https://cloud.githubusercontent.com/assets/769083/7888520/3f700750-0607-11e5-952a-e81edbb58017.png)
 
@@ -316,7 +358,29 @@ The [`image_field` helper](#FIXME) displays a button that makes uploading an ima
 
 The [`attachment_field` helper](#FIXME) displays a button that makes uploading an arbirary file a little more pleasant than a regular `file_field`.
 
+```erb
+<%= f.label :portrait %>
+<%= f.attachment_field :portrait %>
+<%= f.hint "Attach a portrait of this author, at least 600×600 pixels in size. The subject should be centered." %>
+```
+
 ![attachment_field](https://cloud.githubusercontent.com/assets/769083/7888501/2c5d3160-0607-11e5-8b44-9c8affaa1f8d.png)
+
+##### Field Clusters (Checkboxes and 2+ Selects)
+
+If you need to run two or more `select` controls together (like for `date_select`), or you need to group a set of checkboxes together (like for `collection_checkboxes`), you'll need to wrap the form field in `<div class="field-cluster">`:
+
+```erb
+<%= f.label :published_at, "Publishing Date" %>
+<div class="field-cluster"><%= f.date_select :published_at %></div>
+<%= f.hint "The date this post should be published." %>
+
+<%= f.label :title, "Topics" %>
+<div class="field-cluster"><%= f.collection_check_boxes :topic_ids, Topic.order("label ASC"), :id, :label %></div>
+<%= f.hint "Choose each topic that applies to this blog post" %>
+```
+
+![](https://cloud.githubusercontent.com/assets/769083/8136506/7cce0e9a-110a-11e5-867f-b1bed2a81b74.png)
 
 ##### Hints
 

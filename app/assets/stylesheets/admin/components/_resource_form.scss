@@ -74,6 +74,69 @@
 
   }
 
+  .field-cluster {
+
+    @include clearfix;
+    display: block;
+    width: 100%;
+
+    input[type=checkbox] {
+
+      border-radius: 2px;
+      border: 1px solid $cTaupe;
+      clear: left;
+      color: $cPlum;
+      float: left;
+      height: 30px;
+      margin: 4px 15px 4px 0;
+      transition: border 100ms linear;
+      width: 30px;
+
+      &:focus, &:hover {
+        border-color: $cPlum;
+      }
+
+      &:checked {
+        border-color: $cSapphire;
+        background-color: #fff;
+      }
+
+      &:checked:before {
+        color: $cSapphire;
+        content: "✔";
+        display: block;
+        height: 28px;
+        line-height: 28px;
+        text-align: center;
+        width: 28px;
+      }
+
+    }
+
+    label {
+      width: 50%;
+      width: calc(100% - 50px);
+      float: left;
+      clear: none;
+      margin: 10px 0 0 0;
+      font-weight: bold;
+    }
+
+    select {
+      width: auto;
+      min-width: 20%;
+      float: left;
+      margin-right: 4px;
+    }
+
+    @include min-width($bpFull) {
+      float: left;
+      width: 79%;
+      max-width: 520px;
+    }
+
+  }
+
   input[type=text]::-ms-clear { display: none; width : 0; height: 0; }
   input[type=text]::-ms-reveal { display: none; width : 0; height: 0; }
 
