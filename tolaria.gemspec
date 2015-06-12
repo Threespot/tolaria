@@ -6,11 +6,11 @@ Gem::Specification.new do |s|
   s.name          = "tolaria"
   s.version       = Tolaria::VERSION::STRING
   s.platform      = Gem::Platform::RUBY
-  s.authors       = ["Corey Csuhta", "Daniel Boggs"]
   s.licenses      = ["MIT"]
+  s.authors       = ["Corey Csuhta", "Daniel Boggs"]
   s.homepage      = "https://github.com/threespot/tolaria"
-  s.description   = "Tolaria is a CMS framework for Ruby on Rails. Make your editors happy!"
   s.summary       = "A Rails CMS framework for making people happy."
+  s.description   = "Tolaria is a content management system (CMS) framework for Ruby on Rails. It greatly speeds up the necessary—but repetitive—task of creating useful admin panels, forms, and model workflow. Includes a library of rich form components, passwordless authentication, and text search tools. Make your editors happy!"
 
   s.files = `git ls-files`.split("\n")
   s.test_files = `git ls-files --directory test`.split("\n")

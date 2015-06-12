@@ -1,6 +1,6 @@
 ## Tolaria
 
-Tolaria is a [content management system](https://en.wikipedia.org/wiki/Content_management_system) (CMS) framework for [Ruby on Rails](https://en.wikipedia.org/wiki/Ruby_on_Rails). It greatly speeds up the necessary (but repetitive) task of creating useful admin panels, forms, and model workflows for site authors.
+Tolaria is a [content management system](https://en.wikipedia.org/wiki/Content_management_system) (CMS) framework for [Ruby on Rails](https://en.wikipedia.org/wiki/Ruby_on_Rails). It greatly speeds up the necessary—but repetitive—task of creating useful admin panels, forms, and model workflows for site authors.
 
 [![](https://cloud.githubusercontent.com/assets/769083/7573791/56eda172-f7f6-11e4-8df7-36015cf5cf85.png)](https://cloud.githubusercontent.com/assets/769083/7573791/56eda172-f7f6-11e4-8df7-36015cf5cf85.png)
 
@@ -9,14 +9,14 @@ Tolaria is a [content management system](https://en.wikipedia.org/wiki/Content_m
 ### Features
 
 - Fully responsive (and we think it's beautiful too!)
+- A complete email-based authentication system is included. There are no passwords to manage.
 - Automatically builds navigation and admin routes for you.
 - Automatically creates simple index screens, show screens, and text search tools, which you can expand.
 - Includes a handful of advanced form fields, notably a fullscreen Markdown editor and searchable select/tag lists.
 - Assists in providing inline help and documentation to your editors.
-  No passwords to manage! Tolaria uses email-based authentication.
-- No magic DSL. Work directly in ERB on admin forms, index views, and inspection screens.
-- Completely divorced/compartmentalized from the rest of the Rails application. Does not use `to_param`.
-- Easily overridable on a case-by-case basis for more advanced CMS functionality.
+- No magic DSL. Work directly in ERB on all admin views.
+- Compartmentalized from the rest of the Rails application, and does not rely on the behavior of `to_param`.
+- Easily overridable on a case-by-case basis.
 - Designed for use on Heroku, in containers, and on websites with TLS.
 - Modest dependencies.
 
@@ -192,7 +192,7 @@ If your model was `BlogPost`, you'll need to create a file in your project at  `
 
 ### Nested Attributes
 
-If you want to provide an interface for an `accepts_nested_attributes_for` relationship, you can use the `nested_fields_for` helper. The interface allows slating persisted objects for removal when the form is saved.
+If you want to provide an interface for an `accepts_nested_attributes_for` relationship, you can use the `nested_fields_for` helper. The UI allows slating persisted objects for removal when the form is saved.
 
 **Important**: You need to include `f.nested_fields_header` to create the form headers and turn on or off the destruction controls with `allow_destroy`.
 
@@ -410,7 +410,7 @@ $ rake server       # Start a Rails Webrick server with Tolaria and some example
 
 ### Miscellaneous Technical Details
 
-- The constant and module name `Admin` is reserved for Tolaria's use.
+- The constant and module name `Admin` is reserved for Tolaria's use. If you add to this namespace, be sure you are not colliding with a Tolaria-provided constant.
 - The route space `/admin/**/*` is reserved for Tolaria's use. If you add routes here, be sure you are not colliding with a Tolaria-generated route.
 
 ### License and Contributing
