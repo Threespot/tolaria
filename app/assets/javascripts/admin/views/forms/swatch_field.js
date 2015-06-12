@@ -1,7 +1,7 @@
-var ColorFieldViewController = Backbone.View.extend({
+var SwatchFieldViewController = Backbone.View.extend({
 
   initialize: function() {
-    this.$swatch = this.$(".color-field-swatch");
+    this.$swatch = this.$(".swatch-field-swatch");
     this.$input = this.$("input");
     this.refreshPreview();
   },
@@ -52,6 +52,6 @@ var ColorFieldViewController = Backbone.View.extend({
 
 });
 
-$(".color-field").each(function() {
-  new ColorFieldViewController({el:this});
+$(".swatch-field").each(function() {
+  new SwatchFieldViewController({el:this});
 });

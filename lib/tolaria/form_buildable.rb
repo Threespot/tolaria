@@ -128,8 +128,8 @@ module Tolaria
     # hexadecimal color value. A preview block near the field
     # demonstrates the provided color to the user.
     # Options are forwarded to `text_field`.
-    def color_field(method, options = {})
-      render(partial:"admin/shared/forms/color_field", locals: {
+    def swatch_field(method, options = {})
+      render(partial:"admin/shared/forms/swatch_field", locals: {
         f: self,
         method: method,
         options: options,

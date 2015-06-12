@@ -338,17 +338,17 @@ The [`slug_field` helper](#FIXME) allows you to show the parameterized value of 
 
 ![slug_field](https://cloud.githubusercontent.com/assets/769083/7888526/42ac965e-0607-11e5-9be6-0300f0f0f04d.png)
 
-#### Color Field
+#### Swatch Field
 
-The [`color_field` helper](#FIXME) validates and displays a given hexadecimal color.
+The [`swatch_field` helper](#FIXME) validates and displays a given hexadecimal color.
 
 ```erb
 <%= f.label :color %>
-<%= f.color_field :color, placeholder:"#CC0000" %>
+<%= f.swatch_field :color, placeholder:"#CC0000" %>
 <%= f.hint "Choose a background color for this campaign">
 ```
 
-![color_field](https://cloud.githubusercontent.com/assets/769083/7888518/3e2e1828-0607-11e5-8bca-79bdfa3b6a06.png)
+![swatch_field](https://cloud.githubusercontent.com/assets/769083/7888518/3e2e1828-0607-11e5-8bca-79bdfa3b6a06.png)
 
 #### Image Field
 
