@@ -51,6 +51,16 @@ ActiveRecord::Schema.define(version: 20150610135235) do
     t.text     "attachment"
   end
 
+  create_table "footnotes", force: :cascade do |t|
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
+    t.integer  "blog_post_id", null: false
+    t.text     "description"
+    t.text     "url"
+  end
+
+  add_index "footnotes", ["blog_post_id"], name: "index_footnotes_on_blog_post_id"
+
   create_table "images", force: :cascade do |t|
     t.datetime "created_at",         null: false
     t.datetime "updated_at",         null: false
@@ -91,14 +101,6 @@ ActiveRecord::Schema.define(version: 20150610135235) do
 
   add_index "topics", ["slug"], name: "index_topics_on_slug"
 
-  create_table "video", force: :cascade do |t|
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
-    t.string   "title",       null: false
-    t.string   "youtube_id",  null: false
-    t.string   "description"
-  end
-
   create_table "videos", force: :cascade do |t|
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
@@ -106,15 +108,5 @@ ActiveRecord::Schema.define(version: 20150610135235) do
     t.string   "youtube_id",  null: false
     t.string   "description"
   end
-
-  create_table "footnotes", force: :cascade do |t|
-    t.datetime "created_at",   null: false
-    t.datetime "updated_at",   null: false
-    t.integer  "blog_post_id", null: false
-    t.text     "description"
-    t.text     "url"
-  end
-
-  add_index "footnotes", ["blog_post_id"], name: "index_footnotes_on_blog_post_id"
 
 end

@@ -2,7 +2,7 @@ class BlogPost < ActiveRecord::Base
 
   has_and_belongs_to_many :topics, join_table:"blog_post_topics"
   has_many :footnotes
-  accepts_nested_attributes_for :footnotes
+  accepts_nested_attributes_for :footnotes, allow_destroy: true
 
   validates_presence_of :title
   validates_presence_of :summary
