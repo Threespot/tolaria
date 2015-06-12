@@ -31,8 +31,12 @@
       <%= show_thead_tr %>
     </thead>
     <tbody>
-      <%= show_tr "Created At", @resource.created_at.presence.try(:strftime, "%Y-%m-%d %I:%M %p"), class:"monospace" %>
-      <%= show_tr "Updated At", @resource.updated_at.presence.try(:strftime, "%Y-%m-%d %I:%M %p"), class:"monospace" %>
+      <% if @resource.respond_to? :created_at %>
+        <%= show_tr "Created At", @resource.created_at.try(:strftime, "%Y-%m-%d %I:%M %p"), class:"monospace" %>
+      <% end %>
+      <% if @resource.respond_to? :updated_at %>
+        <%= show_tr "Updated At", @resource.updated_at.try(:strftime, "%Y-%m-%d %I:%M %p"), class:"monospace" %>
+      <% end %>
       <%= show_tr "Label", Tolaria.display_name(@resource) %>
     </tbody>
   </table>
