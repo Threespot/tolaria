@@ -1,4 +1,4 @@
-var FlashMessageViewController = Backbone.View.extend({
+var FlashMessageView = Backbone.View.extend({
 
   dismissSelf: function() {
     this.$el.slideUp(200, function() {
@@ -14,5 +14,5 @@ var FlashMessageViewController = Backbone.View.extend({
 });
 
 $(".flash-message").each(function() {
-  new FlashMessageViewController({el:this});
+  new FlashMessageView({el:this});
 });

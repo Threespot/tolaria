@@ -1,4 +1,4 @@
-var SearchFormViewController = Backbone.View.extend({
+var SearchFormView = Backbone.View.extend({
 
   el: "body",
 
@@ -17,4 +17,4 @@ var SearchFormViewController = Backbone.View.extend({
 
 });
 
-new SearchFormViewController;
+new SearchFormView;

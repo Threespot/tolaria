@@ -1,4 +1,4 @@
-var AttachmentFieldViewController = Backbone.View.extend({
+var AttachmentFieldView = Backbone.View.extend({
 
   initialize: function() {
     this.$fileInput = this.$("input[type=file]");
@@ -28,6 +28,5 @@ var AttachmentFieldViewController = Backbone.View.extend({
 
 });
 
-$(".attachment-field").each(function() {
-  new AttachmentFieldViewController({el:this});
-});
+FormOrchestrator.register(".attachment-field", "AttachmentFieldView");
+

@@ -1,4 +1,4 @@
-var NavigationViewController = Backbone.View.extend({
+var NavigationView = Backbone.View.extend({
 
   el: "body",
 
@@ -17,4 +17,4 @@ var NavigationViewController = Backbone.View.extend({
 
 });
 
-new NavigationViewController;
+new NavigationView;

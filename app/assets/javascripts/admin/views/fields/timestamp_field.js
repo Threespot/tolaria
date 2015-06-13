@@ -1,6 +1,6 @@
 moment.locale("en");
 
-var TimestampFieldViewController = Backbone.View.extend({
+var TimestampFieldView = Backbone.View.extend({
 
   momentFormats: [
     "YYYY-MM-DD hh:mm A",
@@ -77,6 +77,4 @@ var TimestampFieldViewController = Backbone.View.extend({
 
 });
 
-$(".timestamp-field").each(function() {
-  new TimestampFieldViewController({el:this});
-});
+FormOrchestrator.register(".timestamp-field", "TimestampFieldView");

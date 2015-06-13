@@ -1,4 +1,4 @@
-var SwatchFieldViewController = Backbone.View.extend({
+var SwatchFieldView = Backbone.View.extend({
 
   initialize: function() {
     this.$swatch = this.$(".swatch-field-swatch");
@@ -52,6 +52,4 @@ var SwatchFieldViewController = Backbone.View.extend({
 
 });
 
-$(".swatch-field").each(function() {
-  new SwatchFieldViewController({el:this});
-});
+FormOrchestrator.register(".swatch-field", "SwatchFieldView");

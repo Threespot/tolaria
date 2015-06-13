@@ -1,4 +1,4 @@
-var SearchableSelectViewController = Backbone.View.extend({
+var SearchableSelectView = Backbone.View.extend({
 
   // See http://harvesthq.github.io/chosen/options.html
   // for help with these options
@@ -42,6 +42,4 @@ var SearchableSelectViewController = Backbone.View.extend({
 
 });
 
-$(".searchable-select").each(function() {
-  new SearchableSelectViewController({el:this});
-});
+FormOrchestrator.register(".searchable-select", "SearchableSelectView");

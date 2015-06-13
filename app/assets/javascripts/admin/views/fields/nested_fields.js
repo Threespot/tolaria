@@ -1,4 +1,4 @@
-var NestedFieldsViewController = Backbone.View.extend({
+var NestedFieldsView = Backbone.View.extend({
 
   initialize: function() {
     this.$button = $(".nested-fields-create").first();
@@ -12,7 +12,10 @@ var NestedFieldsViewController = Backbone.View.extend({
     var time = new Date().getTime();
     var regexp = new RegExp(this.templateID, "g");
     // Duplicate the template into the form
-    this.$button.before(this.template.replace(regexp, time));
+    var elements = $(this.template.replace(regexp, time));
+    // Initialize any Backbone Views by asking FormOrchestrator
+    FormOrchestrator.initializeViewsOver(elements);
+    this.$button.before(elements);
   },
 
   removeFieldgroup: function(event) {
@@ -58,6 +61,4 @@ var NestedFieldsViewController = Backbone.View.extend({
 
 });
 
-$(".nested-fields").each(function() {
-  new NestedFieldsViewController({el:this});
-});
+FormOrchestrator.register(".nested-fields", "NestedFieldsView");

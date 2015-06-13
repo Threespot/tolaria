@@ -1,4 +1,4 @@
-var MarkdownComposerViewController = Backbone.View.extend({
+var MarkdownComposerView = Backbone.View.extend({
 
   fullscreen: false, // Currently expanded to fullscreen
   livePreview: false, // The preview block is currently updating on keyup
@@ -164,6 +164,4 @@ var MarkdownComposerViewController = Backbone.View.extend({
 
 });
 
-$(".markdown-composer").each(function() {
-  new MarkdownComposerViewController({el:this});
-});
+FormOrchestrator.register(".markdown-composer", "MarkdownComposerView");

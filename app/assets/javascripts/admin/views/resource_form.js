@@ -1,4 +1,4 @@
-var ResourceFormViewController = Backbone.View.extend({
+var ResourceFormView = Backbone.View.extend({
 
   el: ".resource-form:not(.search-form)",
 
@@ -15,4 +15,4 @@ var ResourceFormViewController = Backbone.View.extend({
 
 });
 
-new ResourceFormViewController;
+new ResourceFormView;

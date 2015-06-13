@@ -1,4 +1,4 @@
-var VirualFormViewController = Backbone.View.extend({
+var VirualFormView = Backbone.View.extend({
 
   el: "body",
 
@@ -44,4 +44,4 @@ var VirualFormViewController = Backbone.View.extend({
 
 });
 
-new VirualFormViewController;
+new VirualFormView;

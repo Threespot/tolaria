@@ -1,4 +1,4 @@
-var SessionViewController = Backbone.View.extend({
+var SessionView = Backbone.View.extend({
 
   el: "#session-form",
   readyToSubmit: false,
@@ -106,4 +106,4 @@ var SessionViewController = Backbone.View.extend({
 
 });
 
-var SessionViewController = new SessionViewController;
+var SessionView = new SessionView;

@@ -28,7 +28,4 @@ var ImageAssociationSelectView = Backbone.View.extend({
 
 });
 
-
-var ImageAssociationSelect = new ImageAssociationSelectView({
-  el: $(".image-association-select")
-});
+FormOrchestrator.register(".image-association-select", "ImageAssociationSelectView");

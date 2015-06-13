@@ -1,4 +1,4 @@
-var SlugFieldViewController = Backbone.View.extend({
+var SlugFieldView = Backbone.View.extend({
 
   initialize: function() {
     this.$previewFragment = this.$(".slug-field-preview-fragment");
@@ -35,6 +35,4 @@ var SlugFieldViewController = Backbone.View.extend({
 
 });
 
-$(".slug-field").each(function() {
-  new SlugFieldViewController({el:this});
-});
+FormOrchestrator.register(".slug-field", "SlugFieldView");
