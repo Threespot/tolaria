@@ -2,7 +2,7 @@ $fMonospace: Menlo, Consolas, "Liberation Mono", Courier, monospace;
 
 %monospace,
 .monospace {
-  font-family: $fMonospace;
+  font-family: $fMonospace !important;
   font-weight: normal;
   -webkit-font-smoothing: subpixel-antialiased;
 }
