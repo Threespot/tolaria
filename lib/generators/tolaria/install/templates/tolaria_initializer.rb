@@ -1,5 +1,4 @@
 # Configuration for Tolaria, the admin framework for making people happy.
-# Default options that should be changed with caution are commented out.
 
 Tolaria.configure do |config|
 
@@ -29,7 +28,7 @@ Tolaria.configure do |config|
   # You must provide a string that names a Ruby constant that can process Markdown.
   # The constant must respond to render(document), returning a string of HTML.
   # For example: if you provide "MyMarkDownRenderer", Tolaria will
-  # call MyMarkdownRenderer.render(document).
+  # call MyMarkdownRenderer.render(document)
   # If you leave this setting nil, Tolaria will assume that you do not
   # plan to use the markdown_composer form field.
   config.markdown_renderer = nil
@@ -45,6 +44,11 @@ Tolaria.configure do |config|
   # Raising this too high might make page loading very slow.
   # config.page_size = 15
 
+  # ---------------------------------------------------------------------------
+  # Change the following passcode and account paranoia settings with caution.
+  # Defaults are shown in comments.
+  # ---------------------------------------------------------------------------
+
   # The length of time, in seconds, that emailed passcodes should be valid.
   # It is STRONGLY RECOMMENDED that you keep this under 30 minutes.
   # config.passcode_lifespan = 10.minutes
@@ -55,6 +59,7 @@ Tolaria.configure do |config|
 
   # The length of time that an administrator’s account is disabled after
   # they trip the lockout threshold. There is no unlock strategy besides time.
+  # For emergencies, you can manually call unlock_account! on the relevant administrator.
   # config.lockout_duration = 1.hour
 
   # The cost factor for bcrypt. Raising this number will increase the
