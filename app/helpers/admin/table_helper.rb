@@ -54,7 +54,9 @@ module Admin::TableHelper
     end
 
     content = content_tag(:td, class:"show-td-field") do
-      label
+      content_tag :span do
+        label
+      end
     end
 
     content << content_tag(:td, options) do

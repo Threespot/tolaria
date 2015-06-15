@@ -50,10 +50,14 @@
 
   .show-td-field {
     border-bottom: 1px solid $cGrey;
-    color: black(0.5);
-    font-size: 12px;
-    font-weight: bold;
-    text-transform: uppercase;
+    vertical-align: top;
+    span {
+      color: black(0.5);
+      font-size: 12px;
+      font-weight: bold;
+      text-transform: uppercase;
+      line-height: 16px;
+    }
     @include min-width($bpFull) {
       border-bottom: 0;
       width: 18%;
