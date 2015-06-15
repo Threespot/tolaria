@@ -18,7 +18,7 @@ class Tolaria::TolariaController < ::ApplicationController
 
   def tolaria_template(name)
     return {
-      template: "admin/tolaria_resource/#{name}",
+      template: "admin/#{name}",
       layout: "admin/admin"
     }
   end

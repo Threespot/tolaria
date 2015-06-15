@@ -16,9 +16,9 @@ class ManagedClassesTest < ActiveSupport::TestCase
     end
 
     # Find that class
-    managed_class = Tolaria.managed_classes.select do |managed_class|
+    managed_class = Tolaria.managed_classes.find do |managed_class|
       managed_class.klass.eql?(Card)
-    end.first
+    end
 
     # Did we find the class we just managed?
     assert managed_class.present?

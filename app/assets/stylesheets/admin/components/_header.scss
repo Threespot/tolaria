@@ -56,12 +56,17 @@
   }
 
   &-help-link {
-    color: $cGrey;
-    text-transform: uppercase;
-    font-size: 12px;
-    font-weight: bold;
-    &:hover, &:active {
-      color: $cWhite;
+    display: none;
+    @include min-width($bpFull) {
+      color: $cGrey;
+      display: inline-block;
+      text-transform: uppercase;
+      font-size: 12px;
+      font-weight: bold;
+      line-height: 14px;
+      &:hover, &:active, &:focus {
+        color: $cWhite;
+      }
     }
   }
 

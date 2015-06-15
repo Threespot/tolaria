@@ -36,8 +36,8 @@
     border-top: 1px dashed $cGrey;
     color: #000;
     font-family: $fMonospace;
-    font-size: 16px;
     max-width: none;
+    font-size: 14px;
     padding: 12px 12px 12px 12px;
     width: 100%;
     &:focus {
@@ -83,6 +83,7 @@
       position: absolute;
       top: 0;
       left: 0;
+      font-size: 14px;
       border-left-color: darken($cSapphire, 10);
       border-bottom-color: $cSapphire;
       border-right-color: $cTaupe;
@@ -90,12 +91,13 @@
 
     .markdown-composer-preview {
 
-      width: 50%;
       height: 94%;
+      overflow-y: scroll;
+      padding: 12px 16px;
       position: absolute;
       right: 0;
       top: 0;
-      overflow-y: scroll;
+      width: 50%;
 
       background: #fdfdfd;
       border-top: 1px dashed $cGrey;

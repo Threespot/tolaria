@@ -1,8 +1,7 @@
-.markdown-composer-preview {
+.markdown-body {
 
   font-size: 14px;
   line-height: 1.5;
-  padding: 12px 16px;
 
   .dim {
     color: #999;
@@ -29,22 +28,27 @@
   }
 
   h1 {
-    font-size: 140%;
+    font-size: 160%;
     font-weight: bold;
-    margin-top: 0.75em;
   }
 
   h2 {
-    font-size: 120%;
+    font-size: 140%;
     font-weight: bold;
   }
 
   h3 {
-    font-size: 100%;
+    font-size: 120%;
     font-weight: bold;
   }
 
   h4 {
+    font-size: 100%;
+    font-weight: bold;
+    margin-bottom: -1em;
+  }
+
+  h5 {
     font-size: 100%;
     font-style: italic;
     margin-bottom: -1em;
@@ -55,6 +59,11 @@
     color: $cDarkGrey;
     border-left: 2px solid $cDarkGrey;
     padding: 0 0 0 0.5em;
+  }
+
+  img {
+    display: block;
+    max-width: 100%;
   }
 
   ol li {
@@ -82,6 +91,9 @@
   pre {
     display: block;
     padding: 1em;
+    max-width: 100%;
+    overflow-x: scroll;
+    overflow-y: visible;
   }
 
   code {
@@ -91,6 +103,7 @@
 
   pre > code {
     background: none;
+    padding: 0;
   }
 
 }

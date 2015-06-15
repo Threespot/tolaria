@@ -11,6 +11,7 @@ module Tolaria
 
         # Create routes for AdminController
         root to:"admin#root", as:"root"
+        get "help/:slug", to:"admin#help_link", as:"help_link"
         post "api/markdown", to:"admin#markdown"
 
         # Create routes for the authentication/passcode flow

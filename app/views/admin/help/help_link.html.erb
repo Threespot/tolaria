@@ -1,0 +1,16 @@
+<%= content_for :title, @help_link.title %>
+
+<div class="main-controls">
+
+  <div class="main-controls-left">
+    <h1>
+      <%= fontawesome_icon :info_circle %>
+      <%= content_for :title %>
+    </h1>
+  </div>
+
+</div>
+
+<div class="help-link-body markdown-body">
+  <%= Tolaria.render_markdown(File.read(@help_link.markdown_file)) %>
+</div>
