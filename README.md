@@ -79,6 +79,12 @@ ActionMailer::Base.smtp_settings = {
 
 Now start your Rails server and go to `/admin` to log in!
 
+
+### Administrator Gravatar
+
+Tolaria attempts to find a [Gravatar](https://www.gravatar.com) using the administrator's email address. You will need to configured your application's content security policy to allow image requests from `https://secure.gravatar.com`.
+
+
 ### Adding Administrator Accounts
 
 You can add administrators from the command line using a Rake task. This is particularly useful for creating the very first one.
