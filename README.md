@@ -79,12 +79,6 @@ ActionMailer::Base.smtp_settings = {
 
 Now start your Rails server and go to `/admin` to log in!
 
-
-### Administrator Gravatar
-
-Tolaria attempts to find a [Gravatar](https://www.gravatar.com) using the administrator's email address. You will need to configured your application's content security policy to allow image requests from `https://secure.gravatar.com`.
-
-
 ### Adding Administrator Accounts
 
 You can add administrators from the command line using a Rake task. This is particularly useful for creating the very first one.
@@ -428,7 +422,7 @@ Tolaria.configure do |config|
 end
 ```
 
-### Adding Documentation Link
+### Adding Documentation Links
 
 You can provide documentation links in the interface header by appending to `Tolaria.config.help_links`. Add hashes to the array, with these keys:
 
@@ -521,6 +515,7 @@ $ rake server       # Start a Rails Webrick server with Tolaria and some example
 
 - The constant and module name `Admin` is reserved for Tolaria's use. If you add to this namespace, be sure you are not colliding with a Tolaria-provided constant.
 - The route space `/admin/**/*` is reserved for Tolaria's use. If you add routes here, be sure you are not colliding with a Tolaria-generated route.
+- If you are using `Content-Security-Policy`, you will need to add `https://secure.gravatar.com` to the allow image sources, to display administrator avatars. All other assets bundled with Tolaria are served by the Rails asset pipeline.
 
 ### License
 
