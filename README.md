@@ -515,7 +515,7 @@ $ rake server       # Start a Rails Webrick server with Tolaria and some example
 
 - The constant and module name `Admin` is reserved for Tolaria's use. If you add to this namespace, be sure you are not colliding with a Tolaria-provided constant.
 - The route space `/admin/**/*` is reserved for Tolaria's use. If you add routes here, be sure you are not colliding with a Tolaria-generated route.
-- If you are using `Content-Security-Policy`, you will need to add `https://secure.gravatar.com` to the allow image sources, to display administrator avatars. All other assets bundled with Tolaria are served by the Rails asset pipeline.
+- If you are using `Content-Security-Policy`, you will need to add `https://secure.gravatar.com` to the allowed image sources in order to display administrator avatars. All other assets bundled with Tolaria are served by the Rails asset pipeline.
 
 ### License
 
