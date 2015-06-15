@@ -22,6 +22,14 @@
     -webkit-user-select: none;
     user-select: none;
 
+    &-left {
+      float: left;
+    }
+
+    &-right {
+      float: right;
+    }
+
     .-focused &,
     .-fullscreen & {
       border-color: darken($cSapphire, 10);

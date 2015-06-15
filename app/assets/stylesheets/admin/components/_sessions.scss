@@ -58,7 +58,7 @@ $cSessionPlaceholder: #888;
       border: 2px solid transparentize($cWhite, 0.5);
       &:after {
         color: transparent;
-        content: "\2714";
+        content: "\2714\FE0E";
         display: block;
         font-family: $fHelvetica;
         font-size: 20px;

@@ -10,7 +10,7 @@
 } %>
 
 <%= f.label :title, "Topics" %>
-<%= f.searchable_select :topic_ids, Topic.order("label ASC"), :id, :label, multiple:true, placeholder:"Select topicss" %>
+<%= f.searchable_select :topic_ids, Topic.order("label ASC"), :id, :label, multiple:true, placeholder:"Select topics" %>
 <%= f.hint "Chose some topics for this blog post" %>
 
 <%= f.label :color, "Background Color" %>
