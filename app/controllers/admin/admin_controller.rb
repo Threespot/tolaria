@@ -11,4 +11,11 @@ class Admin::AdminController < Tolaria::TolariaController
     return render(inline:Tolaria.render_markdown(request.raw_post))
   end
 
+  def help_link
+    @help_link = Tolaria.help_links.find do |help_link|
+      help_link.slug == params[:slug]
+    end or raise ActiveRecord::RecordNotFound
+    return render tolaria_template("help/help_link")
+  end
+
 end

@@ -13,9 +13,12 @@
 
     <ul class="header-user-controls">
 
-      <% if false # FIXME: How shall we hook these up? %>
-        <li><%= link_to "Help Link", "#", class:"header-help-link" %></li>
-        <li><%= link_to "Another Link", "#", class:"header-help-link" %></li>
+      <% Tolaria.help_links.each do |help_link| %>
+        <% if help_link.markdown_type? %>
+          <li><%= link_to help_link.title, admin_help_link_path(help_link), class:"header-help-link", target:"_blank" %></li>
+        <% else %>
+          <li><%= link_to help_link.title, help_link.link_to, class:"header-help-link", target:"_blank" %></li>
+        <% end %>
       <% end %>
 
       <li>

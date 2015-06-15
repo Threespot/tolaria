@@ -422,6 +422,33 @@ Tolaria.configure do |config|
 end
 ```
 
+### Adding Documentation Link
+
+You can provide documentation links in the interface header by appending to `Tolaria.config.help_links`. Add hashes to the array, with these keys:
+
+To render a Markdown file, provide a `:title`, the URL fragment `:slug`, and a `:markdown_file` path to your Markdown document. The system will automatically draw a route to this view for you and present your file, using the renderer configured in `Tolaria.config.markdown_renderer`.
+
+To link to an arbitrary route or URL, provide a `:title` and a `:link_to`. Examples below:
+
+```ruby
+# config/initializers/tolaria.rb
+
+Tolaria.configure do |config|
+
+  config.help_links << {
+   title: "Markdown Reference"
+   slug: "markdown-reference",
+   markdown_file: "/path/to/your/file.md"
+  }
+
+  config.help_links << {
+   title: "Style Guide"
+   link_to: "http://example.org/styleguide"
+  }
+
+end
+```
+
 ### Patching a Controller
 
 Tolaria dynamically creates controllers for managed models, named as you would expect. If you want to replace or add to controller functionality, create the file in your parent application and patch away:

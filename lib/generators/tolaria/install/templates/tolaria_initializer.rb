@@ -33,6 +33,28 @@ Tolaria.configure do |config|
   # plan to use the markdown_composer form field.
   config.markdown_renderer = nil
 
+  # You can provide documentation links in the interface header by
+  # configuring them below. Add hashes to the array, with these keys:
+  #
+  # To render a Markdown file, provide a `:title`, the URL fragment `:slug`
+  # and a `:markdown_file` path to your Markdown document. The system
+  # will automatically draw a route to this view for you and present your file,
+  # using the renderer configured in config.markdown_renderer
+  #
+  # To link to an aribrary route or URL, provide a `:title` and a `:link_to`.
+  # Examples below:
+  #
+  # config.help_links << {
+  #   title: "Markdown Reference"
+  #   slug: "markdown-reference",
+  #   markdown_file: "/path/to/your/file.md"
+  # }
+  #
+  # config.help_links << {
+  #   title: "Style Guide"
+  #   link_to: "http://example.org/styleguide"
+  # }
+
   # Tolaria attempts to convert model instances to a pretty “display”
   # string for presenting in forms, titles, and listings.
   # You can define `admin_name` on your model to set the string yourself,

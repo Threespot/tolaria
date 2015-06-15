@@ -22,14 +22,22 @@
   <% end %>
 
   <div class="navigation-group mobile-only">
+    <% if Tolaria.help_links.any? %>
+      <h3>Links and Help</h3>
+      <ul>
+        <% Tolaria.help_links.each do |help_link| %>
+          <% if help_link.markdown_type? %>
+            <li><%= tolaria_navigation_link help_link.title, :info_circle, admin_help_link_path(help_link) %></li>
+          <% else %>
+            <li><%= tolaria_navigation_link help_link.title, :info_circle, help_link.link_to %></li>
+          <% end %>
+        <% end %>
+      </ul>
+    <% end %>
     <h3>Options</h3>
     <ul>
-      <li>
-        <%= tolaria_navigation_link("Your Account", :user, edit_admin_administrator_path(current_administrator)) %>
-      </li>
-      <li>
-        <%= tolaria_navigation_link("Sign Out", :sign_out, admin_destroy_session_path, method: :delete) %>
-      </li>
+      <li><%= tolaria_navigation_link "Your Account", :user, edit_admin_administrator_path(current_administrator) %></li>
+      <li><%= tolaria_navigation_link "Sign Out", :sign_out, admin_destroy_session_path, method: :delete %></li>
     </ul>
   </div>
 

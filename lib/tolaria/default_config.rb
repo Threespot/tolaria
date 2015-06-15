@@ -32,6 +32,9 @@ Tolaria.configure do |config|
   # after they trip the lockout threshold.
   config.lockout_duration = 1.hour
 
+  # An array of hashes used to construct HelpLinks
+  config.help_links = []
+
   # Tolaria does not come bundled with a Markdown processing strategy.
   # You must provide a string that names a Ruby constant that can process Markdown.
   # The constant must respond to render(document), returning a string of HTML.
