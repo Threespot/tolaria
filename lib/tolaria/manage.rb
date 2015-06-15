@@ -49,13 +49,9 @@ module Tolaria
 
   # Discard a managed class instance for the given ActiveRecord::Base
   def self.discard_managed_class(klass)
-    @managed_classes.each_with_index do |managed_class, index|
-      if klass.to_s == managed_class.klass.to_s
-        @managed_classes.delete_at(index) # Discard the managed class
-        return true
-      end
+    @managed_classes.delete_if do |managed_class|
+      klass.to_s == managed_class.klass.to_s
     end
-    return false
   end
 
 end
