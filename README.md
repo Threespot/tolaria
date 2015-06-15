@@ -138,7 +138,7 @@ See the [TableHelper documentation](#FIXME) for more information.
     <tr>
       <%= index_th :id %>
       <%= index_th :title %>
-      <%= index_th "Author", sortable: false %>
+      <%= index_th "Author", sort: false %>
       <%= actions_th %>
     </tr>
   </thead>
