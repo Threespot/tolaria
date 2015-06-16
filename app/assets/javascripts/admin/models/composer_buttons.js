@@ -40,6 +40,6 @@ ComposerButtons = {
     vanilla: "\n> quoted text",
     before: "> ",
     after: ""
-  },
+  }
 
 }
