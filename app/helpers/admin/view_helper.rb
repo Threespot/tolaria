@@ -1,7 +1,7 @@
 module Admin::ViewHelper
 
   ADMIN_PILL_COLORS = HashWithIndifferentAccess.new({
-    green: "53BE3C",
+    green: "3BAB46",
     red: "DA3946",
     blue: "3497BE",
     black: "343242",
