@@ -151,10 +151,10 @@
   }
 
   select {
-    background-image: image-url("admin/select_arrows.png");
-    background-size: 6px 10px;
-    background-position: right 12px center;
+    background-image: image-url("admin/select_arrows.svg");
+    background-position: right 10px center;
     background-repeat: no-repeat;
+    background-size: 10px 10px;
     padding-right: 20px;
     &[multiple] {
       background-image: none;
