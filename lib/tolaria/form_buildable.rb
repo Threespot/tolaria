@@ -136,15 +136,15 @@ module Tolaria
       })
     end
 
-    # Opens an ERB block to manage an accepts_nested_attributes_for association
-    # in the current form. The block will look similar to this:
+    # Opens an ERB block for UI to manage a `has_many` + `accepts_nested_attributes_for`
+    # association in the current form. The block will look similar to this:
     #
-    #    <%= f.nested_fields_for :footnotes do |ff| %>
-    #      <%= ff.nested_fields_header allow_destroy:true %>
+    #    <%= f.has_many :footnotes do |ff| %>
+    #      <%= ff.has_many_header allow_destroy:true %>
     #      <% # Your nested model fields for footnote here %>
     #    <% end %>
     #
-    # You must use `f.nested_fields_header` inside the block to create headers.
+    # You must use `f.has_many_header` inside the block to create headers.
     #
     # If you need to pass an ordered collection or otherwise not allow automatically
     # determining the association objects from the +association+ symbol you can
@@ -152,7 +152,7 @@ module Tolaria
     #
     # If +allow_create+ is `false` then the button to append a new model
     # instance will be disabled. The default is `true`.
-    def nested_fields_for(association, association_objects = nil, allow_create:true, &block)
+    def has_many(association, association_objects = nil, allow_create:true, &block)
 
       new_object = self.object.send(association).klass.new
 
@@ -164,7 +164,7 @@ module Tolaria
         yield(builder)
       end
 
-      render(partial:"admin/shared/forms/nested_fields", locals: {
+      render(partial:"admin/shared/forms/has_many", locals: {
         association: association,
         button_label: association.to_s.humanize.singularize.titleize,
         new_object: new_object,
@@ -179,11 +179,11 @@ module Tolaria
 
     end
 
-    # Creates a header suitable for use inside `nested_fields_for` for separating
+    # Creates a header suitable for use inside `has_many` for separating
     # form elements. If +allow_destroy+ is `true`, controls will be exposed that allow
     # removing nested instances of the model. The default is `false` to match Rails’.
-    def nested_fields_header(allow_destroy:false)
-      render(partial:"admin/shared/forms/nested_fields_header", locals: {
+    def has_many_header(allow_destroy:false)
+      render(partial:"admin/shared/forms/has_many_header", locals: {
         allow_destroy: allow_destroy,
         f: self,
       })

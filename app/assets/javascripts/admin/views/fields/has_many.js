@@ -1,7 +1,7 @@
-var NestedFieldsView = Backbone.View.extend({
+var HasManyView = Backbone.View.extend({
 
   initialize: function() {
-    this.$button = $(".nested-fields-create").first();
+    this.$button = $(".has-many-create").first();
     this.template = this.$button.data("template");
     this.templateID = this.$button.data("id");
   },
@@ -22,16 +22,16 @@ var NestedFieldsView = Backbone.View.extend({
 
     event.preventDefault();
 
-    var $parentHeader = $(event.currentTarget).parents(".nested-fields-header").first();
-    var $fieldgroup = $parentHeader.nextUntil(".nested-fields-header, .nested-fields-create");
+    var $parentHeader = $(event.currentTarget).parents(".has-many-header").first();
+    var $fieldgroup = $parentHeader.nextUntil(".has-many-header, .has-many-create");
     var $destroyInput = $fieldgroup.filter("input[name*='_destroy']").first()
 
     if (!!$destroyInput.length) {
       // The model is already persisted, set the destruction flag
       // and present the undo button/confirmation.
       $destroyInput.val("1");
-      $fieldgroup.filter(":not(.nested-fields-undo)").slideUp(150);
-      $fieldgroup.filter(".nested-fields-undo").first().slideDown(150);
+      $fieldgroup.filter(":not(.has-many-undo)").slideUp(150);
+      $fieldgroup.filter(".has-many-undo").first().slideDown(150);
     }
     else {
       // This model wasn't persisted, just discard the form fields.
@@ -44,21 +44,21 @@ var NestedFieldsView = Backbone.View.extend({
   restoreFieldgroup: function(event) {
 
     var $undoControl = $(event.currentTarget)
-    var $fieldgroup = $undoControl.nextUntil(".nested-fields-header, .nested-fields-create");
+    var $fieldgroup = $undoControl.nextUntil(".has-many-header, .has-many-create");
     var $destroyInput = $fieldgroup.filter("input[name*='_destroy']").first();
 
     $destroyInput.val("0");
-    $fieldgroup.filter(":not(.nested-fields-header, .nested-fields-undo)").show();
+    $fieldgroup.filter(":not(.has-many-header, .has-many-undo)").show();
     $undoControl.hide();
 
   },
 
   events: {
-    "click .nested-fields-create": "addFieldgroup",
-    "click .nested-fields-group-remove": "removeFieldgroup",
-    "click .nested-fields-undo": "restoreFieldgroup",
+    "click .has-many-create": "addFieldgroup",
+    "click .has-many-group-remove": "removeFieldgroup",
+    "click .has-many-undo": "restoreFieldgroup",
   }
 
 });
 
-FormOrchestrator.register(".nested-fields", "NestedFieldsView");
+FormOrchestrator.register(".has-many", "HasManyView");

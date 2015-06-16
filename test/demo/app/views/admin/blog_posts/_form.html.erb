@@ -33,9 +33,9 @@
 <%= f.markdown_composer :body %>
 <%= f.hint "The body of this post. You can use Markdown!" %>
 
-<%= f.nested_fields_for :footnotes do |ff| %>
+<%= f.has_many :footnotes do |ff| %>
 
-  <%= ff.nested_fields_header allow_destroy:true %>
+  <%= ff.has_many_header allow_destroy:true %>
 
   <%= ff.label :description %>
   <%= ff.text_field :description %>

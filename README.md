@@ -202,16 +202,16 @@ If your model was `BlogPost`, you'll need to create a file in your project at  `
 <%= f.hint "The body of this post. You can use Markdown!"
 ```
 
-### Nested Attributes
+### Has-many Nested Forms
 
-If you want to provide an interface for an `accepts_nested_attributes_for` relationship, you can use the `nested_fields_for` helper. The UI allows slating persisted objects for removal when the form is saved.
+If you want to provide an interface for a `has_many` + `accepts_nested_attributes_for` relationship, you can use the `has_many` helper. The UI allows slating persisted objects for removal when the form is saved.
 
-**Important**: You need to include `f.nested_fields_header` to create the form headers and turn on or off the destruction controls with `allow_destroy`.
+**Important**: You need to include `f.has_many_header` to create the form headers and turn on or off the destruction controls with `allow_destroy`.
 
 ```erb
-<%= f.nested_fields_for :footnotes do |f| %>
+<%= f.has_many :footnotes do |f| %>
 
-  <%= f.nested_fields_header allow_destroy:true %>
+  <%= f.has_many_header allow_destroy:true %>
 
   <%= f.label :description %>
   <%= f.text_field :description %>
