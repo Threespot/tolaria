@@ -99,12 +99,18 @@
 
 }
 
+@-moz-document url-prefix() {
+  .index-td {
+    a {
+      padding-top: 10px;
+      padding-bottom: 10px;
+    }
+  }
+}
+
 .actions-td {
-
   @include auto-size-column;
-
   .button {
     margin: 0 0 0 8px;
   }
-
 }

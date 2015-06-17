@@ -10,6 +10,12 @@
   z-index: 100;
 }
 
+@-moz-document url-prefix() {
+  .header-stripe {
+    margin-bottom: -1px;
+  }
+}
+
 .header {
 
   @include clearfix;
@@ -99,8 +105,3 @@
   }
 
 }
-
-
-
-
-
