@@ -41,18 +41,18 @@ Tolaria.configure do |config|
   # will automatically draw a route to this view for you and present your file,
   # using the renderer configured in config.markdown_renderer
   #
-  # To link to an aribrary route or URL, provide a `:title` and a `:link_to`.
+  # To link to an arbitrary route or URL, provide a `:title` and a `:link_to`.
   # Examples below:
   #
   # config.help_links << {
-  #   title: "Markdown Reference"
+  #   title: "Markdown Reference",
   #   slug: "markdown-reference",
-  #   markdown_file: "/path/to/your/file.md"
+  #   markdown_file: "/path/to/your/file.md",
   # }
   #
   # config.help_links << {
-  #   title: "Style Guide"
-  #   link_to: "http://example.org/styleguide"
+  #   title: "Style Guide",
+  #   link_to: "http://example.org/styleguide",
   # }
 
   # Tolaria attempts to convert model instances to a pretty “display”
