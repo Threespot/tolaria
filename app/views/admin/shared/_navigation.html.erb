@@ -1,47 +1,46 @@
 <div class="navigation">
 
-  <% Tolaria.categories.each do |category| %>
+  <div class="navigation-inner">
+    <% Tolaria.categories.each do |category| %>
 
-    <div class="navigation-group">
-      <h3><%= category %></h3>
-      <ul>
-        <% Tolaria.classes_for_category(category).each do |managed_class| %>
-          <% if managed_class.allows?(:index) %>
-            <li>
-              <%= tolaria_navigation_link(
-                managed_class.model_name.human.pluralize.titleize,
-                managed_class.icon,
-                url_for(action:"index", controller:managed_class.plural)
-              ) %>
-            </li>
+      <div class="navigation-group">
+        <h3><%= category %></h3>
+        <ul>
+          <% Tolaria.classes_for_category(category).each do |managed_class| %>
+            <% if managed_class.allows?(:index) %>
+              <li>
+                <%= tolaria_navigation_link(
+                  managed_class.model_name.human.pluralize.titleize,
+                  managed_class.icon,
+                  url_for(action:"index", controller:managed_class.plural)
+                ) %>
+              </li>
+            <% end %>
           <% end %>
-        <% end %>
-      </ul>
-    </div>
+        </ul>
+      </div>
 
-  <% end %>
+    <% end %>
 
-  <% if Tolaria.help_links.any? %>
     <div class="navigation-group mobile-only">
-      <h3>Links and Help</h3>
-      <ul>
-        <% Tolaria.help_links.each do |help_link| %>
-          <% if help_link.markdown_type? %>
-            <li><%= tolaria_navigation_link help_link.title, :info_circle, admin_help_link_path(help_link) %></li>
-          <% else %>
-            <li><%= tolaria_navigation_link help_link.title, :info_circle, help_link.link_to %></li>
+      <% if Tolaria.help_links.any? %>
+        <h3>Links and Help</h3>
+        <ul>
+          <% Tolaria.help_links.each do |help_link| %>
+            <% if help_link.markdown_type? %>
+              <li><%= tolaria_navigation_link help_link.title, :info_circle, admin_help_link_path(help_link) %></li>
+            <% else %>
+              <li><%= tolaria_navigation_link help_link.title, :info_circle, help_link.link_to %></li>
+            <% end %>
           <% end %>
-        <% end %>
+        </ul>
+      <% end %>
+      <h3>Options</h3>
+      <ul>
+        <li><%= tolaria_navigation_link "Your Account", :user, edit_admin_administrator_path(current_administrator) %></li>
+        <li><%= tolaria_navigation_link "Sign Out", :sign_out, admin_destroy_session_path, method: :delete %></li>
       </ul>
     </div>
-  <% end %>
-
-  <div class="navigation-group mobile-only">
-    <h3>Options</h3>
-    <ul>
-      <li><%= tolaria_navigation_link "Your Account", :user, edit_admin_administrator_path(current_administrator) %></li>
-      <li><%= tolaria_navigation_link "Sign Out", :sign_out, admin_destroy_session_path, method: :delete %></li>
-    </ul>
   </div>
 
 </div>

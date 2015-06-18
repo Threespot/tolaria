@@ -1,25 +1,30 @@
 .navigation {
 
-  position: relative;
-
   .js & {
-    max-height: 0px;
+    max-height: 0;
     overflow: hidden;
-    transition: max-height 100ms linear, padding 100ms linear, border 100ms linear;
-    &.-open {
-      max-height: 2000px;
-      padding: 10px 0 15px 0;
-      border-bottom: 3px double $cGrey;
-    }
+    transition: max-height 300ms easing("easeOutCubic");
   }
 
   @include min-width($bpFull) {
-    width: 16%;
-    border-bottom: 0;
-    padding: 10px 0 0 0;
     display: table-cell;
     vertical-align: top;
+    width: 16%;
   }
+
+}
+
+.navigation-inner {
+
+  border-bottom: 3px double $cGrey;
+  padding: 10px 0 15px;
+  position: relative;
+
+  @include min-width($bpFull) {
+    border-bottom: 0;
+    padding: 10px 0 0 0;
+  }
+
 }
 
 .navigation-group {
