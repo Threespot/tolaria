@@ -1,6 +1,7 @@
 .navigation {
 
   position: relative;
+  z-index: 99999;
 
   @include max-width($bpFull - 1px) {
     @include clearfix;
