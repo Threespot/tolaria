@@ -6,8 +6,6 @@
 //= require admin/lib/moment
 
 //= require_directory ./models
-//= require ./events
-//= require ./utils
 //= require_directory ./views
 //= require_directory ./views/fields
 
