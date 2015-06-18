@@ -20,6 +20,10 @@
   text-align: left;
   width: 100%;
 
+  @include min-width($bpFull) {
+    min-width: 0;
+  }
+
   .monospace {
     font-size: 14px;
   }
