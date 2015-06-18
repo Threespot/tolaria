@@ -9,7 +9,7 @@
     border-bottom: 3px double $cGrey;
     margin-left: -20px;
     margin-right: -20px;
-    padding: 20px;
+    padding: 10px 20px 20px 20px;
 
     .js & {
       left: 0;
@@ -33,7 +33,7 @@
   @include min-width($bpFull) {
     width: 16%;
     border-bottom: 0;
-    padding: 10px 0 0 0;
+    padding: 0;
     display: table-cell;
     vertical-align: top;
   }
@@ -41,6 +41,8 @@
 }
 
 .navigation-group {
+
+  margin-top: 10px;
 
   @include min-width(500px) {
     width: 50%;
@@ -54,10 +56,6 @@
   @include min-width($bpFull) {
     width: auto;
     float: none;
-  }
-
-  & + & {
-    margin-top: 10px;
   }
 
   h3 {
