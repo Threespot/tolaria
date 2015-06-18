@@ -3,7 +3,7 @@
   .js & {
     max-height: 0;
     overflow: hidden;
-    transition: max-height 300ms easing("easeOutCubic");
+    transition: max-height 300ms cubic-bezier(0.215, 0.61, 0.355, 1);
   }
 
   @include min-width($bpFull) {
