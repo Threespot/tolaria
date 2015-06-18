@@ -27,6 +27,11 @@ body {
   outline: 1px solid transparentize($cSapphire, 0.25);
 }
 
+*:hover,
+*:active {
+  outline: none !important;
+}
+
 .inner-align {
   @include clearfix;
   max-width: 1000px;
