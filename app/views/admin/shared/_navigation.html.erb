@@ -22,8 +22,8 @@
 
     <% end %>
 
-    <div class="navigation-group mobile-only">
-      <% if Tolaria.help_links.any? %>
+    <% if Tolaria.help_links.any? %>
+      <div class="navigation-group mobile-only">
         <h3>Links and Help</h3>
         <ul>
           <% Tolaria.help_links.each do |help_link| %>
@@ -34,7 +34,10 @@
             <% end %>
           <% end %>
         </ul>
-      <% end %>
+      </div>
+    <% end %>
+
+    <div class="navigation-group mobile-only">
       <h3>Options</h3>
       <ul>
         <li><%= tolaria_navigation_link "Your Account", :user, edit_admin_administrator_path(current_administrator) %></li>
