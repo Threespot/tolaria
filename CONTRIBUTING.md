@@ -1,4 +1,4 @@
-The Tolaria maintainers welcome contributions. While contributing, you shall adhere to the project [code of conduct](http://bundler.io/conduct.html) below, so that everyone feels welcome.
+The Tolaria maintainers welcome contributions. While contributing, you shall adhere to the project [code of conduct](#the-code-of-conduct) below, so that everyone feels welcome.
 
 **An up-front apology:** Tolaria is not necessarily the maintainers' full-time gig. Please be patient with us getting back to you.
 
