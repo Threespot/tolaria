@@ -465,7 +465,7 @@ class Admin::BlogPostsController < Tolaria::ResourceController
 end
 ```
 
-You might want to [check out what we've done in the base ResourceController](https://github.com/Threespot/tolaria/blob/master/lib/tolaria/controllers/resource_controller.rb) file so that you know what you're patching. If you override any of the existing methods, you're on your own to handle everything correctly.
+You might want to [check out what we've done in the base ResourceController](https://github.com/Threespot/tolaria/blob/master/app/controllers/tolaria/resource_controller.rb) file so that you know what you're patching. If you override any of the existing methods, you're on your own to handle everything correctly.
 
 ### Adding Your Own Styles or JavaScript
 
