@@ -519,7 +519,7 @@ $ rake server       # Start a Rails Webrick server with Tolaria and some example
 
 ### License
 
-Tolaria is free software, and may be redistributed under the terms of the [MIT license](https://github.com/Threespot/tolaria/blob/master/LICENSE). If Tolaria works great for your project, [we'd love to hear about it](http://twitter.com/threespot)!
+Tolaria is free software, and may be redistributed under the terms of the [MIT license](https://github.com/Threespot/tolaria/blob/master/LICENSE.md). If Tolaria works great for your project, [we'd love to hear about it](http://twitter.com/threespot)!
 
 ### Thanks
 
