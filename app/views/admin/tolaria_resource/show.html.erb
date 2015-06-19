@@ -6,7 +6,7 @@
     <h1>
       <span class="crumb">
         <%= fontawesome_icon @managed_class.icon %>
-        <%= @managed_class.model_name.human.pluralize.titleize %>
+        <%= link_to @managed_class.model_name.human.pluralize.titleize, url_for(action:"index", controller:@managed_class.plural) %>
       </span>
       <%= content_for :title %>
     </h1>
