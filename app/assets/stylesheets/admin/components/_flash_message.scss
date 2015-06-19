@@ -11,6 +11,8 @@
   margin: 0 -20px 0 -20px;
   padding: 10px 20px;
   text-shadow: 0;
+  position: relative;
+  z-index: 100000;
 
   @include min-width($bpFull) {
     padding: 12px 40px;
