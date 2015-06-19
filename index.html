@@ -1,0 +1,547 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+    <meta charset="UTF-8">
+    <title>Tolaria by Threespot</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" href="stylesheets/normalize.css" media="screen">
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" type="text/css" href="stylesheets/stylesheet.css" media="screen">
+    <link rel="stylesheet" type="text/css" href="stylesheets/github-light.css" media="screen">
+  </head>
+  <body>
+    <section class="page-header">
+      <h1 class="project-name">Tolaria</h1>
+      <h2 class="project-tagline">A Rails CMS framework for making your editors happy.</h2>
+      <a href="https://github.com/Threespot/tolaria" class="btn">View on GitHub</a>
+      <a href="https://github.com/Threespot/tolaria/zipball/master" class="btn">Download .zip</a>
+      <a href="https://github.com/Threespot/tolaria/tarball/master" class="btn">Download .tar.gz</a>
+    </section>
+
+    <section class="main-content">
+      <h2>
+<a id="tolaria" class="anchor" href="#tolaria" aria-hidden="true"><span class="octicon octicon-link"></span></a>Tolaria</h2>
+
+<p>Tolaria is a <a href="https://en.wikipedia.org/wiki/Content_management_system">content management system</a> (CMS) framework for <a href="https://en.wikipedia.org/wiki/Ruby_on_Rails">Ruby on Rails</a>. It greatly speeds up the necessary—but repetitive—task of creating useful admin panels, forms, and model workflows for site authors.</p>
+
+<p><a href="https://cloud.githubusercontent.com/assets/769083/7573791/56eda172-f7f6-11e4-8df7-36015cf5cf85.png"><img src="https://cloud.githubusercontent.com/assets/769083/8262095/ccb2b68e-169d-11e5-9378-0d098eb22c22.png" alt=""></a></p>
+
+<p><a href="https://cloud.githubusercontent.com/assets/769083/7573968/cc448ebc-f7f7-11e4-8593-c6465d3a8e3c.png"><img src="https://cloud.githubusercontent.com/assets/769083/8262101/d64a4478-169d-11e5-879e-4927640c5f39.png" alt=""></a></p>
+
+<h3>
+<a id="features" class="anchor" href="#features" aria-hidden="true"><span class="octicon octicon-link"></span></a>Features</h3>
+
+<ul>
+<li>Fully responsive (and we think it's beautiful too!)</li>
+<li>A complete email-based authentication system is included, and there are no passwords to manage.</li>
+<li>Automatically builds navigation and admin routes for you.</li>
+<li>Automatically creates simple index screens, show screens, and text search tools, which you can expand.</li>
+<li>Includes a handful of advanced form fields, notably a fullscreen Markdown editor and searchable select/tag lists.</li>
+<li>Assists in providing inline help and documentation to your editors.</li>
+<li>No magic DSL. Work directly in ERB on all admin views.</li>
+<li>Compartmentalized from the rest of the Rails application, and does not rely on the behavior of <code>to_param</code>.</li>
+<li>Easily overridable on a case-by-case basis.</li>
+<li>Designed for use on Heroku, in containers, and on websites with TLS.</li>
+<li>Modest dependencies.</li>
+</ul>
+
+<h3>
+<a id="browser-support" class="anchor" href="#browser-support" aria-hidden="true"><span class="octicon octicon-link"></span></a>Browser Support</h3>
+
+<p>Tolaria supports IE10+, Safari, Chrome, Firefox, iOS, and Chrome for Android. Note that these are the browsers your site editors will need, not the general site audience, which can differ.</p>
+
+<h3>
+<a id="getting-started" class="anchor" href="#getting-started" aria-hidden="true"><span class="octicon octicon-link"></span></a>Getting Started</h3>
+
+<p>Add Tolaria to your project's <code>Gemfile</code>:</p>
+
+<div class="highlight highlight-ruby"><pre><span class="pl-k">gem</span> <span class="pl-s"><span class="pl-pds">"</span>tolaria<span class="pl-pds">"</span></span></pre></div>
+
+<p>Then update your bundle.</p>
+
+<p>Now run the installation generator. This will create an initializer for Tolaria plus a migration to set up an <code>administrators</code> table. Migrate your database.</p>
+
+<div class="highlight highlight-shell"><pre>$ rails generate tolaria:install
+$ rake db:migrate</pre></div>
+
+<p>Review all of the settings in <code>config/initializers/tolaria.rb</code>.</p>
+
+<p>Run this Rake command to create your first administrator account:</p>
+
+<div class="highlight highlight-shell"><pre>$ rake admin:create</pre></div>
+
+<p>Now you'll need to add Tolaria's route drawing to the top of your <code>routes.rb</code> file like so:</p>
+
+<div class="highlight highlight-ruby"><pre><span class="pl-c1">Rails</span>.application.routes.draw <span class="pl-k">do</span>
+  <span class="pl-c1">Tolaria</span>.draw_routes(<span class="pl-v">self</span>)
+  <span class="pl-c"># Your other routes below here</span>
+<span class="pl-k">end</span></pre></div>
+
+<p>Tolaria needs to be able to dispatch email. You'll need to configure ActionMailer to use an appropriate mail service. Here's an example using <a href="https://devcenter.heroku.com/articles/mailgun">Mailgun on Heroku</a>:</p>
+
+<div class="highlight highlight-ruby"><pre><span class="pl-c"># config/initializers/action_mailer.rb</span>
+
+<span class="pl-c1">ActionMailer</span>::<span class="pl-c1">Base</span>.perform_deliveries <span class="pl-k">=</span> <span class="pl-c1">true</span>
+<span class="pl-c1">ActionMailer</span>::<span class="pl-c1">Base</span>.delivery_method <span class="pl-k">=</span> <span class="pl-c1">:smtp</span>
+
+<span class="pl-c1">ActionMailer</span>::<span class="pl-c1">Base</span>.smtp_settings <span class="pl-k">=</span> {
+  <span class="pl-c1">port:</span> <span class="pl-c1">ENV</span>.fetch(<span class="pl-s"><span class="pl-pds">"</span>MAILGUN_SMTP_PORT<span class="pl-pds">"</span></span>),
+  <span class="pl-c1">address:</span> <span class="pl-c1">ENV</span>.fetch(<span class="pl-s"><span class="pl-pds">"</span>MAILGUN_SMTP_SERVER<span class="pl-pds">"</span></span>),
+  <span class="pl-c1">user_name:</span> <span class="pl-c1">ENV</span>.fetch(<span class="pl-s"><span class="pl-pds">"</span>MAILGUN_SMTP_LOGIN<span class="pl-pds">"</span></span>),
+  <span class="pl-c1">password:</span> <span class="pl-c1">ENV</span>.fetch(<span class="pl-s"><span class="pl-pds">"</span>MAILGUN_SMTP_PASSWORD<span class="pl-pds">"</span></span>),
+  <span class="pl-c1">domain:</span> <span class="pl-s"><span class="pl-pds">"</span>example.org<span class="pl-pds">"</span></span>,
+  <span class="pl-c1">authentication:</span> <span class="pl-c1">:login</span>,
+  <span class="pl-c1">enable_starttls_auto:</span> <span class="pl-c1">true</span>,
+}</pre></div>
+
+<p>Now start your Rails server and go to <code>/admin</code> to log in!</p>
+
+<h3>
+<a id="adding-administrator-accounts" class="anchor" href="#adding-administrator-accounts" aria-hidden="true"><span class="octicon octicon-link"></span></a>Adding Administrator Accounts</h3>
+
+<p>You can add administrators from the command line using a Rake task. This is particularly useful for creating the very first one.</p>
+
+<div class="highlight highlight-shell"><pre>$ rake admin:create</pre></div>
+
+<p>If you are already logged in to Tolaria, you can also simply visit <code>/admin/administrators</code> to create a new account using the CMS interface.</p>
+
+<h3>
+<a id="passcode-authentication" class="anchor" href="#passcode-authentication" aria-hidden="true"><span class="octicon octicon-link"></span></a>Passcode Authentication</h3>
+
+<p>Tolaria authenticates editors via email, using a one-time passcode. When an editor wants to sign in, they must type a passcode dispatched to their email address. Passcodes are invalidated after use.</p>
+
+<p>You can configure Tolaria's passcode paranoia in the initializer you installed above.</p>
+
+<p><img src="https://cloud.githubusercontent.com/assets/769083/8137572/5e81bb1e-1112-11e5-9626-fc7a0010f0c4.png" alt=""></p>
+
+<h3>
+<a id="managing-a-model" class="anchor" href="#managing-a-model" aria-hidden="true"><span class="octicon octicon-link"></span></a>Managing a Model</h3>
+
+<p>Inside your ActiveRecord definition for your model, call <code>manage_with_tolaria</code>, passing configuration in the <code>using</code> Hash. <a href="#FIXME">Refer to the documentation for all of the options</a>.</p>
+
+<p>The icon system uses <a href="http://fontawesome.io/icons/">Font Awesome</a>, and you'll need to pass one of <a href="http://fontawesome.io/icons/">the icon names</a> for the <code>icon</code> key.</p>
+
+<p><strong>Important:</strong> you'll need to provide the options to pass to <code>params.permit</code> here for the admin system. Your form won't work without it!</p>
+
+<div class="highlight highlight-ruby"><pre><span class="pl-k">class</span> <span class="pl-en">BlogPost<span class="pl-e"> &lt; ActiveRecord::Base</span></span>
+  manage_with_tolaria <span class="pl-c1">using:</span> {
+    <span class="pl-c1">icon:</span> <span class="pl-s"><span class="pl-pds">"</span>file-o<span class="pl-pds">"</span></span>,
+    <span class="pl-c1">category:</span> <span class="pl-s"><span class="pl-pds">"</span>Settings<span class="pl-pds">"</span></span>,
+    <span class="pl-c1">priority:</span> <span class="pl-c1">5</span>,
+    <span class="pl-c1">permit_params:</span> [
+      <span class="pl-c1">:title</span>,
+      <span class="pl-c1">:body</span>,
+      <span class="pl-c1">:author_id</span>,
+    ]
+  }
+<span class="pl-k">end</span></pre></div>
+
+<h3>
+<a id="customizing-indexes" class="anchor" href="#customizing-indexes" aria-hidden="true"><span class="octicon octicon-link"></span></a>Customizing Indexes</h3>
+
+<p>By default, Tolaria will build a simple index screen for each model. You'll likely want to replace it for complicated models, or to allow administrators to sort the columns.</p>
+
+<p>If your model was <code>BlogPost</code>, you'll need to create a file in your project at: <code>app/views/admin/blog_posts/_index.html.erb</code>.</p>
+
+<p>See the <a href="#FIXME">TableHelper documentation</a> for more information.</p>
+
+<div class="highlight highlight-erb"><pre><span class="pl-pse">&lt;%</span><span class="pl-s1"> <span class="pl-c"># app/views/admin/blog_posts/_index.html.erb </span></span><span class="pl-pse"><span class="pl-s1">%</span>&gt;</span>
+
+<span class="pl-pse">&lt;%=</span><span class="pl-s1"> index_table <span class="pl-k">do </span></span><span class="pl-pse"><span class="pl-s1">%</span>&gt;</span>
+  &lt;<span class="pl-ent">thead</span>&gt;
+    &lt;<span class="pl-ent">tr</span>&gt;
+      <span class="pl-pse">&lt;%=</span><span class="pl-s1"> index_th <span class="pl-c1">:id</span> </span><span class="pl-pse"><span class="pl-s1">%</span>&gt;</span>
+      <span class="pl-pse">&lt;%=</span><span class="pl-s1"> index_th <span class="pl-c1">:title</span> </span><span class="pl-pse"><span class="pl-s1">%</span>&gt;</span>
+      <span class="pl-pse">&lt;%=</span><span class="pl-s1"> index_th <span class="pl-s"><span class="pl-pds">"</span>Author<span class="pl-pds">"</span></span>, <span class="pl-c1">sort:</span> <span class="pl-c1">false</span> </span><span class="pl-pse"><span class="pl-s1">%</span>&gt;</span>
+      <span class="pl-pse">&lt;%=</span><span class="pl-s1"> actions_th </span><span class="pl-pse"><span class="pl-s1">%</span>&gt;</span>
+    &lt;/<span class="pl-ent">tr</span>&gt;
+  &lt;/<span class="pl-ent">thead</span>&gt;
+  &lt;<span class="pl-ent">tbody</span>&gt;
+    <span class="pl-pse">&lt;%</span><span class="pl-s1"> <span class="pl-smi">@resources</span>.each <span class="pl-k">do </span>|<span class="pl-smi">blog_post</span>| </span><span class="pl-pse"><span class="pl-s1">%</span>&gt;</span>
+      &lt;<span class="pl-ent">tr</span>&gt;
+        <span class="pl-pse">&lt;%=</span><span class="pl-s1"> index_td blog_post, <span class="pl-c1">:id</span> </span><span class="pl-pse"><span class="pl-s1">%</span>&gt;</span>
+        <span class="pl-pse">&lt;%=</span><span class="pl-s1"> index_td blog_post, <span class="pl-c1">:title</span> </span><span class="pl-pse"><span class="pl-s1">%</span>&gt;</span>
+        <span class="pl-pse">&lt;%=</span><span class="pl-s1"> index_td blog_post, blog_post.author.name, <span class="pl-c1">image:</span>blog_post.author.portrait_uri </span><span class="pl-pse"><span class="pl-s1">%</span>&gt;</span>
+        <span class="pl-pse">&lt;%=</span><span class="pl-s1"> actions_td blog_post </span><span class="pl-pse"><span class="pl-s1">%</span>&gt;</span>
+      &lt;/<span class="pl-ent">tr</span>&gt;
+    <span class="pl-pse">&lt;%</span><span class="pl-s1"> <span class="pl-k">end</span> </span><span class="pl-pse"><span class="pl-s1">%</span>&gt;</span>
+  &lt;/<span class="pl-ent">tbody</span>&gt;
+<span class="pl-pse">&lt;%</span><span class="pl-s1"> <span class="pl-k">end</span> </span><span class="pl-pse"><span class="pl-s1">%</span>&gt;</span></pre></div>
+
+<h3>
+<a id="customizing-the-inspect-screen" class="anchor" href="#customizing-the-inspect-screen" aria-hidden="true"><span class="octicon octicon-link"></span></a>Customizing The Inspect Screen</h3>
+
+<p>Tolaria provides a very basic show/inspect screen for models. You'll want to provide your own for complex models.</p>
+
+<p>If your model was <code>BlogPost</code>, you'll need to create a file in your project at: <code>app/views/admin/blog_posts/_show.html.erb</code>.</p>
+
+<p>See the <a href="#FIXME">TableHelper documentation</a> for more information.</p>
+
+<div class="highlight highlight-erb"><pre><span class="pl-pse">&lt;%</span><span class="pl-s1"> <span class="pl-c"># app/views/admin/blog_posts/_show.html.erb </span></span><span class="pl-pse"><span class="pl-s1">%</span>&gt;</span>
+
+<span class="pl-pse">&lt;%=</span><span class="pl-s1"> show_table <span class="pl-k">do </span></span><span class="pl-pse"><span class="pl-s1">%</span>&gt;</span>
+
+  &lt;<span class="pl-ent">thead</span>&gt;
+    <span class="pl-pse">&lt;%=</span><span class="pl-s1"> show_thead_tr </span><span class="pl-pse"><span class="pl-s1">%</span>&gt;</span>
+  &lt;/<span class="pl-ent">thead</span>&gt;
+  &lt;<span class="pl-ent">tbody</span>&gt;
+    <span class="pl-pse">&lt;%=</span><span class="pl-s1"> show_tr <span class="pl-c1">:title</span> </span><span class="pl-pse"><span class="pl-s1">%</span>&gt;</span>
+    <span class="pl-pse">&lt;%=</span><span class="pl-s1"> show_tr <span class="pl-s"><span class="pl-pds">"</span>Author<span class="pl-pds">"</span></span>, <span class="pl-smi">@resource</span>.author.name </span><span class="pl-pse"><span class="pl-s1">%</span>&gt;</span>
+    <span class="pl-pse">&lt;%=</span><span class="pl-s1"> show_tr <span class="pl-c1">:body</span> </span><span class="pl-pse"><span class="pl-s1">%</span>&gt;</span>
+  &lt;/<span class="pl-ent">tbody</span>&gt;
+
+<span class="pl-pse">&lt;%</span><span class="pl-s1"> <span class="pl-k">end</span> </span><span class="pl-pse"><span class="pl-s1">%</span>&gt;</span></pre></div>
+
+<h3>
+<a id="adding-model-forms" class="anchor" href="#adding-model-forms" aria-hidden="true"><span class="octicon octicon-link"></span></a>Adding Model Forms</h3>
+
+<p>Tolaria does not build editing forms for you, but it attempts to help speed up your work by providing a wrapper.</p>
+
+<p>If your model was <code>BlogPost</code>, you'll need to create a file in your project at  <code>app/views/admin/blog_posts/_form.html.erb</code>. You'll provide the form code that would appear inside the <code>form_for</code> block, excluding the submit buttons. The builder variable is <code>f</code>.</p>
+
+<div class="highlight highlight-erb"><pre><span class="pl-pse">&lt;%</span><span class="pl-s1"> <span class="pl-c"># app/views/admin/blog_posts/_form.html.erb </span></span><span class="pl-pse"><span class="pl-s1">%</span>&gt;</span>
+
+<span class="pl-pse">&lt;%=</span><span class="pl-s1"> f.label <span class="pl-c1">:title</span> </span><span class="pl-pse"><span class="pl-s1">%</span>&gt;</span>
+<span class="pl-pse">&lt;%=</span><span class="pl-s1"> f.text_field <span class="pl-c1">:title</span>, <span class="pl-c1">placeholder:</span><span class="pl-s"><span class="pl-pds">"</span>Post title<span class="pl-pds">"</span></span> </span><span class="pl-pse"><span class="pl-s1">%</span>&gt;</span>
+<span class="pl-pse">&lt;%=</span><span class="pl-s1"> f.hint <span class="pl-s"><span class="pl-pds">"</span>The title of this post. A good title is both summarizing and enticing, much like a newspaper headline.<span class="pl-pds">"</span></span> </span><span class="pl-pse"><span class="pl-s1">%</span>&gt;</span>
+
+<span class="pl-pse">&lt;%=</span><span class="pl-s1"> f.label <span class="pl-c1">:author_id</span>, <span class="pl-s"><span class="pl-pds">"</span>Author<span class="pl-pds">"</span></span> </span><span class="pl-pse"><span class="pl-s1">%</span>&gt;</span>
+<span class="pl-pse">&lt;%=</span><span class="pl-s1"> f.searchable_select <span class="pl-c1">:author_id</span>, <span class="pl-c1">Author</span>.all, <span class="pl-c1">:id</span>, <span class="pl-c1">:name</span>, <span class="pl-c1">include_blank:</span><span class="pl-c1">false</span> </span><span class="pl-pse"><span class="pl-s1">%</span>&gt;</span>
+<span class="pl-pse">&lt;%=</span><span class="pl-s1"> f.hint <span class="pl-s"><span class="pl-pds">"</span>Select the person who wrote this post.<span class="pl-pds">"</span></span> </span><span class="pl-pse"><span class="pl-s1">%</span>&gt;</span>
+
+<span class="pl-pse">&lt;%=</span><span class="pl-s1"> f.label <span class="pl-c1">:body</span> </span><span class="pl-pse"><span class="pl-s1">%</span>&gt;</span>
+<span class="pl-pse">&lt;%=</span><span class="pl-s1"> f.markdown_composer <span class="pl-c1">:body</span> </span><span class="pl-pse"><span class="pl-s1">%</span>&gt;</span>
+<span class="pl-pse">&lt;%=</span><span class="pl-s1"> f.hint <span class="pl-s"><span class="pl-pds">"</span>The body of this post. You can use Markdown!<span class="pl-pds">"</span></span></span></pre></div>
+
+<h3>
+<a id="has-many-nested-forms" class="anchor" href="#has-many-nested-forms" aria-hidden="true"><span class="octicon octicon-link"></span></a>Has-many Nested Forms</h3>
+
+<p>If you want to provide an interface for a <code>has_many</code> + <code>accepts_nested_attributes_for</code> relationship, you can use the <code>has_many</code> helper. The UI allows slating persisted objects for removal when the form is saved.</p>
+
+<p><strong>Important</strong>: You need to include <code>f.has_many_header</code> to create the form headers and turn on or off the destruction controls with <code>allow_destroy</code>.</p>
+
+<div class="highlight highlight-erb"><pre><span class="pl-pse">&lt;%=</span><span class="pl-s1"> f.has_many <span class="pl-c1">:footnotes</span> <span class="pl-k">do </span>|<span class="pl-smi">f</span>| </span><span class="pl-pse"><span class="pl-s1">%</span>&gt;</span>
+
+  <span class="pl-pse">&lt;%=</span><span class="pl-s1"> f.has_many_header <span class="pl-c1">allow_destroy:</span><span class="pl-c1">true</span> </span><span class="pl-pse"><span class="pl-s1">%</span>&gt;</span>
+
+  <span class="pl-pse">&lt;%=</span><span class="pl-s1"> f.label <span class="pl-c1">:description</span> </span><span class="pl-pse"><span class="pl-s1">%</span>&gt;</span>
+  <span class="pl-pse">&lt;%=</span><span class="pl-s1"> f.text_field <span class="pl-c1">:description</span> </span><span class="pl-pse"><span class="pl-s1">%</span>&gt;</span>
+  <span class="pl-pse">&lt;%=</span><span class="pl-s1"> f.hint <span class="pl-s"><span class="pl-pds">"</span>The name or other description of this reference<span class="pl-pds">"</span></span> </span><span class="pl-pse"><span class="pl-s1">%</span>&gt;</span>
+
+  <span class="pl-pse">&lt;%=</span><span class="pl-s1"> f.label <span class="pl-c1">:url</span>, <span class="pl-s"><span class="pl-pds">"</span>URL<span class="pl-pds">"</span></span> </span><span class="pl-pse"><span class="pl-s1">%</span>&gt;</span>
+  <span class="pl-pse">&lt;%=</span><span class="pl-s1"> f.text_field <span class="pl-c1">:url</span>, <span class="pl-c1">class:</span><span class="pl-s"><span class="pl-pds">"</span>monospace<span class="pl-pds">"</span></span> </span><span class="pl-pse"><span class="pl-s1">%</span>&gt;</span>
+  <span class="pl-pse">&lt;%=</span><span class="pl-s1"> f.hint <span class="pl-s"><span class="pl-pds">"</span>A full URL to the source or reference material<span class="pl-pds">"</span></span> </span><span class="pl-pse"><span class="pl-s1">%</span>&gt;</span>
+
+<span class="pl-pse">&lt;%</span><span class="pl-s1"> <span class="pl-k">end</span> </span><span class="pl-pse"><span class="pl-s1">%</span>&gt;</span></pre></div>
+
+<p><img src="https://cloud.githubusercontent.com/assets/769083/8117475/50e5d0e2-1056-11e5-87a6-07bc7458da1e.png" alt=""></p>
+
+<p>Don't forget that you also need to change <code>permit_params</code> so that you include your nested attributes:</p>
+
+<div class="highlight highlight-ruby"><pre><span class="pl-k">class</span> <span class="pl-en">BlogPost<span class="pl-e"> &lt; ActiveRecord::Base</span></span>
+  manage_with_tolaria <span class="pl-c1">using:</span> {
+    <span class="pl-c1">icon:</span> <span class="pl-s"><span class="pl-pds">"</span>file-o<span class="pl-pds">"</span></span>,
+    <span class="pl-c1">category:</span> <span class="pl-s"><span class="pl-pds">"</span>Settings<span class="pl-pds">"</span></span>,
+    <span class="pl-c1">priority:</span> <span class="pl-c1">5</span>,
+    <span class="pl-c1">permit_params:</span> [
+      <span class="pl-c1">:title</span>,
+      <span class="pl-c1">:body</span>,
+      <span class="pl-c1">:author_id</span>,
+      <span class="pl-c1">:footnotes_attributes</span>: [
+        <span class="pl-c1">:id</span>,
+        <span class="pl-c1">:_destroy</span>,
+        <span class="pl-c1">:url</span>,
+        <span class="pl-c1">:description</span>,
+      ]
+    ]
+  }
+<span class="pl-k">end</span></pre></div>
+
+<h3>
+<a id="customizing-the-search-form" class="anchor" href="#customizing-the-search-form" aria-hidden="true"><span class="octicon octicon-link"></span></a>Customizing The Search Form</h3>
+
+<p>By default, Tolaria provides a single search field that searches over all of the text or character columns of a model. You can expand the search tool to include other facets.</p>
+
+<p><strong>Important:</strong> This system uses the <a href="https://github.com/activerecord-hackery/ransack">Ransack gem</a>, which you'll need to familiarize yourself with.</p>
+
+<p>If your model was <code>BlogPost</code>, you'll need to create a file in your project at  <code>app/views/admin/blog_posts/_search.html.erb</code>. You'll provide the form code that would appear inside the <code>search_form_for</code> block, excluding the submit buttons. The builder variable is <code>f</code>.</p>
+
+<div class="highlight highlight-erb"><pre><span class="pl-pse">&lt;%</span><span class="pl-s1"> <span class="pl-c"># app/views/admin/blog_posts/_search.html.erb </span></span><span class="pl-pse"><span class="pl-s1">%</span>&gt;</span>
+
+<span class="pl-pse">&lt;%=</span><span class="pl-s1"> f.label <span class="pl-c1">:title_cont</span>, <span class="pl-s"><span class="pl-pds">"</span>Title contains<span class="pl-pds">"</span></span> </span><span class="pl-pse"><span class="pl-s1">%</span>&gt;</span>
+<span class="pl-pse">&lt;%=</span><span class="pl-s1"> f.search_field <span class="pl-c1">:title_cont</span>, <span class="pl-c1">placeholder:</span><span class="pl-s"><span class="pl-pds">"</span>Anything<span class="pl-pds">"</span></span> </span><span class="pl-pse"><span class="pl-s1">%</span>&gt;</span>
+
+<span class="pl-pse">&lt;%=</span><span class="pl-s1"> f.label <span class="pl-c1">:author_name_cont</span>, <span class="pl-s"><span class="pl-pds">"</span>Author is<span class="pl-pds">"</span></span> </span><span class="pl-pse"><span class="pl-s1">%</span>&gt;</span>
+<span class="pl-pse">&lt;%=</span><span class="pl-s1"> f.searchable_select <span class="pl-c1">:author_name_cont</span>, <span class="pl-c1">Author</span>.all, <span class="pl-c1">:name</span>, <span class="pl-c1">:name</span>, <span class="pl-c1">prompt:</span><span class="pl-s"><span class="pl-pds">"</span>Any author<span class="pl-pds">"</span></span> </span><span class="pl-pse"><span class="pl-s1">%</span>&gt;</span>
+
+<span class="pl-pse">&lt;%=</span><span class="pl-s1"> f.label <span class="pl-c1">:body_cont</span>, <span class="pl-s"><span class="pl-pds">"</span>Body contains<span class="pl-pds">"</span></span> </span><span class="pl-pse"><span class="pl-s1">%</span>&gt;</span>
+<span class="pl-pse">&lt;%=</span><span class="pl-s1"> f.search_field <span class="pl-c1">:body_cont</span>, <span class="pl-c1">placeholder:</span><span class="pl-s"><span class="pl-pds">"</span>Anything<span class="pl-pds">"</span></span> </span><span class="pl-pse"><span class="pl-s1">%</span>&gt;</span></pre></div>
+
+<h3>
+<a id="provided-form-fields" class="anchor" href="#provided-form-fields" aria-hidden="true"><span class="octicon octicon-link"></span></a>Provided Form Fields</h3>
+
+<p>You can use all of the Rails-provided fields on your forms, but Tolaria also comes with a set of advanced, JavaScript-backed fields. Make sure to <a href="#FIXME">review the documentation for the form builder</a> to get all the details.</p>
+
+<h4>
+<a id="markdown-composer" class="anchor" href="#markdown-composer" aria-hidden="true"><span class="octicon octicon-link"></span></a>Markdown Composer</h4>
+
+<p>The <a href="#FIXME"><code>markdown_composer</code> helper</a> will generate a very fancy Markdown editor, which includes text snippet tools and a fullscreen mode with live previewing.</p>
+
+<p><strong>Important:</strong> You cannot use this field properly if you do not set up <code>Tolaria.config.markdown_renderer</code>. Without it, the live preview will only use <code>simple_format</code>!</p>
+
+<pre><code>&lt;%= f.label :body %&gt;
+&lt;%= f.markdown_composer :body %&gt;
+&lt;%= f.hint "The body of this post. You can use Markdown!" %&gt;
+</code></pre>
+
+<p><img src="https://cloud.githubusercontent.com/assets/769083/7888521/407d0116-0607-11e5-91fe-a046c22ea777.png" alt="markdown_composer"></p>
+
+<h4>
+<a id="searchable-select" class="anchor" href="#searchable-select" aria-hidden="true"><span class="octicon octicon-link"></span></a>Searchable Select</h4>
+
+<p>The <a href="#FIXME"><code>searchable_select</code> helper</a> displays a <a href="http://harvesthq.github.io/chosen/">Chosen select field</a> that authors can filter by typing.</p>
+
+<pre><code>&lt;%= f.label :title, "Topics" %&gt;
+&lt;%= f.searchable_select :topic_ids, Topic.order("label ASC"), :id, :label, multiple:true %&gt;
+&lt;%= f.hint "Select each topic that applies to this blog post" %&gt;
+</code></pre>
+
+<p><img src="https://cloud.githubusercontent.com/assets/769083/7888524/41aba54c-0607-11e5-9c5f-483b5ecf5ea9.png" alt="searchable_select"></p>
+
+<h4>
+<a id="image-association-select" class="anchor" href="#image-association-select" aria-hidden="true"><span class="octicon octicon-link"></span></a>Image Association Select</h4>
+
+<p>The <a href="#FIXME"><code>image_association_select</code> helper</a> displays a <code>searchable_select</code> that provides an instant preview of the currently selected model as an image.</p>
+
+<div class="highlight highlight-erb"><pre><span class="pl-pse">&lt;%=</span><span class="pl-s1"> f.label <span class="pl-c1">:featured_image_id</span>, <span class="pl-s"><span class="pl-pds">"</span>Featured Image<span class="pl-pds">"</span></span> </span><span class="pl-pse"><span class="pl-s1">%</span>&gt;</span>
+<span class="pl-pse">&lt;%=</span><span class="pl-s1"> f.image_association_select <span class="pl-c1">:featured_image_id</span>, <span class="pl-c1">Image</span>.order(<span class="pl-s"><span class="pl-pds">"</span>title ASC<span class="pl-pds">"</span></span>), <span class="pl-c1">:id</span>, <span class="pl-c1">:title</span>, <span class="pl-c1">:preview_uri</span> </span><span class="pl-pse"><span class="pl-s1">%</span>&gt;</span>
+<span class="pl-pse">&lt;%=</span><span class="pl-s1"> f.hint <span class="pl-s"><span class="pl-pds">"</span>Select a featured image for this blog post.<span class="pl-pds">"</span></span> </span><span class="pl-pse"><span class="pl-s1">%</span>&gt;</span></pre></div>
+
+<p><img src="https://cloud.githubusercontent.com/assets/769083/8119314/a83565c2-1062-11e5-92e6-5a6bcd1bb5ea.png" alt=""></p>
+
+<h4>
+<a id="timestamp-field" class="anchor" href="#timestamp-field" aria-hidden="true"><span class="octicon octicon-link"></span></a>Timestamp Field</h4>
+
+<p>The <a href="#FIXME"><code>timestamp_field</code> helper</a> displays a text field that validates a provided timestamp and recovers to a template if blanked.</p>
+
+<div class="highlight highlight-erb"><pre><span class="pl-pse">&lt;%=</span><span class="pl-s1"> f.label <span class="pl-c1">:published_at</span>, <span class="pl-s"><span class="pl-pds">"</span>Publishing Date<span class="pl-pds">"</span></span> </span><span class="pl-pse"><span class="pl-s1">%</span>&gt;</span>
+<span class="pl-pse">&lt;%=</span><span class="pl-s1"> f.timestamp_field <span class="pl-c1">:published_at</span> </span><span class="pl-pse"><span class="pl-s1">%</span>&gt;</span>
+<span class="pl-pse">&lt;%=</span><span class="pl-s1"> f.hint <span class="pl-s"><span class="pl-pds">"</span>The date this post should be published.<span class="pl-pds">"</span></span> </span><span class="pl-pse"><span class="pl-s1">%</span>&gt;</span></pre></div>
+
+<p><img src="https://cloud.githubusercontent.com/assets/769083/7888528/4487a9b4-0607-11e5-9298-bc26116b59f0.png" alt="timestamp_field"></p>
+
+<h4>
+<a id="slug-field" class="anchor" href="#slug-field" aria-hidden="true"><span class="octicon octicon-link"></span></a>Slug Field</h4>
+
+<p>The <a href="#FIXME"><code>slug_field</code> helper</a> allows you to show the parameterized value of a field in a given pattern preview.</p>
+
+<div class="highlight highlight-erb"><pre><span class="pl-pse">&lt;%=</span><span class="pl-s1"> f.label <span class="pl-c1">:title</span> </span><span class="pl-pse"><span class="pl-s1">%</span>&gt;</span>
+<span class="pl-pse">&lt;%=</span><span class="pl-s1"> f.slug_field <span class="pl-c1">:title</span>, <span class="pl-c1">placeholder:</span><span class="pl-s"><span class="pl-pds">"</span>Post title<span class="pl-pds">"</span></span>, <span class="pl-c1">pattern:</span><span class="pl-s"><span class="pl-pds">"</span>/blog/255-*<span class="pl-pds">"</span></span> </span><span class="pl-pse"><span class="pl-s1">%</span>&gt;</span>
+<span class="pl-pse">&lt;%=</span><span class="pl-s1"> f.hint <span class="pl-s"><span class="pl-pds">"</span>The title of this post.<span class="pl-pds">"</span></span> </span><span class="pl-pse"><span class="pl-s1">%</span>&gt;</span></pre></div>
+
+<p><img src="https://cloud.githubusercontent.com/assets/769083/7888526/42ac965e-0607-11e5-9be6-0300f0f0f04d.png" alt="slug_field"></p>
+
+<h4>
+<a id="swatch-field" class="anchor" href="#swatch-field" aria-hidden="true"><span class="octicon octicon-link"></span></a>Swatch Field</h4>
+
+<p>The <a href="#FIXME"><code>swatch_field</code> helper</a> validates and displays a given hexadecimal color.</p>
+
+<div class="highlight highlight-erb"><pre><span class="pl-pse">&lt;%=</span><span class="pl-s1"> f.label <span class="pl-c1">:color</span> </span><span class="pl-pse"><span class="pl-s1">%</span>&gt;</span>
+<span class="pl-pse">&lt;%=</span><span class="pl-s1"> f.swatch_field <span class="pl-c1">:color</span>, <span class="pl-c1">placeholder:</span><span class="pl-s"><span class="pl-pds">"</span>#CC0000<span class="pl-pds">"</span></span> </span><span class="pl-pse"><span class="pl-s1">%</span>&gt;</span>
+<span class="pl-pse">&lt;%=</span><span class="pl-s1"> f.hint <span class="pl-s"><span class="pl-pds">"</span>Choose a background color for this campaign<span class="pl-pds">"</span></span><span class="pl-k">&gt;</span></span></pre></div>
+
+<p><img src="https://cloud.githubusercontent.com/assets/769083/7888518/3e2e1828-0607-11e5-8bca-79bdfa3b6a06.png" alt="swatch_field"></p>
+
+<h4>
+<a id="image-field" class="anchor" href="#image-field" aria-hidden="true"><span class="octicon octicon-link"></span></a>Image Field</h4>
+
+<p>The <a href="#FIXME"><code>image_field</code> helper</a> displays a button that makes uploading an image a little more pleasant than a regular <code>file_field</code>.</p>
+
+<div class="highlight highlight-erb"><pre><span class="pl-pse">&lt;%=</span><span class="pl-s1"> f.label <span class="pl-c1">:portrait</span> </span><span class="pl-pse"><span class="pl-s1">%</span>&gt;</span>
+<span class="pl-pse">&lt;%=</span><span class="pl-s1"> f.image_field <span class="pl-c1">:portrait</span>, <span class="pl-c1">preview_url:</span><span class="pl-smi">@resource</span>.portrait.url(<span class="pl-c1">:preview</span>) </span><span class="pl-pse"><span class="pl-s1">%</span>&gt;</span>
+<span class="pl-pse">&lt;%=</span><span class="pl-s1"> f.hint <span class="pl-s"><span class="pl-pds">"</span>Attach a portrait of this author, at least 600×600 pixels in size. The subject should be centered.<span class="pl-pds">"</span></span> </span><span class="pl-pse"><span class="pl-s1">%</span>&gt;</span></pre></div>
+
+<p><img src="https://cloud.githubusercontent.com/assets/769083/7888520/3f700750-0607-11e5-952a-e81edbb58017.png" alt="image_field"></p>
+
+<h4>
+<a id="attachment-field" class="anchor" href="#attachment-field" aria-hidden="true"><span class="octicon octicon-link"></span></a>Attachment Field</h4>
+
+<p>The <a href="#FIXME"><code>attachment_field</code> helper</a> displays a button that makes uploading an arbirary file a little more pleasant than a regular <code>file_field</code>.</p>
+
+<div class="highlight highlight-erb"><pre><span class="pl-pse">&lt;%=</span><span class="pl-s1"> f.label <span class="pl-c1">:portrait</span> </span><span class="pl-pse"><span class="pl-s1">%</span>&gt;</span>
+<span class="pl-pse">&lt;%=</span><span class="pl-s1"> f.attachment_field <span class="pl-c1">:portrait</span> </span><span class="pl-pse"><span class="pl-s1">%</span>&gt;</span>
+<span class="pl-pse">&lt;%=</span><span class="pl-s1"> f.hint <span class="pl-s"><span class="pl-pds">"</span>Attach a portrait of this author, at least 600×600 pixels in size. The subject should be centered.<span class="pl-pds">"</span></span> </span><span class="pl-pse"><span class="pl-s1">%</span>&gt;</span></pre></div>
+
+<p><img src="https://cloud.githubusercontent.com/assets/769083/7888501/2c5d3160-0607-11e5-8b44-9c8affaa1f8d.png" alt="attachment_field"></p>
+
+<h4>
+<a id="field-clusters-checkboxes-and-2-selects" class="anchor" href="#field-clusters-checkboxes-and-2-selects" aria-hidden="true"><span class="octicon octicon-link"></span></a>Field Clusters (Checkboxes and 2+ Selects)</h4>
+
+<p>If you need to run two or more <code>select</code> controls together (like for <code>date_select</code>), or you need to group a set of checkboxes together (like for <code>collection_checkboxes</code>), you'll need to wrap the form field in <code>&lt;div class="field-cluster"&gt;</code>:</p>
+
+<div class="highlight highlight-erb"><pre><span class="pl-pse">&lt;%=</span><span class="pl-s1"> f.label <span class="pl-c1">:published_at</span>, <span class="pl-s"><span class="pl-pds">"</span>Publishing Date<span class="pl-pds">"</span></span> </span><span class="pl-pse"><span class="pl-s1">%</span>&gt;</span>
+&lt;<span class="pl-ent">div</span> <span class="pl-e">class</span>=<span class="pl-s"><span class="pl-pds">"</span>field-cluster<span class="pl-pds">"</span></span>&gt;<span class="pl-pse">&lt;%=</span><span class="pl-s1"> f.date_select <span class="pl-c1">:published_at</span> </span><span class="pl-pse"><span class="pl-s1">%</span>&gt;</span>&lt;/<span class="pl-ent">div</span>&gt;
+<span class="pl-pse">&lt;%=</span><span class="pl-s1"> f.hint <span class="pl-s"><span class="pl-pds">"</span>The date this post should be published.<span class="pl-pds">"</span></span> </span><span class="pl-pse"><span class="pl-s1">%</span>&gt;</span>
+
+<span class="pl-pse">&lt;%=</span><span class="pl-s1"> f.label <span class="pl-c1">:title</span>, <span class="pl-s"><span class="pl-pds">"</span>Topics<span class="pl-pds">"</span></span> </span><span class="pl-pse"><span class="pl-s1">%</span>&gt;</span>
+&lt;<span class="pl-ent">div</span> <span class="pl-e">class</span>=<span class="pl-s"><span class="pl-pds">"</span>field-cluster<span class="pl-pds">"</span></span>&gt;<span class="pl-pse">&lt;%=</span><span class="pl-s1"> f.collection_check_boxes <span class="pl-c1">:topic_ids</span>, <span class="pl-c1">Topic</span>.order(<span class="pl-s"><span class="pl-pds">"</span>label ASC<span class="pl-pds">"</span></span>), <span class="pl-c1">:id</span>, <span class="pl-c1">:label</span> </span><span class="pl-pse"><span class="pl-s1">%</span>&gt;</span>&lt;/<span class="pl-ent">div</span>&gt;
+<span class="pl-pse">&lt;%=</span><span class="pl-s1"> f.hint <span class="pl-s"><span class="pl-pds">"</span>Choose each topic that applies to this blog post<span class="pl-pds">"</span></span> </span><span class="pl-pse"><span class="pl-s1">%</span>&gt;</span></pre></div>
+
+<p><img src="https://cloud.githubusercontent.com/assets/769083/8138732/774630c2-111b-11e5-8024-bdec00ed18c4.png" alt=""></p>
+
+<h4>
+<a id="hints" class="anchor" href="#hints" aria-hidden="true"><span class="octicon octicon-link"></span></a>Hints</h4>
+
+<p><a href="#FIXME">Inline help</a> is useful for reminding administrators about what should be provided for each field. Use <code>f.hint</code> to present a hint for a field.</p>
+
+<p><img src="https://cloud.githubusercontent.com/assets/769083/7888576/8d20f8a6-0607-11e5-80ea-2c8f66ad7449.png" alt="hint"></p>
+
+<h3>
+<a id="customizing-the-menu" class="anchor" href="#customizing-the-menu" aria-hidden="true"><span class="octicon octicon-link"></span></a>Customizing the Menu</h3>
+
+<p>When you call <code>manage_with_tolaria</code>, you can provide a category and a priority like below. Items in the same category will be grouped together in the navigation menu. Items are sorted priority ascending in their group.</p>
+
+<div class="highlight highlight-ruby"><pre><span class="pl-k">class</span> <span class="pl-en">BlogPost<span class="pl-e"> &lt; ActiveRecord::Base</span></span>
+  manage_with_tolaria <span class="pl-c1">using:</span>{
+    <span class="pl-c1">category:</span> <span class="pl-s"><span class="pl-pds">"</span>Prose<span class="pl-pds">"</span></span>,
+    <span class="pl-c1">priority:</span> <span class="pl-c1">5</span>,
+  }
+<span class="pl-k">end</span></pre></div>
+
+<p>If you want to re-order the groups, you need to set an array of menu titles ahead of time in <code>Tolaria.config.menu_categories</code>:</p>
+
+<div class="highlight highlight-ruby"><pre><span class="pl-c"># config/initializers/tolaria.rb</span>
+<span class="pl-c1">Tolaria</span>.configure <span class="pl-k">do </span>|<span class="pl-smi">config</span>|
+  config.menu_categories <span class="pl-k">=</span> [
+    <span class="pl-s"><span class="pl-pds">"</span>Prose<span class="pl-pds">"</span></span>,
+    <span class="pl-s"><span class="pl-pds">"</span>Animals<span class="pl-pds">"</span></span>,
+    <span class="pl-s"><span class="pl-pds">"</span>Settings<span class="pl-pds">"</span></span>,
+  ]
+<span class="pl-k">end</span></pre></div>
+
+<h3>
+<a id="adding-documentation-links" class="anchor" href="#adding-documentation-links" aria-hidden="true"><span class="octicon octicon-link"></span></a>Adding Documentation Links</h3>
+
+<p>You can provide documentation links in the interface header by appending to <code>Tolaria.config.help_links</code>. Add hashes to the array, with these keys:</p>
+
+<p>To render a Markdown file, provide a <code>:title</code>, the URL fragment <code>:slug</code>, and a <code>:markdown_file</code> path to your Markdown document. The system will automatically draw a route to this view for you and present your file, using the renderer configured in <code>Tolaria.config.markdown_renderer</code>.</p>
+
+<p>To link to an arbitrary route or URL, provide a <code>:title</code> and a <code>:link_to</code>. Examples below:</p>
+
+<div class="highlight highlight-ruby"><pre><span class="pl-c"># config/initializers/tolaria.rb</span>
+
+<span class="pl-c1">Tolaria</span>.configure <span class="pl-k">do </span>|<span class="pl-smi">config</span>|
+
+  config.help_links <span class="pl-k">&lt;&lt;</span> {
+   <span class="pl-c1">title:</span> <span class="pl-s"><span class="pl-pds">"</span>Markdown Reference<span class="pl-pds">"</span></span>
+   <span class="pl-c1">slug:</span> <span class="pl-s"><span class="pl-pds">"</span>markdown-reference<span class="pl-pds">"</span></span>,
+   <span class="pl-c1">markdown_file:</span> <span class="pl-s"><span class="pl-pds">"</span>/path/to/your/file.md<span class="pl-pds">"</span></span>
+  }
+
+  config.help_links <span class="pl-k">&lt;&lt;</span> {
+   <span class="pl-c1">title:</span> <span class="pl-s"><span class="pl-pds">"</span>Style Guide<span class="pl-pds">"</span></span>
+   <span class="pl-c1">link_to:</span> <span class="pl-s"><span class="pl-pds">"</span>http://example.org/styleguide<span class="pl-pds">"</span></span>
+  }
+
+<span class="pl-k">end</span></pre></div>
+
+<h3>
+<a id="patching-a-controller" class="anchor" href="#patching-a-controller" aria-hidden="true"><span class="octicon octicon-link"></span></a>Patching a Controller</h3>
+
+<p>Tolaria dynamically creates controllers for managed models, named as you would expect. If you want to replace or add to controller functionality, create the file in your parent application and patch away:</p>
+
+<p>If your model was <code>BlogPost</code>, you should create <code>app/controllers/admin/blog_posts_controller.rb</code></p>
+
+<div class="highlight highlight-ruby"><pre><span class="pl-c"># app/controllers/admin/blog_posts_controller.rb</span>
+<span class="pl-k">class</span> <span class="pl-en">Admin::BlogPostsController<span class="pl-e"> &lt; Tolaria::ResourceController</span></span>
+  <span class="pl-k">def</span> <span class="pl-en">another_method</span>
+     <span class="pl-c"># do stuff</span>
+     <span class="pl-c"># render a template</span>
+  <span class="pl-k">end</span>
+<span class="pl-k">end</span></pre></div>
+
+<p>You might want to <a href="https://github.com/Threespot/tolaria/blob/master/app/controllers/tolaria/resource_controller.rb">check out what we've done in the base ResourceController</a> file so that you know what you're patching. If you override any of the existing methods, you're on your own to handle everything correctly.</p>
+
+<h3>
+<a id="adding-your-own-styles-or-javascript" class="anchor" href="#adding-your-own-styles-or-javascript" aria-hidden="true"><span class="octicon octicon-link"></span></a>Adding Your Own Styles or JavaScript</h3>
+
+<p>If you want to add additional Sass or JavaScript to the admin system, you can create these files and then append to them as you need. Make sure that you import the base styles and JavaScript so you inherit what's already been done.</p>
+
+<p><code>app/assets/stylesheets/admin/admin.scss</code>:</p>
+
+<div class="highlight highlight-sass"><pre><span class="pl-k">@import</span> <span class="pl-s">"admin/base"</span>;
+<span class="pl-c">// Your code goes here</span></pre></div>
+
+<p><code>app/assets/javascripts/admin/admin.js</code>:</p>
+
+<div class="highlight highlight-javascript"><pre><span class="pl-c">//= require admin/base</span>
+<span class="pl-c">// Your code goes here</span></pre></div>
+
+<h3>
+<a id="testing-and-running-the-demo-server" class="anchor" href="#testing-and-running-the-demo-server" aria-hidden="true"><span class="octicon octicon-link"></span></a>Testing and Running the Demo Server</h3>
+
+<p>Tolaria comes with a test suite and a demo server that the test suite exercises.</p>
+
+<p>To run tests, first clone the repo:</p>
+
+<div class="highlight highlight-shell"><pre>$ git clone -o github git@github.com:threespot/tolaria.git
+$ <span class="pl-c1">cd</span> tolaria</pre></div>
+
+<p>Install the development dependencies:</p>
+
+<pre><code>$ bundle install
+</code></pre>
+
+<p>Now in the project root, you have several <code>rake</code> tasks available:</p>
+
+<div class="highlight highlight-shell"><pre>$ rake <span class="pl-c1">test</span>         <span class="pl-c"># Run the tests</span>
+$ rake admin:create <span class="pl-c"># Create an admin in the demo development database</span>
+$ rake console      <span class="pl-c"># Start a Rails console with Tolaria loaded</span>
+$ rake server       <span class="pl-c"># Start a Rails Webrick server with Tolaria and some example models loaded</span></pre></div>
+
+<h3>
+<a id="miscellaneous-technical-details" class="anchor" href="#miscellaneous-technical-details" aria-hidden="true"><span class="octicon octicon-link"></span></a>Miscellaneous Technical Details</h3>
+
+<ul>
+<li>Tolaria is not designed for use on a production site without TLS/HTTPS configured. You must protect Tolaria sessions and cookies with TLS. Do not allow users to connect to your administrator panel over plain HTTP.</li>
+<li>If you are using <code>Content-Security-Policy</code>, you will need to add <code>https://secure.gravatar.com</code> to the allowed image sources in order to display administrator avatars. All other assets bundled with Tolaria are served by the Rails asset pipeline.</li>
+<li>The constant and module name <code>Admin</code> is reserved for Tolaria's use. If you add to this namespace, be sure you are not colliding with a Tolaria-provided constant.</li>
+<li>The route space <code>/admin/**/*</code> is reserved for Tolaria's use. If you add routes here, be sure you are not colliding with a Tolaria-generated route.</li>
+</ul>
+
+<h3>
+<a id="license" class="anchor" href="#license" aria-hidden="true"><span class="octicon octicon-link"></span></a>License</h3>
+
+<p>Tolaria is free software, and may be redistributed under the terms of the <a href="https://github.com/Threespot/tolaria/blob/master/LICENSE.md">MIT license</a>. If Tolaria works great for your project, <a href="http://twitter.com/threespot">we'd love to hear about it</a>!</p>
+
+<h3>
+<a id="thanks" class="anchor" href="#thanks" aria-hidden="true"><span class="octicon octicon-link"></span></a>Thanks</h3>
+
+<p>Our work stands on the shoulders of giants, and we're very thankful to the many people that made Tolaria possible either by publishing code we used, or by being an inspiration for this project.</p>
+
+<ul>
+<li><a href="https://github.com/activeadmin/activeadmin/graphs/contributors">The ActiveAdmin team</a></li>
+<li><a href="https://jquery.org">The jQuery Foundation</a></li>
+<li><a href="https://twitter.com/jashkenas">Jeremy Ashkenas</a></li>
+<li><a href="https://www.getharvest.com/about/meet-the-team">The Harvest Team</a></li>
+</ul>
+
+<h3>
+<a id="about-threespot" class="anchor" href="#about-threespot" aria-hidden="true"><span class="octicon octicon-link"></span></a>About Threespot</h3>
+
+<p>Threespot is a design and development agency from Washington, DC. We work for organizations that we believe are making a positive change in the world. Find out more <a href="https://www.threespot.com">about us</a>, <a href="https://www.threespot.com/work">our projects</a> or <a href="https://www.threespot.com/agency/hire-us">hire us</a>!</p>
+
+<p><a href="https://www.threespot.com"><img src="https://avatars3.githubusercontent.com/u/370822?v=3&amp;s=100" alt=""></a></p>
+
+      <footer class="site-footer">
+        <span class="site-footer-owner"><a href="https://github.com/Threespot/tolaria">Tolaria</a> is maintained by <a href="https://github.com/Threespot">Threespot</a>.</span>
+
+        <span class="site-footer-credits">This page was generated by <a href="https://pages.github.com">GitHub Pages</a> using the <a href="https://github.com/jasonlong/cayman-theme">Cayman theme</a> by <a href="https://twitter.com/jasonlong">Jason Long</a>.</span>
+      </footer>
+
+    </section>
+
+  
+  </body>
+</html>
+
