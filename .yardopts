@@ -1,1 +1,4 @@
+--readme README.md
+--charset utf-8
 --markup markdown
+--exclude /test
