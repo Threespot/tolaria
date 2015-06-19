@@ -1,5 +1,7 @@
 ## Tolaria
 
+[![Build Status](https://travis-ci.org/Threespot/tolaria.svg?branch=master)](https://travis-ci.org/Threespot/tolaria)
+
 Tolaria is a [content management system](https://en.wikipedia.org/wiki/Content_management_system) (CMS) framework for [Ruby on Rails](https://en.wikipedia.org/wiki/Ruby_on_Rails). It greatly speeds up the necessary—but repetitive—task of creating useful admin panels, forms, and model workflows for site authors.
 
 [![](https://cloud.githubusercontent.com/assets/769083/8262095/ccb2b68e-169d-11e5-9378-0d098eb22c22.png)](https://cloud.githubusercontent.com/assets/769083/7573791/56eda172-f7f6-11e4-8df7-36015cf5cf85.png)
