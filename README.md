@@ -513,9 +513,10 @@ $ rake server       # Start a Rails Webrick server with Tolaria and some example
 
 ### Miscellaneous Technical Details
 
+- Tolaria is not designed for use on a production site without TLS/HTTPS configured. You must protect Tolaria sessions and cookies with TLS. Do not allow users to connect to your administrator panel over plain HTTP.
+- If you are using `Content-Security-Policy`, you will need to add `https://secure.gravatar.com` to the allowed image sources in order to display administrator avatars. All other assets bundled with Tolaria are served by the Rails asset pipeline.
 - The constant and module name `Admin` is reserved for Tolaria's use. If you add to this namespace, be sure you are not colliding with a Tolaria-provided constant.
 - The route space `/admin/**/*` is reserved for Tolaria's use. If you add routes here, be sure you are not colliding with a Tolaria-generated route.
-- If you are using `Content-Security-Policy`, you will need to add `https://secure.gravatar.com` to the allowed image sources in order to display administrator avatars. All other assets bundled with Tolaria are served by the Rails asset pipeline.
 
 ### License
 
