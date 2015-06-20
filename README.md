@@ -101,7 +101,7 @@ You can configure Tolaria's passcode paranoia in the initializer you installed a
 
 ### Managing a Model
 
-Inside your ActiveRecord definition for your model, call `manage_with_tolaria`, passing configuration in the `using` Hash. [Refer to the documentation for all of the options](#FIXME).
+Inside your ActiveRecord definition for your model, call `manage_with_tolaria`, passing configuration in the `using` Hash. [Refer to the documentation for all of the options](http://www.rubydoc.info/gems/tolaria/ActiveRecord%2FBase.manage_with_tolaria).
 
 The icon system uses [Font Awesome][fa], and you'll need to pass one of [the icon names][fa] for the `icon` key.
 
@@ -130,7 +130,7 @@ By default, Tolaria will build a simple index screen for each model. You'll like
 
 If your model was `BlogPost`, you'll need to create a file in your project at: `app/views/admin/blog_posts/_index.html.erb`.
 
-See the [TableHelper documentation](#FIXME) for more information.
+See the [TableHelper documentation](http://www.rubydoc.info/gems/tolaria/Admin/TableHelper) for more information.
 
 ```erb
 <% # app/views/admin/blog_posts/_index.html.erb %>
@@ -163,7 +163,7 @@ Tolaria provides a very basic show/inspect screen for models. You'll want to pro
 
 If your model was `BlogPost`, you'll need to create a file in your project at: `app/views/admin/blog_posts/_show.html.erb`.
 
-See the [TableHelper documentation](#FIXME) for more information.
+See the [TableHelper documentation](http://www.rubydoc.info/gems/tolaria/Admin/TableHelper) for more information.
 
 ```erb
 <% # app/views/admin/blog_posts/_show.html.erb %>
@@ -276,11 +276,11 @@ If your model was `BlogPost`, you'll need to create a file in your project at  `
 
 ### Provided Form Fields
 
-You can use all of the Rails-provided fields on your forms, but Tolaria also comes with a set of advanced, JavaScript-backed fields. Make sure to [review the documentation for the form builder](#FIXME) to get all the details.
+You can use all of the Rails-provided fields on your forms, but Tolaria also comes with a set of advanced, JavaScript-backed fields. Make sure to [review the documentation for the form builder](http://www.rubydoc.info/gems/tolaria/Admin/FormBuilder) to get all the details.
 
 #### Markdown Composer
 
-The [`markdown_composer` helper](#FIXME) will generate a very fancy Markdown editor, which includes text snippet tools and a fullscreen mode with live previewing.
+The [`markdown_composer` helper](http://www.rubydoc.info/gems/tolaria/Tolaria%2FFormBuildable%3Amarkdown_composer) will generate a very fancy Markdown editor, which includes text snippet tools and a fullscreen mode with live previewing.
 
 **Important:** You cannot use this field properly if you do not set up `Tolaria.config.markdown_renderer`. Without it, the live preview will only use `simple_format`!
 
@@ -294,7 +294,7 @@ The [`markdown_composer` helper](#FIXME) will generate a very fancy Markdown edi
 
 #### Searchable Select
 
-The [`searchable_select` helper](#FIXME) displays a [Chosen select field](http://harvesthq.github.io/chosen/) that authors can filter by typing.
+The [`searchable_select` helper](http://www.rubydoc.info/gems/tolaria/Tolaria%2FFormBuildable%3Asearchable_select) displays a [Chosen select field](http://harvesthq.github.io/chosen/) that authors can filter by typing.
 
 ```
 <%= f.label :title, "Topics" %>
@@ -306,7 +306,7 @@ The [`searchable_select` helper](#FIXME) displays a [Chosen select field](http:/
 
 #### Image Association Select
 
-The [`image_association_select` helper](#FIXME) displays a `searchable_select` that provides an instant preview of the currently selected model as an image.
+The [`image_association_select` helper](http://www.rubydoc.info/gems/tolaria/Tolaria%2FFormBuildable%3Aimage_association_select) displays a `searchable_select` that provides an instant preview of the currently selected model as an image.
 
 ```erb
 <%= f.label :featured_image_id, "Featured Image" %>
@@ -318,7 +318,7 @@ The [`image_association_select` helper](#FIXME) displays a `searchable_select` t
 
 #### Timestamp Field
 
-The [`timestamp_field` helper](#FIXME) displays a text field that validates a provided timestamp and recovers to a template if blanked.
+The [`timestamp_field` helper](http://www.rubydoc.info/gems/tolaria/Tolaria%2FFormBuildable%3Atimestamp_field) displays a text field that validates a provided timestamp and recovers to a template if blanked.
 
 ```erb
 <%= f.label :published_at, "Publishing Date" %>
@@ -330,7 +330,7 @@ The [`timestamp_field` helper](#FIXME) displays a text field that validates a pr
 
 #### Slug Field
 
-The [`slug_field` helper](#FIXME) allows you to show the parameterized value of a field in a given pattern preview.
+The [`slug_field` helper](http://www.rubydoc.info/gems/tolaria/Tolaria%2FFormBuildable%3Aslug_field) allows you to show the parameterized value of a field in a given pattern preview.
 
 ```erb
 <%= f.label :title %>
@@ -342,7 +342,7 @@ The [`slug_field` helper](#FIXME) allows you to show the parameterized value of 
 
 #### Swatch Field
 
-The [`swatch_field` helper](#FIXME) validates and displays a given hexadecimal color.
+The [`swatch_field` helper](http://www.rubydoc.info/gems/tolaria/Tolaria%2FFormBuildable%3Aswatch_field) validates and displays a given hexadecimal color.
 
 ```erb
 <%= f.label :color %>
@@ -354,7 +354,7 @@ The [`swatch_field` helper](#FIXME) validates and displays a given hexadecimal c
 
 #### Image Field
 
-The [`image_field` helper](#FIXME) displays a button that makes uploading an image a little more pleasant than a regular `file_field`.
+The [`image_field` helper](http://www.rubydoc.info/gems/tolaria/Tolaria%2FFormBuildable%3Aimage_field) displays a button that makes uploading an image a little more pleasant than a regular `file_field`.
 
 ```erb
 <%= f.label :portrait %>
@@ -366,7 +366,7 @@ The [`image_field` helper](#FIXME) displays a button that makes uploading an ima
 
 #### Attachment Field
 
-The [`attachment_field` helper](#FIXME) displays a button that makes uploading an arbirary file a little more pleasant than a regular `file_field`.
+The [`attachment_field` helper](http://www.rubydoc.info/gems/tolaria/Tolaria%2FFormBuildable%3Aattachment_field) displays a button that makes uploading an arbirary file a little more pleasant than a regular `file_field`.
 
 ```erb
 <%= f.label :portrait %>
@@ -394,7 +394,7 @@ If you need to run two or more `select` controls together (like for `date_select
 
 #### Hints
 
-[Inline help](#FIXME) is useful for reminding administrators about what should be provided for each field. Use `f.hint` to present a hint for a field.
+[Inline help](http://www.rubydoc.info/gems/tolaria/Tolaria%2FFormBuildable%3Ahint) is useful for reminding administrators about what should be provided for each field. Use `f.hint` to present a hint for a field.
 
 ![hint](https://cloud.githubusercontent.com/assets/769083/7888576/8d20f8a6-0607-11e5-80ea-2c8f66ad7449.png)
 
