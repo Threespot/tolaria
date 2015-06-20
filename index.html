@@ -19,7 +19,12 @@
     </section>
 
     <section class="main-content">
-      <p>Tolaria is a <a href="https://en.wikipedia.org/wiki/Content_management_system">content management system</a> (CMS) framework for <a href="https://en.wikipedia.org/wiki/Ruby_on_Rails">Ruby on Rails</a>. It greatly speeds up the necessary—but repetitive—task of creating useful admin panels, forms, and model workflows for site authors.</p>
+      <h2>
+<a id="tolaria" class="anchor" href="#tolaria" aria-hidden="true"><span class="octicon octicon-link"></span></a>Tolaria</h2>
+
+<p><a href="https://travis-ci.org/Threespot/tolaria"><img src="https://travis-ci.org/Threespot/tolaria.svg?branch=master" alt="Build Status"></a></p>
+
+<p>Tolaria is a <a href="https://en.wikipedia.org/wiki/Content_management_system">content management system</a> (CMS) framework for <a href="https://en.wikipedia.org/wiki/Ruby_on_Rails">Ruby on Rails</a>. It greatly speeds up the necessary—but repetitive—task of creating useful admin panels, forms, and model workflows for site authors.</p>
 
 <p><a href="https://cloud.githubusercontent.com/assets/769083/7573791/56eda172-f7f6-11e4-8df7-36015cf5cf85.png"><img src="https://cloud.githubusercontent.com/assets/769083/8262095/ccb2b68e-169d-11e5-9378-0d098eb22c22.png" alt=""></a></p>
 
@@ -114,7 +119,7 @@ $ rake db:migrate</pre></div>
 <h3>
 <a id="managing-a-model" class="anchor" href="#managing-a-model" aria-hidden="true"><span class="octicon octicon-link"></span></a>Managing a Model</h3>
 
-<p>Inside your ActiveRecord definition for your model, call <code>manage_with_tolaria</code>, passing configuration in the <code>using</code> Hash. <a href="#FIXME">Refer to the documentation for all of the options</a>.</p>
+<p>Inside your ActiveRecord definition for your model, call <code>manage_with_tolaria</code>, passing configuration in the <code>using</code> Hash. <a href="http://www.rubydoc.info/gems/tolaria/ActiveRecord%2FBase.manage_with_tolaria">Refer to the documentation for all of the options</a>.</p>
 
 <p>The icon system uses <a href="http://fontawesome.io/icons/">Font Awesome</a>, and you'll need to pass one of <a href="http://fontawesome.io/icons/">the icon names</a> for the <code>icon</code> key.</p>
 
@@ -140,7 +145,7 @@ $ rake db:migrate</pre></div>
 
 <p>If your model was <code>BlogPost</code>, you'll need to create a file in your project at: <code>app/views/admin/blog_posts/_index.html.erb</code>.</p>
 
-<p>See the <a href="#FIXME">TableHelper documentation</a> for more information.</p>
+<p>See the <a href="http://www.rubydoc.info/gems/tolaria/Admin/TableHelper">TableHelper documentation</a> for more information.</p>
 
 <div class="highlight highlight-erb"><pre><span class="pl-pse">&lt;%</span><span class="pl-s1"> <span class="pl-c"># app/views/admin/blog_posts/_index.html.erb </span></span><span class="pl-pse"><span class="pl-s1">%</span>&gt;</span>
 
@@ -172,7 +177,7 @@ $ rake db:migrate</pre></div>
 
 <p>If your model was <code>BlogPost</code>, you'll need to create a file in your project at: <code>app/views/admin/blog_posts/_show.html.erb</code>.</p>
 
-<p>See the <a href="#FIXME">TableHelper documentation</a> for more information.</p>
+<p>See the <a href="http://www.rubydoc.info/gems/tolaria/Admin/TableHelper">TableHelper documentation</a> for more information.</p>
 
 <div class="highlight highlight-erb"><pre><span class="pl-pse">&lt;%</span><span class="pl-s1"> <span class="pl-c"># app/views/admin/blog_posts/_show.html.erb </span></span><span class="pl-pse"><span class="pl-s1">%</span>&gt;</span>
 
@@ -277,12 +282,12 @@ $ rake db:migrate</pre></div>
 <h3>
 <a id="provided-form-fields" class="anchor" href="#provided-form-fields" aria-hidden="true"><span class="octicon octicon-link"></span></a>Provided Form Fields</h3>
 
-<p>You can use all of the Rails-provided fields on your forms, but Tolaria also comes with a set of advanced, JavaScript-backed fields. Make sure to <a href="#FIXME">review the documentation for the form builder</a> to get all the details.</p>
+<p>You can use all of the Rails-provided fields on your forms, but Tolaria also comes with a set of advanced, JavaScript-backed fields. Make sure to <a href="http://www.rubydoc.info/gems/tolaria/Admin/FormBuilder">review the documentation for the form builder</a> to get all the details.</p>
 
 <h4>
 <a id="markdown-composer" class="anchor" href="#markdown-composer" aria-hidden="true"><span class="octicon octicon-link"></span></a>Markdown Composer</h4>
 
-<p>The <a href="#FIXME"><code>markdown_composer</code> helper</a> will generate a very fancy Markdown editor, which includes text snippet tools and a fullscreen mode with live previewing.</p>
+<p>The <a href="http://www.rubydoc.info/gems/tolaria/Tolaria%2FFormBuildable%3Amarkdown_composer"><code>markdown_composer</code> helper</a> will generate a very fancy Markdown editor, which includes text snippet tools and a fullscreen mode with live previewing.</p>
 
 <p><strong>Important:</strong> You cannot use this field properly if you do not set up <code>Tolaria.config.markdown_renderer</code>. Without it, the live preview will only use <code>simple_format</code>!</p>
 
@@ -296,7 +301,7 @@ $ rake db:migrate</pre></div>
 <h4>
 <a id="searchable-select" class="anchor" href="#searchable-select" aria-hidden="true"><span class="octicon octicon-link"></span></a>Searchable Select</h4>
 
-<p>The <a href="#FIXME"><code>searchable_select</code> helper</a> displays a <a href="http://harvesthq.github.io/chosen/">Chosen select field</a> that authors can filter by typing.</p>
+<p>The <a href="http://www.rubydoc.info/gems/tolaria/Tolaria%2FFormBuildable%3Asearchable_select"><code>searchable_select</code> helper</a> displays a <a href="http://harvesthq.github.io/chosen/">Chosen select field</a> that authors can filter by typing.</p>
 
 <pre><code>&lt;%= f.label :title, "Topics" %&gt;
 &lt;%= f.searchable_select :topic_ids, Topic.order("label ASC"), :id, :label, multiple:true %&gt;
@@ -308,7 +313,7 @@ $ rake db:migrate</pre></div>
 <h4>
 <a id="image-association-select" class="anchor" href="#image-association-select" aria-hidden="true"><span class="octicon octicon-link"></span></a>Image Association Select</h4>
 
-<p>The <a href="#FIXME"><code>image_association_select</code> helper</a> displays a <code>searchable_select</code> that provides an instant preview of the currently selected model as an image.</p>
+<p>The <a href="http://www.rubydoc.info/gems/tolaria/Tolaria%2FFormBuildable%3Aimage_association_select"><code>image_association_select</code> helper</a> displays a <code>searchable_select</code> that provides an instant preview of the currently selected model as an image.</p>
 
 <div class="highlight highlight-erb"><pre><span class="pl-pse">&lt;%=</span><span class="pl-s1"> f.label <span class="pl-c1">:featured_image_id</span>, <span class="pl-s"><span class="pl-pds">"</span>Featured Image<span class="pl-pds">"</span></span> </span><span class="pl-pse"><span class="pl-s1">%</span>&gt;</span>
 <span class="pl-pse">&lt;%=</span><span class="pl-s1"> f.image_association_select <span class="pl-c1">:featured_image_id</span>, <span class="pl-c1">Image</span>.order(<span class="pl-s"><span class="pl-pds">"</span>title ASC<span class="pl-pds">"</span></span>), <span class="pl-c1">:id</span>, <span class="pl-c1">:title</span>, <span class="pl-c1">:preview_uri</span> </span><span class="pl-pse"><span class="pl-s1">%</span>&gt;</span>
@@ -319,7 +324,7 @@ $ rake db:migrate</pre></div>
 <h4>
 <a id="timestamp-field" class="anchor" href="#timestamp-field" aria-hidden="true"><span class="octicon octicon-link"></span></a>Timestamp Field</h4>
 
-<p>The <a href="#FIXME"><code>timestamp_field</code> helper</a> displays a text field that validates a provided timestamp and recovers to a template if blanked.</p>
+<p>The <a href="http://www.rubydoc.info/gems/tolaria/Tolaria%2FFormBuildable%3Atimestamp_field"><code>timestamp_field</code> helper</a> displays a text field that validates a provided timestamp and recovers to a template if blanked.</p>
 
 <div class="highlight highlight-erb"><pre><span class="pl-pse">&lt;%=</span><span class="pl-s1"> f.label <span class="pl-c1">:published_at</span>, <span class="pl-s"><span class="pl-pds">"</span>Publishing Date<span class="pl-pds">"</span></span> </span><span class="pl-pse"><span class="pl-s1">%</span>&gt;</span>
 <span class="pl-pse">&lt;%=</span><span class="pl-s1"> f.timestamp_field <span class="pl-c1">:published_at</span> </span><span class="pl-pse"><span class="pl-s1">%</span>&gt;</span>
@@ -330,7 +335,7 @@ $ rake db:migrate</pre></div>
 <h4>
 <a id="slug-field" class="anchor" href="#slug-field" aria-hidden="true"><span class="octicon octicon-link"></span></a>Slug Field</h4>
 
-<p>The <a href="#FIXME"><code>slug_field</code> helper</a> allows you to show the parameterized value of a field in a given pattern preview.</p>
+<p>The <a href="http://www.rubydoc.info/gems/tolaria/Tolaria%2FFormBuildable%3Aslug_field"><code>slug_field</code> helper</a> allows you to show the parameterized value of a field in a given pattern preview.</p>
 
 <div class="highlight highlight-erb"><pre><span class="pl-pse">&lt;%=</span><span class="pl-s1"> f.label <span class="pl-c1">:title</span> </span><span class="pl-pse"><span class="pl-s1">%</span>&gt;</span>
 <span class="pl-pse">&lt;%=</span><span class="pl-s1"> f.slug_field <span class="pl-c1">:title</span>, <span class="pl-c1">placeholder:</span><span class="pl-s"><span class="pl-pds">"</span>Post title<span class="pl-pds">"</span></span>, <span class="pl-c1">pattern:</span><span class="pl-s"><span class="pl-pds">"</span>/blog/255-*<span class="pl-pds">"</span></span> </span><span class="pl-pse"><span class="pl-s1">%</span>&gt;</span>
@@ -341,7 +346,7 @@ $ rake db:migrate</pre></div>
 <h4>
 <a id="swatch-field" class="anchor" href="#swatch-field" aria-hidden="true"><span class="octicon octicon-link"></span></a>Swatch Field</h4>
 
-<p>The <a href="#FIXME"><code>swatch_field</code> helper</a> validates and displays a given hexadecimal color.</p>
+<p>The <a href="http://www.rubydoc.info/gems/tolaria/Tolaria%2FFormBuildable%3Aswatch_field"><code>swatch_field</code> helper</a> validates and displays a given hexadecimal color.</p>
 
 <div class="highlight highlight-erb"><pre><span class="pl-pse">&lt;%=</span><span class="pl-s1"> f.label <span class="pl-c1">:color</span> </span><span class="pl-pse"><span class="pl-s1">%</span>&gt;</span>
 <span class="pl-pse">&lt;%=</span><span class="pl-s1"> f.swatch_field <span class="pl-c1">:color</span>, <span class="pl-c1">placeholder:</span><span class="pl-s"><span class="pl-pds">"</span>#CC0000<span class="pl-pds">"</span></span> </span><span class="pl-pse"><span class="pl-s1">%</span>&gt;</span>
@@ -352,7 +357,7 @@ $ rake db:migrate</pre></div>
 <h4>
 <a id="image-field" class="anchor" href="#image-field" aria-hidden="true"><span class="octicon octicon-link"></span></a>Image Field</h4>
 
-<p>The <a href="#FIXME"><code>image_field</code> helper</a> displays a button that makes uploading an image a little more pleasant than a regular <code>file_field</code>.</p>
+<p>The <a href="http://www.rubydoc.info/gems/tolaria/Tolaria%2FFormBuildable%3Aimage_field"><code>image_field</code> helper</a> displays a button that makes uploading an image a little more pleasant than a regular <code>file_field</code>.</p>
 
 <div class="highlight highlight-erb"><pre><span class="pl-pse">&lt;%=</span><span class="pl-s1"> f.label <span class="pl-c1">:portrait</span> </span><span class="pl-pse"><span class="pl-s1">%</span>&gt;</span>
 <span class="pl-pse">&lt;%=</span><span class="pl-s1"> f.image_field <span class="pl-c1">:portrait</span>, <span class="pl-c1">preview_url:</span><span class="pl-smi">@resource</span>.portrait.url(<span class="pl-c1">:preview</span>) </span><span class="pl-pse"><span class="pl-s1">%</span>&gt;</span>
@@ -363,7 +368,7 @@ $ rake db:migrate</pre></div>
 <h4>
 <a id="attachment-field" class="anchor" href="#attachment-field" aria-hidden="true"><span class="octicon octicon-link"></span></a>Attachment Field</h4>
 
-<p>The <a href="#FIXME"><code>attachment_field</code> helper</a> displays a button that makes uploading an arbirary file a little more pleasant than a regular <code>file_field</code>.</p>
+<p>The <a href="http://www.rubydoc.info/gems/tolaria/Tolaria%2FFormBuildable%3Aattachment_field"><code>attachment_field</code> helper</a> displays a button that makes uploading an arbirary file a little more pleasant than a regular <code>file_field</code>.</p>
 
 <div class="highlight highlight-erb"><pre><span class="pl-pse">&lt;%=</span><span class="pl-s1"> f.label <span class="pl-c1">:portrait</span> </span><span class="pl-pse"><span class="pl-s1">%</span>&gt;</span>
 <span class="pl-pse">&lt;%=</span><span class="pl-s1"> f.attachment_field <span class="pl-c1">:portrait</span> </span><span class="pl-pse"><span class="pl-s1">%</span>&gt;</span>
@@ -389,7 +394,7 @@ $ rake db:migrate</pre></div>
 <h4>
 <a id="hints" class="anchor" href="#hints" aria-hidden="true"><span class="octicon octicon-link"></span></a>Hints</h4>
 
-<p><a href="#FIXME">Inline help</a> is useful for reminding administrators about what should be provided for each field. Use <code>f.hint</code> to present a hint for a field.</p>
+<p><a href="http://www.rubydoc.info/gems/tolaria/Tolaria%2FFormBuildable%3Ahint">Inline help</a> is useful for reminding administrators about what should be provided for each field. Use <code>f.hint</code> to present a hint for a field.</p>
 
 <p><img src="https://cloud.githubusercontent.com/assets/769083/7888576/8d20f8a6-0607-11e5-80ea-2c8f66ad7449.png" alt="hint"></p>
 
