@@ -139,8 +139,16 @@ module Admin::TableHelper
       image = image_tag(image, size:"18x18", alt:"")
     end
 
+    if @managed_class.allows? :edit
+      link = url_for(action:"edit", id:resource.id)
+    elsif @managed_class.allows? :show
+      link = url_for(action:"show", id:resource.id)
+    else
+      link = "#" # Guh, painted ourseves into a corner here
+    end
+
     return content_tag(:td, options) do
-      link_to("#{image}#{content}".html_safe, url_for(action:"edit", id:resource.id))
+      link_to("#{image}#{content}".html_safe, link)
     end
 
   end

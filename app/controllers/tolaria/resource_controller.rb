@@ -33,7 +33,7 @@ class Tolaria::ResourceController < Tolaria::TolariaController
 
     if @resource.save
       flash[:success] = "#{random_blingword} You created the #{@managed_class.model_name.human} “#{display_name}”."
-      return redirect_to url_for([:admin, @managed_class.klass])
+      return redirect_to form_completion_redirect_path(@managed_class, @resource)
     else
       log_validation_errors!
       flash.now[:error] = "Your changes couldn’t be saved. Please correct the following errors:"
@@ -55,7 +55,7 @@ class Tolaria::ResourceController < Tolaria::TolariaController
 
     if @resource.save
       flash[:success] = "#{random_blingword} You updated the #{@managed_class.model_name.human.downcase} “#{display_name}”."
-      return redirect_to url_for([:admin, @managed_class.klass])
+      return redirect_to form_completion_redirect_path(@managed_class, @resource)
     else
       log_validation_errors!
       flash.now[:error] = "Your changes couldn’t be saved. Please correct the following errors:"
@@ -73,11 +73,11 @@ class Tolaria::ResourceController < Tolaria::TolariaController
       @resource.destroy
     rescue ActiveRecord::DeleteRestrictionError => e
       flash[:restricted] = "You cannot delete “#{display_name}” because other items are using it."
-      return redirect_to url_for([:admin, @managed_class.klass])
+      return redirect_to form_completion_redirect_path(@managed_class, @resource)
     end
 
     flash[:destructive] = "You deleted the #{@managed_class.model_name.human.downcase} “#{display_name}”."
-    return redirect_to url_for([:admin, @managed_class.klass])
+    return redirect_to form_completion_redirect_path(@managed_class)
 
   end
 
@@ -87,6 +87,20 @@ class Tolaria::ResourceController < Tolaria::TolariaController
   # flash messages
   def random_blingword
     ["Done!", "Okay!", "Success!"].sample
+  end
+
+  # Returns a path we should redirect to when the form is completed successfully.
+  # Handles route forbidding cases.
+  def form_completion_redirect_path(managed_class, resource = nil)
+    if managed_class.allows? :index
+      url_for([:admin, managed_class.klass])
+    elsif managed_class.allows?(:show) && resource.present?
+      url_for(action:"show", id:resource.id)
+    elsif managed_class.allows?(:edit) && resource.present?
+      url_for(action:"edit", id:resource.id)
+    else
+      Tolaria.config.defaut_redirect
+    end
   end
 
   # Load the Tolaria managed class for this controller
