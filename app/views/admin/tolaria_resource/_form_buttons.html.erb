@@ -1,6 +1,8 @@
-<%= link_to url_for([:admin, @managed_class.klass]), class:"button" do %>
-  <%= fontawesome_icon :close %>
-  Cancel
+<% if @managed_class.allows? :index %>
+  <%= link_to url_for([:admin, @managed_class.klass]), class:"button" do %>
+    <%= fontawesome_icon :close %>
+    Cancel
+  <% end %>
 <% end %>
 
 <%= button_tag type:"submit", name:nil, class:"button -primary" do %>
