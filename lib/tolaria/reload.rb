@@ -4,7 +4,7 @@ module Tolaria
   # to force Rails to autoload/reload all model files.
   def self.reload!
 
-    # Re/Initalize HelpLinks
+    # Re/Initialize HelpLinks
     self.initialize_help_links!
 
     # Manage the models included with the engine

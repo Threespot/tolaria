@@ -17,7 +17,8 @@ module Admin::ViewHelper
     end
   end
 
-  # Returns an `<i>` tag that displays a Font Awesome icon
+  # Returns an `<i>` tag that displays the Font Awesome icon for the given `name`.
+  # Names much match those from [the Font Awesome site](http://fontawesome.io/icons/).
   def fontawesome_icon(icon = "", options = {})
     icon = icon.to_s.parameterize.tr("_", "-")
     content_tag :i, nil, options.reverse_merge({
@@ -32,7 +33,7 @@ module Admin::ViewHelper
     return "https://secure.gravatar.com/avatar/#{digest}?d=retro&s=36"
   end
 
-  # Returns true if a partial is available at "admin/#{template_path}"
+  # Returns true if a partial is available at `"admin/#{template_path}"`
   def admin_template_exists?(template_path)
     lookup_context.template_exists?("admin/#{template_path}", [], true)
   end
@@ -57,9 +58,9 @@ module Admin::ViewHelper
     return %{Are you sure you want to delete the #{resource.model_name.human.downcase} “#{Tolaria.display_name(resource)}”? This action is not reversible.}
   end
 
-  # Returns a `<span>` tag that displays the given +label+ as a pill
+  # Returns a `<span>` tag that displays the given `label` as a pill
   # status badge. You can change the color of the pill by providing a
-  # six-digit hexadecimal +color+, or passing one of the predefined
+  # six-digit hexadecimal `color` string, or passing one of the predefined
   # color names: `:green`, `:red`, `:blue`, `:black`, `:grey`.
   def pill(label, color: :black)
 

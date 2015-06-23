@@ -1,13 +1,13 @@
 module Tolaria
 
-  # A class to contain a workflow for rendering Markdown.
-  # If no renderer has been configured, defer to simple_format.
+  # Contains a workflow for rendering Markdown.
+  # If no renderer has been configured, defers to `simple_format`.
   class MarkdownRendererProxy
 
     include ::ActionView::Helpers::TextHelper
 
     # Calls the configured Markdown renderer, if none exists
-    # then uses simple_format to return more than nothing.
+    # then uses `simple_format` to return more than nothing.
     def render(document)
       if Tolaria.config.markdown_renderer.nil?
         return simple_format(document)

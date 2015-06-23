@@ -9,7 +9,7 @@ module Tolaria
     @safe_mangagment
   end
 
-  # Set the value of Tolaria.safe_management. +bool+ should be truthy.
+  # Set the value of Tolaria.safe_management. `bool` should be truthy.
   # Don't call this method directly.
   def self.safe_management=(bool)
     @safe_mangagment = !!bool
@@ -47,7 +47,7 @@ module Tolaria
 
   end
 
-  # Discard a managed class instance for the given ActiveRecord::Base
+  # Discard a managed class instance for the given ActiveRecord::Base class
   def self.discard_managed_class(klass)
     @managed_classes.delete_if do |managed_class|
       klass.to_s == managed_class.klass.to_s

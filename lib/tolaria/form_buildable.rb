@@ -2,7 +2,7 @@ module Tolaria
   module FormBuildable
 
     # Returns a `p.hint` used to explain a nearby form field containing
-    # the given +hint_text+.
+    # the given `hint_text`.
     def hint(hint_text)
       content_tag(:p, content_tag(:span, hint_text.chomp), class:"hint")
     end
@@ -29,7 +29,7 @@ module Tolaria
 
     # Creates a `searchable_select` that also shows a dynamic image preview of the selected record.
     # Useful for previewing images or avatars chosen by name.
-    # +preview_url_method+ should be a method name to call on the associated model instance
+    # `preview_url_method` should be a method name to call on the associated model instance
     # that returns a fully-qualified URL to the image preview.
     def image_association_select(method, collection, value_method, text_method, preview_url_method, options = {})
       render(partial:"admin/shared/forms/image_association_select", locals: {
@@ -44,7 +44,7 @@ module Tolaria
       })
     end
 
-    # Renders a Markdown composer element for editing +method+,
+    # Renders a Markdown composer element for editing `method`,
     # with fullscreen previewing and some text assistance tools.
     # Requires that you set `Tolaria.config.markdown_renderer`.
     # Options are forwarded to `text_area`.
@@ -57,7 +57,7 @@ module Tolaria
     end
 
     # Returns a file upload field with a more pleasant interface than browser
-    # file inputs. Changes messaging if the +method+ already exists.
+    # file inputs. Changes messaging if the `method` already exists.
     # Options are forwarded to the hidden `file_field`.
     def attachment_field(method, options = {})
       render(partial:"admin/shared/forms/attachment_field", locals: {
@@ -68,7 +68,7 @@ module Tolaria
     end
 
     # Returns an image upload field with a more pleasant interface than browser
-    # file inputs. Changes messaging if the +method+ already exists.
+    # file inputs. Changes messaging if the `method` already exists.
     #
     # #### Special Options
     #
@@ -147,10 +147,10 @@ module Tolaria
     # You must use `f.has_many_header` inside the block to create headers.
     #
     # If you need to pass an ordered collection or otherwise not allow automatically
-    # determining the association objects from the +association+ symbol you can
-    # pass the collection manually as +association_objects+.
+    # determining the association objects from the `association` symbol you can
+    # pass the collection manually as `association_objects`.
     #
-    # If +allow_create+ is `false` then the button to append a new model
+    # If `allow_create` is `false` then the button to append a new model
     # instance will be disabled. The default is `true`.
     def has_many(association, association_objects = nil, allow_create:true, &block)
 
@@ -180,7 +180,7 @@ module Tolaria
     end
 
     # Creates a header suitable for use inside `has_many` for separating
-    # form elements. If +allow_destroy+ is `true`, controls will be exposed that allow
+    # form elements. If `allow_destroy` is `true`, controls will be exposed that allow
     # removing nested instances of the model. The default is `false` to match Rails’.
     def has_many_header(allow_destroy:false)
       render(partial:"admin/shared/forms/has_many_header", locals: {

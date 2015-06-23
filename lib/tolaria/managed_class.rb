@@ -1,7 +1,6 @@
-# This class wraps an ActiveRecord::Base descendant
-# and stores information that Tolaria needs to track about it
-
 module Tolaria
+
+  # Wraps an ActiveRecord::Base descendant and stores information that Tolaria needs to track about it
   class ManagedClass
 
     # The ActiveRecord::Base model we’re managing
@@ -13,7 +12,7 @@ module Tolaria
     # Items are sorted with lowest priority first in the menu
     attr_accessor :priority
 
-    # The FontAwesome icon to use for this resource
+    # The Font Awesome icon to use for this resource
     attr_accessor :icon
 
     # An array of options to pass to `params.permit` for this model
@@ -29,7 +28,7 @@ module Tolaria
     attr_accessor :controller_name
 
     # An array of the route actions allowed on this resource.
-    # Tolaria will pass this array as the `only:` option to the router
+    # Tolaria will pass this array as the `:only` option to the router
     attr_accessor :allowed_actions
 
     # A stored symbol for the `params.permit` key for this resource
@@ -87,4 +86,5 @@ module Tolaria
     delegate :plural, to: :model_name
 
   end
+
 end

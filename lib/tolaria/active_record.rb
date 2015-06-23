@@ -1,12 +1,12 @@
 # Adds a new DSL method to ActiveRecord model definition, allowing the
 # developer to configure a model to manage with Tolaria.
 # The developer passes a hash of configuration options which are
-# forwarded as keyword arguments to Tolaria.manage
+# forwarded as keyword arguments to `Tolaria.manage`.
 
 class ActiveRecord::Base
 
   # Register a model with Tolaria and allow administrators to manage it
-  # in the admin interface. Accepts one named parameter, +using+
+  # in the admin interface. Accepts one named parameter, `using`
   # which should be a Hash of options below.
   #
   # #### Options
@@ -18,8 +18,7 @@ class ActiveRecord::Base
   #   Items with lower priority are sorted first.
   #   The default is 10.
   # - `:icon` - The Font Awesome icon to use for this model.
-  #   Should be one of the names on the Font Awesome site at
-  #   http://fortawesome.github.io/Font-Awesome/icons/
+  #   Should be one of the names on [the Font Awesome site](http://fortawesome.github.io/Font-Awesome/icons/)
   #   The default is `"file-o"`.
   # - `:permitted_params` - A array of parameter names to pass to
   #   `params.permit()` for this model/form.
@@ -37,6 +36,22 @@ class ActiveRecord::Base
   #   Tolaria will pass this array as the `only:` option to the router.
   #   The default includes all CRUD actions:
   #   `[:index, :show, :new, :create, :edit, :update, :destroy]`
+  #
+  # #### Example
+  #
+  #     class BlogPost < ActiveRecord::Base
+  #       manage_with_tolaria using: {
+  #         icon: "file-o",
+  #         category: "Settings",
+  #         priority: 5,
+  #         permit_params: [
+  #           :title,
+  #           :body,
+  #           :author_id,
+  #         ]
+  #       }
+  #     end
+
   def self.manage_with_tolaria(using:{})
     @tolaria_management_options = using
     if Tolaria.safe_management

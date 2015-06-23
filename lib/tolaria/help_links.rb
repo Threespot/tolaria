@@ -2,6 +2,9 @@ module Tolaria
 
   @help_links = []
 
+  # Reads `Tolaria.config.help_links` and constructs an internal array
+  # of HelpLink object with the given options.
+  # Call `Tolaria.help_links` to receive the results.
   def self.initialize_help_links!
     @help_links = []
     self.config.help_links.each do |hashy|
@@ -9,10 +12,12 @@ module Tolaria
     end
   end
 
+  # Returns all of Tolaria's configured Help Links.
   def self.help_links
     @help_links ||= []
   end
 
+  # Class representing a configured Tolaria help link.
   class HelpLink
 
     # The title of the link
@@ -25,11 +30,11 @@ module Tolaria
     attr_reader :link_to
 
     # Create a new HelpLink with the passed settings.
-    # You must provide +title+, the title of the link.
+    # You must provide `title`, the title of the link.
     # To configure automatic rendering of a Markdown file, provide
-    # a string +slug+ and the path to a +markdown_file+.
+    # a string `slug` and the path to a `markdown_file`.
     # A route to view the file will be constructed for you at `/admin/help/:slug`.
-    # To link to an arbirary path or URI, provide it as +link_to+.
+    # To link to an arbitrary path or URI, provide it as `link_to`.
     def initialize(title:, slug:nil, markdown_file:nil, link_to:nil)
       @title = title.to_s.freeze
       @slug = slug.to_s.freeze
@@ -38,22 +43,22 @@ module Tolaria
       validate!
     end
 
-    # True if this HelpLink is a link to an arbirary path
+    # True if this HelpLink is a link to an arbitrary path.
     def link_type?
       link_to.present?
     end
 
-    # True if this HelpLink is a Markdown file
+    # True if this HelpLink is a Markdown file.
     def markdown_type?
       markdown_file.present?
     end
 
-    # Quack like an ActiveRecord::Base model
+    # Quack like an ActiveRecord::Base model, returns slug.
     def to_param
       slug
     end
 
-    # Raises RuntimeError if this HelpLink is incorrectly configured
+    # Raises RuntimeError if this HelpLink is incorrectly configured.
     def validate!
 
       if title.blank?

@@ -37,8 +37,8 @@ class Administrator < ActiveRecord::Base
   # and passcode inside the time window
   # -----------------------------------------------------------------------------
 
-  # Initialize +passcode+, +passcode_expires_at+,
-  # +auth_token+, and +account_unlocks_at+ for a new admin.
+  # Initialize `passcode`, `passcode_expires_at`,
+  # `auth_token`, and `account_unlocks_at` for a new admin.
   # To prevent passcode system fields from being null,
   # we fill them with an immediately expired passcode.
   def initialize_authentication!
@@ -66,7 +66,7 @@ class Administrator < ActiveRecord::Base
     return plaintext_passcode
   end
 
-  # Attempt to authenticate the account with the given plaintext +passcode+.
+  # Attempt to authenticate the account with the given plaintext `passcode`.
   # Returns true if the passcode was valid, false otherwise.
   def authenticate!(passcode)
 

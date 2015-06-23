@@ -532,6 +532,7 @@ Our work stands on the shoulders of giants, and we're very thankful to the many 
 - [The jQuery Foundation](https://jquery.org)
 - [Jeremy Ashkenas](https://twitter.com/jashkenas)
 - [The Harvest Team](https://www.getharvest.com/about/meet-the-team)
+- [Font Awesome and Dave Gandy](http://fontawesome.io/icons/)
 
 ### About Threespot
 
