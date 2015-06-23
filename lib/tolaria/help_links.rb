@@ -3,7 +3,7 @@ module Tolaria
   @help_links = []
 
   # Reads `Tolaria.config.help_links` and constructs an internal array
-  # of HelpLink object with the given options.
+  # of HelpLink objects with the given options.
   # Call `Tolaria.help_links` to receive the results.
   def self.initialize_help_links!
     @help_links = []
