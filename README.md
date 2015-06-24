@@ -491,7 +491,7 @@ If you want to add additional Sass or JavaScript to the admin system, you can cr
 
 Tolaria comes with a test suite and a demo server that the test suite exercises.
 
-To run tests, first clone the repo:
+To run tests, first clone the repo or your fork of it:
 
 ```shell
 $ git clone -o github git@github.com:threespot/tolaria.git
