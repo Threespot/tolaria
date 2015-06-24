@@ -17,7 +17,7 @@ module Admin::ViewHelper
     end
   end
 
-  # Returns an `<i>` tag that displays the Font Awesome icon for the given `name`.
+  # Returns an `<i>` tag that displays the Font Awesome icon for the given `icon`.
   # Names much match those from [the Font Awesome site](http://fontawesome.io/icons/).
   def fontawesome_icon(icon = "", options = {})
     icon = icon.to_s.parameterize.tr("_", "-")
