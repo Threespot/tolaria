@@ -26,8 +26,8 @@ Tolaria.configure do |config|
   config.display_name_methods = %i[
     admin_name
     display_name
-    title
     name
+    title
     label
     username
     login
