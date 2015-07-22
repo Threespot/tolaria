@@ -60,6 +60,8 @@ Rails.application.routes.draw do
 end
 ```
 
+##### ActionMailer
+
 Tolaria needs to be able to dispatch email. You'll need to configure ActionMailer to use an appropriate mail service. Here's an example using [Mailgun on Heroku](https://devcenter.heroku.com/articles/mailgun):
 
 ```ruby
