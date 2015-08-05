@@ -400,6 +400,13 @@ If you need to run two or more `select` controls together (like for `date_select
 
 ![hint](https://cloud.githubusercontent.com/assets/769083/7888576/8d20f8a6-0607-11e5-80ea-2c8f66ad7449.png)
 
+#### Extra Classes
+
+Tolaria includes a few CSS classes that are designed for simple inputs, selects, and textareas:
+
+- Add a class of `monospace` to an element to make it use a system monospace font. Useful for fields that accept URLs and other computer-interpreted values.
+- Add a class of `short` to an element to constrain it visually to 300px. Useful for fields that only need very few characters of input.
+
 ### Customizing the Menu
 
 When you call `manage_with_tolaria`, you can provide a category and a priority like below. Items in the same category will be grouped together in the navigation menu. Items are sorted priority ascending in their group.

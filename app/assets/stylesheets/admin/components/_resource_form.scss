@@ -67,6 +67,10 @@
       max-width: 520px;
     }
 
+    &.short {
+      max-width: 300px;
+    }
+
     &:focus {
       background-color: #fff;
       border-bottom-color: $cSapphire;
