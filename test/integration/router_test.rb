@@ -46,7 +46,7 @@ class RouterTest < ActionDispatch::IntegrationTest
   test "correctly draws uncountable routes" do
 
     ActiveSupport::Inflector.inflections do |inflect|
-      inflect.uncountable << "pokemon"
+      inflect.uncountable "pokemon"
     end
 
     class ::Pokemon < ActiveRecord::Base
@@ -63,10 +63,39 @@ class RouterTest < ActionDispatch::IntegrationTest
     assert_equal "/admin/pokemon", admin_pokemon_index_path
     assert_equal "/admin/pokemon/1", admin_pokemon_path(1)
     assert_equal "/admin/pokemon/1/edit", edit_admin_pokemon_path(1)
+    assert Admin::PokemonController
 
     # Unseat the class so that it doesn't leak out of this test
     assert Tolaria.discard_managed_class(Pokemon), "should discard class"
     Object.send(:remove_const, :Pokemon)
+
+  end
+
+  test "correctly draws uncommon collective routes" do
+
+    ActiveSupport::Inflector.inflections do |inflect|
+      inflect.plural "hero", "heroes"
+    end
+
+    class ::BraveHero < ActiveRecord::Base
+      manage_with_tolaria using:{
+        icon: "key",
+      }
+    end
+
+    # Re-draw the routes
+    Rails.application.routes.draw do
+      Tolaria.draw_routes(self)
+    end
+
+    assert_equal "/admin/brave_heroes", admin_brave_heroes_path
+    assert_equal "/admin/brave_heroes/1", admin_brave_hero_path(1)
+    assert_equal "/admin/brave_heroes/1/edit", edit_admin_brave_hero_path(1)
+    assert Admin::BraveHeroesController
+
+    # Unseat the class so that it doesn't leak out of this test
+    assert Tolaria.discard_managed_class(BraveHero), "should discard class"
+    Object.send(:remove_const, :BraveHero)
 
   end
 

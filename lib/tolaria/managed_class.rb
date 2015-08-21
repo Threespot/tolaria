@@ -51,7 +51,7 @@ module Tolaria
       managed_class.allowed_actions = allowed_actions.freeze
 
       # Set auto-generated attributes
-      managed_class.controller_name = "#{managed_class.model_name.name.pluralize}Controller".freeze
+      managed_class.controller_name = "#{managed_class.model_name.collection.camelize}Controller".freeze
       managed_class.param_key = managed_class.model_name.singular.to_sym
 
       return managed_class
