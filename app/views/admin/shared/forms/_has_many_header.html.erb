@@ -8,7 +8,7 @@
 <% if allow_destroy %>
 
   <%= button_tag type:"button", class:"has-many-undo", style:"display:none" do %>
-    <span class="has-many-undo-text">This <%= f.object.model_name.human %> will be removed when you save your changes.</span>
+    <span class="has-many-undo-text">This <%= f.object.model_name.human.titleize %> will be removed when you save your changes.</span>
     <span class="button -small"><%= fontawesome_icon :undo %> Undo</span>
   <% end %>
 
