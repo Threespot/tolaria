@@ -40,4 +40,8 @@ class BlogPost < ActiveRecord::Base
     # Swallow this exception
   end
 
+  def to_param
+    "#{id}-#{title.parameterize}"
+  end
+
 end

@@ -27,9 +27,6 @@ class ForbiddenRoutesTest < ActionDispatch::IntegrationTest
       manage_with_tolaria using:{
         allowed_actions: [:index]
       }
-      def to_param
-        "card-#{id}"
-      end
     end
 
     # Re-draw the routes and reload Tolaria
