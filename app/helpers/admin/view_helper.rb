@@ -58,6 +58,17 @@ module Admin::ViewHelper
     return %{Are you sure you want to delete the #{resource.model_name.human.downcase} “#{Tolaria.display_name(resource)}”? This action is not reversible.}
   end
 
+  def contextual_form_url
+    case controller.action_name
+    when "edit", "update"
+      url_for(action:"show", id:@resource.id)
+    when "new", "create"
+      url_for(action:"index")
+    else
+      nil
+    end
+  end
+
   # Returns a `<span>` tag that displays the given `label` as a pill
   # status badge. You can change the color of the pill by providing a
   # six-digit hexadecimal `color` string, or passing one of the predefined
