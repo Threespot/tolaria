@@ -118,12 +118,12 @@ module Admin::TableHelper
   #   14×14px in size.
   #
   # Other options are forwarded to `content_tag` for the `<td>`.
-  def index_td(resource, method_or_content, options = {}, &block)
+  def index_td(resource, method_or_content = {}, options = {}, &block)
 
     options = method_or_content if block_given?
 
     if block_given?
-      content = yield
+      content = capture(resource, &block)
     elsif method_or_content.is_a?(Symbol)
       content = resource.send(method_or_content)
     else

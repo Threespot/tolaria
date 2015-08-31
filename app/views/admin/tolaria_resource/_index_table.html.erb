@@ -52,7 +52,9 @@
     <tbody>
       <% @resources.each do |resource| %>
         <tr>
-          <%= index_td resource, :id %>
+          <%= index_td resource do |resource| %>
+            <%= resource.id %>
+          <% end %>
           <%= index_td resource, Tolaria.display_name(resource) %>
           <%= actions_td resource %>
         </tr>
