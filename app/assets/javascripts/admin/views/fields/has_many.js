@@ -1,7 +1,7 @@
 var HasManyView = Backbone.View.extend({
 
   initialize: function() {
-    this.$button = $(".has-many-create").first();
+    this.$button = $(".has-many-create", this.el).first()
     this.template = this.$button.data("template");
     this.templateID = this.$button.data("id");
   },
