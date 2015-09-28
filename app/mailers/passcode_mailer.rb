@@ -5,7 +5,7 @@ class PasscodeMailer < ActionMailer::Base
   def passcode(administrator, passcode)
     @administrator = administrator
     @passcode = passcode
-    mail(to:administrator.email, subject:"#{Tolaria.config.company_name} Passcode")
+    mail(to:administrator.email, subject:"#{@passcode} is your #{Tolaria.config.company_name} passcode")
   end
 
 end
