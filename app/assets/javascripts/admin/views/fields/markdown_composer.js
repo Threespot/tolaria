@@ -145,7 +145,7 @@ var MarkdownComposerView = Backbone.View.extend({
 
   events: {
 
-    "keyup": "updatePreview",
+    "keyup": "keyupCallback",
     "focus textarea": "brightenSelf",
     "blur textarea": "dimSelf",
 
