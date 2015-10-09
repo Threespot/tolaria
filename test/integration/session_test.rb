@@ -31,6 +31,12 @@ class SessionTest < ActionDispatch::IntegrationTest
     assert_equal 200, status_code
   end
 
+  test "admin form fields should be empty" do
+    visit "/admin/signin"
+    assert_equal nil, find("#session-form-email").value()
+    assert_equal nil, find("#session-form-passcode", visible:false).value()
+  end
+
   test "session form doesn't explode when junk submitted" do
     post "/admin/signin", {
       a: "Z6b4y26r16eSz6w7qLef722MC1IGK36K",

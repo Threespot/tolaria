@@ -19,7 +19,7 @@
     autocorrect: "off",
     autocapitalize: "none",
     tabindex: 1,
-    value: @email,
+    value: nil,
   } %>
 
   <%= f.label :passcode, "Passcode", for:"session-form-passcode", class:"visuallyhidden" %>
@@ -31,7 +31,8 @@
     spellcheck: "false",
     pattern: "[0-9]*",
     tabindex: 2,
-    style: "display:none"
+    style: "display:none",
+    value: nil,
   } %>
 
   <%= f.button "Request a passcode", type:"submit", id:"session-form-submit", class:"session-button" %>
