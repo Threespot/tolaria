@@ -44,10 +44,12 @@ var SwatchFieldView = Backbone.View.extend({
 
   events: {
     "keyup": "refreshPreview",
-    "change input": "refreshPreview",
-    "change input": "validateSelf",
     "blur input": "validateSelf",
-    "focus input": "clearError"
+    "focus input": "clearError",
+    "change input": function(event) {
+      this.refreshPreview(event);
+      this.validateSelf(event);
+    }
   }
 
 });

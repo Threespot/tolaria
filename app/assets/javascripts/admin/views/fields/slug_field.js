@@ -8,13 +8,13 @@ var SlugFieldView = Backbone.View.extend({
 
   refreshPreview: function() {
 
-    var val = $.trim(this.$input.val())
+    var val = $.trim(this.$input.val());
 
     if (!!val) {
-      this.$previewFragment.html(this.parameterize(val))
+      this.$previewFragment.html(this.parameterize(val));
     }
     else {
-      this.$previewFragment.html("*")
+      this.$previewFragment.html("*");
     }
 
   },

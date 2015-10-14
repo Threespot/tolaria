@@ -9,7 +9,7 @@ var AttachmentFieldView = Backbone.View.extend({
 
   activateFileInput: function(event) {
     event.preventDefault();
-    this.$fileInput.focus().click()
+    this.$fileInput.focus().click();
   },
 
   refreshLabel: function() {

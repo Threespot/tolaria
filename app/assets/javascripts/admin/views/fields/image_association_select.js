@@ -1,7 +1,7 @@
 var ImageAssociationSelectView = Backbone.View.extend({
 
   initialize: function() {
-    this.$select = this.$el.find("select")
+    this.$select = this.$el.find("select");
     this.$previewImage = this.$el.find(".image-association-select-image");
     this.hiddenClass = "-hidden";
 

@@ -90,7 +90,7 @@ var MarkdownComposerView = Backbone.View.extend({
           self.presentErrorMessage("The server refused to send you a preview. Please sign in and out of the admin panel and try again.");
         },
         500: function(xhr, status, error) {
-          self.presentErrorMessage("An unexpected server error occurred. Developers have been notified. Please try again\xA0later.")
+          self.presentErrorMessage("An unexpected server error occurred. Developers have been notified. Please try again\xA0later.");
         }
       },
 

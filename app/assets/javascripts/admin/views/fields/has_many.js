@@ -24,7 +24,7 @@ var HasManyView = Backbone.View.extend({
 
     var $parentHeader = $(event.currentTarget).parents(".has-many-header").first();
     var $fieldgroup = $parentHeader.nextUntil(".has-many-header, .has-many-create");
-    var $destroyInput = $fieldgroup.filter("input[name*='_destroy']").first()
+    var $destroyInput = $fieldgroup.filter("input[name*='_destroy']").first();
 
     if (!!$destroyInput.length) {
       // The model is already persisted, set the destruction flag
@@ -43,7 +43,7 @@ var HasManyView = Backbone.View.extend({
 
   restoreFieldgroup: function(event) {
 
-    var $undoControl = $(event.currentTarget)
+    var $undoControl = $(event.currentTarget);
     var $fieldgroup = $undoControl.nextUntil(".has-many-header, .has-many-create");
     var $destroyInput = $fieldgroup.filter("input[name*='_destroy']").first();
 

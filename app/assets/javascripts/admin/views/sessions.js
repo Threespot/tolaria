@@ -47,19 +47,19 @@ var SessionView = Backbone.View.extend({
             self.presentPasscodeInput();
           },
           404: function(xhr, status, error) {
-            self.presentErrorMessage(xhr.responseJSON.error)
+            self.presentErrorMessage(xhr.responseJSON.error);
           },
           423: function(xhr, status, error) {
-            self.presentErrorMessage(xhr.responseJSON.error)
+            self.presentErrorMessage(xhr.responseJSON.error);
           },
           500: function(xhr, status, error) {
-            self.presentErrorMessage("An unexpected server error occurred. Developers have been notified. Please try again\xA0later.")
+            self.presentErrorMessage("An unexpected server error occurred. Developers have been notified. Please try again\xA0later.");
           }
         },
 
         timeout: 29000,
         error: function(xhr, status, error) {
-          self.presentErrorMessage("Could not connect to the server. Check your network connection and try\xA0again.")
+          self.presentErrorMessage("Could not connect to the server. Check your network connection and try\xA0again.");
         }
 
       });
