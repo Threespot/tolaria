@@ -11,9 +11,12 @@ class Tolaria::TolariaController < ::ApplicationController
     response.headers["X-UA-Compatible"] = "IE=edge"
     # Forbid putting the admin in a frameset/iframe
     response.headers["X-Frame-Options"] = "DENY"
-    # Strict sniffing and XSS modes for browsers that use these flags
+    # No cross-domain funny business from Flash
+    response.headers["X-Permitted-Cross-Domain-Policies"] = "none"
+    # Strict sniffing, type checks, and XSS modes for browsers that use these flags
     response.headers["X-Content-Type-Options"] = "nosniff"
     response.headers["X-XSS-Protection"] = "1; mode=block"
+    response.headers["X-Download-Options"] = "noopen"
   end
 
   def tolaria_template(name)

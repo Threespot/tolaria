@@ -10,6 +10,17 @@ class InterfaceTest < ActionDispatch::IntegrationTest
     BlogPost.destroy_all
   end
 
+  test "security headers are set" do
+    sign_in_dummy_administrator!
+    visit("/admin/blog_posts")
+    assert_equal page.response_headers["X-UA-Compatible"], "IE=edge"
+    assert_equal page.response_headers["X-Frame-Options"], "DENY"
+    assert_equal page.response_headers["X-Permitted-Cross-Domain-Policies"], "none"
+    assert_equal page.response_headers["X-Content-Type-Options"], "nosniff"
+    assert_equal page.response_headers["X-XSS-Protection"], "1; mode=block"
+    assert_equal page.response_headers["X-Download-Options"], "noopen"
+  end
+
   test "menu is rendering" do
     sign_in_dummy_administrator!
     visit("/admin/blog_posts")
