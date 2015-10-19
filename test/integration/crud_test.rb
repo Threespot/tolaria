@@ -1,6 +1,6 @@
 require "test_helper"
 
-class InterfaceTest < ActionDispatch::IntegrationTest
+class CrudTest < ActionDispatch::IntegrationTest
 
   def setup
     BlogPost.destroy_all
@@ -37,7 +37,7 @@ class InterfaceTest < ActionDispatch::IntegrationTest
     assert page.has_content?("live here")
   end
 
-  test "create a blog post, see it on the index, inspect it" do
+  test "create a blog post, see it on the index, and then inspect it" do
 
     sign_in_dummy_administrator!
     visit("/admin/blog_posts")
@@ -45,7 +45,7 @@ class InterfaceTest < ActionDispatch::IntegrationTest
     fill_in("blog_post[title]", with:"Neko Atsume")
     fill_in("blog_post[summary]", with:"Neko Atsume")
     fill_in("blog_post[body]", with:"Neko Atsume")
-    first(".button.-primary").click
+    first(".button[name=save]").click
 
     assert page.current_path.include?(admin_blog_posts_path)
     assert page.has_content?("Neko Atsume")
@@ -55,6 +55,22 @@ class InterfaceTest < ActionDispatch::IntegrationTest
 
     assert page.current_path.include?(admin_blog_post_path(BlogPost.first.id))
     assert page.has_content?("Neko Atsume")
+
+  end
+
+  test "create a blog post and review it" do
+
+    sign_in_dummy_administrator!
+    visit("/admin/blog_posts")
+    first(".button.-primary").click
+    fill_in("blog_post[title]", with:"Neko Atsume")
+    fill_in("blog_post[summary]", with:"Neko Atsume")
+    fill_in("blog_post[body]", with:"Neko Atsume")
+    first(".button[name=save_and_review]").click
+
+    assert page.current_path.include?(admin_blog_post_path(BlogPost.first.id))
+    assert page.has_content?("Neko Atsume")
+    assert page.has_content?("created the"), "should see flash message"
 
   end
 

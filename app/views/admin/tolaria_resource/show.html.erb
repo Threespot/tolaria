@@ -7,7 +7,7 @@
       <span class="crumb">
         <%= fontawesome_icon @managed_class.icon %>
         <% if @managed_class.allows? :index %>
-          <%= link_to @managed_class.model_name.human.pluralize.titleize, url_for(action:"index", controller:@managed_class.plural) %>
+          <%= link_to @managed_class.model_name.human.pluralize.titleize, url_for(action:"index", controller:@managed_class.plural, q:params[:q]) %>
         <% else %>
           <%= @managed_class.model_name.human.pluralize.titleize %>
         <% end %>
@@ -35,13 +35,22 @@
       <%= show_thead_tr %>
     </thead>
     <tbody>
+      <% if @resource.respond_to? :id %>
+        <%= show_tr "ID", @resource.id, class:"monospace" %>
+      <% end %>
+      <% if @resource.respond_to? :uuid %>
+        <%= show_tr "UUID", @resource.uuid, class:"monospace" %>
+      <% end %>
       <% if @resource.respond_to? :created_at %>
-        <%= show_tr "Created At", @resource.created_at.try(:strftime, "%Y-%m-%d %I:%M %p"), class:"monospace" %>
+        <%= show_tr "Created At", @resource.created_at.try(:strftime, "%Y-%m-%d %H:%M %Z"), class:"monospace" %>
       <% end %>
       <% if @resource.respond_to? :updated_at %>
-        <%= show_tr "Updated At", @resource.updated_at.try(:strftime, "%Y-%m-%d %I:%M %p"), class:"monospace" %>
+        <%= show_tr "Updated At", @resource.updated_at.try(:strftime, "%Y-%m-%d %H:%M %Z"), class:"monospace" %>
       <% end %>
-      <%= show_tr "Label", Tolaria.display_name(@resource) %>
+      <% @resource.attributes.each do |attribute, value| %>
+        <% next if attribute.in?(%[id uuid created_at updated_at]) %>
+        <%= show_tr attribute.humanize, value %>
+      <% end %>
     </tbody>
   </table>
 

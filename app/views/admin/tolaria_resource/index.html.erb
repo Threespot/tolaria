@@ -12,14 +12,21 @@
   <div class="main-controls-right">
 
     <% unless @managed_class.no_resources? %>
-      <%= button_tag type:"button", class:"button search-form-toggle" do %>
-        <%= fontawesome_icon :search %>
-        Search
+      <% if currently_filtering? %>
+        <%= link_to url_for(action:"index"), class:"button" do %>
+          <%= fontawesome_icon :close %>
+          Clear Search
+        <% end %>
+      <% else %>
+        <%= button_tag type:"button", class:"button search-form-toggle" do %>
+          <%= fontawesome_icon :search %>
+          Search
+        <% end %>
       <% end %>
     <% end %>
 
     <% if @managed_class.allows?(:new) %>
-      <%= link_to url_for(action:"new"), class:"button -primary" do %>
+      <%= link_to url_for(action:"new", q:params[:q]), class:"button -primary" do %>
         <%= fontawesome_icon :plus %>
         New <%= @managed_class.model_name.human.titleize %>
       <% end %>

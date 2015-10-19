@@ -1,7 +1,7 @@
 class Tolaria::ResourceController < Tolaria::TolariaController
 
   before_filter :load_managed_class!
-  before_filter :strip_invalid_ransack_params!, only:[:index]
+  before_filter :strip_invalid_ransack_params!
 
   def index
     @search = @managed_class.klass.ransack(params[:q])
@@ -92,8 +92,8 @@ class Tolaria::ResourceController < Tolaria::TolariaController
   # Returns a path we should redirect to when the form is completed successfully.
   # Handles route forbidding cases.
   def form_completion_redirect_path(managed_class, resource = nil)
-    if managed_class.allows? :index
-      url_for([:admin, managed_class.klass])
+    if managed_class.allows?(:index) && params[:save_and_review].blank?
+      url_for(action:"index", q:params[:q])
     elsif managed_class.allows?(:show) && resource.present?
       url_for(action:"show", id:resource.id)
     elsif managed_class.allows?(:edit) && resource.present?

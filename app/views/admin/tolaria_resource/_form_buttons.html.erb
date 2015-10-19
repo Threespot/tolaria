@@ -1,12 +1,19 @@
 <% if @managed_class.allows? :index %>
-  <%= link_to url_for([:admin, @managed_class.klass]), class:"button" do %>
+  <%= link_to url_for(action:"index", q:params[:q]), class:"button -cancel" do %>
     <%= fontawesome_icon :close %>
     Cancel
   <% end %>
 <% end %>
 
-<%= button_tag type:"submit", name:nil, class:"button -primary" do %>
+<%= button_tag type:"submit", name:"save_and_review", class:"button -primary -save-and-review", value:"Save & Review" do %>
   <%= fontawesome_icon :check %>
   <%= @resource.persisted?? "Save" : "Create" %>
-  <%= @managed_class.model_name.human.titleize %>
+  <%= "& Review" %>
 <% end %>
+
+<%= button_tag type:"submit", name:"save", class:"button -primary -save", value:"Save" do %>
+  <%= fontawesome_icon :check %>
+  <%= @resource.persisted?? "Save" : "Create" %>
+<% end %>
+
+
