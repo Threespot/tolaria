@@ -3,8 +3,9 @@ module Tolaria
 
     # Returns a `p.hint` used to explain a nearby form field containing
     # the given `hint_text`.
-    def hint(hint_text)
-      content_tag(:p, content_tag(:span, hint_text.chomp), class:"hint")
+    def hint(hint_text, options = {})
+      css_class = "hint #{options.delete(:class)}"
+      content_tag(:p, content_tag(:span, hint_text.chomp), class:css_class, **options)
     end
 
     # Creates a `<select>` list that can be filtered by typing word fragments.
