@@ -5,16 +5,25 @@ namespace :admin do
 
     @administrator = Administrator.new
 
-    STDOUT.puts "Enter the new administrator’s credentials. All fields are required."
+    if ENV.has_key?("EMAIL") || ENV.has_key?("NAME") || ENV.has_key?("ORGANIZATION")
 
-    STDOUT.print "Email address: "
-    @administrator.email = STDIN.gets.chomp
+      # Get the administrator from environment variables
+      @administrator.email = ENV.fetch("EMAIL").chomp
+      @administrator.name = ENV.fetch("NAME").chomp
+      @administrator.organization = ENV.fetch("ORGANIZATION").chomp
 
-    STDOUT.print "Full name: "
-    @administrator.name = STDIN.gets.chomp
+    else
 
-    STDOUT.print "Organization: "
-    @administrator.organization = STDIN.gets.chomp
+      # Get the administrator interactively
+      STDOUT.puts "Enter the new administrator’s credentials. All fields are required."
+      STDOUT.print "Email address: "
+      @administrator.email = STDIN.gets.chomp
+      STDOUT.print "Full name: "
+      @administrator.name = STDIN.gets.chomp
+      STDOUT.print "Organization: "
+      @administrator.organization = STDIN.gets.chomp
+
+    end
 
     if @administrator.save
       STDOUT.puts %{The administrator "#{@administrator.name}" <#{@administrator.email}> was successfully created.}

@@ -88,7 +88,11 @@ Now start your Rails server and go to `/admin` to log in!
 You can add administrators from the command line using a Rake task. This is particularly useful for creating the very first one.
 
 ```shell
+# Add an administrator interactively
 $ rake admin:create
+
+# Or you can provide environment variables
+$ rake admin:create NAME="Evon Gnashblade" EMAIL="example@example.org" ORGANIZATION="BLTC"
 ```
 
 If you are already logged in to Tolaria, you can also simply visit `/admin/administrators` to create a new account using the CMS interface.
