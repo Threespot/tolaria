@@ -4,6 +4,7 @@
 //= require admin/lib/underscore
 //= require admin/lib/backbone
 //= require admin/lib/moment
+//= require admin/lib/autosize
 
 //= require_directory ./models
 //= require_directory ./views

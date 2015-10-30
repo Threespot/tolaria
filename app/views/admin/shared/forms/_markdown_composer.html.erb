@@ -22,7 +22,9 @@
   </div>
 
   <div class="markdown-composer-workspace">
-    <%= f.text_area method, options.reverse_merge({rows: 20}) %>
+    <% options[:class] = "markdown-composer-textarea #{options[:class]}" %>
+    <% options[:rows] = 20 %>
+    <%= f.text_area method, options %>
     <div class="markdown-composer-preview markdown-body" style="display:none"></div>
   </div>
 
