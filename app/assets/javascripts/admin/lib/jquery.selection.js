@@ -1,7 +1,7 @@
 // jQuery.selection 1.0.1
 // https://github.com/madapaja/jquery.selection
 //
-// Copyright (c) 2010-2014 IWASAKI Koji (@madapaja).
+// Copyright (c) IWASAKI Koji (@madapaja).
 //
 // Permission is hereby granted, free of charge, to any person obtaining
 // a copy of this software and associated documentation files (the

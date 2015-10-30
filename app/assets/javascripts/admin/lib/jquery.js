@@ -1,7 +1,7 @@
 // jQuery 1.11.3
 // https://github.com/jquery/jquery
 //
-// Copyright jQuery Foundation and other contributors
+// Copyright (c) jQuery Foundation and other contributors
 //
 // Permission is hereby granted, free of charge, to any person obtaining
 // a copy of this software and associated documentation files (the
