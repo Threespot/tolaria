@@ -5,6 +5,7 @@ var AttachmentFieldView = Backbone.View.extend({
     this.$label = this.$(".attachment-field-label");
     this.$icon = this.$(".icon");
     this.$preview = this.$(".attachment-field-preview");
+    this.refreshLabel();
   },
 
   activateFileInput: function(event) {
