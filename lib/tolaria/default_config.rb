@@ -41,6 +41,7 @@ Tolaria.configure do |config|
     authenticity_token
     id
     utf8
+    save_and_review
   ]
 
 end
