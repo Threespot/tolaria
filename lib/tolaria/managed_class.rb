@@ -36,7 +36,7 @@ module Tolaria
 
     # A factory method that registers a new model in Tolaria and configures
     # its menu and param settings. Developers should use `ActiveRecord::Base.manage_with_tolaria`
-    def self.create(klass, icon:"file-o", permit_params:[], priority:10, category:"Settings", default_order:"id DESC", paginated:true, allowed_actions:%i[index show new create edit update destroy])
+    def self.create(klass, icon:"file-o", permit_params:[], priority:10, category:"Settings", default_order:"id DESC", paginated:true, allowed_actions:[:index, :show, :new, :create, :edit, :update, :destroy])
 
       managed_class = self.new
       managed_class.klass = klass
