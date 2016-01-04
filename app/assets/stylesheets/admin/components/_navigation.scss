@@ -4,8 +4,8 @@
   z-index: 99999;
 
   @include max-width($bpFull - 1px) {
-    @include clearfix;
 
+    @include clearfix;
     background-color: $cCoolGrey;
     border-bottom: 3px double $cGrey;
     margin-left: -20px;
@@ -17,26 +17,21 @@
       margin: 0;
       position: absolute;
       width: 100%;
-
-      -webkit-transition: -webkit-transform 300ms cubic-bezier(0.215, 0.61, 0.355, 1);
-              transition: transform 300ms cubic-bezier(0.215, 0.61, 0.355, 1);
-
-      -webkit-transform: translateY(-100%);
-              transform: translateY(-100%);
-
+      transition: transform 300ms cubic-bezier(0.215, 0.61, 0.355, 1);
+      transform: translateY(-100%);
       &.-open {
-        -webkit-transform: translateY(0);
-                transform: translateY(0);
+        transform: translateY(0);
       }
     }
+
   }
 
   @include min-width($bpFull) {
-    width: 16%;
     border-bottom: 0;
-    padding: 0;
     display: table-cell;
+    padding: 0 0 15px 0;
     vertical-align: top;
+    width: 16%;
   }
 
 }
