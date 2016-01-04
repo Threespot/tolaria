@@ -384,7 +384,10 @@ The [`attachment_field` helper](http://www.rubydoc.info/gems/tolaria/Tolaria%2FF
 
 #### Field Clusters (Checkboxes and 2+ Selects)
 
-If you need to run two or more `select` controls together (like for `date_select`), or you need to group a set of checkboxes together (like for `collection_checkboxes`), you'll need to wrap the form field in `<div class="field-cluster">`:
+Tolaria includes a wrapper for grouped form elements, `<div class="field-cluster">`. You should use this wrapper if:
+
+- You need to run two or more small `select` controls together (like for `date_select`). The wrapper styles the selects to snuggle closely.
+- You want to use a naked checkbox control or a set of checkboxes (`check_box` and `collection_checkboxes`)
 
 ```erb
 <%= f.label :published_at, "Publishing Date" %>
