@@ -5,10 +5,12 @@
   <% end %>
 <% end %>
 
-<%= button_tag type:"submit", name:"save_and_review", class:"button -primary -save-and-review", value:"Save & Review" do %>
-  <%= fontawesome_icon :check %>
-  <%= @resource.persisted?? "Save" : "Create" %>
-  <%= "& Review" %>
+<% if @managed_class.allows? :show %>
+  <%= button_tag type:"submit", name:"save_and_review", class:"button -primary -save-and-review", value:"Save & Review" do %>
+    <%= fontawesome_icon :check %>
+    <%= @resource.persisted?? "Save" : "Create" %>
+    <%= "& Review" %>
+  <% end %>
 <% end %>
 
 <%= button_tag type:"submit", name:"save", class:"button -primary -save", value:"Save" do %>
