@@ -13,10 +13,15 @@
   font-weight: bold;
   height: 32px;
   line-height: 30px;
+  margin: 0 0 5px 0;
   padding: 0px 14px 0px 12px;
-  vertical-align: middle;
   transition: background-color 100ms linear, border-color 100ms linear;
+  vertical-align: middle;
   white-space: nowrap;
+
+  @include min-width($bpFull) {
+    margin: 0;
+  }
 
   &.-small {
     transition: none;
@@ -24,6 +29,7 @@
     line-height: 16px;
     padding: 2px 9px 2px 9px;
     height: auto;
+    margin: 0;
     .icon {
       font-size: 12px;
     }
