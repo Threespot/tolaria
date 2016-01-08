@@ -118,7 +118,8 @@ var MarkdownComposerView = Backbone.View.extend({
       var replacementText = [];
       var lines = selectedText.match(/^.*((\r\n|\n|\r)|$)/gm);
       $.each(lines, function(index, value){
-        replacementText.push(buttonOps.before + $.trim(value) + buttonOps.after)
+        value = value.replace(/(\r\n|\n|\r)/, '');
+        replacementText.push(buttonOps.before + value + buttonOps.after)
       });
       this.$textarea.selection("replace", {text: replacementText.join("\n")});
     }
