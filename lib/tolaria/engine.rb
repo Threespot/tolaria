@@ -7,6 +7,7 @@ module Tolaria
         admin/admin.css
         admin/admin.js
         admin/lib/no.js
+        admin/favicon.ico
       ]
     end
 
