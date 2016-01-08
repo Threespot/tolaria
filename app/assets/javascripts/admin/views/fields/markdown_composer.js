@@ -114,17 +114,13 @@ var MarkdownComposerView = Backbone.View.extend({
     var buttonOps = ComposerButtons[mode];
 
     if (selectedText.length > 0) {
-      // Wrap the selected text in the syntax
-      this.$textarea.selection("insert", {
-        mode: "before",
-        text: buttonOps.before,
-        caret: "keep"
+      // Wrap each selected line in the syntax
+      var replacementText = [];
+      var lines = selectedText.match(/^.*((\r\n|\n|\r)|$)/gm);
+      $.each(lines, function(index, value){
+        replacementText.push(buttonOps.before + $.trim(value) + buttonOps.after)
       });
-      this.$textarea.selection("insert", {
-        mode: "after",
-        text: buttonOps.after,
-        caret: "keep"
-      });
+      this.$textarea.selection("replace", {text: replacementText.join("\n")});
     }
     else {
       // Insert some example text with the syntax
