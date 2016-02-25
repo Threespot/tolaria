@@ -74,6 +74,9 @@ $ rake db:migrate</pre></div>
   <span class="pl-c"># Your other routes below here</span>
 <span class="pl-k">end</span></pre></div>
 
+<h5>
+<a id="actionmailer" class="anchor" href="#actionmailer" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>ActionMailer</h5>
+
 <p>Tolaria needs to be able to dispatch email. You'll need to configure ActionMailer to use an appropriate mail service. Here's an example using <a href="https://devcenter.heroku.com/articles/mailgun">Mailgun on Heroku</a>:</p>
 
 <div class="highlight highlight-source-ruby"><pre><span class="pl-c"># config/initializers/action_mailer.rb</span>
@@ -98,7 +101,11 @@ $ rake db:migrate</pre></div>
 
 <p>You can add administrators from the command line using a Rake task. This is particularly useful for creating the very first one.</p>
 
-<div class="highlight highlight-source-shell"><pre>$ rake admin:create</pre></div>
+<div class="highlight highlight-source-shell"><pre><span class="pl-c"># Add an administrator interactively</span>
+$ rake admin:create
+
+<span class="pl-c"># Or you can provide environment variables</span>
+$ rake admin:create NAME=<span class="pl-s"><span class="pl-pds">"</span>Evon Gnashblade<span class="pl-pds">"</span></span> EMAIL=<span class="pl-s"><span class="pl-pds">"</span>example@example.org<span class="pl-pds">"</span></span> ORGANIZATION=<span class="pl-s"><span class="pl-pds">"</span>BLTC<span class="pl-pds">"</span></span></pre></div>
 
 <p>If you are already logged in to Tolaria, you can also simply visit <code>/admin/administrators</code> to create a new account using the CMS interface.</p>
 
@@ -374,7 +381,12 @@ $ rake db:migrate</pre></div>
 <h4>
 <a id="field-clusters-checkboxes-and-2-selects" class="anchor" href="#field-clusters-checkboxes-and-2-selects" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Field Clusters (Checkboxes and 2+ Selects)</h4>
 
-<p>If you need to run two or more <code>select</code> controls together (like for <code>date_select</code>), or you need to group a set of checkboxes together (like for <code>collection_checkboxes</code>), you'll need to wrap the form field in <code>&lt;div class="field-cluster"&gt;</code>:</p>
+<p>Tolaria includes a wrapper for grouped form elements, <code>&lt;div class="field-cluster"&gt;</code>. You should use this wrapper if:</p>
+
+<ul>
+<li>You need to run two or more small <code>select</code> controls together (like for <code>date_select</code>). The wrapper styles the selects to snuggle closely.</li>
+<li>You want to use a naked checkbox control or a set of checkboxes (<code>check_box</code> and <code>collection_checkboxes</code>)</li>
+</ul>
 
 <div class="highlight highlight-text-html-erb"><pre><span class="pl-pse">&lt;%=</span><span class="pl-s1"> f.label <span class="pl-c1">:published_at</span>, <span class="pl-s"><span class="pl-pds">"</span>Publishing Date<span class="pl-pds">"</span></span> </span><span class="pl-pse"><span class="pl-s1">%</span>&gt;</span>
 &lt;<span class="pl-ent">div</span> <span class="pl-e">class</span>=<span class="pl-s"><span class="pl-pds">"</span>field-cluster<span class="pl-pds">"</span></span>&gt;<span class="pl-pse">&lt;%=</span><span class="pl-s1"> f.date_select <span class="pl-c1">:published_at</span> </span><span class="pl-pse"><span class="pl-s1">%</span>&gt;</span>&lt;/<span class="pl-ent">div</span>&gt;
@@ -392,6 +404,16 @@ $ rake db:migrate</pre></div>
 <p><a href="http://www.rubydoc.info/gems/tolaria/Tolaria%2FFormBuildable%3Ahint">Inline help</a> is useful for reminding administrators about what should be provided for each field. Use <code>f.hint</code> to present a hint for a field.</p>
 
 <p><img src="https://cloud.githubusercontent.com/assets/769083/7888576/8d20f8a6-0607-11e5-80ea-2c8f66ad7449.png" alt="hint"></p>
+
+<h4>
+<a id="extra-classes" class="anchor" href="#extra-classes" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Extra Classes</h4>
+
+<p>Tolaria includes a few CSS classes that are designed for simple inputs, selects, and textareas:</p>
+
+<ul>
+<li>Add a class of <code>monospace</code> to an element to make it use a system monospace font. Useful for fields that accept URLs and other computer-interpreted values.</li>
+<li>Add a class of <code>short</code> to an element to constrain it visually to 300px. Useful for fields that only need very few characters of input.</li>
+</ul>
 
 <h3>
 <a id="customizing-the-menu" class="anchor" href="#customizing-the-menu" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Customizing the Menu</h3>
