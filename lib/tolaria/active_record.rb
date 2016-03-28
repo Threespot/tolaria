@@ -36,6 +36,8 @@ class ActiveRecord::Base
   #   Tolaria will pass this array as the `only:` option to the router.
   #   The default includes all CRUD actions:
   #   `[:index, :show, :new, :create, :edit, :update, :destroy]`
+  # - `:navigation_label` - The navigation label to use for this resource.
+  #   The default is `self.model_name.human.pluralize.titleize`.
   #
   # #### Example
   #

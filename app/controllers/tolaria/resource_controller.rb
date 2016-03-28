@@ -32,7 +32,7 @@ class Tolaria::ResourceController < Tolaria::TolariaController
     display_name = Tolaria.display_name(@resource)
 
     if @resource.save
-      flash[:success] = "#{random_blingword} You created the #{@managed_class.model_name.human} “#{display_name}”."
+      flash[:success] = "#{random_blingword} You created the #{@managed_class.navigation_label.singularize} “#{display_name}”."
       return redirect_to form_completion_redirect_path(@managed_class, @resource)
     else
       log_validation_errors!
@@ -54,7 +54,7 @@ class Tolaria::ResourceController < Tolaria::TolariaController
     display_name = Tolaria.display_name(@resource)
 
     if @resource.save
-      flash[:success] = "#{random_blingword} You updated the #{@managed_class.model_name.human.downcase} “#{display_name}”."
+      flash[:success] = "#{random_blingword} You updated the #{@managed_class.navigation_label.singularize.downcase} “#{display_name}”."
       return redirect_to form_completion_redirect_path(@managed_class, @resource)
     else
       log_validation_errors!
@@ -76,7 +76,7 @@ class Tolaria::ResourceController < Tolaria::TolariaController
       return redirect_to form_completion_redirect_path(@managed_class, @resource)
     end
 
-    flash[:destructive] = "You deleted the #{@managed_class.model_name.human.downcase} “#{display_name}”."
+    flash[:destructive] = "You deleted the #{@managed_class.navigation_label.singularize.downcase} “#{display_name}”."
     return redirect_to form_completion_redirect_path(@managed_class)
 
   end
