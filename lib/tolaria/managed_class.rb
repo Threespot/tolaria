@@ -34,9 +34,12 @@ module Tolaria
     # A stored symbol for the `params.permit` key for this resource
     attr_accessor :param_key
 
+    # A String to override the model's label in the primary admin navigation
+    attr_accessor :navigation_label
+
     # A factory method that registers a new model in Tolaria and configures
     # its menu and param settings. Developers should use `ActiveRecord::Base.manage_with_tolaria`
-    def self.create(klass, icon:"file-o", permit_params:[], priority:10, category:"Settings", default_order:"id DESC", paginated:true, allowed_actions:[:index, :show, :new, :create, :edit, :update, :destroy])
+    def self.create(klass, icon:"file-o", permit_params:[], priority:10, category:"Settings", default_order:"id DESC", paginated:true, allowed_actions:[:index, :show, :new, :create, :edit, :update, :destroy], navigation_label: klass.model_name.human.pluralize.titleize)
 
       managed_class = self.new
       managed_class.klass = klass
@@ -49,6 +52,7 @@ module Tolaria
       managed_class.paginated = paginated.present?
       managed_class.permitted_params = permit_params.freeze
       managed_class.allowed_actions = allowed_actions.freeze
+      managed_class.navigation_label = navigation_label.freeze
 
       # Set auto-generated attributes
       managed_class.controller_name = "#{managed_class.model_name.collection.camelize}Controller".freeze

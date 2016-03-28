@@ -5,13 +5,13 @@
   <div class="blank-slate">
     <span class="blank-slate-icons"><%= fontawesome_icon @managed_class.icon %></span>
     <h3 class="blank-slate-header">
-      No <%= @managed_class.model_name.human.pluralize.titleize %> live here.
+      No <%= @managed_class.navigation_label %> live here.
     </h3>
     <% if @managed_class.allows?(:new) %>
       <p class="blank-slate-text">Get started on the first one:</p>
       <%= link_to url_for(action:"new"), class:"button -primary" do %>
         <%= fontawesome_icon :plus %>
-        New <%= @managed_class.model_name.human.titleize %>
+        New <%= @managed_class.navigation_label.singularize %>
       <% end %>
     <% end %>
   </div>
@@ -23,7 +23,7 @@
   <div class="blank-slate">
     <span class="blank-slate-icons"><%= fontawesome_icon :search %></span>
     <h3 class="blank-slate-header">
-      Your search didn't find any <%= @managed_class.model_name.human.pluralize.titleize %>.
+      Your search didn't find any <%= @managed_class.navigation_label %>.
     </h3>
     <p class="blank-slate-text">
       You can <%= link_to "clear the search form", url_for([:admin, @managed_class.klass]) %>
