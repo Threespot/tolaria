@@ -50,7 +50,7 @@ module Admin::ViewHelper
 
   # Returns a deletion warning message for the given ActiveRecord instance
   def deletion_warning(resource)
-    return %{Are you sure you want to delete the #{resource.model_name.human.downcase} “#{Tolaria.display_name(resource)}”? This action is not reversible.}
+    return %{Are you sure you want to delete the #{@managed_class.navigation_label.singularize.downcase} “#{Tolaria.display_name(resource)}”? This action is not reversible.}
   end
 
   # Returns the correct value to pass to the `url:` of `form_for`,
