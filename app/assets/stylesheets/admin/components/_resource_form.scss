@@ -79,7 +79,23 @@
       outline: none;
     }
 
+    &:disabled {
+      color: darken($cPlum, 2);
+      background: black(0.06);
+      cursor: not-allowed;
+    }
+
   }
+
+  input::-webkit-input-placeholder {color: #ccc}
+  input:-moz-placeholder {color: #ccc}
+  input::-moz-placeholder {color: #ccc}
+  input:-ms-input-placeholder {color: #ccc}
+
+  textarea::-webkit-input-placeholder {color: #ccc}
+  textarea:-moz-placeholder {color: #ccc}
+  textarea::-moz-placeholder {color: #ccc}
+  textarea:-ms-input-placeholder {color: #ccc}
 
   .field-cluster {
 
@@ -208,11 +224,6 @@
       clear: both;
     }
   }
-
-  input::-webkit-input-placeholder {color: #ccc}
-  input:-moz-placeholder {color: #ccc}
-  input::-moz-placeholder {color: #ccc}
-  input:-ms-input-placeholder {color: #ccc}
 
   .field_with_errors {
     input, textarea, select,
