@@ -92,13 +92,39 @@ class ForbiddenRoutesTest < ActionDispatch::IntegrationTest
     assert page.has_content?("Delete")
     assert page.has_content?("Edit")
 
-    assert_raises ActionView::Template::Error do
-      visit new_admin_card_path
+    assert_raises ActionController::RoutingError do
+      visit "/admin/cards"
     end
 
     # Unseat the Card class so that it doesn't leak out of this test
     assert Tolaria.discard_managed_class(Card), "should discard class"
     Object.send(:remove_const, :Card)
+
+  end
+
+  test "handles only allowed_actions index, edit, update" do
+
+    # Miscellany only allows index, edit, update
+    Miscellany.create(value:"Tchotchke", key:"tchotchke", description:"Test Tchotchke")
+
+    sign_in_dummy_administrator!
+    visit admin_miscellany_index_path
+    assert page.has_content?("tchotchke"), "should see the Miscellany on the index"
+
+    visit edit_admin_miscellany_path(Miscellany.first.id)
+    assert page.has_content?("Tchotchke"), "can see the Miscellany form"
+    assert page.has_content?("Save"), "can see the Miscellany form"
+
+    assert_raises ActionController::RoutingError do
+      visit "/admin/miscellany/new" # This route shouldn’t exist
+    end
+
+    assert_raises ActionController::RoutingError do
+      visit "/admin/miscellany/1" # This route shouldn’t exist
+    end
+
+    # Remove the test object
+    Miscellany.first.destroy
 
   end
 

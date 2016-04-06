@@ -58,12 +58,14 @@ module Admin::ViewHelper
     return %{Are you sure you want to delete the #{resource.model_name.human.downcase} “#{Tolaria.display_name(resource)}”? This action is not reversible.}
   end
 
+  # Returns the correct value to pass to the `url:` of `form_for`,
+  # based on the current controller.action_name
   def contextual_form_url
     case controller.action_name
-    when "edit", "update"
-      url_for(action:"show", id:@resource.id)
-    when "new", "create"
-      url_for(action:"index")
+    when "edit"
+      url_for(action:"update", id:@resource.id)
+    when "new"
+      url_for(action:"create")
     else
       nil
     end
