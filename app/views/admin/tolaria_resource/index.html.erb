@@ -1,4 +1,4 @@
-<%= content_for :title, "#{@managed_class.model_name.human.pluralize.titleize}" %>
+<%= content_for :title, "#{@managed_class.navigation_label}" %>
 
 <div class="main-controls">
 
@@ -28,7 +28,7 @@
     <% if @managed_class.allows?(:new) %>
       <%= link_to url_for(action:"new", q:params[:q]), class:"button -primary" do %>
         <%= fontawesome_icon :plus %>
-        New <%= @managed_class.model_name.human.titleize %>
+        New <%= @managed_class.navigation_label.singularize %>
       <% end %>
     <% end %>
 

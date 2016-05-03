@@ -4,11 +4,12 @@ class Video < ActiveRecord::Base
   validates_presence_of :youtube_id
 
   manage_with_tolaria using:{
+    navigation_label: "YouTube Videos",
     icon: "youtube-play",
     category: "Media",
     permit_params: [
       :title,
-      :yotube_id,
+      :youtube_id,
       :description,
     ],
   }

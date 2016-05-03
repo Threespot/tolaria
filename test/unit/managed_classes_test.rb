@@ -6,6 +6,7 @@ class ManagedClassesTest < ActiveSupport::TestCase
 
     class ::Card < ActiveRecord::Base
       manage_with_tolaria using:{
+        navigation_label: "Widgets",
         icon: "credit-card",
         priority: 5,
         category: "Payments",
@@ -31,6 +32,9 @@ class ManagedClassesTest < ActiveSupport::TestCase
     assert_equal managed_class.default_order, "id DESC"
     assert_equal managed_class.allowed_actions, [:index, :show]
     assert managed_class.paginated, true
+
+    # Can we override the navigation label?
+    assert_equal managed_class.navigation_label, "Widgets"
 
     # Can we check action allowances?
     assert managed_class.allows?(:index), "should allow `index` action"
