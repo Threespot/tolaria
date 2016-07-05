@@ -1,4 +1,4 @@
-class Video < ActiveRecord::Base
+class Video < ApplicationRecord
 
   validates_presence_of :title
   validates_presence_of :youtube_id

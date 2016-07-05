@@ -38,7 +38,7 @@ class SessionTest < ActionDispatch::IntegrationTest
   end
 
   test "session form doesn't explode when junk submitted" do
-    post "/admin/signin", {
+    post "/admin/signin", params:{
       a: "Z6b4y26r16eSz6w7qLef722MC1IGK36K",
       b: { c: "LKgagZfpIhQMV8xfKfwSalp3RO6Nm6e6" }
     }
@@ -91,4 +91,3 @@ class SessionTest < ActionDispatch::IntegrationTest
   end
 
 end
-

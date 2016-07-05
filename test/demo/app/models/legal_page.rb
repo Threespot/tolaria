@@ -1,4 +1,4 @@
-class LegalPage < ActiveRecord::Base
+class LegalPage < ApplicationRecord
 
   validates_presence_of :title
   validates_presence_of :summary

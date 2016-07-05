@@ -38,11 +38,6 @@ module Admin::ViewHelper
     lookup_context.template_exists?("admin/#{template_path}", [], true)
   end
 
-  # True if Ransack filtering parameters are present
-  def currently_filtering?
-    params[:q].present? && params[:q].is_a?(Hash) && params[:q].keys.reject{|key| key == "s"}.any?
-  end
-
   # Attempt to automatically construct a default text search
   # field name for Ransack from a given model's table settings
   def ransack_text_search_chain(model)

@@ -1,4 +1,3 @@
-# encoding: UTF-8
 # This file is auto-generated from the current state of the database. Instead
 # of editing this file, please use the migrations feature of Active Record to
 # incrementally modify your database, and then regenerate this schema definition.
@@ -26,18 +25,16 @@ ActiveRecord::Schema.define(version: 20150610135235) do
     t.integer  "lockout_strikes",                default: 0, null: false
     t.integer  "total_strikes",                  default: 0, null: false
     t.integer  "sessions_created",               default: 0, null: false
+    t.index ["auth_token"], name: "index_administrators_on_auth_token"
+    t.index ["email"], name: "index_administrators_on_email"
   end
-
-  add_index "administrators", ["auth_token"], name: "index_administrators_on_auth_token"
-  add_index "administrators", ["email"], name: "index_administrators_on_email"
 
   create_table "blog_post_topics", force: :cascade do |t|
     t.integer "blog_post_id", null: false
     t.integer "topic_id",     null: false
+    t.index ["blog_post_id"], name: "index_blog_post_topics_on_blog_post_id"
+    t.index ["topic_id"], name: "index_blog_post_topics_on_topic_id"
   end
-
-  add_index "blog_post_topics", ["blog_post_id"], name: "index_blog_post_topics_on_blog_post_id"
-  add_index "blog_post_topics", ["topic_id"], name: "index_blog_post_topics_on_topic_id"
 
   create_table "blog_posts", force: :cascade do |t|
     t.datetime "created_at",   null: false
@@ -57,9 +54,8 @@ ActiveRecord::Schema.define(version: 20150610135235) do
     t.integer  "blog_post_id", null: false
     t.text     "description"
     t.text     "url"
+    t.index ["blog_post_id"], name: "index_footnotes_on_blog_post_id"
   end
-
-  add_index "footnotes", ["blog_post_id"], name: "index_footnotes_on_blog_post_id"
 
   create_table "images", force: :cascade do |t|
     t.datetime "created_at",         null: false
@@ -78,9 +74,8 @@ ActiveRecord::Schema.define(version: 20150610135235) do
     t.string   "slug",       null: false
     t.text     "summary",    null: false
     t.text     "body"
+    t.index ["slug"], name: "index_legal_pages_on_slug"
   end
-
-  add_index "legal_pages", ["slug"], name: "index_legal_pages_on_slug"
 
   create_table "miscellany", force: :cascade do |t|
     t.datetime "created_at",  null: false
@@ -88,18 +83,16 @@ ActiveRecord::Schema.define(version: 20150610135235) do
     t.string   "key",         null: false
     t.text     "value",       null: false
     t.text     "description", null: false
+    t.index ["key"], name: "index_miscellany_on_key"
   end
-
-  add_index "miscellany", ["key"], name: "index_miscellany_on_key"
 
   create_table "topics", force: :cascade do |t|
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "label",      null: false
     t.string   "slug",       null: false
+    t.index ["slug"], name: "index_topics_on_slug"
   end
-
-  add_index "topics", ["slug"], name: "index_topics_on_slug"
 
   create_table "videos", force: :cascade do |t|
     t.datetime "created_at",  null: false

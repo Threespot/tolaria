@@ -1,6 +1,6 @@
 class Admin::SessionsController < Tolaria::TolariaController
 
-  skip_before_filter :authenticate_admin!
+  skip_before_action :authenticate_admin!
 
   # Present the signin form
 

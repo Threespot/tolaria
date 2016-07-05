@@ -9,12 +9,12 @@ require "kaminari"
 require "ransack"
 
 require "tolaria/version"
+require "tolaria/ransack"
 require "tolaria/engine"
 require "tolaria/config"
 require "tolaria/default_config"
 require "tolaria/random_tokens"
 require "tolaria/admin"
-
 require "tolaria/reload"
 require "tolaria/managed_class"
 require "tolaria/manage"

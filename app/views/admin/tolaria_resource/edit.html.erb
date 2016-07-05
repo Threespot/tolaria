@@ -6,8 +6,9 @@
 
 <%= form_for [:admin, @resource], url:contextual_form_url, builder:Admin::FormBuilder, html:{class:"resource-form"}  do |form_builder| %>
 
-  <% if params[:q].present? %>
-    <% params[:q].each do |key, value| %>
+  <% if ransack_params.present?  %>
+    <% ransack_params.each do |key, value| %>
+      <% next if value.respond_to?(:keys) %>
       <%= hidden_field_tag "q[#{key}]", value %>
     <% end %>
   <% end %>
@@ -18,7 +19,7 @@
         <span class="crumb">
           <%= fontawesome_icon @managed_class.icon %>
           <% if @managed_class.allows? :index %>
-            <%= link_to @managed_class.model_name.human.pluralize.titleize, url_for(action:"index", controller:@managed_class.plural, q:params[:q]) %>
+            <%= link_to @managed_class.model_name.human.pluralize.titleize, url_for(action:"index", controller:@managed_class.plural, q:ransack_params) %>
           <% else %>
             <%= @managed_class.model_name.human.pluralize.titleize %>
           <% end %>

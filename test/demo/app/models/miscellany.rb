@@ -1,4 +1,4 @@
-class Miscellany < ActiveRecord::Base
+class Miscellany < ApplicationRecord
 
   manage_with_tolaria using:{
     icon: "cogs",

@@ -1,4 +1,4 @@
-class Topic < ActiveRecord::Base
+class Topic < ApplicationRecord
 
   has_and_belongs_to_many :blog_posts, join_table:"blog_post_topics"
 

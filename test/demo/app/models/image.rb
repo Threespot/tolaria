@@ -1,4 +1,4 @@
-class Image < ActiveRecord::Base
+class Image < ApplicationRecord
 
   validates_presence_of :title
   validates_presence_of :attachment_address

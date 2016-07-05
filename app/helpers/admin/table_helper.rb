@@ -95,11 +95,11 @@ module Admin::TableHelper
     end
 
     if sort.is_a?(Symbol)
-      return content_tag(:th, sort_link(@search, sort, display_label), class:"index-th")
+      return content_tag(:th, sort_link(@search, sort), class:"index-th")
     end
 
     if sort.eql?(true) && field_or_label.is_a?(Symbol)
-      return content_tag(:th, sort_link(@search, field_or_label, display_label), class:"index-th")
+      return content_tag(:th, sort_link(@search, field_or_label), class:"index-th")
     end
 
     return content_tag(:th, display_label, class:"index-th")
@@ -137,9 +137,9 @@ module Admin::TableHelper
     end
 
     if @managed_class.allows? :edit
-      link = url_for(action:"edit", id:resource.id, q:params[:q])
+      link = url_for(action:"edit", id:resource.id, q:ransack_params)
     elsif @managed_class.allows? :show
-      link = url_for(action:"show", id:resource.id, q:params[:q])
+      link = url_for(action:"show", id:resource.id, q:ransack_params)
     else
       link = "#" # Guh, painted ourseves into a corner here
     end
@@ -162,15 +162,15 @@ module Admin::TableHelper
     links = []
 
     if @managed_class.allows?(:edit)
-      links << link_to("Edit", url_for(action:"edit", id:resource.id, q:params[:q]), class:"button -small")
+      links << link_to("Edit", url_for(action:"edit", id:resource.id, q:ransack_params), class:"button -small")
     end
 
     if @managed_class.allows?(:show)
-      links << link_to("Inspect", url_for(action:"show", id:resource.id, q:params[:q]), class:"button -small")
+      links << link_to("Inspect", url_for(action:"show", id:resource.id, q:ransack_params), class:"button -small")
     end
 
     if @managed_class.allows?(:destroy)
-      links << link_to("Delete", url_for(action:"destroy", id:resource.id, q:params[:q]), class: "button -small", method: :delete, :'data-confirm' => deletion_warning(resource))
+      links << link_to("Delete", url_for(action:"destroy", id:resource.id, q:ransack_params), class: "button -small", method: :delete, :'data-confirm' => deletion_warning(resource))
     end
 
     return content_tag(:td, links.join("").html_safe, class:"actions-td")
