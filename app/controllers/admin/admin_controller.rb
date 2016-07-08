@@ -1,6 +1,6 @@
 class Admin::AdminController < Tolaria::TolariaController
 
-  skip_before_filter :authenticate_admin!, only:[:markdown]
+  skip_before_action :authenticate_admin!, only:[:markdown]
 
   def root
     redirect_to(Tolaria.config.default_redirect, status:303)

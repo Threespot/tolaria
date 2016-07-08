@@ -1,5 +1,5 @@
 <% if @managed_class.allows? :index %>
-  <%= link_to url_for(action:"index", q:params[:q]), class:"button -cancel" do %>
+  <%= link_to url_for(action:"index", q:ransack_params), class:"button -cancel" do %>
     <%= fontawesome_icon :close %>
     Cancel
   <% end %>
@@ -17,5 +17,3 @@
   <%= fontawesome_icon :check %>
   <%= @resource.persisted?? "Save" : "Create" %>
 <% end %>
-
-

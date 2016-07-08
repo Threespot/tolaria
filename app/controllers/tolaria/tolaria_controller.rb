@@ -1,8 +1,8 @@
 class Tolaria::TolariaController < ::ApplicationController
 
   protect_from_forgery
-  before_filter :add_admin_headers!
-  before_filter :authenticate_admin!
+  before_action :add_admin_headers!
+  before_action :authenticate_admin!
 
   protected
 

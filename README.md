@@ -24,7 +24,7 @@ Tolaria is a [content management system](https://en.wikipedia.org/wiki/Content_m
 
 ### Browser Support
 
-Tolaria supports IE10+, Safari, Chrome, Firefox, iOS, and Chrome for Android. Note that these are the browsers your site editors will need, not the general site audience, which can differ.
+Tolaria supports IE10+, Edge, Safari, Chrome, Firefox, iOS, and Chrome for Android. Note that these are the browsers your site editors will need, not the general site audience, which can differ.
 
 ### Getting Started
 

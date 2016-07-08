@@ -1,10 +1,9 @@
 class Tolaria::ResourceController < Tolaria::TolariaController
 
-  before_filter :load_managed_class!
-  before_filter :strip_invalid_ransack_params!
+  before_action :load_managed_class!
 
   def index
-    @search = @managed_class.klass.ransack(params[:q])
+    @search = @managed_class.klass.ransack(ransack_params)
     @resources = @search.result
     if @managed_class.paginated?
       @resources = @resources.page(params[:page]).per(Tolaria.config.page_size)
@@ -93,7 +92,7 @@ class Tolaria::ResourceController < Tolaria::TolariaController
   # Handles route forbidding cases.
   def form_completion_redirect_path(managed_class, resource = nil)
     if managed_class.allows?(:index) && params[:save_and_review].blank?
-      url_for(action:"index", q:params[:q])
+      url_for(action:"index", q:ransack_params)
     elsif managed_class.allows?(:show) && resource.present?
       url_for(action:"show", id:resource.id)
     elsif managed_class.allows?(:edit) && resource.present?
@@ -119,20 +118,6 @@ class Tolaria::ResourceController < Tolaria::TolariaController
     )
   end
 
-  # Some Ransack methods raise exceptions if the `q` param is invalid.
-  # Strip `q` params not created by Ransack
-  def strip_invalid_ransack_params!
-    return true if params[:q].blank?
-    unless params[:q].is_a?(Hash)
-      params.delete(:q)
-    end
-  end
-
-  # Returns true if there is a sorting parameter for Ransack
-  def currently_sorting?
-    params[:q].present? && params[:q][:s].present?
-  end
-
   # Logs all validation errors for the current resource to the Rails console
   def log_validation_errors!
     unless Rails.env.test?
@@ -142,5 +127,34 @@ class Tolaria::ResourceController < Tolaria::TolariaController
       end
     end
   end
+
+  # Returns params[:q] as a hash if it can be converted.
+  # Ransack expects this generic hash and has its own internal
+  # logic for handing the many possible keys of the hash.
+  def ransack_params
+    if params[:q].present? && params[:q].respond_to?(:permit!)
+      return params[:q].to_unsafe_hash
+    else
+      return nil
+    end
+  end
+
+  # True if there is a sorting parameter for Ransack
+  def currently_sorting?
+    ransack_params.present? && ransack_params[:s].present?
+  end
+
+  # True if there are filtering parameters for Ransack
+  def currently_filtering?
+    if currently_sorting?
+      ransack_params.keys.many?
+    else
+      ransack_params.present? && ransack_params.keys.any?
+    end
+  end
+
+  helper_method :ransack_params
+  helper_method :currently_sorting?
+  helper_method :currently_filtering?
 
 end

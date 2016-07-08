@@ -16,16 +16,10 @@ $fHelvetica: "Helvetica Neue", "Segoe UI", Arial, Freesans, sans-serif;
 
 @font-face {
   font-family: "FontAwesome";
-  src: font-url("admin/fontawesome.eot");
-  src: font-url("admin/fontawesome.eot?#iefix") format("embedded-opentype"),
-       font-url("admin/fontawesome.woff2") format("woff2"),
-       font-url("admin/fontawesome.woff") format("woff"),
-       font-url("admin/fontawesome.ttf") format("truetype"),
-       font-url("admin/fontawesome.svg#fontawesome") format("svg");
+  src: font-url("admin/fontawesome.woff2") format("woff2"),
+       font-url("admin/fontawesome.woff") format("woff");
   font-weight: normal;
   font-style: normal;
 }
 
 $fFontAwesome: FontAwesome;
-
-

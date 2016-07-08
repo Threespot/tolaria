@@ -58,4 +58,3 @@ class FilterPreservationTest < ActionDispatch::IntegrationTest
   end
 
 end
-

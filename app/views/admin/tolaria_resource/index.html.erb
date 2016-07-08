@@ -26,7 +26,7 @@
     <% end %>
 
     <% if @managed_class.allows?(:new) %>
-      <%= link_to url_for(action:"new", q:params[:q]), class:"button -primary" do %>
+      <%= link_to url_for(action:"new", q:ransack_params), class:"button -primary" do %>
         <%= fontawesome_icon :plus %>
         New <%= @managed_class.model_name.human.titleize %>
       <% end %>
@@ -38,6 +38,3 @@
 
 <%= render "admin/tolaria_resource/search_form" %>
 <%= render "admin/tolaria_resource/index_table" %>
-
-
-
