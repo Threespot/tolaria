@@ -21,6 +21,7 @@ Tolaria is a [content management system](https://en.wikipedia.org/wiki/Content_m
 - Easily overridable on a case-by-case basis.
 - Designed for use on Heroku, in containers, and on websites with TLS.
 - Modest dependencies.
+- Compatible with Rails 5 and Rails 4.2. 
 
 ### Browser Support
 
@@ -31,10 +32,14 @@ Tolaria supports IE10+, Edge, Safari, Chrome, Firefox, iOS, and Chrome for Andro
 Add Tolaria to your project's `Gemfile`:
 
 ```ruby
-gem "tolaria"
+# If you are running Rails 5, use Tolaria 2
+gem "tolaria", "~> 2.0"
+
+# If you are running Rails 4.2, use Tolaria 1.2
+gem "tolaria", "~> 1.2"
 ```
 
-Then update your bundle.
+Then update your bundle with `bundle update`
 
 Now run the installation generator. This will create an initializer for Tolaria plus a migration to set up an `administrators` table. Migrate your database.
 
