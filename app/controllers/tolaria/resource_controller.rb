@@ -6,7 +6,7 @@ class Tolaria::ResourceController < Tolaria::TolariaController
     @search = @managed_class.klass.ransack(ransack_params)
     @resources = @search.result
     if @managed_class.paginated?
-      @resources = @resources.page(params[:page]).per(Tolaria.config.page_size)
+      @resources = @resources.page(page_param).per(Tolaria.config.page_size)
     end
     unless currently_sorting?
       @resources = @resources.order(@managed_class.default_order)
@@ -92,7 +92,7 @@ class Tolaria::ResourceController < Tolaria::TolariaController
   # Handles route forbidding cases.
   def form_completion_redirect_path(managed_class, resource = nil)
     if managed_class.allows?(:index) && params[:save_and_review].blank?
-      url_for(action:"index", q:ransack_params)
+      url_for(action:"index", q:ransack_params, p:page_param)
     elsif managed_class.allows?(:show) && resource.present?
       url_for(action:"show", id:resource.id)
     elsif managed_class.allows?(:edit) && resource.present?
@@ -128,6 +128,14 @@ class Tolaria::ResourceController < Tolaria::TolariaController
     end
   end
 
+  # Returns the current `params[:p]` as an Integer if it is valid.
+  # Returns `nil` otherwise.
+  def page_param
+    integer_page = params[:p].to_i
+    return integer_page if integer_page > 0
+    return nil
+  end
+
   # Returns params[:q] as a hash if it can be converted.
   # Ransack expects this generic hash and has its own internal
   # logic for handing the many possible keys of the hash.
@@ -153,6 +161,7 @@ class Tolaria::ResourceController < Tolaria::TolariaController
     end
   end
 
+  helper_method :page_param
   helper_method :ransack_params
   helper_method :currently_sorting?
   helper_method :currently_filtering?

@@ -70,6 +70,6 @@
     <p class="pagination-desc"><%= page_entries_info @resources %></p>
   <% end %>
 
-  <%= paginate @resources, theme:"admin", window:2 %>
+  <%= paginate @resources, theme:"admin", window:2, param_name:"p" %>
 
 <% end %>

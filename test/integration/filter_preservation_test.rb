@@ -25,7 +25,7 @@ class FilterPreservationTest < ActionDispatch::IntegrationTest
     find_link("Organization").click
     find_link("Nintendo").click
     first(".button.-cancel").click
-    assert page.current_url.include?("q[s]=organization+asc"), "filter not retained"
+    assert page.current_url.include?("q[s]=organization+asc"), "filter should be retained"
   end
 
   test "after filtering index, should retain filter on edit and save" do

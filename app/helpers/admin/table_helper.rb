@@ -137,9 +137,9 @@ module Admin::TableHelper
     end
 
     if @managed_class.allows? :edit
-      link = url_for(action:"edit", id:resource.id, q:ransack_params)
+      link = url_for(action:"edit", id:resource.id, q:ransack_params, p:page_param)
     elsif @managed_class.allows? :show
-      link = url_for(action:"show", id:resource.id, q:ransack_params)
+      link = url_for(action:"show", id:resource.id, q:ransack_params, p:page_param)
     else
       link = "#" # Guh, painted ourseves into a corner here
     end
@@ -162,15 +162,15 @@ module Admin::TableHelper
     links = []
 
     if @managed_class.allows?(:edit)
-      links << link_to("Edit", url_for(action:"edit", id:resource.id, q:ransack_params), class:"button -small")
+      links << link_to("Edit", url_for(action:"edit", id:resource.id, q:ransack_params, p:page_param), class:"button -small -edit")
     end
 
     if @managed_class.allows?(:show)
-      links << link_to("Inspect", url_for(action:"show", id:resource.id, q:ransack_params), class:"button -small")
+      links << link_to("Inspect", url_for(action:"show", id:resource.id, q:ransack_params, p:page_param), class:"button -small -inspect")
     end
 
     if @managed_class.allows?(:destroy)
-      links << link_to("Delete", url_for(action:"destroy", id:resource.id, q:ransack_params), class: "button -small", method: :delete, :'data-confirm' => deletion_warning(resource))
+      links << link_to("Delete", url_for(action:"destroy", id:resource.id, q:ransack_params, p:page_param), class: "button -small -delete", method: :delete, :'data-confirm' => deletion_warning(resource))
     end
 
     return content_tag(:td, links.join("").html_safe, class:"actions-td")

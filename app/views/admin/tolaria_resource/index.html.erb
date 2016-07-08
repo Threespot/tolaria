@@ -26,7 +26,7 @@
     <% end %>
 
     <% if @managed_class.allows?(:new) %>
-      <%= link_to url_for(action:"new", q:ransack_params), class:"button -primary" do %>
+      <%= link_to url_for(action:"new", q:ransack_params, p:page_param), class:"button -primary" do %>
         <%= fontawesome_icon :plus %>
         New <%= @managed_class.model_name.human.titleize %>
       <% end %>
