@@ -6,6 +6,9 @@ require "tolaria"
 module Demo
   class Application < Rails::Application
 
+    # Deprecation notices become exceptions. Don’t keep deprecated code!
+    config.active_support.deprecation = :raise
+
     # Settings in config/environments/* take precedence over those specified here.
     # Application configuration should go into files in config/initializers
     # -- all .rb files in that directory are automatically loaded.

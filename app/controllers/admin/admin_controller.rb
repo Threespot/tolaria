@@ -7,7 +7,7 @@ class Admin::AdminController < Tolaria::TolariaController
   end
 
   def markdown
-    return render(nothing:true, status:404) unless current_administrator.present?
+    return head(404) unless current_administrator.present?
     return render(inline:Tolaria.render_markdown(request.raw_post))
   end
 

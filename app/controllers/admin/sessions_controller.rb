@@ -41,8 +41,7 @@ class Admin::SessionsController < Tolaria::TolariaController
 
     if @administrator.send_passcode_email!
       @administrator.accrue_strike!
-      response.status = 204
-      return render nothing: true
+      return head(204)
     else
       response.status = 500
       return render json: {
