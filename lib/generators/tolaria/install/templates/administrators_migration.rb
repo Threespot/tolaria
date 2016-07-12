@@ -1,4 +1,4 @@
-class CreateAdministrators < ActiveRecord::Migration
+class CreateAdministrators < ActiveRecord::Migration[5.0]
   def change
 
     create_table :administrators, force:true do |t|
