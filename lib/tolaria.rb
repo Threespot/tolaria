@@ -9,7 +9,6 @@ require "kaminari"
 require "ransack"
 
 require "tolaria/version"
-require "tolaria/ransack"
 require "tolaria/engine"
 require "tolaria/config"
 require "tolaria/default_config"
