@@ -1,4 +1,4 @@
-class CreateFootnotes < ActiveRecord::Migration
+class CreateFootnotes < ActiveRecord::Migration[5.0]
   def change
     create_table :footnotes do |t|
       t.timestamps null:false

@@ -1,4 +1,4 @@
-class AddTestingModels < ActiveRecord::Migration
+class AddTestingModels < ActiveRecord::Migration[5.0]
   def change
 
     create_table :blog_posts, force: :true do |t|
