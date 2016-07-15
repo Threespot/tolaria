@@ -1,4 +1,4 @@
-// Chosen 1.4.2
+// Chosen 1.6.1
 // https://github.com/harvesthq/chosen
 //
 // Copyright (c) Harvest
@@ -170,7 +170,9 @@
       this.inherit_select_classes = this.options.inherit_select_classes || false;
       this.display_selected_options = this.options.display_selected_options != null ? this.options.display_selected_options : true;
       this.display_disabled_options = this.options.display_disabled_options != null ? this.options.display_disabled_options : true;
-      return this.include_group_label_in_selected = this.options.include_group_label_in_selected || false;
+      this.include_group_label_in_selected = this.options.include_group_label_in_selected || false;
+      this.max_shown_results = this.options.max_shown_results || Number.POSITIVE_INFINITY;
+      return this.case_sensitive_search = this.options.case_sensitive_search || false;
     };
 
     AbstractChosen.prototype.set_default_text = function() {
@@ -226,15 +228,21 @@
     };
 
     AbstractChosen.prototype.results_option_build = function(options) {
-      var content, data, _i, _len, _ref;
+      var content, data, data_content, shown_results, _i, _len, _ref;
       content = '';
+      shown_results = 0;
       _ref = this.results_data;
       for (_i = 0, _len = _ref.length; _i < _len; _i++) {
         data = _ref[_i];
+        data_content = '';
         if (data.group) {
-          content += this.result_add_group(data);
+          data_content = this.result_add_group(data);
         } else {
-          content += this.result_add_option(data);
+          data_content = this.result_add_option(data);
+        }
+        if (data_content !== '') {
+          shown_results++;
+          content += data_content;
         }
         if (options != null ? options.first : void 0) {
           if (data.selected && this.is_multiple) {
@@ -242,6 +250,9 @@
           } else if (data.selected && !this.is_multiple) {
             this.single_set_selected_text(this.choice_label(data));
           }
+        }
+        if (shown_results >= this.max_shown_results) {
+          break;
         }
       }
       return content;
@@ -404,9 +415,10 @@
     };
 
     AbstractChosen.prototype.get_search_regex = function(escaped_search_string) {
-      var regex_anchor;
+      var regex_anchor, regex_flag;
       regex_anchor = this.search_contains ? "" : "^";
-      return new RegExp(regex_anchor + escaped_search_string, 'i');
+      regex_flag = this.case_sensitive_search ? "" : "i";
+      return new RegExp(regex_anchor + escaped_search_string, regex_flag);
     };
 
     AbstractChosen.prototype.search_string_match = function(search_string, regex) {
@@ -479,6 +491,7 @@
         case 16:
         case 91:
         case 17:
+        case 18:
           break;
         default:
           return this.results_search();
@@ -540,16 +553,11 @@
     };
 
     AbstractChosen.browser_is_supported = function() {
-      if (window.navigator.appName === "Microsoft Internet Explorer") {
+      if ("Microsoft Internet Explorer" === window.navigator.appName) {
         return document.documentMode >= 8;
       }
-      if (/iP(od|hone)/i.test(window.navigator.userAgent)) {
+      if (/iP(od|hone)/i.test(window.navigator.userAgent) || /IEMobile/i.test(window.navigator.userAgent) || /Windows Phone/i.test(window.navigator.userAgent) || /BlackBerry/i.test(window.navigator.userAgent) || /BB10/i.test(window.navigator.userAgent) || /Android.*Mobile/i.test(window.navigator.userAgent)) {
         return false;
-      }
-      if (/Android/i.test(window.navigator.userAgent)) {
-        if (/Mobile/i.test(window.navigator.userAgent)) {
-          return false;
-        }
       }
       return true;
     };
@@ -575,9 +583,13 @@
         var $this, chosen;
         $this = $(this);
         chosen = $this.data('chosen');
-        if (options === 'destroy' && chosen instanceof Chosen) {
-          chosen.destroy();
-        } else if (!(chosen instanceof Chosen)) {
+        if (options === 'destroy') {
+          if (chosen instanceof Chosen) {
+            chosen.destroy();
+          }
+          return;
+        }
+        if (!(chosen instanceof Chosen)) {
           $this.data('chosen', new Chosen(this, options));
         }
       });
@@ -620,7 +632,7 @@
       if (this.is_multiple) {
         this.container.html('<ul class="chosen-choices"><li class="search-field"><input type="text" value="' + this.default_text + '" class="default" autocomplete="off" style="width:25px;" /></li></ul><div class="chosen-drop"><ul class="chosen-results"></ul></div>');
       } else {
-        this.container.html('<a class="chosen-single chosen-default" tabindex="-1"><span>' + this.default_text + '</span><div><b></b></div></a><div class="chosen-drop"><div class="chosen-search"><input type="text" autocomplete="off" /></div><ul class="chosen-results"></ul></div>');
+        this.container.html('<a class="chosen-single chosen-default"><span>' + this.default_text + '</span><div><b></b></div></a><div class="chosen-drop"><div class="chosen-search"><input type="text" autocomplete="off" /></div><ul class="chosen-results"></ul></div>');
       }
       this.form_field_jq.hide().after(this.container);
       this.dropdown = this.container.find('div.chosen-drop').first();
@@ -1061,7 +1073,7 @@
         if (!((evt.metaKey || evt.ctrlKey) && this.is_multiple)) {
           this.results_hide();
         }
-        this.search_field.val("");
+        this.show_search_field_default();
         if (this.is_multiple || this.form_field.selectedIndex !== this.current_selectedIndex) {
           this.form_field_jq.trigger("change", {
             'selected': this.form_field.options[item.options_index].value
@@ -1269,4 +1281,3 @@
   })(AbstractChosen);
 
 }).call(this);
-
