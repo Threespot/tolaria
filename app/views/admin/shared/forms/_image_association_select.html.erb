@@ -2,5 +2,5 @@
   <div class="searchable-select">
     <%= f.select method, collection.map{ |c| [c.send(text_method), c.send(value_method), {:'data-url' => c.send(preview_url_method)}] }, options, html_options %>
   </div>
-  <%= image_tag nil, class: "image-association-select-image -hidden" %>
+  <%= tag :img, class:"image-association-select-image -hidden" %>
 </div>
