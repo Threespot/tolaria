@@ -2,7 +2,7 @@ module Tolaria
 
   # Returns Tolaria’s version number
   def self.version
-    Gem::Version.new("2.0.2")
+    Gem::Version.new("2.0.3")
   end
 
   module VERSION
