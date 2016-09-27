@@ -1,5 +1,9 @@
 .attachment-field {
 
+  @include min-width($bpFull) {
+    float: left;
+  }
+
   input[type=file] {
     display: none;
   }
