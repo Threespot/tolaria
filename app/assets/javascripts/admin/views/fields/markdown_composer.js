@@ -110,6 +110,9 @@ var MarkdownComposerView = Backbone.View.extend({
 
     event.preventDefault();
 
+    // Save current scroll position of textarea so we can reset it after we update the text
+    var scrollPos = this.$textarea.scrollTop();
+
     var selectedText = this.$textarea.selection("get");
     var buttonOps = ComposerButtons[mode];
 
@@ -133,6 +136,8 @@ var MarkdownComposerView = Backbone.View.extend({
 
     this.updatePreview();
 
+    // Reset scroll position
+    this.$textarea.scrollTop(scrollPos);
   },
 
   // Show an error message in the preview with dimmed text
