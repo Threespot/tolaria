@@ -2,21 +2,20 @@
 
   @include min-width($bpFull) {
     float: left;
-    width: 79%;
     max-width: 620px;
+    width: 79%;
   }
 
   &-controls {
-
     @include clearfix;
     background: $cWhite;
+    border-bottom: 0;
     border-radius: 2px 2px 0 0;
     border: 1px solid $cGrey;
-    border-bottom: 0;
+    margin: 0 auto -1px auto;
+    max-width: 1150px;
     padding: 12px 10px 12px 10px;
     transition: background-color 100ms linear, border-color 100ms linear;
-    max-width: 1150px;
-    margin: 0 auto -1px auto;
     -moz-user-select: none;
     -ms-user-select: none;
     -webkit-user-select: none;
@@ -32,11 +31,18 @@
 
     .-focused &,
     .-fullscreen & {
-      border-color: darken($cSapphire, 10);
       border-bottom: 0;
+      border-color: darken($cSapphire, 10);
       border-right-color: $cSapphire;
     }
+  }// end controls
 
+  &-workspace {
+    @include clearfix();
+
+    textarea {
+      float: none;
+    }
   }
 
   textarea {
@@ -44,61 +50,66 @@
     border-top: 1px dashed $cGrey;
     color: #000;
     font-family: $fMonospace;
-    max-width: none;
     font-size: 14px;
+    max-width: none;
     padding: 12px 12px 12px 12px;
     width: 100%;
+
     &:focus {
       border-top-color: $cGrey;
     }
-  }
+  }// end textarea
 
   // THIS ISN'T EVEN MY FINAL FORM!
 
   .-fullscreen-toggle {
     display: none;
+
     @include min-width($bpFull) {
       display: block;
     }
   }
 
   &.-fullscreen {
-
-    display: block;
-    position: fixed;
-    z-index: 1000000;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: $cWhite;
-    padding: 3% 5%;
     background: $cCoolGrey;
+    background: $cWhite;
+    display: block;
+    height: 100%;
+    left: 0;
     max-width: none;
+    padding: 3% 5%;
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 1000000;
 
     .markdown-composer-workspace {
-      @include clearfix;
-      position: relative;
       height: 100%;
-      max-width: 1150px;
       margin: 0 auto;
+      max-width: 1150px;
+      position: relative;
     }
 
     textarea {
+      border-bottom-color: $cSapphire;
+      border-left-color: darken($cSapphire, 10);
+      border-right-color: $cTaupe;
       display: block;
-      width: 50%;
+      font-size: 14px;
+      float: left;
       height: 94%;
+      left: 0;
       position: absolute;
       top: 0;
-      left: 0;
-      font-size: 14px;
-      border-left-color: darken($cSapphire, 10);
-      border-bottom-color: $cSapphire;
-      border-right-color: $cTaupe;
+      width: 50%;
     }
 
     .markdown-composer-preview {
-
+      background: #fdfdfd;
+      border-bottom: 1px solid $cSapphire;
+      border-radius: 0 0 2px 0;
+      border-right: 1px solid $cSapphire;
+      border-top: 1px dashed $cGrey;
       height: 94%;
       overflow-y: scroll;
       padding: 12px 16px;
@@ -106,21 +117,11 @@
       right: 0;
       top: 0;
       width: 50%;
-
-      background: #fdfdfd;
-      border-top: 1px dashed $cGrey;
-      border-radius: 0 0 2px 0;
-      border-bottom: 1px solid $cSapphire;
-      border-right: 1px solid $cSapphire;
-
     }
-
-  }
-
+  }// end -fullscreen
 }
 
 .markdown-composer-button {
-
   background: none;
   color: $cGrey;
   transition: color 100ms linear;
@@ -131,7 +132,6 @@
     line-height: 16px;
     text-transform: uppercase;
   }
-
 }
 
 .markdown-composer.-focused,
@@ -144,6 +144,4 @@
       color: $cSapphire;
     }
   }
-
 }
-
