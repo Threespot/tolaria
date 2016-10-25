@@ -120,10 +120,37 @@ var MarkdownComposerView = Backbone.View.extend({
       // Wrap each selected line in the syntax
       var replacementText = [];
       var lines = selectedText.match(/^.*((\r\n|\n|\r)|$)/gm);
+
       $.each(lines, function(index, value){
+        // strip new lines
         value = value.replace(/(\r\n|\n|\r)/, '');
-        replacementText.push(buttonOps.before + value + buttonOps.after)
+
+        // Check if selected formatting includes a prefix and/or suffix
+        var hasBefore = buttonOps.before.length > 0;
+        var hasAfter = buttonOps.after.length > 0;
+        var hasBoth = hasBefore && hasAfter;
+
+        // Get prefix and suffix from selected text
+        var before = value.substr(0, buttonOps.before.length);
+        var after = value.substr(-buttonOps.after.length);
+
+        // Remove existing prefix and suffix if already applied to selected text (e.g. bold and italics)
+        if ( hasBoth && before === buttonOps.before && after === buttonOps.after ) {
+          value = value.substr(buttonOps.before.length);
+          value = value.substr(0, value.length - buttonOps.after.length);
+          replacementText.push(value);
+        }
+        // Remove prefix styling if already applied to selected text (e.g. headings, lists, and quotes)
+        else if ( hasBefore && before === buttonOps.before ) {
+          value = value.substr(buttonOps.before.length);
+          replacementText.push(value);
+        }
+        // Add styling
+        else {
+          replacementText.push(buttonOps.before + value + buttonOps.after)
+        }
       });
+
       this.$textarea.selection("replace", {text: replacementText.join("\n")});
     }
     else {
