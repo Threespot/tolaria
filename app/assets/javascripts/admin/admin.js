@@ -2,3 +2,5 @@
 // The actual manifest is stored in base.js.
 
 //= require admin/base.js
+
+FormOrchestrator.initializeViewsOver("body");
