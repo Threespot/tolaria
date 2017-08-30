@@ -1,6 +1,6 @@
 require "test_helper"
 
-class CreateCardsMigration < ActiveRecord::Migration
+class CreateCardsMigration < ActiveRecord::Migration[5.0]
   def change
     create_table :cards, force:true do |t|
       t.timestamps null:false
