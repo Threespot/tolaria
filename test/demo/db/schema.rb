@@ -15,91 +15,91 @@ ActiveRecord::Schema.define(version: 20150610135235) do
   create_table "administrators", force: :cascade do |t|
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "email",                                      null: false
-    t.string   "name",                                       null: false
-    t.string   "organization",                               null: false
-    t.string   "passcode",            limit: 60,             null: false
-    t.datetime "passcode_expires_at",                        null: false
-    t.string   "auth_token",          limit: 32,             null: false
-    t.datetime "account_unlocks_at",                         null: false
-    t.integer  "lockout_strikes",                default: 0, null: false
-    t.integer  "total_strikes",                  default: 0, null: false
-    t.integer  "sessions_created",               default: 0, null: false
+    t.string "email", null: false
+    t.string "name", null: false
+    t.string "organization", null: false
+    t.string "passcode", limit: 60, null: false
+    t.datetime "passcode_expires_at", null: false
+    t.string "auth_token", limit: 32, null: false
+    t.datetime "account_unlocks_at", null: false
+    t.integer "lockout_strikes", default: 0, null: false
+    t.integer "total_strikes", default: 0, null: false
+    t.integer "sessions_created", default: 0, null: false
     t.index ["auth_token"], name: "index_administrators_on_auth_token"
     t.index ["email"], name: "index_administrators_on_email"
   end
 
   create_table "blog_post_topics", force: :cascade do |t|
     t.integer "blog_post_id", null: false
-    t.integer "topic_id",     null: false
+    t.integer "topic_id", null: false
     t.index ["blog_post_id"], name: "index_blog_post_topics_on_blog_post_id"
     t.index ["topic_id"], name: "index_blog_post_topics_on_topic_id"
   end
 
   create_table "blog_posts", force: :cascade do |t|
-    t.datetime "created_at",   null: false
-    t.datetime "updated_at",   null: false
-    t.string   "title",        null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.string "title", null: false
     t.datetime "published_at", null: false
-    t.text     "summary"
-    t.text     "body"
-    t.string   "color"
-    t.text     "portrait"
-    t.text     "attachment"
+    t.text "summary"
+    t.text "body"
+    t.string "color"
+    t.text "portrait"
+    t.text "attachment"
   end
 
   create_table "footnotes", force: :cascade do |t|
-    t.datetime "created_at",   null: false
-    t.datetime "updated_at",   null: false
-    t.integer  "blog_post_id", null: false
-    t.text     "description"
-    t.text     "url"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.integer "blog_post_id", null: false
+    t.text "description"
+    t.text "url"
     t.index ["blog_post_id"], name: "index_footnotes_on_blog_post_id"
   end
 
   create_table "images", force: :cascade do |t|
-    t.datetime "created_at",         null: false
-    t.datetime "updated_at",         null: false
-    t.string   "title",              null: false
-    t.text     "alternate_text"
-    t.text     "credit"
-    t.text     "keywords"
-    t.text     "attachment_address", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.string "title", null: false
+    t.text "alternate_text"
+    t.text "credit"
+    t.text "keywords"
+    t.text "attachment_address", null: false
   end
 
   create_table "legal_pages", force: :cascade do |t|
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.string   "title",      null: false
-    t.string   "slug",       null: false
-    t.text     "summary",    null: false
-    t.text     "body"
+    t.string "title", null: false
+    t.string "slug", null: false
+    t.text "summary", null: false
+    t.text "body"
     t.index ["slug"], name: "index_legal_pages_on_slug"
   end
 
   create_table "miscellany", force: :cascade do |t|
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
-    t.string   "key",         null: false
-    t.text     "value",       null: false
-    t.text     "description", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.string "key", null: false
+    t.text "value", null: false
+    t.text "description", null: false
     t.index ["key"], name: "index_miscellany_on_key"
   end
 
   create_table "topics", force: :cascade do |t|
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "label",      null: false
-    t.string   "slug",       null: false
+    t.string "label", null: false
+    t.string "slug", null: false
     t.index ["slug"], name: "index_topics_on_slug"
   end
 
   create_table "videos", force: :cascade do |t|
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
-    t.string   "title",       null: false
-    t.string   "youtube_id",  null: false
-    t.string   "description"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.string "title", null: false
+    t.string "youtube_id", null: false
+    t.string "description"
   end
 
 end
