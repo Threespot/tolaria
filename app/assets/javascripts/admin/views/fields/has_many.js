@@ -1,13 +1,16 @@
 var HasManyView = Backbone.View.extend({
 
   initialize: function() {
-    this.$button = $(".has-many-create", this.el).first();
-    this.template = this.$button.data("template");
-    this.templateID = this.$button.data("id");
+    // Don't set element variables until after click in case of nested has_manys
   },
 
   addFieldgroup: function(event) {
     event.preventDefault();
+    // Prevent event bubbling in case of nested has_manys
+    event.stopPropagation();
+    this.$button = $(event.target).parent();
+    this.template = this.$button.attr("data-template");
+    this.templateID = this.$button.data("id");
     // We need to make up a new array index
     var time = new Date().getTime();
     var regexp = new RegExp(this.templateID, "g");
