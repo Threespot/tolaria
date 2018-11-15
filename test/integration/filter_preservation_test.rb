@@ -16,7 +16,7 @@ class FilterPreservationTest < ActionDispatch::IntegrationTest
     find_link("Organization").click
     find_link("Nintendo").click
     first(".crumb a").click
-    assert page.current_url.include?("q[s]=organization+asc"), "filter not retained"
+    assert page.current_url.include?("q%5Bs%5D=organization+asc"), "filter not retained"
   end
 
   test "after filtering index, should retain filter on edit and back with button" do
@@ -25,7 +25,7 @@ class FilterPreservationTest < ActionDispatch::IntegrationTest
     find_link("Organization").click
     find_link("Nintendo").click
     first(".button.-cancel").click
-    assert page.current_url.include?("q[s]=organization+asc"), "filter should be retained"
+    assert page.current_url.include?("q%5Bs%5D=organization+asc"), "filter should be retained"
   end
 
   test "after filtering index, should retain filter on edit and save" do
@@ -34,7 +34,7 @@ class FilterPreservationTest < ActionDispatch::IntegrationTest
     find_link("Organization").click
     find_link("Nintendo").click
     first(".button.-save").click
-    assert page.current_url.include?("q[s]=organization+asc"), "filter not retained"
+    assert page.current_url.include?("q%5Bs%5D=organization+asc"), "filter not retained"
   end
 
   test "after filtering index, should retain filter on edit and failed validation" do
@@ -45,7 +45,7 @@ class FilterPreservationTest < ActionDispatch::IntegrationTest
     fill_in("administrator[email]", with:"")
     first(".button.-save").click
     first(".button.-cancel").click
-    assert page.current_url.include?("q[s]=organization+asc"), "filter retained"
+    assert page.current_url.include?("q%5Bs%5D=organization+asc"), "filter retained"
   end
 
   test "after filtering index, should NOT retain filter on save and review" do
@@ -54,7 +54,7 @@ class FilterPreservationTest < ActionDispatch::IntegrationTest
     find_link("Organization").click
     find_link("Nintendo").click
     first(".button.-save-and-review").click
-    assert page.current_url.exclude?("q[s]=organization+asc"), "filter not retained"
+    assert page.current_url.exclude?("q%5Bs%5D=organization+asc"), "filter not retained"
   end
 
 end

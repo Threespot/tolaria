@@ -17,17 +17,18 @@ Gem::Specification.new do |s|
   s.test_files = `git ls-files --directory test`.split("\n")
   s.require_paths = ["lib"]
 
-  s.required_ruby_version = ">= 2.3"
+
+  s.required_ruby_version = ">= 2.6"
 
   s.add_dependency "bcrypt", "~> 3.1"
-  s.add_dependency "kaminari", "~> 0.16"
-  s.add_dependency "rails", "~> 5.0"
-  s.add_dependency "ransack", "~> 1.8"
-  s.add_dependency "sass-rails", "~> 5.0"
+  s.add_dependency "kaminari", "~> 1.1.1"
+  s.add_dependency "rails", "~> 6.0.0"
+  s.add_dependency "ransack", "~> 2.3"
+  s.add_dependency "sass-rails", "~> 6.0"
   s.add_dependency "sass", "~> 3.0"
 
-  s.add_development_dependency "capybara", "~> 2.4"
-  s.add_development_dependency "minitest", "~> 5.7"
+  s.add_development_dependency "capybara", "~> 3.28"
+  s.add_development_dependency "minitest", "~> 5.11"
   s.add_development_dependency "redcarpet", "~> 3"
   s.add_development_dependency "sqlite3", "~> 1.3"
   s.add_development_dependency "timecop", "~> 0.7"
