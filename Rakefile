@@ -39,7 +39,7 @@ task :server do
   binding = ENV.fetch("BIND_ON", "0.0.0.0")
   Dir.chdir "#{TOLARIA_ROOT}/test/demo"
   system "./bin/rake db:migrate"
-  exec "./bin/rails server --environment development --bind #{binding} --port #{port}"
+  exec "./bin/rails server --environment development --port #{port}"
 end
 
 desc "Start a Rails console with Tolaria loaded"
