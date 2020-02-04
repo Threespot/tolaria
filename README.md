@@ -21,7 +21,7 @@ Tolaria is a [content management system](https://en.wikipedia.org/wiki/Content_m
 - Easily overridable on a case-by-case basis.
 - Designed for use on Heroku, in containers, and on websites with TLS.
 - Modest dependencies.
-- Compatible with Rails 5 and Rails 4.2. 
+- Compatible with Rails 6, 5 and Rails 4.2.
 
 ### Browser Support
 
@@ -32,6 +32,9 @@ Tolaria supports IE10+, Edge, Safari, Chrome, Firefox, iOS, and Chrome for Andro
 Add Tolaria to your project's `Gemfile`:
 
 ```ruby
+# If you are running Rails 6, use Tolaria 3
+gem "tolaria", "~> 3.0"
+
 # If you are running Rails 5, use Tolaria 2
 gem "tolaria", "~> 2.0"
 
@@ -197,7 +200,7 @@ See the [TableHelper documentation](http://www.rubydoc.info/gems/tolaria/Admin/T
 
 Tolaria does not build editing forms for you, but it attempts to help speed up your work by providing a wrapper.
 
-If your model was `BlogPost`, you'll need to create a file in your project at  `app/views/admin/blog_posts/_form.html.erb`. You'll provide the form code that would appear inside the `form_for` block, excluding the submit buttons. The builder variable is `f`.
+If your model was `BlogPost`, you'll need to create a file in your project at `app/views/admin/blog_posts/_form.html.erb`. You'll provide the form code that would appear inside the `form_for` block, excluding the submit buttons. The builder variable is `f`.
 
 ```erb
 <% # app/views/admin/blog_posts/_form.html.erb %>
@@ -268,7 +271,7 @@ By default, Tolaria provides a single search field that searches over all of the
 
 **Important:** This system uses the [Ransack gem][ransack], which you'll need to familiarize yourself with.
 
-If your model was `BlogPost`, you'll need to create a file in your project at  `app/views/admin/blog_posts/_search.html.erb`. You'll provide the form code that would appear inside the `search_form_for` block, excluding the submit buttons. The builder variable is `f`.
+If your model was `BlogPost`, you'll need to create a file in your project at `app/views/admin/blog_posts/_search.html.erb`. You'll provide the form code that would appear inside the `search_form_for` block, excluding the submit buttons. The builder variable is `f`.
 
 ```erb
 <% # app/views/admin/blog_posts/_search.html.erb %>

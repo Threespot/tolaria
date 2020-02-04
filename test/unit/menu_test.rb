@@ -9,7 +9,7 @@ class MenuTest < ActiveSupport::TestCase
   test "menu categories supersede class categories" do
     old_setting = Tolaria.config.menu_categories
     Tolaria.config.menu_categories = ["Bull", "Krem"]
-    assert_equal ["Bull", "Krem", "Settings", "Prose", "Media"], Tolaria.categories
+    assert_equal ["Bull", "Krem", "Settings", "Media", "Prose"], Tolaria.categories
     Tolaria.config.menu_categories = old_setting
   end
 
