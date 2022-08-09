@@ -30,7 +30,7 @@ module Tolaria
     discard_managed_class(klass)
 
     # Wrap the Rails model inside a Tolaria::ManagedClass
-    managed_klass = Tolaria::ManagedClass.create(klass, options)
+    managed_klass = Tolaria::ManagedClass.create(klass, **options)
 
     # Add class to the internal tracker
     @managed_classes.push(managed_klass)
