@@ -1,4 +1,5 @@
 module Tolaria
+  
   module FormBuildable
 
     # Returns a `p.hint` used to explain a nearby form field containing
@@ -198,7 +199,7 @@ class Admin::FormBuilder < ActionView::Helpers::FormBuilder
   delegate :content_tag, :tag, :render, to: :@template
 end
 
-class Ransack::Helpers::FormBuilder
-  include Tolaria::FormBuildable
-  delegate :content_tag, :tag, :render, to: :@template
-end
+# class Ransack::Helpers::FormBuilder
+#   include Tolaria::FormBuildable
+#   delegate :content_tag, :tag, :render, to: :@template
+# end
