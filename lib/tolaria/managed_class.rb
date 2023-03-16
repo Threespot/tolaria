@@ -39,20 +39,20 @@ module Tolaria
 
     # A factory method that registers a new model in Tolaria and configures
     # its menu and param settings. Developers should use `ActiveRecord::Base.manage_with_tolaria`
-    def self.create(klass, icon:"file-o", permit_params:[], priority:10, category:"Settings", default_order:"id DESC", paginated:true, allowed_actions:[:index, :show, :new, :create, :edit, :update, :destroy], navigation_label: klass.model_name.human.pluralize.titleize)
+    def self.create(klass, options={icon:"file-o", permit_params:[], priority:10, category:"Settings", default_order:"id DESC", paginated:true, allowed_actions:[:index, :show, :new, :create, :edit, :update, :destroy], navigation_label: klass.model_name.human.pluralize.titleize})
 
       managed_class = self.new
       managed_class.klass = klass
 
       # Assign the passed in setting
-      managed_class.icon = icon.to_s.freeze
-      managed_class.priority = priority.to_i
-      managed_class.category = category.to_s.freeze
-      managed_class.default_order = default_order.to_s.freeze
-      managed_class.paginated = paginated.present?
-      managed_class.permitted_params = permit_params.freeze
-      managed_class.allowed_actions = allowed_actions.freeze
-      managed_class.navigation_label = navigation_label.freeze
+      managed_class.icon = options[:icon].to_s.freeze
+      managed_class.priority = options[:priority].to_i
+      managed_class.category = options[:category].to_s.freeze
+      managed_class.default_order = options[:default_order].to_s.freeze
+      managed_class.paginated = options[:paginated].present?
+      managed_class.permitted_params = options[:permit_params].freeze
+      managed_class.allowed_actions = options[:allowed_actions].freeze
+      managed_class.navigation_label = options[:navigation_label] ? options[:navigation_label].freeze : klass.model_name.human.pluralize.titleize
 
       # Set auto-generated attributes
       managed_class.controller_name = "#{managed_class.model_name.collection.camelize}Controller".freeze
@@ -64,7 +64,11 @@ module Tolaria
 
     # True if the given symbol is in the managed class's allowed_actions array.
     def allows?(action)
-      self.allowed_actions.include?(action)
+      if self.allowed_actions
+        self.allowed_actions.include?(action)
+      else
+        return true
+      end
     end
 
     # True if this managed class should be paginated
