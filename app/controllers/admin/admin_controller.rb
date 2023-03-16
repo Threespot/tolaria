@@ -15,7 +15,7 @@ class Admin::AdminController < Tolaria::TolariaController
     @help_link = Tolaria.help_links.find do |help_link|
       help_link.slug == params[:slug]
     end or raise ActiveRecord::RecordNotFound
-    return render tolaria_template("help/help_link")
+    return render tolaria_template(name: "help/help_link")
   end
 
 end

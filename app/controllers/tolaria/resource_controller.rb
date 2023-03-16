@@ -11,17 +11,17 @@ class Tolaria::ResourceController < Tolaria::TolariaController
     unless currently_sorting?
       @resources = @resources.order(@managed_class.default_order)
     end
-    return render tolaria_template("tolaria_resource/index")
+    return render tolaria_template(name: "tolaria_resource/index")
   end
 
   def show
     @resource = @managed_class.klass.find_by_id(params[:id]) or raise ActiveRecord::RecordNotFound
-    return render tolaria_template("tolaria_resource/show")
+    return render tolaria_template(name: "tolaria_resource/show")
   end
 
   def new
     @resource = @managed_class.klass.new
-    return render tolaria_template("tolaria_resource/new")
+    return render tolaria_template(name: "tolaria_resource/new")
   end
 
   def create
@@ -36,14 +36,14 @@ class Tolaria::ResourceController < Tolaria::TolariaController
     else
       log_validation_errors!
       flash.now[:error] = "Your changes couldn’t be saved. Please correct the following errors:"
-      return render tolaria_template("tolaria_resource/new")
+      return render tolaria_template(name: "tolaria_resource/new")
     end
 
   end
 
   def edit
     @resource = @managed_class.klass.find_by_id(params[:id]) or raise ActiveRecord::RecordNotFound
-    return render tolaria_template("tolaria_resource/edit")
+    return render tolaria_template(name: "tolaria_resource/edit")
   end
 
   def update
@@ -58,7 +58,7 @@ class Tolaria::ResourceController < Tolaria::TolariaController
     else
       log_validation_errors!
       flash.now[:error] = "Your changes couldn’t be saved. Please correct the following errors:"
-      return render tolaria_template("tolaria_resource/edit")
+      return render tolaria_template(name: "tolaria_resource/edit")
     end
 
   end
