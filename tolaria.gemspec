@@ -22,7 +22,7 @@ Gem::Specification.new do |s|
 
   s.add_dependency "bcrypt", "~> 3.1"
   s.add_dependency "kaminari", "~> 1.1.1"
-  s.add_dependency "rails", "~> 6.0.0"
+  s.add_dependency "rails", "~> 6.1.7"
   s.add_dependency "ransack", "~> 4.0.0"
   s.add_dependency "sass-rails", "~> 6.0"
   s.add_dependency "sass", "~> 3.0"
