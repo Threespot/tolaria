@@ -95,7 +95,7 @@ module Admin::TableHelper
     end
 
     if sort.is_a?(Symbol)
-      return content_tag(:th, sort_link(@search, sort), class:"index-th")
+      return content_tag(:th, sort_link(@search, sort, display_label), class:"index-th")
     end
 
     if sort.eql?(true) && field_or_label.is_a?(Symbol)
