@@ -18,12 +18,12 @@ Gem::Specification.new do |s|
   s.require_paths = ["lib"]
 
 
-  s.required_ruby_version = ">= 3.0"
+  s.required_ruby_version = ">= 3.1"
 
   s.add_dependency "bcrypt", "~> 3.1"
-  s.add_dependency "kaminari", "~> 1.1.1"
+  s.add_dependency "kaminari", "~> 1.2.2"
   s.add_dependency "rails", "~> 7"
-  s.add_dependency "ransack", "~> 3.2"
+  s.add_dependency "ransack", "~> 4"
   s.add_dependency "sass-rails", "~> 6.0"
   s.add_dependency "sass", "~> 3.0"
 
