@@ -131,9 +131,15 @@ class Administrator < ActiveRecord::Base
     return Time.current < self.account_unlocks_at
   end
 
+  # Ransack 4 compatibility
   def self.ransackable_attributes(auth_object = nil)
-    ["email", "id", "id_value", "lockout_strikes", "name", "organization"]
+    @ransackable_attributes ||= column_names + _ransackers.keys + _ransack_aliases.keys + attribute_aliases.keys
   end
+
+  def self.ransackable_associations(auth_object = nil)
+    []
+  end
+  # end Ransack 4 compatibility
 
   # -----------------------------------------------------------------------------
   # MANAGE
