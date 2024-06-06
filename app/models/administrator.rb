@@ -131,6 +131,10 @@ class Administrator < ActiveRecord::Base
     return Time.current < self.account_unlocks_at
   end
 
+  def self.ransackable_attributes(auth_object = nil)
+    ["email", "id", "id_value", "lockout_strikes", "name", "organization"]
+  end
+
   # -----------------------------------------------------------------------------
   # MANAGE
   # Register this model with Tolaria
