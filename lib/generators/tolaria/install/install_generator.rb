@@ -11,7 +11,7 @@ module Tolaria
     end
 
     def self.next_migration_number(dirname)
-      if ActiveRecord::Base.timestamped_migrations
+      if Rails.application.config.active_record.timestamped_migrations
         Time.current.utc.strftime("%Y%m%d%H%M%S")
       else
         "%.3d" % (current_migration_number(dirname) + 1)
